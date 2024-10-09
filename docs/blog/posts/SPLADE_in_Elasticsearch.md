@@ -306,6 +306,7 @@ Finally, one of the problems with semantic search that we were trying to avoid i
 SPLADE is a promising approach that bridges the gap between traditional keyword search and modern semantic search. And this is a good thing! In many ways, good ol' keyword search is the right tool because it's relatively simple, it's well understood, and it's easy to scale and maintain. But traditional keyword search still falls short when it comes to matching on meaning.
 
 This post is begging for follow-up posts:
+
 - How does my implementation of SPLADE+Elasticsearch affect precision?
 - How does semantic search perform against my implementation of SPLADE+Elasticsearch?
 - Can we improve SPLADE+Elasticsearch? I want to see how tough it is to get the SPLADE weights into the Elasticsearch scoring.
