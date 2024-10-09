@@ -1,0 +1,1 @@
+This folder contains notebooks and scratch work used to generate the content of the blog.
