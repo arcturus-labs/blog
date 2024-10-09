@@ -762,11 +762,13 @@ print(result_heroes)
 <p>Finally, one of the problems with semantic search that we were trying to avoid is the complexity of dealing with the embedding model when it doesn't quite do what you want it to do. When an embedding model doesn't match the correct documents, then your only option is to retrain the model, reindex, and hope. But with SPLADE, if it thinks that Mary likes murder, our options aren't much better. The main benefit of SPLADE in this case is that you can actually see the words produced by the model, (rather than an opaque vector). This will make it easier to debug the problem and improve it. ... Maybe SPLADE's training data had too many references to Mary I of England (you know... "Bloody Mary").</p>
 <h3 id="conclusion"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#conclusion">Conclusion</a></h3>
 <p>SPLADE is a promising approach that bridges the gap between traditional keyword search and modern semantic search. And this is a good thing! In many ways, good ol' keyword search is the right tool because it's relatively simple, it's well understood, and it's easy to scale and maintain. But traditional keyword search still falls short when it comes to matching on meaning.</p>
-<p>This post is begging for follow-up posts:
-- How does my implementation of SPLADE+Elasticsearch affect precision?
-- How does semantic search perform against my implementation of SPLADE+Elasticsearch?
-- Can we improve SPLADE+Elasticsearch? I want to see how tough it is to get the SPLADE weights into the Elasticsearch scoring.
-- Did you know that Elasticsearch offers a SPLADE-like solution called <a href="https://www.elastic.co/search-labs/blog/elastic-learned-sparse-encoder-elser-retrieval-performance">ESLER</a>? I wonder how that compares with the solution presented here.</p>
+<p>This post is begging for follow-up posts:</p>
+<ul>
+<li>How does my implementation of SPLADE+Elasticsearch affect precision?</li>
+<li>How does semantic search perform against my implementation of SPLADE+Elasticsearch?</li>
+<li>Can we improve SPLADE+Elasticsearch? I want to see how tough it is to get the SPLADE weights into the Elasticsearch scoring.</li>
+<li>Did you know that Elasticsearch offers a SPLADE-like solution called <a href="https://www.elastic.co/search-labs/blog/elastic-learned-sparse-encoder-elser-retrieval-performance">ESLER</a>? I wonder how that compares with the solution presented here.</li>
+</ul>
 <p>If you're interested in hearing more about this topic, then let me know. We could write a post together about it.</p>
 <h3 id="before-you-go-exciting-news"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#before-you-go-exciting-news">Before You Go: Exciting News!</a></h3>
 <p>While we're on the topic of innovative technologies, I'm thrilled to announce that I'm authoring a book on <a href="https://amzn.to/3zKIxGG">LLM Application Development</a>, set to release in November 2024. This book distills years of experience building production-grade LLM applications at GitHub and for various consulting clients into practical, actionable insights.</p>
