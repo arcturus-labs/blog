@@ -13,5 +13,7 @@
 ## TODO
 - [ ] [Set up the actual blog part](https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/)
 - [ ] Change theme
+  - [ ] Figure out how to syntax highlight code
+  - [ ] Figure out how to make my headings clickable links
 - [ ] Change favicon
 - [ ] Get MathJax set up

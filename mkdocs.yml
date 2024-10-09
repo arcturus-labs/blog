@@ -17,3 +17,6 @@ plugins:
       categories:
         - categories
         - tags  
+markdown_extensions:
+  - attr_list
+  - md_in_html
