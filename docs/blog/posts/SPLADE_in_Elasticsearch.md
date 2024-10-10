@@ -308,7 +308,7 @@ get_splade_embedding("mary had a little lamb, it's fleece was white as snow", 15
  'murder']
 ```
 
-There's a lot going on here. We start off with several words related to marriage (which is not mentioned in the original song) and then right at the end it takes a darker turn with `murder`. You know how the rest of that song goes, and these words are clearly a miss. There's also few stop words (super common words) in there: `have`, and `like`. This will definitely increase recall as it will match about half of the docs in the index, but this will take it's toll on precision.
+There's a lot going on here. We start off with several words related to marriage (which is not mentioned in the original song) and then right at the end it takes a darker turn with `murder`. You know how the rest of that song goes, and these words are clearly a miss. There are also a couple of stop words (super common words) in there: `have`, and `like`. This will definitely increase recall as it will match about half of the docs in the index, but this will take it's toll on precision.
 
 Next, my SPLADE implementation in Elasticsearch is oversimplified. If you scroll back up to `get_splade_embedding`, we extract non-zero elements from `vec_np` (the SPLADE tokens) but discard their associated weights. This is a missed opportunity. The SPLADE papers use these weights for scoring matches. Incorporating this nuance – for instance, the fact that _murder_ is less relevant to Mary than _sheep_, _song_, _baby_, and _white_ – would significantly enhance precision.
 
