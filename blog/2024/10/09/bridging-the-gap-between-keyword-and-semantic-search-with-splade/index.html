@@ -19,7 +19,7 @@
     
     
       
-        <title>Bridging the Gap Between Keyword and Semantic Search - MkLorum</title>
+        <title>Bridging the Gap Between Keyword and Semantic Search with SPLADE - MkLorum</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bridging-the-gap-between-keyword-and-semantic-search" class="md-skip">
+        <a href="#bridging-the-gap-between-keyword-and-semantic-search-with-splade" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bridging the Gap Between Keyword and Semantic Search
+              Bridging the Gap Between Keyword and Semantic Search with SPLADE
             
           </span>
         </div>
@@ -418,6 +418,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-unfortunate-state-of-the-art" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Unfortunate State of the Art
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enter-splade" class="md-nav__link">
     <span class="md-ellipsis">
       Enter SPLADE
@@ -574,7 +583,16 @@
         
 
 
-<h1 id="bridging-the-gap-between-keyword-and-semantic-search">Bridging the Gap Between Keyword and Semantic Search</h1>
+<h1 id="bridging-the-gap-between-keyword-and-semantic-search-with-splade">Bridging the Gap Between Keyword and Semantic Search with SPLADE</h1>
+<p>In information retrieval, we often find ourselves between two tools: keyword search and semantic search. Each has strengths and limitations. What if we could combine the best of both?</p>
+<p>By the end of this post, you will:</p>
+<ul>
+<li>Understand the challenges of keyword and semantic search</li>
+<li>Learn about SPLADE, an approach that bridges these methods</li>
+<li>See a practical implementation of SPLADE to enhance search</li>
+</ul>
+<p>If you've struggled with inaccurate search results or wanted a more transparent search system, this post is for you. Let's explore how SPLADE can change your approach to information retrieval.</p>
+<h2 id="the-unfortunate-state-of-the-art">The <em>Unfortunate</em> State of the Art</h2>
 <p>With the rise of RAG methods in prompt engineering, vector-based semantic search has become essential for many applications. It's easy to see why: semantic search overcomes some key limitations of keyword search. In traditional keyword search, you might type terms that mean the same thing as the document you're seeking, but if you use different words, you won't get a match. For example, searching for "ape costume" won't find a document mentioning "gorilla suit." Semantic search, on the other hand, converts your query into a vector representing its meaning. If there's a document with a similar meaning (represented by a nearby vector), you get a match!</p>
 <p>Semantic search seems almost magical... until it's not.</p>
 <p>There are some gnarly challenges with semantic search that we're still grappling with:</p>

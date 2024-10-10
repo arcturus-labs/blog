@@ -460,7 +460,16 @@
     </div>
   </header>
   <div class="md-post__content md-typeset">
-    <h2 id="bridging-the-gap-between-keyword-and-semantic-search"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/">Bridging the Gap Between Keyword and Semantic Search</a></h2>
+    <h2 id="bridging-the-gap-between-keyword-and-semantic-search-with-splade"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/">Bridging the Gap Between Keyword and Semantic Search with SPLADE</a></h2>
+<p>In information retrieval, we often find ourselves between two tools: keyword search and semantic search. Each has strengths and limitations. What if we could combine the best of both?</p>
+<p>By the end of this post, you will:</p>
+<ul>
+<li>Understand the challenges of keyword and semantic search</li>
+<li>Learn about SPLADE, an approach that bridges these methods</li>
+<li>See a practical implementation of SPLADE to enhance search</li>
+</ul>
+<p>If you've struggled with inaccurate search results or wanted a more transparent search system, this post is for you. Let's explore how SPLADE can change your approach to information retrieval.</p>
+<h3 id="the-unfortunate-state-of-the-art"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#the-unfortunate-state-of-the-art">The <em>Unfortunate</em> State of the Art</a></h3>
 <p>With the rise of RAG methods in prompt engineering, vector-based semantic search has become essential for many applications. It's easy to see why: semantic search overcomes some key limitations of keyword search. In traditional keyword search, you might type terms that mean the same thing as the document you're seeking, but if you use different words, you won't get a match. For example, searching for "ape costume" won't find a document mentioning "gorilla suit." Semantic search, on the other hand, converts your query into a vector representing its meaning. If there's a document with a similar meaning (represented by a nearby vector), you get a match!</p>
 <p>Semantic search seems almost magical... until it's not.</p>
 <p>There are some gnarly challenges with semantic search that we're still grappling with:</p>
@@ -470,10 +479,10 @@
 <li><strong>Lack of transparency</strong> – With keyword search, debugging is straightforward – the tokens are human-readable, so you can understand why a document matches. You can adjust queries, field boosts, and phrase matches to tune relevance. Semantic search is opaque; if a query doesn't match as expected, it's hard to understand why. Fixing relevance often means training a new embedding model and reindexing everything. Ouch!</li>
 </ul>
 <p>Wouldn't it be great to have the best of both worlds? We want semantic search's ability to match on meaning, combined with the transparency and simplicity of traditional keyword search.</p>
-<h3 id="enter-splade"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#enter-splade">Enter SPLADE</a></h3>
+<h3 id="enter-splade"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#enter-splade">Enter SPLADE</a></h3>
 <p>SPLADE (Sparse Lexical and Expansion Model for First Stage Ranking) was introduced in a <a href="https://arxiv.org/abs/2107.05720">July 2021 paper</a> and quickly improved upon in <a href="https://arxiv.org/abs/2109.10086">a September follow-up</a>. The concept is simple: instead of asking a semantic model for a meaning-carrying vector, ask it for important terms that <em>should be in the document</em>, whether they're actually present or not. For instance, given a document containing "ape costume," the model might identify similar terms like "gorilla orangutan monkey suit clothes." These synthetic terms can then be indexed in a traditional search engine, boosting recall when added to the search field.</p>
 <p>In this post, we'll explore how to use SPLADE to enhance your search. We'll create a silly document set (because what fun is it to use a realistic example?), index it, and demonstrate how conventional search can fall short when query terms don't quite match. Then, we'll add SPLADE and show how it addresses this problem.</p>
-<h3 id="setup"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#setup">Setup</a></h3>
+<h3 id="setup"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#setup">Setup</a></h3>
 <p>What's your favorite superhero? Superman? Wolverine? Batman? ... Mine's got to be Hindsight Lad – a computer researcher who contributed to his team by critically reviewing past decisions and explaining what they should have done instead. (Real character! Look him up!)</p>
 <figure>
   <img alt="Hindsight Lad" src="assets/SPLADE_in_Elasticsearch/hindsight_lad.webp" width="400" />
@@ -554,7 +563,7 @@
 </tbody>
 </table>
 <p>Our curated list has just 50 heroes, so querying with alternate descriptions might work well for semantic search, but traditional information retrieval will likely struggle.</p>
-<h4 id="indexing"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#indexing">Indexing</a></h4>
+<h4 id="indexing"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#indexing">Indexing</a></h4>
 <p>Let's demonstrate this. Here is function that will index all of our documents:</p>
 <pre><code class="language-python">
 def index_superheroes(num_tokens=50):
@@ -642,7 +651,7 @@ def get_splade_embedding(text, num_tokens=50):
     return new_tokens
 </code></pre>
 <p>This code is more complex, but builds on existing work. It's adapted from Pinecone's <a href="https://www.pinecone.io/learn/splade/#SPLADE-Embeddings">SPLADE writeup</a>, with equations detailed in the <a href="https://arxiv.org/abs/2109.10086">SPLADEv2 paper</a>. Essentially, it extracts tokens from input text, uses the SPLADE model to identify important terms (SPLADE tokens), filters out original tokens, converts remaining tokens to readable text, and returns the result.</p>
-<h4 id="searching"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#searching">Searching</a></h4>
+<h4 id="searching"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#searching">Searching</a></h4>
 <p>What good is an index that can't be searched? Let's remedy that:</p>
 <pre><code class="language-python">def search_superheroes(description, size, splade):
     # If SPLADE is enabled, we search both the description and SPLADE fields
@@ -697,7 +706,7 @@ description list). When <code>splade</code> is true, it searches both <code>desc
     return ' '.join([id2token[i] for i in tokens.tolist()][1:-1])
 </code></pre>
 <p>Now we're ready to see if this all actually works!</p>
-<h3 id="demo-time"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#demo-time">Demo Time</a></h3>
+<h3 id="demo-time"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#demo-time">Demo Time</a></h3>
 <p>Let's take the above code out for a spin.</p>
 <p>First we index our superheroes with <code>index_superheroes(num_tokens=50)</code>. Here we inject up to 50 SPLADE tokens for each row in our data set.</p>
 <p>Next, with SPLADE turned off, let's see if we can catch Iron Man using his alternative description:</p>
@@ -732,7 +741,7 @@ print(result_heroes)
 </code></pre>
 <p>First we test without SPLADE <code>recall_at_3(False)</code> and see that the recall is 28% – as expected, not great. Now with SPLADE <code>recall_at_3(True)</code> returns <em>(... drum roll please ...)</em> 52%.</p>
 <p>Alright! (Whew!) So by injecting synthetic tokens into our indexed documents we have improved recall (recall@3 to be precise) by a hefty 24%!</p>
-<h3 id="retrospective"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#retrospective">Retrospective</a></h3>
+<h3 id="retrospective"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#retrospective">Retrospective</a></h3>
 <p>I can feel my inner Hindsight Lad jumping up and down in my head. It's time to take a closer, more critical look at what we just accomplished. SPLADE is definitely neat, but it doesn't fix all of the problems we've identified with semantic search.</p>
 <figure>
   <img alt="Hindsight Lad" src="assets/SPLADE_in_Elasticsearch/hindsight_lad_2.png" width="400" />
@@ -760,7 +769,7 @@ print(result_heroes)
 <p>There's a lot going on here. We start off with several words related to marriage (which is not mentioned in the original song) and then right at the end it takes a darker turn with <code>murder</code>. You know how the rest of that song goes, and these words are clearly a miss. There's also few stop words (super common words) in there: <code>have</code>, and <code>like</code>. This will definitely increase recall as it will match about half of the docs in the index, but this will take it's toll on precision.</p>
 <p>Next, my SPLADE implementation in Elasticsearch is oversimplified. If you scroll back up to <code>get_splade_embedding</code>, we extract non-zero elements from <code>vec_np</code> (the SPLADE tokens) but discard their associated weights. This is a missed opportunity. The SPLADE papers use these weights for scoring matches. Incorporating this nuance – for instance, the fact that <em>murder</em> is less relevant to Mary than <em>sheep</em>, <em>song</em>, <em>baby</em>, and <em>white</em> – would significantly enhance precision.</p>
 <p>Finally, one of the problems with semantic search that we were trying to avoid is the complexity of dealing with the embedding model when it doesn't quite do what you want it to do. When an embedding model doesn't match the correct documents, then your only option is to retrain the model, reindex, and hope. But with SPLADE, if it thinks that Mary likes murder, our options aren't much better. The main benefit of SPLADE in this case is that you can actually see the words produced by the model, (rather than an opaque vector). This will make it easier to debug the problem and improve it. ... Maybe SPLADE's training data had too many references to Mary I of England (you know... "Bloody Mary").</p>
-<h3 id="conclusion"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#conclusion">Conclusion</a></h3>
+<h3 id="conclusion"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#conclusion">Conclusion</a></h3>
 <p>SPLADE is a promising approach that bridges the gap between traditional keyword search and modern semantic search. And this is a good thing! In many ways, good ol' keyword search is the right tool because it's relatively simple, it's well understood, and it's easy to scale and maintain. But traditional keyword search still falls short when it comes to matching on meaning.</p>
 <p>This post is begging for follow-up posts:</p>
 <ul>
@@ -770,7 +779,7 @@ print(result_heroes)
 <li>Did you know that Elasticsearch offers a SPLADE-like solution called <a href="https://www.elastic.co/search-labs/blog/elastic-learned-sparse-encoder-elser-retrieval-performance">ESLER</a>? I wonder how that compares with the solution presented here.</li>
 </ul>
 <p>If you're interested in hearing more about this topic, then let me know. We could write a post together about it.</p>
-<h3 id="before-you-go-exciting-news"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search/#before-you-go-exciting-news">Before You Go: Exciting News!</a></h3>
+<h3 id="before-you-go-exciting-news"><a class="toclink" href="2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/#before-you-go-exciting-news">Before You Go: Exciting News!</a></h3>
 <p>While we're on the topic of innovative technologies, I'm thrilled to announce that I'm authoring a book on <a href="https://amzn.to/3zKIxGG">LLM Application Development</a>, set to release in November 2024. This book distills years of experience building production-grade LLM applications at GitHub and for various consulting clients into practical, actionable insights.</p>
 <figure>
   <img alt="Hindsight Lad" src="assets/book2.jpg" width="400" />
