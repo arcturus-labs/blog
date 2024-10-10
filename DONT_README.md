@@ -17,3 +17,4 @@
   - [ ] Figure out how to make my headings clickable links
 - [ ] Change favicon
 - [ ] Get MathJax set up
+- [ ] Allow people to subscribe 

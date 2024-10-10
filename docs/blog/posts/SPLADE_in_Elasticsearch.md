@@ -4,7 +4,19 @@ categories:
   - Retrieval
 ---
 
-# Bridging the Gap Between Keyword and Semantic Search
+# Bridging the Gap Between Keyword and Semantic Search with SPLADE
+
+In information retrieval, we often find ourselves between two tools: keyword search and semantic search. Each has strengths and limitations. What if we could combine the best of both?
+
+By the end of this post, you will:
+
+- Understand the challenges of keyword and semantic search
+- Learn about SPLADE, an approach that bridges these methods
+- See a practical implementation of SPLADE to enhance search
+
+If you've struggled with inaccurate search results or wanted a more transparent search system, this post is for you. Let's explore how SPLADE can change your approach to information retrieval.
+
+## Introduction
 
 With the rise of RAG methods in prompt engineering, vector-based semantic search has become essential for many applications. It's easy to see why: semantic search overcomes some key limitations of keyword search. In traditional keyword search, you might type terms that mean the same thing as the document you're seeking, but if you use different words, you won't get a match. For example, searching for "ape costume" won't find a document mentioning "gorilla suit." Semantic search, on the other hand, converts your query into a vector representing its meaning. If there's a document with a similar meaning (represented by a nearby vector), you get a match!
 
