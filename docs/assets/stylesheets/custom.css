@@ -17,7 +17,7 @@ footer {
 section {
     padding: 2rem;
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 1200px; /* controls max width of all content */
 }
 
 h1, h2, h3 {
@@ -68,7 +68,7 @@ li {
 
 
 header {
-    background-color: #004d80;  /* Use your preferred color */
+    background-color: #123043;  /* Use your preferred color - was #004d80 */
     padding: 1rem 0;
 }
 
@@ -135,3 +135,59 @@ nav a {
 }
 
 
+#hero {
+    background-color: #004d80; /* Use your main theme color */
+    color: #fff;
+    padding: 5rem 1rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+#hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.hero-button, .hero-button-outline {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.hero-button {
+    background-color: #007acc; /* Accent color */
+    color: #fff;
+}
+
+.hero-button:hover {
+    background-color: #005fa3;
+}
+
+.hero-button-outline {
+    background-color: transparent;
+    border: 2px solid #007acc;
+    color: #007acc;
+}
+
+.hero-button-outline:hover {
+    background-color: #007acc;
+    color: #fff;
+}
