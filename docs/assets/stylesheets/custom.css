@@ -5,13 +5,6 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    padding-top: 4rem;
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 0;
-    }
 }
 
 
@@ -73,7 +66,6 @@ h1, h2, h3 {
 header {
     background-color: #123043;  /* Use your preferred color - was #004d80 */
     padding: 1rem 0;
-    position: fixed;  /* Fix the header */
     width: 100%;      /* Make sure it covers the full width */
     top: 0;           /* Align it to the top */
     z-index: 1000;    /* Ensure it stays on top of other elements */
@@ -88,12 +80,6 @@ header li {
     margin-bottom: 1rem;
 }
 
-/* Media query for screens narrower than 768px */
-@media (max-width: 768px) {
-    header {
-        position: static;  /* Revert to normal flow on narrow screens */
-    }
-}
 
 .logo {
     display: flex;
@@ -305,7 +291,6 @@ nav a {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 1.5rem 0; /* Add some padding */
 }
 
 .service-item {
@@ -356,13 +341,13 @@ nav a {
 }
 
 .bio-photo {
-    width: 250px;
+    width: 200px;
     height: auto;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-left: 1rem; /* Adds space between the text and the image */
     order: 1; /* Ensures image stays on the right */
-    margin-right: 2rem;
+    margin: 1rem 2rem 1rem 1rem;
 }
 
 @media (max-width: 768px) {
