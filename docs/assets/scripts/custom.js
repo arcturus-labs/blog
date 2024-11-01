@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const sections = document.querySelectorAll('section');
+    // Select all elements with the class names you want to animate
+    const elementsToAnimate = document.querySelectorAll('section:not(#hero), section:not(#hero) h2,  .need-solution-pair, .service-item, .bio-container, .book-covers');
+
     const options = {
         threshold: 0.1
     };
@@ -13,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }, options);
 
-    sections.forEach(section => {
-        observer.observe(section);
+    elementsToAnimate.forEach(element => {
+        element.classList.add('hidden'); // Add hidden class initially
+        observer.observe(element);
     });
 });
