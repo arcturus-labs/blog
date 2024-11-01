@@ -5,7 +5,15 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    padding-top: 4rem;
 }
+
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+}
+
 
 footer {
     background-color: #004d80;
@@ -16,8 +24,13 @@ footer {
 
 section {
     padding: 2rem;
+    padding-bottom: 0;;
     margin: 0 auto;
-    max-width: 1200px; 
+    max-width: 1000px; 
+}
+
+section h2 {
+    text-align: center; /* Center the headings */
 }
 
 h1, h2, h3 {
@@ -49,14 +62,6 @@ h1, h2, h3 {
     min-width: 45%;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 1rem;
-}
 
 @media (max-width: 768px) {
     .needs-solutions {
@@ -68,6 +73,26 @@ li {
 header {
     background-color: #123043;  /* Use your preferred color - was #004d80 */
     padding: 1rem 0;
+    position: fixed;  /* Fix the header */
+    width: 100%;      /* Make sure it covers the full width */
+    top: 0;           /* Align it to the top */
+    z-index: 1000;    /* Ensure it stays on top of other elements */
+}
+
+header ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header li {
+    margin-bottom: 1rem;
+}
+
+/* Media query for screens narrower than 768px */
+@media (max-width: 768px) {
+    header {
+        position: static;  /* Revert to normal flow on narrow screens */
+    }
 }
 
 .logo {
@@ -217,7 +242,6 @@ nav a {
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
 }
 
 
@@ -247,6 +271,7 @@ nav a {
     font-size: 1rem;
     color: #555;
     margin: 0;
+    padding: 1rem;
 }
 
 .solution {
@@ -276,4 +301,207 @@ nav a {
 
 
 
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 0; /* Add some padding */
+}
 
+.service-item {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Align text to the start */
+}
+
+.service-item strong {
+    font-size: 1.25rem;
+    color: #004d80;
+    margin-bottom: 0.5rem;
+}
+
+.service-item p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .services-list {
+        padding: 1rem;
+    }
+    .service-item {
+        padding: 1rem;
+    }
+}
+
+
+.bio-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.bio-container p {
+    padding-left: 2rem;
+    flex: 1; /* Allow the text to take up available space */
+}
+
+.bio-photo {
+    width: 250px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 1rem; /* Adds space between the text and the image */
+    order: 1; /* Ensures image stays on the right */
+    margin-right: 2rem;
+}
+
+@media (max-width: 768px) {
+    .bio-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .bio-photo {
+        order: 0; /* Reset order for small screens */
+        margin-left: 0; /* Reset margin */
+        margin-bottom: 1rem; /* Add space below the image */
+    }
+}
+
+
+.book-covers {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Adds space between images */
+    padding: 1rem 0; /* Adds padding around the section */
+}
+
+.book-covers img {
+    width: 35%;
+    height: auto; /* Scales height naturally */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for screens narrower than 768px */
+@media (max-width: 768px) {
+    .book-covers {
+        flex-direction: column; /* Stack book covers vertically */
+        align-items: center; /* Center images */
+    }
+
+    .book-covers img {
+        width: 55%; /* Increase size to fit mobile screens */
+        margin-bottom: 1rem; /* Add space at the bottom of each image */
+    }
+}
+
+
+
+
+#contact-blog {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the section */
+    gap: 2rem;
+    margin: 2rem auto; /* Center the margin */
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 1200px; /* Adjust width as needed */
+}
+
+.contact-section, .blog-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.subscribe-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+input[type="email"] {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%; /* Ensure full width on small screens */
+}
+
+button[type="submit"] {
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto; /* Remove any width constraints */
+    display: flex;
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    margin: 0 auto; /* Center the button in the form */
+}
+
+button[type="submit"]:hover {
+    background-color: #005fa3;
+}
+
+@media (max-width: 768px) {
+    .subscribe-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.blog-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #007acc;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.blog-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    #contact-blog {
+        flex-direction: column;
+    }
+    form {
+        flex-direction: column; /* Stack elements on smaller screens */
+    }
+    input[type="email"], button[type="submit"] {
+        width: 100%; /* Full width on smaller screens */
+        margin-right: 0; /* Reset margin */
+    }
+}

@@ -28,7 +28,7 @@
         <div class="hero-wrapper">
             <div class="hero-content">
                 <h1>Empower Your AI Journey with Expert Insight</h1>
-                <p>At Arcturus Labs, we guide startups and established enterprises to turn potential into innovative, industry-leading, ever-improving LLM applications.</p>
+                <p>At Arcturus Labs, we guide startups and established enterprises to turn ideas into innovative, industry-leading, ever-improving LLM applications.</p>
                 <div class="hero-buttons">
                     <a href="#services" class="hero-button">See Services</a>
                     <a href="#contact" class="hero-button-outline">Get in Touch</a>
@@ -38,7 +38,7 @@
     </section>
 
     <section id="client-needs">
-        <h2>Solutions</h2>
+        <h2>Problems Solved</h2>
         <div class="needs-solutions">
             <div class="need-solution-pair">
                 <div class="need">
@@ -77,41 +77,80 @@
 
     <section id="services">
         <h2>Services</h2>
-        <ul>
-            <li><strong>LLM Health Check:</strong> Comprehensive review with recommendations and strategy discussion.</li>
-            <li><strong>Focused LLM Training Workshop:</strong> 3-day hands-on workshop for essential LLM development skills.</li>
-            <li><strong>Strategic LLM Advisory:</strong> Ongoing guidance for achieving project goals.</li>
-            <li><strong>Embedded LLM Research & Engineering:</strong> Integration with your team to build components and frameworks.</li>
-        </ul>
+        <div class="services-list">
+            <div class="service-item">
+                <strong>LLM Health Check:</strong>
+                <p>Comprehensive review with recommendations and strategy discussion.</p>
+            </div>
+            <div class="service-item">
+                <strong>Focused LLM Training Workshop:</strong>
+                <p>3-day hands-on workshop for essential LLM development skills.</p>
+            </div>
+            <div class="service-item">
+                <strong>Strategic LLM Advisory:</strong>
+                <p>Ongoing guidance for achieving project goals.</p>
+            </div>
+            <div class="service-item">
+                <strong>Embedded LLM Research & Engineering:</strong>
+                <p>Integration with your team to build components and frameworks.</p>
+            </div>
+        </div>
     </section>
 
     <section id="about">
-        <h2>About John Berryman</h2>
-        <p>John Berryman is the founder and principal consultant of Arcturus Labs, specializing in LLM application development. With a career at the forefront of AI technologies, John empowers businesses to harness the transformative potential of large language models through innovative solutions.</p>
-        <h3>Experience:</h3>
-        <ul>
-            <li><strong>Early engineer on GitHub Copilot:</strong> Developed AI-assisted coding tools.</li>
-            <li><strong>Advanced Code Search Developer:</strong> Built GitHub's scalable code search infrastructure.</li>
-            <li><strong>Search and Recommendations Expert:</strong> Developed systems for Eventbrite and the US Patent Office.</li>
-        </ul>
-        <h3>Publications:</h3>
-        <ul>
-            <li><strong>Relevant Search:</strong> Demystifies relevance work using Elasticsearch and Solr.</li>
-            <li><strong>Prompt Engineering for LLMs:</strong> Comprehensive guide to LLM application development.</li>
-        </ul>
+        <h2>Why Arcturus</h2>
+        <div class="bio-container">
+            <p>John Berryman is the founder and principal consultant of Arcturus Labs, specializing in LLM application development. With a career at the forefront of AI technologies, John has been instrumental in developing AI-assisted coding tools as an early engineer on GitHub Copilot. He built scalable code search infrastructure at GitHub and created sophisticated search and recommendation systems for organizations like Eventbrite and the US Patent Office. His extensive expertise empowers businesses to harness the transformative potential of large language models through innovative solutions. As an authoritative figure in the field, John has authored influential works, including guides on LLM application development and search relevance.</p>
+            <img src="assets/images/john_berryman_face.png" alt="John Berryman" class="bio-photo">
+        </div>
+        <div class="book-covers">
+            <img src="assets/images/relevant_search_cover.png" alt="Relevant Search Book Cover" width="500" height="400">
+            <img src="assets/images/prompt_engineering_cover.jpg" alt="Prompt Engineering for LLMs Book Cover" width="500" height="400">
+        </div>
     </section>
 
-    <section id="testimonials">
+    <!-- <section id="testimonials">
         <h2>Testimonials</h2>
         <p>Client testimonials coming soon.</p>
-    </section>
+    </section> -->
 
-    <section id="contact">
-        <h2>Get in Touch</h2>
-        <p>Whether you're just starting out or looking to optimize your existing LLM applications, Arcturus Labs is here to help. Reach out to discuss how we can empower your AI journey.</p>
-        <p><strong>Contact John Berryman:</strong> <a href="mailto:john@arcturus-labs.com">john@arcturus-labs.com</a></p>
-        <p><strong>Explore Our Blog:</strong> <a href="#blog">Read the Blog</a></p>
-        <p><strong>Stay Connected:</strong> Subscribe to our blog for the latest in LLM application development and AI innovation.</p>
+    <section id="contact-blog">
+        <!-- Get in Touch Section -->
+        <div class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>Whether you're just starting out or looking to optimize your existing LLM applications, Arcturus Labs is here to help. Reach out to discuss how we can empower your AI journey.</p>
+            
+            <form action="https://formspree.io/f/yourformid" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="_replyto" required>
+    
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+    
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+    
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+        
+        <!-- Stay in Touch Section -->
+        <div class="blog-section">
+            <h2><em>Stay</em> in Touch</h2>
+            <p>Subscribe to receive the latest updates and insights on LLM application development and AI innovation.</p>
+            
+            <form action="https://example.com/subscribe" method="POST">
+                <div class="subscribe-form">
+                    <input type="email" id="blog-email" name="email" required>
+                    <button type="submit" class="cta-button">Subscribe</button>
+                </div>
+            </form>
+    
+            <p><a href="#blog" class="blog-link">Read our Blog</a></p>
+        </div>
     </section>
 
     <footer>
