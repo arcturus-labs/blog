@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Arcturus Labs - Empower Your AI Journey with Expert Insight">
     <title>Arcturus Labs</title>
-    <link rel="stylesheet" href="assets/stylesheets/custom.css">
+    <link rel="stylesheet" href="assets/stylesheets/home_custom.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGCYE3982"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9ZGCYE3982');
+</script>
 <body>
     <header>
         <div class="container">
@@ -16,11 +25,10 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="blog">Blog</a></li>
                 </ul>
             </nav>
-            <a href="#schedule" class="cta-button">Schedule a Discovery Call</a>
+            <a href="#contact-blog" class="cta-button">Schedule a Discovery Call</a>
         </div>
     </header>
     
@@ -28,7 +36,7 @@
         <div class="hero-wrapper">
             <div class="hero-content">
                 <h1>Empower Your AI Journey with Expert Insight</h1>
-                <p>At Arcturus Labs, we guide startups and established enterprises to turn ideas into innovative, industry-leading, ever-improving LLM applications.</p>
+                <p>At Arcturus Labs, we guide startups and established enterprises to turn ideas into </br> innovative, industry-leading, ever-improving LLM applications.</p>
                 <div class="hero-buttons">
                     <a href="#services" class="hero-button">See Services</a>
                     <a href="#contact-blog" class="hero-button-outline">Get in Touch</a>
@@ -38,7 +46,7 @@
     </section>
 
     <section id="client-needs">
-        <h2>Problems Solved</h2>
+        <h2>Problems We Solve</h2>
         <div class="needs-solutions">
             <div class="need-solution-pair">
                 <div class="need">
@@ -104,8 +112,12 @@
             <img src="assets/images/john_berryman_face.png" alt="John Berryman" class="bio-photo">
         </div>
         <div class="book-covers">
-            <img src="assets/images/relevant_search_cover.png" alt="Relevant Search Book Cover" width="500" height="400">
-            <img src="assets/images/prompt_engineering_cover.jpg" alt="Prompt Engineering for LLMs Book Cover" width="500" height="400">
+            <a href="https://amzn.to/3TXmDHk" target="_blank">
+                <img src="assets/images/relevant_search_cover.png" alt="Relevant Search Book Cover">
+            </a>
+            <a href="https://amzn.to/3zKIxGG" target="_blank">
+                <img src="assets/images/prompt_engineering_cover.jpg" alt="Prompt Engineering for LLMs Book Cover">
+            </a>
         </div>
     </section>
 
@@ -120,20 +132,21 @@
             <h2>Get in Touch</h2>
             <p>Whether you're just starting out or looking to optimize your existing LLM applications, Arcturus Labs is here to help. Reach out to discuss how we can empower your AI journey.</p>
             
-            <form action="https://formspree.io/f/yourformid" method="POST">
+            <form  id="contact" action="https://formspree.io/f/xldejgen"  method="POST"> 
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
     
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="_replyto" required>
+                <input type="email" id="email" name="email" required>
     
                 <label for="subject">Subject:</label>
-                <input type="text" id="subject" name="subject" required>
+                <input type="text" id="subject" name="subject"  required>
     
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
     
                 <button type="submit" class="cta-button">Send Message</button>
+                <p id="status"></p>
             </form>
         </div>
         
@@ -142,21 +155,22 @@
             <h2><em>Stay</em> in Touch</h2>
             <p>Subscribe to receive the latest updates and insights on LLM application development and AI innovation.</p>
             
-            <form action="https://example.com/subscribe" method="POST">
+            <form id="subscribe" action="https://formspree.io/f/myzyeprv" method="POST">
                 <div class="subscribe-form">
-                    <input type="email" id="blog-email" name="email" required>
+                    <input type="email" id="email" name="email" required>
                     <button type="submit" class="cta-button">Subscribe</button>
+                    <p id="status"></p>
                 </div>
             </form>
     
-            <p><a href="#blog" class="blog-link">Read our Blog</a></p>
+            <p><a href="blog" class="blog-link">Read our Blog</a></p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2023 Arcturus Labs</p>
+        <p>&copy; 2023 <a class="ga" href="https://analytics.google.com/analytics/web/#/a53291808p465694174/admin/streams/table/" class="invisible-link" target="_blank">A</a>rcturus Labs</p>
     </footer>
 
-    <script src="assets/scripts/custom.js"></script>
+    <script src="assets/scripts/home_custom.js"></script>
 </body>
 </html>
