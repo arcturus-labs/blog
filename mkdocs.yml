@@ -1,4 +1,5 @@
 site_name: Arcturus Labs
+site_url: http://arcturus-labs.com
 nav:
   - Home: index.html
   - Blog:
