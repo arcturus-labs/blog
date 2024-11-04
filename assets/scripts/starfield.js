@@ -38,10 +38,10 @@ class Star {
             
             // Strong repulsion force within 100 pixels of cursor
             if (distance < 100) {
-                const repulsionStrength = 0.5;  // Adjust for stronger/weaker effect
-                const force = (repulsionStrength * this.mass) / (distance * distance);
-                this.velocity.x -= (force * dx / distance);
-                this.velocity.y -= (force * dy / distance);
+                const repulsionStrength = 50;  // Adjust for stronger/weaker effect
+                const force = repulsionStrength / (distance * distance);
+                this.velocity.x += (force * dx / distance);
+                this.velocity.y += (force * dy / distance);
             }
         }
 
