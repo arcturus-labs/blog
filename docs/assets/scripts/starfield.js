@@ -54,7 +54,7 @@ class Star {
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             // Check for collision/merging
-            if (distance < 10) {
+            if (distance < 3) {
                 if (this.mass <= star.mass) {
                     this.active = false; // Mark for removal
                     return;
