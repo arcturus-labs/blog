@@ -1,3 +1,4 @@
+// Use AJAX to submit forms
 async function handleSubmit(event) {
     event.preventDefault();
     var form = event.currentTarget
@@ -35,6 +36,7 @@ async function handleSubmit(event) {
     });
 }
 
+// make sections on page animate
 document.addEventListener("DOMContentLoaded", function() {
     // Animate classes
     const elementsToAnimate = document.querySelectorAll('section:not(#hero), section:not(#hero) h2,  .need-solution-pair, .service-item, .bio-container, .book-covers');
@@ -63,4 +65,3 @@ document.addEventListener("DOMContentLoaded", function() {
     contact_form.addEventListener("submit", handleSubmit)
     subscribe_form.addEventListener("submit", handleSubmit)
 });
-

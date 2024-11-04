@@ -13,10 +13,13 @@ Start with `workon blog`.
 - https://www.mkdocs.org/user-guide/ 
 
 ## TODO
-- [ ] [Set up the actual blog part](https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/)
+- [x] [Set up the actual blog part](https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/)
+- [x] Change favicon
+- [x] Allow people to subscribe ~ crappy version, I'm just using the service that saves forms
+- [ ] 
 - [ ] Change theme
   - [ ] Figure out how to syntax highlight code
   - [ ] Figure out how to make my headings clickable links
-- [ ] Change favicon
 - [ ] Get MathJax set up
-- [ ] Allow people to subscribe 
+
+- [ ] Add site search

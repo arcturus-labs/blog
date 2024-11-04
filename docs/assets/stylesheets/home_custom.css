@@ -84,6 +84,19 @@ header li {
     margin-bottom: 1rem;
 }
 
+header .twemoji svg {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    fill: white;
+}
+
+header nav ul li {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 
 .logo {
     display: flex;
@@ -101,6 +114,21 @@ header li {
     font-weight: bold;
 }
 
+.social-links {
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    margin: 0 0.5rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
 
 
 .container {

@@ -5,10 +5,14 @@ nav:
     - blog/index.md
 theme:
   name: material
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.ico
   features:
     - content.code.copy
 extra_css:
-  - assets/stylesheets/custom.css    
+  - assets/stylesheets/custom.css
+extra_javascript:
+    - assets/scripts/custom.js      
 plugins:
   - blog
   - rss:
@@ -19,8 +23,11 @@ plugins:
         - categories
         - tags  
 markdown_extensions:
-  - attr_list
   - md_in_html
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 extra:
   analytics:
     provider: google
