@@ -155,13 +155,5 @@ function initStarField() {
     animate();
 }
 
-function initStarFieldIfSisPressed() {
-    document.addEventListener('keydown', (e) => {
-        if (e.key.toLowerCase() === 's') {
-            initStarField();
-        }
-    });
-}
-
 // Initialize when the DOM is loaded
-document.addEventListener('DOMContentLoaded', initStarFieldIfSisPressed);
+document.addEventListener('DOMContentLoaded', initStarField);
