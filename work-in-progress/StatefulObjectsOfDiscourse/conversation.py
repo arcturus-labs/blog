@@ -1,6 +1,8 @@
+import json
+import re
 
 import anthropic
-import json
+
 
 class Artifact:
     def __init__(self, identifier, type, title, content):
@@ -10,7 +12,7 @@ class Artifact:
         self.content = content
 
     def __str__(self):
-        return f"<artifact identifier={self.identifier} type={self.type} title={self.title}>\n{self.content}\n</artifact>"
+        return f'<artifact identifier="{self.identifier}" type="{self.type}" title="{self.title}">\n{self.content}\n</artifact>'
     
 class Tool:
     def __init__(self, schema, callable):
@@ -140,8 +142,6 @@ example titles: "Simple Python factorial script", "Blue circle SVG", "Metrics da
 """
         return system_message
     
-    def _extract_artifacts(self):
-        return []
     def _save(self):
         if self.filename:
             with open(self.filename, "w") as file:
@@ -165,4 +165,58 @@ example titles: "Simple Python factorial script", "Blue circle SVG", "Metrics da
                 json.dump(messages_to_save, file)
 
 
+    def _extract_text_content(self):
+        for message in self.messages:
+            content = message['content']
+            
+            # If content is a string, yield it directly
+            if isinstance(content, str):
+                yield content
+                continue
+                
+            # If content is a list, process each item
+            if isinstance(content, list):
+                for item in content:
+                    # Handle string items
+                    if isinstance(item, str):
+                        yield item
+                        continue
+                        
+                    # Handle dict-like items (including TextBlock, ToolUseBlock)
+                    item_dict = item.dict() if hasattr(item, 'dict') else item
+                    
+                    # Extract text from TextBlock
+                    if item_dict.get('type') == 'text':
+                        yield item_dict['text']
+                        
+                    # Extract content from tool results
+                    elif item_dict.get('type') == 'tool_result':
+                        yield item_dict['content']
+
+    def _extract_artifacts(self):
+        artifacts = []
+        
+        # Extract text content from messages
+        for text in self._extract_text_content():
+            # Find all artifact blocks using regex
+            artifact_pattern = r'<artifact\s+identifier="([^"]+)"\s+type="([^"]+)"\s+title="([^"]+)">(.*?)</artifact>'
+            matches = re.finditer(artifact_pattern, text, re.DOTALL)
+            
+            # Convert each match to an Artifact instance
+            for match in matches:
+                identifier = match.group(1)
+                type = match.group(2)
+                title = match.group(3)
+                content = match.group(4).strip()
+                
+                artifact = Artifact(identifier, type, title, content)
+                
+                # If we've seen this identifier before, remove the old artifact
+                existing_identifiers = [a.identifier for a in artifacts]
+                index_of_existing = existing_identifiers.index(identifier) if identifier in existing_identifiers else None
+                if index_of_existing is not None:
+                    artifacts.pop(index_of_existing)    
+                artifacts.append(artifact)
+        
+        return artifacts
 
