@@ -88,12 +88,13 @@ def test_extract_single_artifact():
         '''
     }]
     
-    artifacts = conv._extract_artifacts()
+    artifacts, messages = conv._extract_messages_and_artifacts()
     assert len(artifacts) == 1
     assert artifacts[0].identifier == "123abc"
     assert artifacts[0].type == "text/plain"
     assert artifacts[0].title == "Test Note"
     assert artifacts[0].content == "Hello world"
+    assert messages[0]["content"].strip() == '<a href="#123abc">Test Note</a>'
 
 def test_extract_multiple_artifacts():
     conv = Conversation()
@@ -105,9 +106,11 @@ def test_extract_multiple_artifacts():
         '''
     }]
     
-    artifacts = conv._extract_artifacts()
+    artifacts, messages = conv._extract_messages_and_artifacts()
     assert len(artifacts) == 2
     assert {a.identifier for a in artifacts} == {"123", "456"}
+    assert '<a href="#123">First</a>' in messages[0]["content"]
+    assert '<a href="#456">Second</a>' in messages[0]["content"]
 
 def test_duplicate_identifiers_keeps_latest():
     conv = Conversation()
@@ -122,10 +125,11 @@ def test_duplicate_identifiers_keeps_latest():
         }
     ]
     
-    artifacts = conv._extract_artifacts()
+    artifacts, messages = conv._extract_messages_and_artifacts()
     assert len(artifacts) == 1
     assert artifacts[0].content == "New content"
     assert artifacts[0].title == "New"
+    assert '<a href="#123">New</a>' in messages[1]["content"]
 
 def test_no_artifacts():
     conv = Conversation()
@@ -134,8 +138,9 @@ def test_no_artifacts():
         {"role": "assistant", "content": "Hi there"}
     ]
     
-    artifacts = conv._extract_artifacts()
+    artifacts, messages = conv._extract_messages_and_artifacts()
     assert len(artifacts) == 0
+    assert messages == conv.messages
 
 def test_artifacts_in_tool_results():
     conv = Conversation()
@@ -149,6 +154,7 @@ def test_artifacts_in_tool_results():
         ]
     }]
     
-    artifacts = conv._extract_artifacts()
+    artifacts, messages = conv._extract_messages_and_artifacts()
     assert len(artifacts) == 1
     assert artifacts[0].identifier == "tool123"
+    assert '<a href="#tool123">Tool Result</a>' in messages[0]["content"][0]["content"]
