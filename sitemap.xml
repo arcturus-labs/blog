@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://arcturus-labs.com/blog/</loc>
-         <lastmod>2024-11-12</lastmod>
+         <lastmod>2024-11-13</lastmod>
     </url>
     <url>
          <loc>http://arcturus-labs.com/blog/2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/</loc>
-         <lastmod>2024-11-12</lastmod>
+         <lastmod>2024-11-13</lastmod>
     </url>
     <url>
-         <loc>http://arcturus-labs.com/blog/2024/11/11/boost-user-experience-with-artifact-aware-assistants/</loc>
-         <lastmod>2024-11-12</lastmod>
+         <loc>http://arcturus-labs.com/blog/2024/11/11/cut-the-chit-chat-with-artifacts/</loc>
+         <lastmod>2024-11-13</lastmod>
     </url>
     <url>
          <loc>http://arcturus-labs.com/blog/archive/2024/</loc>
-         <lastmod>2024-11-12</lastmod>
+         <lastmod>2024-11-13</lastmod>
     </url>
     <url>
          <loc>http://arcturus-labs.com/blog/category/prompt-engineering/</loc>
-         <lastmod>2024-11-12</lastmod>
+         <lastmod>2024-11-13</lastmod>
     </url>
     <url>
          <loc>http://arcturus-labs.com/blog/category/user-experience/</loc>
-         <lastmod>2024-11-12</lastmod>
+         <lastmod>2024-11-13</lastmod>
     </url>
     <url>
          <loc>http://arcturus-labs.com/blog/category/retrieval/</loc>
-         <lastmod>2024-11-12</lastmod>
+         <lastmod>2024-11-13</lastmod>
     </url>
 </urlset>

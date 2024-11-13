@@ -499,7 +499,7 @@
     </div>
   </header>
   <div class="md-post__content md-typeset">
-    <h2 id="boost-user-experience-with-artifact-aware-assistants"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/">Boost User Experience with Artifact-Aware Assistants</a></h2>
+    <h2 id="cut-the-chit-chat-with-artifacts"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/">Cut the Chit-Chat with Artifacts</a></h2>
 <!-- TODO! 
 - Review the actual website to make sure it makes sense
 
@@ -511,7 +511,7 @@
 <p>Contrast this with the naive AI assistant chat in which the assistant is not able to make the distinction between the discussion and the things being discussed. The assistant may come up with fantastic ideas about how to write your report or accomplish your task, but those ideas are quickly lost in the scrollback. And if there are multiple objects floating around in the discussion, then it's nearly impossible to tell the assistant which objects you're talking about and which version and how they relate to one another. At the end of the conversation, the user might find themselves scrolling back to copy out pieces of the conversation that they need.</p>
 <p>The answer to this problem is <em>artifacts</em>. Artifacts, are referenceable chunks of stateful content. Artifacts are the objects of the discussion and the items being worked upon. Both the assistant and the user have the ability to create, retrieve, update, and delete these artifacts and to refer to them as needed.</p>
 <p>In this post I will show you how to step beyond the status quo and build a better user experience with artifact-aware AI assistants.</p>
-<h3 id="status-quo-no-artifacts"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/#status-quo-no-artifacts">Status Quo – No Artifacts</a></h3>
+<h3 id="status-quo-no-artifacts"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#status-quo-no-artifacts">Status Quo – No Artifacts</a></h3>
 <p>But first, let's take a closer look at the status quo experience, just to drive home the pain. In the demo below, the user (blue text) is a real-estate. The real-estate agent is working with an AI assistant to prepare an home listing email to send to a client. Here we are using a naive assistant - one that doesn't understand artifacts.  (The panel on the right is intended to hold artifacts – we'll put it to good use in a moment.) </p>
 <div style="width: 100%; height: 700px;">
   <iframe src="https://arcturus-artifact-aware-assistant.fly.dev/?dumb&recorded&noSuggestions" style="width: 100%; height: 100%; border: none;"></iframe>
@@ -523,7 +523,7 @@
 - The buyer's name and agent's names have been omitted, so the agent asks the assistant to update the email with the correct names, but also to add their name to the template. The assistant complies with the email, but ignores the request to fix the template because it doesn't know how to comply.
 - If the real-estate agent wants to use the email, they have to scroll around and copy-paste it out and send it themselves. This is unnecessary toil.</p>
 <p>This is not be a good experience. The user feels lost (not able to see the original data), confused (they can't see the data that the assistant can see), and overburdened (it's on you to extract the work and apply it). And if the conversation were to continue, it would only get worse. More items will be discussed, many of them will have several versions, and all of it will be scattered in the scrollback and effectively lost.</p>
-<h3 id="the-new-state-of-the-art-artifacts"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/#the-new-state-of-the-art-artifacts">The New State of the Art – Artifacts</a></h3>
+<h3 id="the-new-state-of-the-art-artifacts"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#the-new-state-of-the-art-artifacts">The New State of the Art – Artifacts</a></h3>
 <p>Some bigger players are starting to pick up on the need. The most obvious example is Anthropic with their popular Artifacts implementation. This allows users to describe diagrams, documents, and small applications and see them come into existence in a panel to the right of the conversation. OpenAI followed up quickly with their own implementation, Canvas. These are both good examples of Artifacts, but (to me at least) they feel like toy applications, because you're not likely to ship the results of these applications into production. Also, the interactions you can have with the artifacts are limited. For instance, with Anthropic's Artifacts, the user is unable to directly edit artifacts, and it's cumbersome to ask the assistant to make changes that would be easy to do on your own. <!-- You can share Artifacts, but they are still confined to Anthropic's web page. And if feels clunky to work with multiple artifacts or artifacts with different versions. --></p>
 <!--
 A better example of artifacts, and the best that I have found in the wild, is the user experience that Cursor provides. If you're not familiar with Cursor, it is a fork of the VSCode IDE that encourages users to build code with the help of an AI programming assistant. The assistant is aware of all the relevant files in a project – the artifacts. So that when you ask for some change in code, then, in the conversation panel, the assistant tells you how it will modify the code, sometimes across many files, and it explains its decisions. It then allows you to accept or dismiss its recommendations. It also makes it easy for the user to direct the assisstant's attention to a particular file or snippet, and similarly the assistant can direct the user's attention to the relevant code.
@@ -555,10 +555,10 @@ A better example of artifacts, and the best that I have found in the wild, is th
 </ul>
 <p>Note that I've added some suggested comments to get you started. Make sure to let me know if you find anything interesting (... or broken).</p>
 </div>
-<h3 id="implementing-artifact-aware-assistants"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/#implementing-artifact-aware-assistants">Implementing Artifact-Aware Assistants</a></h3>
+<h3 id="implementing-artifact-aware-assistants"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#implementing-artifact-aware-assistants">Implementing Artifact-Aware Assistants</a></h3>
 <!-- TODO add link to "build a basic assistant" blog post -->
 <p>Artifact-aware assistants require coordinated implementation in the backend, frontend, and system message. Fortunately it's actually rather simple.</p>
-<h4 id="system-message"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/#system-message">System Message</a></h4>
+<h4 id="system-message"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#system-message">System Message</a></h4>
 <p>In order to build an artifact-aware assistant, the first thing you need to do is to convey to the model what artifacts are, and how they work. Here's the system message that I used to build the above demo.</p>
 <details class="note">
 <summary>Artifacts System Message</summary>
@@ -686,7 +686,7 @@ Artifacts are self-contained pieces of content that can be referenced in the con
 <li>Finally, present the existing artifacts to the assistant.</li>
 </ul>
 <p>This simple system message works quite well even though the model I'm using, claude-3-5-sonnet, is not trained on artifacts. I think the reason for this is because the models are used to text that includes references. In natural language we use, nicknames and pronouns. In programming we refer to variables and packages. And in HTML – which is found in abundance in training – we use links! Thus, the model has ample training to differentiate the content of a conversation from the objects of discourse.</p>
-<h4 id="backend-implementation"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/#backend-implementation">Backend Implementation</a></h4>
+<h4 id="backend-implementation"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#backend-implementation">Backend Implementation</a></h4>
 <p>A naive assistant (not aware of artifacts) is implemented as a loop which keeps track of messages in a conversation. When a user submits a message, the assistant:</p>
 <ol>
 <li>Appends the user message to the existing messages.</li>
@@ -704,7 +704,7 @@ Artifacts are self-contained pieces of content that can be referenced in the con
 <li>Send the assistant message and the artifacts back to the user.</li>
 </ol>
 <p>I must make a note on artifact extraction. In my implementation, the assistant is able to modify existing artifacts. It does this by simply rewriting the artifact in the conversation. (In the demo, this is automatically replaced with links, so the user only ever sees the artifacts in the artifact panel.) Since the assistant can rewrite artifacts, this means that there can be multiple versions of the same artifacts. The way I'm handling this is to use the most recent version and delete the old version of the artifact. In a more sophisticated implementation, perhaps we would track the changes to the artifacts so that the assistant can understand their history.</p>
-<h4 id="frontend-implementation"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/#frontend-implementation">Frontend Implementation</a></h4>
+<h4 id="frontend-implementation"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#frontend-implementation">Frontend Implementation</a></h4>
 <p>The frontend requires changes as well. Most notably, you need a place to present the artifacts. In the demo, this is a dedicated panel to the right of the conversation. If your UI doesn't have room for that, then there are alternatives. For instance, you can have a tabbed chat window that allows the user to flip over and see the artifacts. Or you can still incorporate the artifacts into the chat as embedded UI elements. This loses some of the benefit because your artifacts will scroll away as the conversation continues, but at least the artifacts aren't just blobs of text - they can be made into "smart" objects that the user can interact with.</p>
 <p>The chat panel requires a small update. The backend will now return messages that include links to the tabs in the artifacts. Make sure that these links look nice and, most importantly, reveal the corresponding item in the artifact panel when clicked.</p>
 <p>Next, unlike with Anthropic Artifacts, why not let the user directly edit the artifacts? Make sure to capture the edits and send the updated artifacts to the backend.</p>
@@ -715,8 +715,8 @@ Artifacts are self-contained pieces of content that can be referenced in the con
 <p><strong><a href="https://github.com/arcturus-labs/artifact-aware-assistant">https://github.com/arcturus-labs/artifact-aware-assistant</a></strong></p>
 <p>Warning, it is <em>not</em> production-ready code!    </p>
 </div>
-<h3 id="conclusion"><a class="toclink" href="2024/11/11/boost-user-experience-with-artifact-aware-assistants/#conclusion">Conclusion</a></h3>
-<p>Hopefully I've convinced you that artifact-aware assistants are often a much better experience for your users than the naive alternative. And fortunately, they're just not that hard to set up. The demo that I prepared for this blog post is just the tip of the iceberg. Consider other possibilities that artifacts unlock:</p>
+<h3 id="conclusion"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#conclusion">Conclusion</a></h3>
+<p>If you are curious about Artifact assistance, fortunately they're not hard to set up! The demo that I prepared for this blog post is just the tip of the iceberg. Consider other possibilities that artifacts unlock:</p>
 <ul>
 <li>Interactive artifacts that presented themselves in a malleable user interface. For instance a home listing, complete with an image carousel and an interactive map.</li>
 <li>Durable artifacts that save themselves to disk as they are created and updated. Such as a modified email template.</li>
@@ -724,6 +724,13 @@ Artifacts are self-contained pieces of content that can be referenced in the con
 <li>Rich versioning, allowing the user to traverse the changes associated with this artifact and link to the portion of the conversation where the change occurred.</li>
 </ul>
 <p>I bet that you can think of plenty more things!</p>
+<hr />
+<h4 id="hey-and-if-you-liked-this-post-then-maybe-we-should-be-friends"><a class="toclink" href="2024/11/11/cut-the-chit-chat-with-artifacts/#hey-and-if-you-liked-this-post-then-maybe-we-should-be-friends">Hey, and if you liked this post, then maybe we should be friends!</a></h4>
+<ul>
+<li>I just wrote a book about Prompt Engineering for LLM Applications. <a href="/#about">Maybe you'd be interested in reading it.</a></li>
+<li>Are you stumped on a problem with your own LLM application? <a href="/#contact-blog">Let me hear about it.</a></li>
+<li>I'm going to write lots more posts. <a href="/#contact-blog">Subscribe and you'll be the first to know</a>.</li>
+</ul>
     
   </div>
 </article>
