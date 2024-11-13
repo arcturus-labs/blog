@@ -1,12 +1,6 @@
 # Silly stuff you'll forget
 
-Start with `workon blog`.
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs gh-deploy` - Deploy to GitHub Pages.
-* `mkdocs -h` - Print help message and exit.
+## mind the scripts folder
 
 ## refs
 - https://www.mkdocs.org/getting-started/

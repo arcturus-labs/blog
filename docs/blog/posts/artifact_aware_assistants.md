@@ -5,7 +5,7 @@ categories:
   - User Experience
 ---
 
-#  Boost User Experience with Artifact-Aware Assistants
+# Cut the Chit-Chat with Artifacts
 
 <!-- TODO! 
 - Review the actual website to make sure it makes sense
@@ -251,7 +251,7 @@ Finally, I haven't done this with my demo, but if the assistant is creating and 
 
 ## Conclusion
 
-Hopefully I've convinced you that artifact-aware assistants are often a much better experience for your users than the naive alternative. And fortunately, they're just not that hard to set up. The demo that I prepared for this blog post is just the tip of the iceberg. Consider other possibilities that artifacts unlock:
+If you are curious about Artifact assistance, fortunately they're not hard to set up! The demo that I prepared for this blog post is just the tip of the iceberg. Consider other possibilities that artifacts unlock:
 
 - Interactive artifacts that presented themselves in a malleable user interface. For instance a home listing, complete with an image carousel and an interactive map.
 - Durable artifacts that save themselves to disk as they are created and updated. Such as a modified email template.
@@ -259,3 +259,11 @@ Hopefully I've convinced you that artifact-aware assistants are often a much bet
 - Rich versioning, allowing the user to traverse the changes associated with this artifact and link to the portion of the conversation where the change occurred.
 
 I bet that you can think of plenty more things!
+
+--- 
+
+### Hey, and if you liked this post, then maybe we should be friends!
+
+- I just wrote a book about Prompt Engineering for LLM Applications. [Maybe you'd be interested in reading it.](/#about)
+- Are you stumped on a problem with your own LLM application? [Let me hear about it.](/#contact-blog)
+- I'm going to write lots more posts. [Subscribe and you'll be the first to know](/#contact-blog).
