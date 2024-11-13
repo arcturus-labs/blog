@@ -31,6 +31,16 @@ The answer to this problem is _artifacts_. Artifacts, are referenceable chunks o
 
 In this post I will show you how to step beyond the status quo and build a better user experience with artifact-aware AI assistants.
 
+!!! note "Blog posts not your thing?"
+
+    Here's an 8 minute video that covers the juicier points.
+
+    
+    <figure markdown="span">
+      <iframe width="70%" src="https://www.youtube.com/embed/WlCQjB3y-zA" title="Cut the Chit-Chat with Artifacts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </figure>
+
+
 
 ## Status Quo – No Artifacts
 
@@ -297,7 +307,7 @@ If you are curious about Artifact assistance, fortunately they're not hard to se
 
 I bet that you can think of plenty more things!
 
-<em><small>Special thanks to [Doug Turnbull](https://softwaredoug.com/), [Freddie Vargus](https://x.com/freddie_v4), and [Bryan Bischof](https://amzn.to/4fNFopc) for providing feedback on this post.</small></em>
+<em><small>Special thanks to [Doug Turnbull](https://softwaredoug.com/), [Freddie Vargus](https://x.com/freddie_v4), [Bryan Bischof](https://amzn.to/4fNFopc), and [Julia Neagu](https://x.com/JuliaANeagu) for providing feedback on this post.</small></em>
 
 --- 
 
