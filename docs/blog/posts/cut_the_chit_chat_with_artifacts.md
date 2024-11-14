@@ -3,18 +3,15 @@ date: 2024-11-11
 categories:
   - Prompt Engineering
   - User Experience
+description: Unlock the full potential of AI assistants by mastering artifacts - a game-changing approach that transforms chatbots into powerful collaborative tools. Discover how to build assistants that don't just talk, but actually help you get work done by creating, editing and organizing content alongside you. Complete with practical implementation tips and working demo.
 ---
 
 # Cut the Chit-Chat with Artifacts
 
-<!-- TODO! 
-- Review the actual website to make sure it makes sense
-
--->
-
-![Image title](./assets/artifact_aware_assistants/top_image.png){ align=left width=100% }
 
 Most chat applications are leaving something important on the table when it comes to user experience. Users are not satisfied with just chit-chatting with an AI assistant. Users want to work _on_ something with the _help_ of the assistant. This is where the prevailing conversational experience falls short.
+
+![Asset-Aware Assistant](./assets/artifact_aware_assistants/top_image.png){ align=left width=100% }
 
 Consider pair programming. In a real, human pairing session, you and your partner discuss your objectives, talk about how the code should be modified, and then take turns actually modifying the code to implement your ideas. In this scenario – and in most where work is to be done – there is the _discussion_ and then there are the _objects_ of the discussion.
 
