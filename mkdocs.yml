@@ -15,7 +15,6 @@ extra_css:
 extra_javascript:
     - assets/scripts/custom.js      
 plugins:
-  - blog
   - rss:
       match_path: blog/posts/.* 
       date_from_meta:
@@ -23,6 +22,8 @@ plugins:
       categories:
         - categories
         - tags  
+  - search
+  - blog
 markdown_extensions:
   - md_in_html
   - attr_list
