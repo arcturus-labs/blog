@@ -62,7 +62,7 @@ class Star {
             }
 
             // Gravitational force = G * (m1 * m2) / r^2
-            const G = 0.002; // Gravitational constant (adjust for desired strength)
+            const G = 0.005; // Gravitational constant (adjust for desired strength)
             const force = G * (this.mass * star.mass) / (distance * distance);
 
             // Convert force to acceleration components (F = ma, so a = F/m)
