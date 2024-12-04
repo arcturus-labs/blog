@@ -3,7 +3,7 @@ date: 2024-11-11
 categories:
   - Prompt Engineering
   - User Experience
-description: Unlock the full potential of AI assistants by mastering artifacts - a game-changing approach that transforms chatbots into powerful collaborative tools. Discover how to build assistants that don't just talk, but actually help you get work done by creating, editing and organizing content alongside you. Complete with practical implementation tips and working demo.
+description: Roaming RAG offers a fresh take on Retrieval-Augmented Generation, letting LLMs navigate well-structured documents like a human—exploring outlines and diving into sections to find answers. Forget complex retrieval setups and vector databases; this streamlined approach delivers rich context and reliable answers with less hassle. It’s perfect for structured content like technical manuals, product guides, or the innovative llms.txt format designed to make websites LLM-friendly.
 ---
 
 # Cut the Chit-Chat with Artifacts
@@ -12,7 +12,7 @@ description: Unlock the full potential of AI assistants by mastering artifacts -
 Most chat applications are leaving something important on the table when it comes to user experience. Users are not satisfied with just chit-chatting with an AI assistant. Users want to work _on_ something with the _help_ of the assistant. This is where the prevailing conversational experience falls short.
 
 ![Asset-Aware Assistant](./assets/artifact_aware_assistants/top_image.png){ align=left width=100% }
-
+<!-- more -->
 Consider pair programming. In a real, human pairing session, you and your partner discuss your objectives, talk about how the code should be modified, and then take turns actually modifying the code to implement your ideas. In this scenario – and in most where work is to be done – there is the _discussion_ and then there are the _objects_ of the discussion.
 
 Contrast this with the naive AI assistant chat in which the assistant is not able to make the distinction between the discussion and the things being discussed. The assistant may come up with fantastic ideas about how to write your report or accomplish your task, but those ideas are quickly lost in the scrollback. And if there are multiple objects floating around in the discussion, then it's nearly impossible to tell the assistant which objects you're talking about and which version and how they relate to one another. At the end of the conversation, the user might find themselves scrolling back to copy out pieces of the conversation that they need.

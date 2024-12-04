@@ -7,10 +7,24 @@
 - https://www.mkdocs.org/user-guide/ 
 - https://squidfunk.github.io/mkdocs-material/reference/
 
+## TODO! for each blog post
+- make a demo
+- make an outline
+- write it
+  - make sure the description in the heading is correct
+  - make sure image looks good – see what it looks like when shared https://socialsharepreview.com/
+  - make sure that lists and headings all work
+  - Figure out how to link other posts into this one and this post into others (look for TODOs)
+- youtube video (incorporate into text)
+- remove "draft"
+- share X/bluesky/linked-in/? (maybe with https://typefully.com/)
+- direct ping individuals
+
 ## DONE
 - [x] Set up RSS https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#__codelineno-3-2
 
 ## TODO
+- [ ] Look at arcturus-labs.com in https://socialsharepreview.com/ and fix the ratio of the logo
 - [ ] Learn SEO https://www.dannypostma.com/seo-course
 - [ ] Add search
   - [ ] Add search box to the home page
