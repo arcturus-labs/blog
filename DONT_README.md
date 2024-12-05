@@ -17,7 +17,7 @@
   - Figure out how to link other posts into this one and this post into others (look for TODOs)
 - youtube video (incorporate into text)
 - deploy (remove "draft" first!)
-- share w/ close friends for feedback
+- share w/ close friends for feedback – always get someone different each time - add their names to the bottom
 - share X/bluesky/linked-in/? (maybe with https://typefully.com/)
 - direct ping individuals
 

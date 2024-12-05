@@ -6,7 +6,7 @@ categories:
 description: Roaming RAG offers a fresh take on Retrieval-Augmented Generation, letting LLMs navigate well-structured documents like a human—exploring outlines and diving into sections to find answers. Forget complex retrieval setups and vector databases; this streamlined approach delivers rich context and reliable answers with less hassle. It’s perfect for structured content like technical manuals, product guides, or the innovative llms.txt format designed to make websites LLM-friendly.
 ---
 
-# "Roaming" RAG – Make _the Model_ Find the Answers
+# Roaming RAG – Make _the Model_ Find the Answers
 Let's face it, RAG can be a big pain to set up, and even more of a pain to get right.
 
 There's a lot of moving parts. First you have to set up retrieval infrastructure. This typically means setting up a vector database, and building a pipeline to ingest the documents, chunk them, convert them to vectors, and index them. In the LLM application, you have to pull in the appropriate snippets from documentation and present them in the prompt so that they make sense to the model. _And things can go wrong._ If the assistant isn't providing sensible answers, you've got to figure out if it's the fault of the prompt, the chunking, or the embedding model.
@@ -180,6 +180,9 @@ But if you find yourself with a well organized document – _and llms.txt is a g
 One benefit is the richer context. In traditional RAG, context is retrieved as chunks of text which, when shoved into the prompt, resemble pages ripped out of a book. With Roaming RAG, the information retrieved is always presented _within_ the context of the surrounding document. Intuitively, this will likely help the model build a better-informed response to the user's question.
 
 The other main benefit is that there is no extra infrastructure to set up for Roaming RAG – no need to chunk documents, vectorize, or store them in a vector database – actually, no need for the vector database at all. The implementation just needs the doc itself and about [300 lines of code](https://github.com/arcturus-labs/llm-text-assistant/blob/48b71030992301f6d1631f23cfc643dca56835eb/backend/app/routes/api/tools.py) to parse it and get everything set up.
+
+
+<em><small>Special thanks to [Juan Pablo Mesa Lopez](https://x.com/juanpml_) for providing feedback on this post.</small></em>
 
 --- 
 
