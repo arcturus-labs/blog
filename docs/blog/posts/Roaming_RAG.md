@@ -185,7 +185,7 @@ One benefit is the richer context. In traditional RAG, context is retrieved as c
 The other main benefit is that there is no extra infrastructure to set up for Roaming RAG – no need to chunk documents, vectorize, or store them in a vector database – actually, no need for the vector database at all. The implementation just needs the doc itself and about 300 lines of code to parse it and get everything set up.
 
 
-<em><small>Special thanks to [Juan Pablo Mesa Lopez](https://x.com/juanpml_) for providing feedback on this post.</small></em>
+<em><small>Special thanks to [Juan Pablo Mesa Lopez](https://x.com/juanpml_) and [Dan Becker](https://www.linkedin.com/in/dansbecker/) for providing feedback on this post.</small></em>
 
 --- 
 
