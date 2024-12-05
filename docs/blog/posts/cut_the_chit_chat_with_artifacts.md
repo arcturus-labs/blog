@@ -3,7 +3,7 @@ date: 2024-11-11
 categories:
   - Prompt Engineering
   - User Experience
-description: Roaming RAG offers a fresh take on Retrieval-Augmented Generation, letting LLMs navigate well-structured documents like a human—exploring outlines and diving into sections to find answers. Forget complex retrieval setups and vector databases; this streamlined approach delivers rich context and reliable answers with less hassle. It’s perfect for structured content like technical manuals, product guides, or the innovative llms.txt format designed to make websites LLM-friendly.
+description: Unlock the full potential of AI assistants by mastering artifacts - a game-changing approach that transforms chatbots into powerful collaborative tools. Discover how to build assistants that don't just talk, but actually help you get work done by creating, editing and organizing content alongside you. Complete with practical implementation tips and working demo.
 ---
 
 # Cut the Chit-Chat with Artifacts

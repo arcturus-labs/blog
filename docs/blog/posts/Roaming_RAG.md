@@ -1,10 +1,9 @@
 ---
 date: 2024-11-21
-draft: true
 categories:
   - Retrieval
   - Prompt Engineering
-description: #TODO!
+description: Roaming RAG offers a fresh take on Retrieval-Augmented Generation, letting LLMs navigate well-structured documents like a human—exploring outlines and diving into sections to find answers. Forget complex retrieval setups and vector databases; this streamlined approach delivers rich context and reliable answers with less hassle. It’s perfect for structured content like technical manuals, product guides, or the innovative llms.txt format designed to make websites LLM-friendly.
 ---
 
 # "Roaming" RAG – Make _the Model_ Find the Answers
@@ -208,6 +207,7 @@ The other main benefit is that there is no extra infrastructure to set up for Ro
 - Reach out to Hamel for distribution: https://hamel.dev/blog/posts/audience/?ck_subscriber_id=2772546184&utm_source=convertkit&utm_medium=email&utm_campaign=New%20Blog%20Post:%20Building%20an%20Audience%20Through%20Technical%20Writing:%20Strategies%20and%20Mistakes%20-%2015834899
 - Reach out to Jeremy Howard for distribution – ask him about how tools can be incorporated into llm.txt
 - Maybe Jason Liu since it's RAG stuff
+- Tell Manoj about it b/c it has to do w/ law stuff
 - Post on #show-your-work channel (along w/ my site)
 
 

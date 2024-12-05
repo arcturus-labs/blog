@@ -16,7 +16,8 @@
   - make sure that lists and headings all work
   - Figure out how to link other posts into this one and this post into others (look for TODOs)
 - youtube video (incorporate into text)
-- remove "draft"
+- deploy (remove "draft" first!)
+- share w/ close friends for feedback
 - share X/bluesky/linked-in/? (maybe with https://typefully.com/)
 - direct ping individuals
 
