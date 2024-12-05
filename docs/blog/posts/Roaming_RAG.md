@@ -130,6 +130,8 @@ Here are the things to notice:
 - Each section is provided a unique 8 digit hex identifier.
 - Each section heading is followed by a guiding comment for the model: `Section collapsed - expand with expand_section("{identifier}")`.
 
+Splitting up the document like this is not terribly difficult. In [these 300 or so lines of code](https://github.com/arcturus-labs/llm-text-assistant/blob/48b71030992301f6d1631f23cfc643dca56835eb/backend/app/routes/api/tools.py), I'm using `markdown_it` to split the doc into sections, give them all a unique identifier, and make it possible to easily access and expand subsections using their identifier.
+
 ### Backend Implementation
 
 As our guiding comment implies, we have a tool named `expand_section`. It's pretty simple:
@@ -170,6 +172,7 @@ Upon reading the user's question, the assistant "roams" around the document by g
 
 There are actually a couple of tricks that I left out. For some reason I didn't design the `expand_section` tool to take a list of ids. This would have allowed the assistant to open up multiple sections in parallel and thus saved a bit of time. I _did_ do some experimentation with a `collapse_section` command that allowed the assistant clean up open sections that were no longer relevant to the conversation. Unfortunately, the assistant would either never use that tool, or, if I insisted that the tool be used, then the agent would use it indiscriminately and at the wrong time. I instead opted to just close all open sections at the beginning of a question. This is a shame, because if the user has follow-up questions about a topic it would be better to keep the sections open. ... Oh well, next time.
 
+There are times when Roaming RAG is unable to find the information it needs. Likely this is because the document isn't well-structured, or perhaps the headings aren't descriptive enough for the model to make sense of them. But, sometimes the model could also just overlook the right section. When this happens, I've prompted the model to apologize to the user and recommend other ideas for tracking down their answer.
 
 ## Conclusion
 
@@ -179,7 +182,7 @@ But if you find yourself with a well organized document – _and llms.txt is a g
 
 One benefit is the richer context. In traditional RAG, context is retrieved as chunks of text which, when shoved into the prompt, resemble pages ripped out of a book. With Roaming RAG, the information retrieved is always presented _within_ the context of the surrounding document. Intuitively, this will likely help the model build a better-informed response to the user's question.
 
-The other main benefit is that there is no extra infrastructure to set up for Roaming RAG – no need to chunk documents, vectorize, or store them in a vector database – actually, no need for the vector database at all. The implementation just needs the doc itself and about [300 lines of code](https://github.com/arcturus-labs/llm-text-assistant/blob/48b71030992301f6d1631f23cfc643dca56835eb/backend/app/routes/api/tools.py) to parse it and get everything set up.
+The other main benefit is that there is no extra infrastructure to set up for Roaming RAG – no need to chunk documents, vectorize, or store them in a vector database – actually, no need for the vector database at all. The implementation just needs the doc itself and about 300 lines of code to parse it and get everything set up.
 
 
 <em><small>Special thanks to [Juan Pablo Mesa Lopez](https://x.com/juanpml_) for providing feedback on this post.</small></em>
