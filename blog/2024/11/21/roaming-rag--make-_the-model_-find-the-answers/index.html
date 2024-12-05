@@ -25,7 +25,7 @@
     
     
       
-        <title>"Roaming" RAG – Make the Model Find the Answers - Arcturus Labs</title>
+        <title>Roaming RAG – Make the Model Find the Answers - Arcturus Labs</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              "Roaming" RAG – Make the Model Find the Answers
+              Roaming RAG – Make the Model Find the Answers
             
           </span>
         </div>
@@ -669,7 +669,7 @@
         
 
 
-<h1 id="roaming-rag-make-the-model-find-the-answers">"Roaming" RAG – Make <em>the Model</em> Find the Answers</h1>
+<h1 id="roaming-rag-make-the-model-find-the-answers">Roaming RAG – Make <em>the Model</em> Find the Answers</h1>
 <p>Let's face it, RAG can be a big pain to set up, and even more of a pain to get right.</p>
 <p>There's a lot of moving parts. First you have to set up retrieval infrastructure. This typically means setting up a vector database, and building a pipeline to ingest the documents, chunk them, convert them to vectors, and index them. In the LLM application, you have to pull in the appropriate snippets from documentation and present them in the prompt so that they make sense to the model. <em>And things can go wrong.</em> If the assistant isn't providing sensible answers, you've got to figure out if it's the fault of the prompt, the chunking, or the embedding model.</p>
 <p>If your RAG application is serving documentation, then there might be an easy alternative. Rather than setting up a traditional RAG pipeline, put the LLM assistant to work. Let <em>it</em> navigate through the documentation and find the answers. I call this <em>"Roaming" RAG</em>, and in this post I'll show you how it's done.</p>
@@ -803,6 +803,7 @@ With Cursor Chat, Ctrl/⌘ K, and Terminal Ctrl/⌘ K, you can easily switch bet
 <p>But if you find yourself with a well organized document – <em>and llms.txt is a great example of this</em> – then Roaming RAG offers some nice benefits.</p>
 <p>One benefit is the richer context. In traditional RAG, context is retrieved as chunks of text which, when shoved into the prompt, resemble pages ripped out of a book. With Roaming RAG, the information retrieved is always presented <em>within</em> the context of the surrounding document. Intuitively, this will likely help the model build a better-informed response to the user's question.</p>
 <p>The other main benefit is that there is no extra infrastructure to set up for Roaming RAG – no need to chunk documents, vectorize, or store them in a vector database – actually, no need for the vector database at all. The implementation just needs the doc itself and about <a href="https://github.com/arcturus-labs/llm-text-assistant/blob/48b71030992301f6d1631f23cfc643dca56835eb/backend/app/routes/api/tools.py">300 lines of code</a> to parse it and get everything set up.</p>
+<p><em><small>Special thanks to <a href="https://x.com/juanpml_">Juan Pablo Mesa Lopez</a> for providing feedback on this post.</small></em></p>
 <hr />
 <h3 id="hey-and-if-you-liked-this-post-then-maybe-we-should-be-friends"><em>Hey, and if you liked this post, then maybe we should be friends!</em></h3>
 <ul>
