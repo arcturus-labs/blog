@@ -536,7 +536,7 @@
     </div>
   </header>
   <div class="md-post__content md-typeset">
-    <h2 id="roaming-rag-make-the-model-find-the-answers"><a class="toclink" href="../../2024/11/21/roaming-rag--make-_the-model_-find-the-answers/">Roaming RAG – Make <em>the Model</em> Find the Answers</a></h2>
+    <h2 id="roaming-rag-rag-without-the-vector-database"><a class="toclink" href="../../2024/11/21/roaming-rag--rag-without-the-vector-database/">Roaming RAG – RAG without the Vector Database</a></h2>
 <p>Let's face it, RAG can be a big pain to set up, and even more of a pain to get right.</p>
 <p>There's a lot of moving parts. First you have to set up retrieval infrastructure. This typically means setting up a vector database, and building a pipeline to ingest the documents, chunk them, convert them to vectors, and index them. In the LLM application, you have to pull in the appropriate snippets from documentation and present them in the prompt so that they make sense to the model. <em>And things can go wrong.</em> If the assistant isn't providing sensible answers, you've got to figure out if it's the fault of the prompt, the chunking, or the embedding model.</p>
 <p>If your RAG application is serving documentation, then there might be an easy alternative. Rather than setting up a traditional RAG pipeline, put the LLM assistant to work. Let <em>it</em> navigate through the documentation and find the answers. I call this <em>"Roaming" RAG</em>, and in this post I'll show you how it's done.</p>
@@ -544,7 +544,7 @@
 
     
       <nav class="md-post__action">
-        <a href="../../2024/11/21/roaming-rag--make-_the-model_-find-the-answers/">
+        <a href="../../2024/11/21/roaming-rag--rag-without-the-vector-database/">
           Continue reading
         </a>
       </nav>
