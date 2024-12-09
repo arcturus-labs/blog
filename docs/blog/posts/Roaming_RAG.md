@@ -6,7 +6,7 @@ categories:
 description: Roaming RAG offers a fresh take on Retrieval-Augmented Generation, letting LLMs navigate well-structured documents like a human—exploring outlines and diving into sections to find answers. Forget complex retrieval setups and vector databases; this streamlined approach delivers rich context and reliable answers with less hassle. It’s perfect for structured content like technical manuals, product guides, or the innovative llms.txt format designed to make websites LLM-friendly.
 ---
 
-# Roaming RAG – Make _the Model_ Find the Answers
+# Roaming RAG – RAG without the Vector Database
 Let's face it, RAG can be a big pain to set up, and even more of a pain to get right.
 
 There's a lot of moving parts. First you have to set up retrieval infrastructure. This typically means setting up a vector database, and building a pipeline to ingest the documents, chunk them, convert them to vectors, and index them. In the LLM application, you have to pull in the appropriate snippets from documentation and present them in the prompt so that they make sense to the model. _And things can go wrong._ If the assistant isn't providing sensible answers, you've got to figure out if it's the fault of the prompt, the chunking, or the embedding model.
