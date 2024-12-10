@@ -17,6 +17,15 @@ If your RAG application is serving documentation, then there might be an easy al
 
 <!-- more -->
 
+!!! note "Blog posts not your thing?"
+
+    Not in the mood for reading? Join me, John Berryman, with my velvety radio voice, as I guide you through this fascinating topic in just 10 minutes! Grab your favorite snack, settle in, and let's explore Roaming RAG together.
+
+    <figure markdown="span">
+      <iframe width="70%" src="https://www.youtube.com/embed/uOLFNafJ05k" title="Roaming RAG" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </figure>
+
+
 ## The Big Idea
 
 Back in the olden days when the internet was a baby, we didn't have search engines. Instead, companies like Yahoo and Excite attempted to organize the internet into a directory structure. If you wanted to ask the internet how to change your car oil, you would peruse the directory of _everything_, select the Auto section, followed by Maintenance, and then finally the Oil Change section. Then you look at whatever website was lucky enough to be listed in order to figure out how to change your oil. This system worked _horribly_.
@@ -210,11 +219,6 @@ The other main benefit is that there is no extra infrastructure to set up for Ro
 - Record a video
 - Post everywhere
 - find all TODO!s
-- Reach out to Hamel for distribution: https://hamel.dev/blog/posts/audience/?ck_subscriber_id=2772546184&utm_source=convertkit&utm_medium=email&utm_campaign=New%20Blog%20Post:%20Building%20an%20Audience%20Through%20Technical%20Writing:%20Strategies%20and%20Mistakes%20-%2015834899
-- Reach out to Jeremy Howard for distribution – ask him about how tools can be incorporated into llm.txt
-- Maybe Jason Liu since it's RAG stuff
-- Tell Manoj about it b/c it has to do w/ law stuff
-- Post on #show-your-work channel (along w/ my site)
 
 
 -->
