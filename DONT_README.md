@@ -15,6 +15,7 @@
   - make sure image looks good – see what it looks like when shared https://socialsharepreview.com/
   - make sure that lists and headings all work
   - Figure out how to link other posts into this one and this post into others (look for TODOs)
+  - add an image (make sure to add it to the image at the top of the post)
 - youtube video (incorporate into text)
 - deploy (remove "draft" first!)
 - share w/ close friends for feedback – always get someone different each time - add their names to the bottom

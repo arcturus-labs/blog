@@ -4,6 +4,7 @@ categories:
   - Retrieval
   - Prompt Engineering
 description: Roaming RAG offers a fresh take on Retrieval-Augmented Generation, letting LLMs navigate well-structured documents like a human—exploring outlines and diving into sections to find answers. Forget complex retrieval setups and vector databases; this streamlined approach delivers rich context and reliable answers with less hassle. It’s perfect for structured content like technical manuals, product guides, or the innovative llms.txt format designed to make websites LLM-friendly.
+image: blog/assets/Roaming_RAG/top_image.png
 ---
 
 # Roaming RAG – RAG without the Vector Database
