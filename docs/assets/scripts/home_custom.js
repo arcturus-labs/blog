@@ -8,7 +8,6 @@ async function handleSubmit(event) {
     status.innerHTML = ""
     button.innerHTML = "Submitting..."
     var data = new FormData(event.target);
-    debugger;
     fetch(event.target.action, {
         method: form.method,
         body: data,
