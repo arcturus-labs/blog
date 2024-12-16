@@ -21,12 +21,16 @@
 - share w/ close friends for feedback – always get someone different each time - add their names to the bottom
 - share X/bluesky/linked-in/? (maybe with https://typefully.com/)
 - direct ping individuals
+- run Notebooks/work/arcturus-internal/blog_newsletters/generate_newsletter_html.py
 
 ## DONE
 - [x] Set up RSS https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#__codelineno-3-2
 
 ## TODO
 - [ ] Look at arcturus-labs.com in https://socialsharepreview.com/ and fix the ratio of the logo
+- [ ] Add YouTube channel to my website
+- [ ] Add Tessl, GitHub, Eventbrite, Andera to proof section (ask Tessl if it's ok)
+- [ ] Make my Twitter page look like my logo
 - [ ] Learn SEO https://www.dannypostma.com/seo-course
 - [ ] Add search
   - [ ] Add search box to the home page

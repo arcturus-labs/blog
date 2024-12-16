@@ -4,6 +4,7 @@ nav:
   - Home: index.html
   - Blog:
     - blog/index.md
+  - Contact: contact/
 theme:
   name: material
   logo: assets/images/logo.png

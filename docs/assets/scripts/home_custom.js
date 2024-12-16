@@ -64,27 +64,4 @@ document.addEventListener("DOMContentLoaded", function() {
     var subscribe_form = document.getElementById("subscribe");
     contact_form.addEventListener("submit", handleSubmit)
     subscribe_form.addEventListener("submit", handleSubmit)
-
-    // Add event listener to CTA button
-    document.querySelectorAll('#discovery-call-button').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default if it's a link
-        
-        // Hide the blog section
-        const blogSection = document.querySelector('.blog-section');
-        if (blogSection) blogSection.style.display = 'none';
-        
-        // Center the contact section
-        const contactSection = document.querySelector('.contact-section');
-        if (contactSection) {
-            contactSection.style.width = '100%';
-            contactSection.style.maxWidth = '600px';
-            contactSection.style.margin = '0 auto';
-        }
-        
-        // Scroll to the contact section
-        document.querySelector('#contact-blog').scrollIntoView({ behavior: 'smooth' });
-    });
-});
-    
 });

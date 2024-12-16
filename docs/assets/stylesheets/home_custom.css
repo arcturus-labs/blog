@@ -103,6 +103,12 @@ header nav ul li {
     align-items: center;
 }
 
+.logo a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
 .logo img {
     height: 40px;  /* Adjust the size as needed */
     margin-right: 10px;
@@ -625,4 +631,24 @@ button[type="submit"]:disabled {
     border-radius: 5px !important;
     font-size: 1rem !important;
     font-family: 'Open Sans', sans-serif !important;
+}
+
+#contact-page {
+    display: flex;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+}
+
+#contact-page .contact-section {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contact-page h2 {
+    margin-bottom: 1.5rem;
 }
