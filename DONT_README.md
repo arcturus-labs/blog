@@ -9,7 +9,7 @@
 
 ## TODO! for each blog post
 - make a demo
-- make an outline
+- make an outline (consider using /Users/johnberryman/Dropbox/Notebooks/work/arcturus-internal/blog_composer/blog_composer.ipynb)
 - write it
   - make sure the description in the heading is correct
   - make sure image looks good – see what it looks like when shared https://socialsharepreview.com/
