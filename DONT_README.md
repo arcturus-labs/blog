@@ -17,6 +17,13 @@
   - Figure out how to link other posts into this one and this post into others (look for TODOs)
   - add an image (make sure to add it to the image at the top of the post)
 - youtube video (incorporate into text)
+  - open new browser with that blog post in full screen (w/o menus)
+  - open quicktime
+  - create new screen recording and shrink the window as much as possible, in View make "float on top"
+  - create new movie recording
+  - record summary
+  - upload you youtube https://studio.youtube.com/channel/UChBzAOm4bnuBWmvI8PDT79g/videos/upload?d=ud&filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D
+  - Add `<figure><iframe>` to the post
 - deploy (remove "draft" first!)
 - share w/ close friends for feedback – always get someone different each time - add their names to the bottom
 - share X/bluesky/linked-in/? (maybe with https://typefully.com/)

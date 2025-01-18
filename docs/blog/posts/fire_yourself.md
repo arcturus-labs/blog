@@ -18,6 +18,15 @@ The E-Myth's central insight is really quite simple: in any business, there are 
 
 This approach actually serves as a great metaphor for how you should iteratively build and improve LLM applications! Let's dive in.
 
+!!! note "Blog posts not your thing?"
+
+    Text got you down? Then check out the _completely unedited_ companion YouTube video. Watch me deliver the same information as the post, and in the same time that reading would have required.
+
+    <figure markdown="span">
+      <iframe width="70%" src="https://www.youtube.com/embed/f5qWjbD-_xY" title="Fire Yourself First" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </figure>
+
+
 ## The Problem with Typical LLM Development
 
 As Simon Willison astutely observes: "The key skill in getting the most out of LLMs, is learning to work with tech that is both inherently unreliable and incredibly powerful at the same time. This is a decidedly non-obvious skill to acquire!"
