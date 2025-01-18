@@ -6,7 +6,7 @@ description: Discover how to build reliable LLM applications by applying the E-M
 image: blog/assets/fire_yourself/top_image.png
 ---
 
-# Fire Yourself First: The E-Myth Approach to Iteratively Building LLM-driven Applications
+# Fire Yourself First: The E-Myth Approach to Iteratively AI App Development
 
 I've always been interested in entrepreneurship, so, early on in my career, I asked my financial advisor for book recommendations about startups. He handed me "The E-Myth" by Michael Gerber – a book about... building food service franchises? In the heat of the dot-com explosion, this wasn't exactly the startup guide I was hoping for, but its core message stuck with me and turned out to be surprisingly relevant to the problems I hear about regularly when talking to people about building reliable LLM applications.
 
