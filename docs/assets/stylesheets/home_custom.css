@@ -652,3 +652,77 @@ button[type="submit"]:disabled {
 #contact-page h2 {
     margin-bottom: 1.5rem;
 }
+
+/* Trusted By Section */
+#trusted-by {
+    background-color: #f9f9f9;
+    padding: 2rem 0;  /* Reduced top/bottom padding */
+    overflow: hidden;
+}
+
+#trusted-by h2 {
+    margin-bottom: rem;  /* Reduced margin below heading */
+    color: #004d80;
+    text-align: center;
+}
+
+.logo-carousel {
+    position: relative;
+    padding: 2rem 0;
+    width: calc(100% - 4rem);  /* Account for margins */
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;  /* Center the carousel */
+    max-width: 1000px;  /* Match your section max-width */
+}
+
+.logo-track {
+    display: flex;
+    animation: scroll 5s linear infinite;
+}
+
+.logo-track:hover {
+    animation-play-state: paused;
+}
+
+.logo-slide {
+    flex: 0 0 auto;
+    padding: 0 3rem;
+}
+
+.logo-slide img {
+    height: 50px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.logo-slide img:hover {
+    opacity: 1;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .logo-slide {
+        padding: 0 2rem;
+    }
+    
+    .logo-slide img {
+        height: 40px;
+    }
+    
+    .logo-carousel {
+        margin: 0 1rem;  /* Smaller margin on mobile */
+    }
+}
