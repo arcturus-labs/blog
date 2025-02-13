@@ -681,11 +681,7 @@ button[type="submit"]:disabled {
 
 .logo-track {
     display: flex;
-    animation: scroll 5s linear infinite;
-}
-
-.logo-track:hover {
-    animation-play-state: paused;
+    animation: scroll 30s linear infinite;
 }
 
 .logo-slide {
@@ -694,9 +690,8 @@ button[type="submit"]:disabled {
 }
 
 .logo-slide img {
-    height: 50px;
-    opacity: 0.9;
-    transition: opacity 0.3s ease;
+    height: 100px;
+    opacity: 0.75;
 }
 
 .logo-slide img:hover {
@@ -708,7 +703,7 @@ button[type="submit"]:disabled {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-292%); /* Adjusted to match the number of slides and their width so that the carousel is seamless */
     }
 }
 
