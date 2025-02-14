@@ -679,11 +679,6 @@ button[type="submit"]:disabled {
     max-width: 1000px;  /* Match your section max-width */
 }
 
-.logo-track {
-    display: flex;
-    animation: scroll 30s linear infinite;
-}
-
 .logo-slide {
     flex: 0 0 auto;
     padding: 0 3rem;
@@ -694,16 +689,26 @@ button[type="submit"]:disabled {
     opacity: 0.75;
 }
 
+.logo-slide img[alt="Andera"] {
+    height: 80px;
+}
+
 .logo-slide img:hover {
     opacity: 1;
 }
+
+.logo-track {
+    display: flex;
+    animation: scroll 30s linear infinite;
+}
+
 
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-292%); /* Adjusted to match the number of slides and their width so that the carousel is seamless */
+        transform: translateX(-234%); /* Adjusted to match the number of slides and their width so that the carousel is seamless */
     }
 }
 
