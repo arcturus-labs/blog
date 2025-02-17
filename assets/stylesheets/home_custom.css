@@ -699,7 +699,7 @@ button[type="submit"]:disabled {
 
 .logo-track {
     display: flex;
-    animation: scroll 30s linear infinite;
+    animation: scroll 8s linear infinite;
 }
 
 
@@ -708,7 +708,7 @@ button[type="submit"]:disabled {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-234%); /* Adjusted to match the number of slides and their width so that the carousel is seamless */
+        transform: translateX(-282%); /* Adjusted to match the number of slides and their width so that the carousel is seamless */
     }
 }
 
