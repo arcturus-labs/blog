@@ -15,7 +15,8 @@
   - make sure image looks good – see what it looks like when shared https://socialsharepreview.com/
   - make sure that lists and headings all work
   - Figure out how to link other posts into this one and this post into others (look for TODOs)
-  - add an image (make sure to add it to the image at the top of the post)
+  - add an image (make sure to add it to the image metadata at the top of the post)
+  - add a `<!-- more -->` tag to separate preview text from the full text of the post
 - youtube video (incorporate into text)
   - open new browser with that blog post in full screen (w/o menus)
   - open quicktime
@@ -34,6 +35,8 @@
 - [x] Set up RSS https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#__codelineno-3-2
 
 ## TODO
+- [ ] Add arin's logo to my site
+- [ ] the dev site is using production GA and inflating view counts whenever I work on a blog post
 - [ ] Look at arcturus-labs.com in https://socialsharepreview.com/ and fix the ratio of the logo
 - [ ] Add YouTube channel to my website
 - [ ] Add Tessl, GitHub, Eventbrite, Andera to proof section (ask Tessl if it's ok)
