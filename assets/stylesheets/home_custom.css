@@ -726,3 +726,26 @@ button[type="submit"]:disabled {
         margin: 0 1rem;  /* Smaller margin on mobile */
     }
 }
+
+/* Footer links styling */
+.footer-links {
+  text-align: center;
+  margin: 1.5em 0 0.5em 0;
+}
+
+.footer-policy-link {
+  color: #fff;
+  text-decoration: underline;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 1.05em;
+  box-shadow: none;
+  transition: color 0.2s;
+}
+
+.footer-policy-link:hover, .footer-policy-link:focus {
+  color: #dbeafe;
+  text-decoration: underline;
+}
