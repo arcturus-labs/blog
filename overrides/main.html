@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {# Open Graph meta tags for social sharing #}
+  <meta property="og:title" content="{% if page and page.title %}{{ page.title }}{% else %}{{ config.site_name }}{% endif %}">
+  <meta property="og:description" content="{% if page and page.meta and page.meta.description %}{{ page.meta.description }}{% elif config.site_description %}{{ config.site_description }}{% endif %}">
+  <meta property="og:image" content="{% if page and page.meta and page.meta.image %}{{ page.meta.image }}{% elif config.extra and config.extra.og_image %}{{ config.extra.og_image }}{% endif %}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{% if page and page.canonical_url %}{{ page.canonical_url }}{% elif config.site_url %}{{ config.site_url }}{% endif %}">
+{% endblock %} 
