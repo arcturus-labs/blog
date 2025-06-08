@@ -1,4 +1,4 @@
-# Silly stuff you'll forget
+# Silly stuff John will forget
 
 ## mind the scripts folder
 
@@ -25,7 +25,8 @@
   - record summary
   - upload you youtube https://studio.youtube.com/channel/UChBzAOm4bnuBWmvI8PDT79g/videos/upload?d=ud&filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D
   - Add `<figure><iframe>` to the post
-- deploy (remove "draft" first!)
+- git commit
+- scripts/deploy.sh  (remove "draft" first!)
 - share w/ close friends for feedback – always get someone different each time - add their names to the bottom
 - share X/bluesky/linked-in/? (maybe with https://typefully.com/)
 - direct ping individuals
