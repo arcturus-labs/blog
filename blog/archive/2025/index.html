@@ -67,6 +67,14 @@
     
     
     
+  
+  
+  <meta property="og:title" content="2025">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://arcturus-labs.com/blog/archive/2025/">
+
   </head>
   
   
@@ -449,6 +457,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../category/classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
       <a href="../../category/multimodal/" class="md-nav__link">
         
   
@@ -634,6 +665,46 @@
           <li class="md-meta__item">
             in
             
+              <a href="../../category/classification/" class="md-meta__link">Classification</a></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              8 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="supercharging-llm-classifications-with-logprobs"><a class="toclink" href="../../2025/03/31/supercharging-llm-classifications-with-logprobs/">Supercharging LLM Classifications with Logprobs</a></h2>
+<p>I was just reading the classification chapter of Jay Alammar and Maarten Grootendorst's excellent book <a href="https://amzn.to/4lfynRy">Hands-On Large Language Models</a>. I felt inspired to extend their work and show yet another cool trick you can do with LLM-based text classification. In their work they demonstrated how an LLM can be used as a "hard classifier" to determine the sentiment of movie reviews. By "hard" I mean that it gives a concrete answer, "positive" or "negative". However, we can do one better! Using <em>"this one simple trick"</em>™ we can make a "soft" classifier that returns the probabilities of each class rather than a concrete single choice. This makes it possible to <em>tune</em> the classifier – you can set a threshold in the probabilities so that classifications are optimally aligned with a training set.</p>
+<p><img align="left" alt="Soft Classification" src="../../assets/superpower_llm_classifications_with_logprobs/top_image.png" width="100%" /></p>
+
+    
+      <nav class="md-post__action">
+        <a href="../../2025/03/31/supercharging-llm-classifications-with-logprobs/">
+          Continue reading
+        </a>
+      </nav>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-03-31 00:00:00">March 31, 2025</time></li>
+        
+          <li class="md-meta__item">
+            in
+            
               <a href="../../category/reasoning/" class="md-meta__link">Reasoning</a>, 
               <a href="../../category/multimodal/" class="md-meta__link">Multimodal</a></li>
         
@@ -654,9 +725,7 @@
 <!-- TODO! ping Matthew Berman about this post -->
 
 <p>I gotta say – <em>I love it living in exponential times</em>. I can just wish that something existed and then within a month it does! This time it happened with <a href="https://openai.com/index/introducing-4o-image-generation/">OpenAI's 4o image generation release</a>. In this blog post I'll briefly cover the release and why I think it's pretty cool. Then I'll dive into a new opportunity that I think is even more exciting – <em>visual reasoning</em>.</p>
-<figure>
-  <img align="left" alt="Visual Reasoning Robot" src="../../assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.png" width="600px" />
-</figure>
+<p><img align="left" alt="Visual Reasoning Robot" src="../../assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.png" width="100%" /></p>
 
     
       <nav class="md-post__action">
