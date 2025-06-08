@@ -3,12 +3,13 @@ date: 2025-03-31
 categories:
   - Classification
 title: Supercharging LLM Classifications with Logprobs
-description: Turn your LLM into a precision instrument for classification – no fine-tuning required. This post shows how to go beyond simple "yes/no" answers and unlock soft classification using logprobs. You'll learn how to extract class probabilities in a single call, dial in precision vs recall, and make your LLM behave more like a proper ML model. Perfect for anyone building smarter, more flexible AI applications.
+description: Turn your LLM into a precision instrument for classification – no fine-tuning required. This post shows how to go beyond simple "yes/no" answers and unlock soft classification using logprobs. You'll learn how to extract class probabilities in a single call, tune your classifier for optimal performance, and make your LLM behave more like a proper ML model. Perfect for anyone building smarter, more flexible AI applications.
 image: blog/assets/superpower_llm_classifications_with_logprobs/top_image.png
-draft: true
 ---
 
-I was just reading the classification chapter of Jay Alammar and Maarten Grootendorst's excellent book [Hands-On Large Language Models](https://amzn.to/4lfynRy). I felt inspired to extend their work and show yet another cool trick you can do with LLM-based text classification. In their work they demonstrated how an LLM can be used as a "hard classifier" to determine the sentiment of movie reviews. By "hard" I mean that it gives a concrete answer, "positive" or "negative". However, we can do one better! Using _"this one simple trick"_™ we can make a "soft" classifier that returns the probabilities of each class rather than a concrete single choice. This makes it possible to _tune_ the classifier – you can set a threshold in the probabilities for deciding the sentiment. This will allow you to make trade-offs between precision and recall depending on which of these two are more important for your application.
+I was just reading the classification chapter of Jay Alammar and Maarten Grootendorst's excellent book [Hands-On Large Language Models](https://amzn.to/4lfynRy). I felt inspired to extend their work and show yet another cool trick you can do with LLM-based text classification. In their work they demonstrated how an LLM can be used as a "hard classifier" to determine the sentiment of movie reviews. By "hard" I mean that it gives a concrete answer, "positive" or "negative". However, we can do one better! Using _"this one simple trick"_™ we can make a "soft" classifier that returns the probabilities of each class rather than a concrete single choice. This makes it possible to _tune_ the classifier – you can set a threshold in the probabilities so that classifications are optimally aligned with a training set.
+
+![Soft Classification](./assets/superpower_llm_classifications_with_logprobs/top_image.png){ align=left width=100% }
 
 <!-- more -->
 
@@ -133,9 +134,9 @@ To see how it works, let's run this sentiment classifier with the problematic ex
 }
 ```
 
-There's our nuance! Before, we ran the hard classifier 4 times and found that it was positive 75% of the time and negative 25% of the time. But with the hard classifier it would be impossible to have an accurate estimate without running the classification many, many times. But if you did run it hundreds, thousands, millions of times, then eventually the hard classifier would converge to the exact probabilities above: positive 56.2% of the time negative 43.8% of the time, and some other token a tiny fraction of the time.
+There's our nuance! Before, we ran the hard classifier 4 times and found that it was positive 75% of the time and negative 25% of the time. But with the hard classifier it would be impossible to have an accurate estimate without running the classification many, many times. But if you have access to the underlying probabilities (and we do!) then you don't have to run the classifier multiple times. You can just look and immediately see what tiny fraction of the time the model would have classified the sentiment as positive vs. negative.
 
-What's more, you can set a threshold for the probability of the classifier and tune its performance to maximize your desired criteria. For example, it would be naive to assume that if the value associated with `positive` is greater than `negative`, this implies that the sentiment is positive. There might be some bias in the classifier – and you can tune for it! You can run the soft classifier on a labeled sample of your dataset and adjust the cutoff threshold so that accuracy for your sample is optimized. This might mean that any value for `positive` that is above, say, 0.42 is counted as being positive.
+What's more, you can set a threshold for the probability of the classifier and tune its performance to maximize your desired criteria. For example, it would be naive to assume that if the value associated with `positive` is greater than `negative`, this implies that the sentiment is positive. There might be some bias in the classifier – but you can tune for it! You can run the soft classifier on a labeled sample of your dataset and adjust the cutoff threshold so that accuracy for your sample is optimized. This might mean that any value for `positive` that is above, say, 0.47 is counted as being positive.
 
 
 ## Making Your Own Classifier
