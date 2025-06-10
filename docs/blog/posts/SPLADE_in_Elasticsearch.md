@@ -3,7 +3,7 @@ date: 2024-10-09
 categories:
   - Retrieval
 description: Learn how to combine the best of keyword and semantic search using SPLADE - a powerful technique that delivers more accurate, transparent, and efficient search results. This practical guide shows you how to implement SPLADE in Elasticsearch to dramatically improve your search capabilities.
-image: blog/assets/SPLADE_in_Elasticsearch/hindsight_lad.webp
+image: /blog/assets/SPLADE_in_Elasticsearch/hindsight_lad.webp
 ---
 
 # Bridging the Gap Between Keyword and Semantic Search with SPLADE

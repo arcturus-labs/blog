@@ -3,7 +3,7 @@ date: 2025-01-17
 categories:
   - Agentic AI
 description: Discover how to build reliable LLM applications by applying the E-Myth's systematic approach to automation. Learn why starting with human processes and incrementally automating tasks leads to more robust LLM applications. Perfect for startup founders and teams struggling to harness the power of LLMs effectively.
-image: blog/assets/fire_yourself/top_image.png
+image: /blog/assets/fire_yourself/top_image.png
 ---
 
 # Fire Yourself First: The E-Myth Approach to Iteratively AI App Development

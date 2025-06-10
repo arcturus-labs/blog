@@ -4,7 +4,7 @@ categories:
   - Prompt Engineering
   - User Experience
 description: Unlock the full potential of AI assistants by mastering artifacts - a game-changing approach that transforms chatbots into powerful collaborative tools. Discover how to build assistants that don't just talk, but actually help you get work done by creating, editing and organizing content alongside you. Complete with practical implementation tips and working demo.
-image: blog/assets/artifact_aware_assistants/top_image.png
+image: /blog/assets/artifact_aware_assistants/top_image.png
 ---
 
 # Cut the Chit-Chat with Artifacts

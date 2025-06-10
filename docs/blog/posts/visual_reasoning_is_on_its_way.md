@@ -5,7 +5,7 @@ categories:
   - Multimodal
 description: From silly cat costumes to world-changing innovations, OpenAI's latest release marks the beginning of something extraordinary. The fascinating world of visual reasoning is emerging, where AI models will soon think in pictures and solve complex spatial puzzles, transforming how machines understand and interact with the physical world.
 title: Visual Reasoning is Coming Soon
-image: blog/assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.png
+image: /blog/assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.png
 ---
 
 <!-- TODO! ping Matthew Berman about this post -->
