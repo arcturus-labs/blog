@@ -7,11 +7,22 @@ description: Turn your LLM into a precision instrument for classification – no
 image: /blog/assets/superpower_llm_classifications_with_logprobs/top_image.png
 ---
 
+
 I was just reading the classification chapter of Jay Alammar and Maarten Grootendorst's excellent book [Hands-On Large Language Models](https://amzn.to/4lfynRy). I felt inspired to extend their work and show yet another cool trick you can do with LLM-based text classification. In their work they demonstrated how an LLM can be used as a "hard classifier" to determine the sentiment of movie reviews. By "hard" I mean that it gives a concrete answer, "positive" or "negative". However, we can do one better! Using _"this one simple trick"_™ we can make a "soft" classifier that returns the probabilities of each class rather than a concrete single choice. This makes it possible to _tune_ the classifier – you can set a threshold in the probabilities so that classifications are optimally aligned with a training set.
 
 ![Soft Classification](./assets/superpower_llm_classifications_with_logprobs/top_image.png){ align=left width=100% }
 
 <!-- more -->
+
+
+!!! note "Videos more your cup of tea?"
+
+    I'm a slow reader - so I often go to YouTube to have ideas beamed directly into my brain. And now you can do the same thing! Watch me summarize this post in just 10 minutes! Outtakes never taken out.
+
+    <figure markdown="span">
+      <iframe width="70%" src="https://www.youtube.com/embed/FN7oaLcIlvk" title="Supercharging LLM Classifications with Logprobs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </figure>
+
 
 ## Building the "Hard" LLM Classifier
 To quickly repeat/paraphrase the work of Hands-On Large Language Models, here's how to build a sentiment classifier using an LLM.

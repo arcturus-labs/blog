@@ -36,7 +36,7 @@
 - [x] Set up RSS https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#__codelineno-3-2
 
 ## TODO
-- [ ] Add arin's logo to my site
+- [ ] Add arin's logo to my site, and Tribe, and Peer Supply, and Contentful
 - [ ] the dev site is using production GA and inflating view counts whenever I work on a blog post
 - [ ] Look at arcturus-labs.com in https://socialsharepreview.com/ and fix the ratio of the logo
 - [ ] Add YouTube channel to my website
