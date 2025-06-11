@@ -484,6 +484,12 @@ nav a {
     min-width: 300px;
 }
 
+
+input[name="_gotcha"] {
+    display: none !important;
+}
+
+
 form {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
