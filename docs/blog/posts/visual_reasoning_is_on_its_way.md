@@ -8,8 +8,6 @@ title: Visual Reasoning is Coming Soon
 image: /blog/assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.png
 ---
 
-<!-- TODO! ping Matthew Berman about this post -->
-
 I gotta say – _I love it living in exponential times_. I can just wish that something existed and then within a month it does! This time it happened with [OpenAI's 4o image generation release](https://openai.com/index/introducing-4o-image-generation/). In this blog post I'll briefly cover the release and why I think it's pretty cool. Then I'll dive into a new opportunity that I think is even more exciting – _visual reasoning_.
 
 
