@@ -824,7 +824,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              6 min read
+                              4 min read
                             
                           </span>
                         </div>
@@ -858,7 +858,8 @@
 <li>B) Spend 2 hours refactoring and then forget what you were doing?</li>
 <li>C) Write a Recipe – a doc that instructs Cursor (or whatever vibe-coding platform you're using) exactly how to repeat the magic, step by step?</li>
 </ul>
-<p>Sorry, the answer is D - none of the above. But C is close. The only thing is that rather than <em>you</em> writing a recipe, you have Cursor itself write the recipe for you. A recipe is a markdown file that describes how to perform a coding task that you only perform occasionally. In this case I'm making a recipe that takes a rough piece of code and converts it to a well-formed and easy-to-install CLI tool.</p>
+<p>Sorry, the answer is D - none of the above. But C is close. The only thing is that rather than <em>you</em> writing a recipe, you have Cursor itself extract the recipe from a codebase.</p>
+<p>A recipe is a markdown file that describes how to perform a coding task that you only perform occasionally. In this case I'm making a recipe that takes a rough piece of code and converts it to a well-formed and easy-to-install CLI tool.</p>
 <p>Recipes are perfect for:</p>
 <ul>
 <li>Converting code snippets into CLI tools (the example task of this post)</li>
@@ -870,8 +871,8 @@
 <li>Automating any somewhat complex coding task you'll need to do occasionally, but you don't want to memorize</li>
 </ul>
 <h2 id="whats-the-difference-between-recipes-and-cursor-rules">What's the Difference Between Recipes and Cursor Rules</h2>
-<p>Mmmm... not much. As a matter of fact, when you have a recipe, you can save it as a Cursor rule. Just make sure it requires manual inclusion so that it's not automatically applied in every conversation. I guess the main difference is that the recipe is not something you'd want to use all the time, so it might be annoying to have a cursor rule that is rarely used. Though the recipe itself is useful when you actually need it.</p>
-<p>The other neat thing I'm pointing out about recipes here (especially if you watch the video below) is that you don't have to write them yourself, you can point Cursor at a codebase and tell it to extract a recipe based upon the pattern it sees in the codebase.</p>
+<p>In one sense... nothing. A recipe is a blob of text that is used to inform Cursor (or whatever vibe coding tool your using) about how to proceed – which sounds like a rule. However the utility of Cursor rules is a bit different than what I'm getting at with recipes. Cursor rules are often applied in all chats – they influence the general behavior of the agent. Recipes on the other hand are useful when you need them, but they are rarely used – so you definitely don't want to apply them to most Cursor sessions, and you probably don't even want them taking up space in your Cursor rules menu.</p>
+<p>The other neat thing I'm pointing out about recipes in this blog post (especially if you watch the video below) is that you don't have to write them yourself, you can point Cursor at a codebase and tell it to extract a recipe based upon the pattern it sees in the codebase. And then later, when you need it, you drop the recipe into the prompt as basically a runbook for transforming the code in this codebase to a form similar to that of the original codebase.</p>
 <h2 id="the-video-extracting-and-applying-the-cli-recipe">The Video: Extracting and Applying the CLI Recipe</h2>
 <p>Now... back to that video. If you watch it, it shows the process of extracting a reusable CLI recipe from an existing codebase that had a well-structured pattern for CLI tools. I then applied this recipe to another codebase that originally just had a Jupyter notebook for summarizing YouTube videos, turning it into a proper CLI tool. The cool part is how straightforward it was to extract the recipe, and how it can now be used to quickly convert future codebase or code snippets into fully functional CLI tools.</p>
 <p>So without further adieu, here is the video. As usual - no cuts, no edits. See me in all my glory.</p>
@@ -879,53 +880,13 @@
     <iframe width="100%" height="500" src="https://www.youtube.com/embed/jqV4AhjhIfY" title="Vibe coding the Recipe pattern and then applying it." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </figure>
 <ul>
-<li><a href="https://github.com/arcturus-labs/summarize-youtube">Here's the repo with the final tool implementation</a></li>
-<li><a href="https://github.com/arcturus-labs/summarize-youtube/blob/main/RECIPE.md">Here's the recipe that created the CLI tool, packaging, and install scripts</a></li>
+<li><a href="https://github.com/arcturus-labs/summarize-youtube">Here's the repo with the final tool implementation.</a></li>
+<li><a href="https://github.com/arcturus-labs/summarize-youtube/blob/main/RECIPE.md">Here's the recipe that created the CLI tool, packaging, and install scripts.</a></li>
+<li><a href="https://github.com/arcturus-labs/summarize-youtube/blob/main/summary_of_video.md">Here is the summary of the YouTube video generated using the CLI tool created in the YouTube video.</a></li>
 </ul>
-<details>
-<summary>Here is the summary of the YouTube video generated using the CLI tool created in the YouTube video</code></summary>
-
-<div class="highlight"><pre><span></span><code>- Tool introduction and purpose  
-  Summary: Introduces a tool converting URLs to markdown and a new similar tool for YouTube video summaries.  
-  First occurrence: 2.32 - &quot;I&#39;ve got a tool that I created called&quot;  
-  Most important: 51.84 - &quot;grabs a YouTube video, grabs its transcript, and then uh turns it into a summary with like timestamps and stuff&quot;
-
-- Goal of the experiment  
-  Summary: Plans to extract a reusable recipe for creating command line tools and apply it to the YouTube summary tool.  
-  First occurrence: 69.28 - &quot;is super meta. Basically, I want to extract the pattern I used here to create uh an uh create a um command line application.&quot;  
-  Most important: 92.72 - &quot;the recipe effectively to do that and then apply the recipe today to the uh YouTube summary command that I want.&quot;
-
-- Review of existing tool structure  
-  Summary: Examines the current project structure, focusing on essential files for CLI tools.  
-  First occurrence: 196.08 - &quot;I&#39;m going to create a recipe that will generate command line tools which look similar in organization to the command line tool of this directory.&quot;  
-  Most important: 296.32 - &quot;I think the init is important, the main&#39;s important, the CLI is important.&quot;
-
-- Adjustments to the recipe and project structure preferences  
-  Summary: Specifies which parts of the structure and dependencies matter or don&#39;t for the recipe.  
-  First occurrence: 346.08 - &quot;So, here&#39;s some changes to make with the above ideas that you&#39;ve extracted.&quot;  
-  Most important: 373.759 - &quot;I do care about the project structure. Uh it should look roughly like what you have there.&quot;
-
-- Writing the README and installation instructions  
-  Summary: Creates a README explaining how to convert code into globally available CLI tools.  
-  First occurrence: 495.919 - &quot;create a readme file that explains how to take a repo or a folder that has a CLI file inside of it.&quot;  
-  Most important: 686.24 - &quot;This is how you install it in that virtual environment. That&#39;s what I actually care about.&quot;
-
-- Testing the recipe with the YouTube summary tool  
-  Summary: Attempts to apply the recipe to the YouTube summary code and test the resulting CLI tool.  
-  First occurrence: 768.0 - &quot;Now see if it works. All right, I&#39;m go to Scratch. I&#39;m going go to summarize YouTube.&quot;  
-  Most important: 1194.96 - &quot;It&#39;s taking a while. It&#39;s a chance it might actually work.&quot;
-
-- Final reflections and success confirmation  
-  Summary: Confirms the CLI tool works and reflects on extracting a reusable recipe for making CLI tools.  
-  First occurrence: 1240.88 - &quot;That appeared to work. Cool.&quot;  
-  Most important: 1251.36 - &quot;what I did was extracted a cool pattern for taking whatever code I felt like making today and turning it into a command line tool that installs globally.&quot;
-</code></pre></div>
-
-</details>
-
 <h2 id="whats-next-a-cli-tool-that-writes-blog-posts">What's Next? A CLI Tool That Writes Blog Posts</h2>
 <p>Now I've got a recipe for converting scraps of code into well-organized CLI tools.</p>
-<p>If you thought this was the end of the recursion, think again. As an experiment, I wrote the first draft of this post by prompting Cursor with the text of the YouTube summary (above) and some general guidance about what I wanted. So the obvious thing to do next is to copy the Cursor conversation into a notebook, make a half-assed prompt for writing blog posts, and then apply my new recipe to convert the prompt into a CLI tool that can write a blog post from piped in text. Maybe I'll use that tool to write a blog post about how it wrote itself.</p>
+<p>If you thought this was the end of the recursion, think again. As an experiment, I wrote the first draft of this post by prompting Cursor with the text of the YouTube summary and some general guidance about what I wanted. So the obvious thing to do next is to copy the Cursor conversation into a notebook, make a half-assed prompt for writing blog posts, and then apply my new recipe to convert the prompt into a CLI tool that can write a blog post from piped in text. Maybe I'll use that tool to write a blog post about how it wrote itself.</p>
 <hr />
 <h3 id="hey-and-if-you-liked-this-post-then-maybe-we-should-be-friends">Hey, and if you liked this post, then maybe we should be friends!</h3>
 <ul>
