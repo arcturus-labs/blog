@@ -31,11 +31,12 @@ Let's say you've written a CLI tool you're proud of. You like the way it's struc
 Sorry, the answer is D - none of the above. But C is close. The only thing is that rather than _you_ writing a recipe, you have Cursor itself write the recipe for you. A recipe is a markdown file that describes how to perform a coding task that you only perform occasionally. In this case I'm making a recipe that takes a rough piece of code and converts it to a well-formed and easy-to-install CLI tool.
 
 Recipes are perfect for:
+
 - Converting code snippets into CLI tools (the example task of this post)
 - Bootstrapping new project structures (think LLM-powered cookiecutter)
 - Auto-generating dashboards from your ORM
 - Creating a migration script for converting from any framework/pattern/language to any other
-- Reading a codebase and creating a standard README
+- Reading a codebase and creating a standardized README
 - Converting a run script into a minimal Dockerfile that bakes in your preferences
 - Automating any somewhat complex coding task you'll need to do occasionally, but you don't want to memorize
 
