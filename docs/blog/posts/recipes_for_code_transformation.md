@@ -39,6 +39,7 @@ Recipes are perfect for:
 - Auto-generating dashboards from your ORM
 - Creating a migration script for converting from any framework/pattern/language to any other
 - Reading a codebase and creating a standardized README
+- Rewriting one (small) codebase from one language into another one
 - Converting a run script into a minimal Dockerfile that bakes in your preferences
 - Automating any somewhat complex coding task you'll need to do occasionally, but you don't want to memorize
 
