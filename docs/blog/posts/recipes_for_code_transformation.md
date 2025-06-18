@@ -24,8 +24,8 @@ But the real star of the show isn't the tool, or the video, it's the **Recipe Pa
 
 Let's say you've written a CLI tool you're proud of. You like the way it's structured, the coding pattern it uses, and the way it installs. Now you want to reuse the same patterns again, but for a different project. Do you:
 
-- A) Copy-paste a bunch of files and hope for the best?
-- B) Spend 2 hours refactoring and then forget what you were doing?
+- A) Spend 2 hours manually refactoring and then forget what you were doing?
+- B) Have a long conversation with Cursor to instruct it how to create the new CLI tool?
 - C) Write a Recipe – a doc that instructs Cursor (or whatever vibe-coding platform you're using) exactly how to repeat the magic, step by step?
 
 Sorry, the answer is D - none of the above. But C is close. The only thing is that rather than _you_ writing a recipe, you have Cursor itself extract the recipe from a codebase.
