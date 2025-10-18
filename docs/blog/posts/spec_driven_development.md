@@ -1,15 +1,16 @@
 ---
 date: 2025-10-17
 categories:
-  - Prompt Engineering
-  - User Experience
-description: Explore the challenge of functionality flicker in spec-driven AI development - when different AI agents produce completely different implementations from the same specification. Discover why natural language specs are inherently ambiguous and learn practical strategies for building more consistent AI-driven development workflows.
+  - Agentic AI
+  - Development Methodology
+description: Transform spec-driven development from a small-scale experiment into a robust enterprise practice. Learn why natural language specifications fail at scale and discover practical solutions including hierarchical specs, conversational clarification, and living documentation that evolves with your codebase. Perfect for teams ready to scale AI-driven development beyond simple tasks.
 image: /blog/assets/functionality_flicker/top_image.png
 draft: true
 ---
 
 
 <!-- TODO! 
+- get  image
 - make better description above
 - make title more broad - just spec driven development
 - remove "frunctionality flicker" from the first parrespond in https://www.linkedin.com/feed/update/
