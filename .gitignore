@@ -71,3 +71,6 @@ Icon
 # Cursor
 .cursor/
 .cursor-cache/
+
+# etc.
+IGNORED/
