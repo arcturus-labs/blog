@@ -8,21 +8,6 @@ image: /blog/assets/spec_driven_development/main.png
 title: Why Spec-Driven Development Breaks at Scale (And How to Fix It)
 ---
 
-<!-- TODO! 
-respond in https://www.linkedin.com/feed/update/
-urn:li:activity:7384664250830606336?
-commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7384664250830606336%2C738488754802153
-4720%29&
-dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287384887548021534720%2Curn%3Ali%3Aactivity%3A7384664250830606336%29
-
-respond in https://www.linkedin.com/posts/johan-rosenkilde_one-point-of-confusion-concerning-spec-driven-activity-7386484696429350912-Exnt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAALVuQwB4g7MjaUtP2vTKy8UZs0w06wxWt4 
-
-send to my little group
-
-send to Tribe
-Twitter LinkedIn
--->
-
 When GitHub Copilot launched in 2021, AI code completion took the development world by storm. But after a mere year or two, code completion was completely eclipsed by vibe-coding, allowing much larger tasks to be accomplished with much less effort. Vibe-coding is great, but it has some problems that limit its utility. Agents tend to work with the code as if they are over-ambitious interns; they often do more damage than good if you're not guiding them at every step.
 
 The most recent trend is spec-driven development. This term is still ill-defined, but the basic idea is that prior to tackling a meaningful code change, you first create a specification document for that change and then use the specification as a guide for the AI to make changes. This helps the agent to better understand the big picture. Once the implementation is complete, you throw away the spec because it has served its purpose.
