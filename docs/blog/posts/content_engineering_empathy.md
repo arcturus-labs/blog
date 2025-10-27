@@ -93,7 +93,7 @@ For starters, everyday when the intern sits down to start work (that is, for eve
 
 Next, consider building a prosthesis for their memory. As the intern works with your users and makes mistakes, record them. And then, next time they appear in a similar situation, provide that information back to the intern so they will be able to make a better decision.
 
-# Prompt Engineering for LLMs
+## **Prompt Engineering for LLMs**
 
 <figure markdown="span">
   ![Spec-Driven Development](./assets/content_engineering_empathy/book.png){ width="60%" }
