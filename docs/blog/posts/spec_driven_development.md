@@ -52,7 +52,7 @@ The goal of clarification is ultimately to correct and flesh out the agent's wor
 
 It's not clear what the best organization of the hierarchy is though – you could put one spec in every file, and then in every directory have a rolled up version of that directory's contents – all the way to the top. In this case, the specification would be rigidly attached to aspects of the code, so a better approach might be something more like a free-form wiki – but that can get out of hand for other reasons.
 
-### Code as the Ultimate Specification
+### Code as the Most Granular form of Specification
 
 At some point, the best way to encode the low-level assumptions of the code is to just use the code itself, because, while there is ambiguity in natural language, there is no ambiguity in the code. This does imply a philosophical change though. Some people are in the camp that a well-defined spec should lead to functionally equivalent generations every time. I disagree with this, basically because I believe it to be infeasible – natural language just isn't up to the challenge. Relying upon the code itself as the leaf-level spec removes the problem of specification ambiguity because code changes are grounded in the code that already exists. And you never expect to globally regenerate the code from the master product spec.
 
