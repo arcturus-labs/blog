@@ -180,8 +180,22 @@ I'm excited about what's coming! Just like every moment for the past 4 years, we
 
 --- 
 
-### Hey, and if you liked this post, then maybe we should be friends!
+## Update November 4th, 2025
+I just got access to Sora 2 for video generation, and it's spectacular! So – hopeful – I attempted to recreate my broken experiment above to see if visual reasoning was now the state of the art ... and ... _maybe not quite yet._ 
 
-- I just wrote a book about Prompt Engineering for LLM Applications. [Maybe you'd be interested in reading it.](/#about)
-- Are you stumped on a problem with your own LLM application? [Let me hear about it.](/#contact-blog)
-- I'm going to write lots more posts. [Subscribe and you'll be the first to know](/#contact-blog).
+Here are my two attempts (both of which also included the first picture above of the plate, the glass, and the marble):
+
+> I'm going to pick up the marble, put it in the glass, turn the glass over onto the plate, pick the glass up, and then put the glass in the microwave. The question is, where is the marble? Perform of each of these steps and state aloud what you’re doing each time and then when you’re finished, tell us exactly where the marble is.
+
+This lead to [this video](https://sora.chatgpt.com/p/s_690a1734ab6c8191ae268a498fd0d194).
+
+After this I tried a more careful prompt - which lead to worse results.
+
+> For the following experiment, you have a plate, a glass, and a marble. Perform the following the experiment, in a single take with no cuts: Pick up the marble and drop it in the glass. In one motion turn the glass over onto the plate upside down. Then pick the glass up, and then put the glass in the microwave. As you are doing all of this narrate each step out loud. The question is, where is the marble? Once you are finished with the above steps, tell the viewers where the marble is. And then pan and zoom the camera to focus upon the marble.
+
+This prompt lead to [this generated video](https://sora.chatgpt.com/p/s_690a2682a6248191bd727aaa9b44ee76).
+
+In both cases the request was disobeyed, and the objects referred to verbally by the narrator were not present on the screen! Curiously though, in both videos, the narrator reached the same correct conclusion despite none of video making sense. I wonder how many times the AI would reach the correct conclusion even though the video didn't portray it. This might indicate that there is some sort of semantic reasoning happening in the "old" LLM portion of the model, and that reasoning is being conveyed into the video (because it at least is attempting to follow the process as I requested). But then the information from the video doesn't seem as tightly bound to the semantics. It's consistent with the initial prompt, and it's _mostly_ self-consistent, but the semantics portions of the model don't appear to be noticing the facts of what it "sees with its eyes".
+
+Nevertheless, I'm still going to keep an eye on this space. I think over the next year or two, we're going to see AI become "embodied" into physical system that work with us, and this kind of visual pre-simulation is going to be important for helping them to navigate their world. I suspect it won't be visual in the exact same sense as generating a high-quality video, but it will be something analogous to this, perhaps in a lower resolution space or even a more abstract embedding space that still captures the spatially salient aspects. And I think we'll do well to train the models to attend more to the visuals that they are producing so that they remain consistent and moored to the semantics, and actually inform the semantic layer – after all, that's what visual reasoning is.
+
