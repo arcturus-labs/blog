@@ -181,6 +181,7 @@ I'm excited about what's coming! Just like every moment for the past 4 years, we
 --- 
 
 ## Update November 4th, 2025
+
 I just got access to Sora 2 for video generation, and it's spectacular! So – hopeful – I attempted to recreate my broken experiment above to see if visual reasoning was now the state of the art ... and ... _maybe not quite yet._ 
 
 Here are my two attempts (both of which also included the first picture above of the plate, the glass, and the marble):
@@ -199,3 +200,5 @@ In both cases the request was disobeyed, and the objects referred to verbally by
 
 Nevertheless, I'm still going to keep an eye on this space. I think over the next year or two, we're going to see AI become "embodied" into physical system that work with us, and this kind of visual pre-simulation is going to be important for helping them to navigate their world. I suspect it won't be visual in the exact same sense as generating a high-quality video, but it will be something analogous to this, perhaps in a lower resolution space or even a more abstract embedding space that still captures the spatially salient aspects. And I think we'll do well to train the models to attend more to the visuals that they are producing so that they remain consistent and moored to the semantics, and actually inform the semantic layer – after all, that's what visual reasoning is.
 
+## Other Updates
+- 2025.11.11 - [From Words to Worlds: Spatial Intelligence is AI’s Next Frontier](https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence?utm_source=substack&utm_medium=email) – Fei-Fei Li's essay on the importance of spatial reasoning and how to get there.
