@@ -42,7 +42,7 @@ In [another post](/blog/posts/rag-transparency) I make black-box RAG transparent
 
 But the big point for this post is that nothing is magical. A request to Gen AI is just an HTML request – text in, text out. Build an agent by wrapping that with a couple of for-loops. And make the agent a RAG agent by giving it your current search endpoint as a tool. Easy-peasy!
 
-## Morphing the Traditional Search into Modern AI Search
+## Morphing Traditional Search into Modern AI Search
 
 Now let's see what this looks like from your customer's perspective. I'll walk through four levels of AI adoption, each building on the previous.
 
