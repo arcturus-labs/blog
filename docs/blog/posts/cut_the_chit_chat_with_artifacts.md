@@ -4,7 +4,7 @@ categories:
   - Prompt Engineering
   - User Experience
 description: Unlock the full potential of AI assistants by mastering artifacts - a game-changing approach that transforms chatbots into powerful collaborative tools. Discover how to build assistants that don't just talk, but actually help you get work done by creating, editing and organizing content alongside you. Complete with practical implementation tips and working demo.
-image: /blog/assets/artifact_aware_assistants/top_image.png
+image: /blog/assets/artifact_aware_assistants/top_image.jpg
 ---
 
 # Cut the Chit-Chat with Artifacts
@@ -12,7 +12,7 @@ image: /blog/assets/artifact_aware_assistants/top_image.png
 
 Most chat applications are leaving something important on the table when it comes to user experience. Users are not satisfied with just chit-chatting with an AI assistant. Users want to work _on_ something with the _help_ of the assistant. This is where the prevailing conversational experience falls short.
 
-![Asset-Aware Assistant](./assets/artifact_aware_assistants/top_image.png){ align=left width=100% }
+![Asset-Aware Assistant](./assets/artifact_aware_assistants/top_image.jpg){ align=left width=100% }
 <!-- more -->
 Consider pair programming. In a real, human pairing session, you and your partner discuss your objectives, talk about how the code should be modified, and then take turns actually modifying the code to implement your ideas. In this scenario – and in most where work is to be done – there is the _discussion_ and then there are the _objects_ of the discussion.
 
@@ -21,7 +21,7 @@ Contrast this with the naive AI assistant chat in which the assistant is not abl
 The answer to this problem is _artifacts_. Artifacts, are referenceable chunks of stateful content. Artifacts are the objects of the discussion and the items being worked upon. Both the assistant and the user have the ability to create, retrieve, update, and delete these artifacts and to refer to them as needed.
 
 <figure markdown="span">
-  ![Artifact-aware Conversation](./assets/artifact_aware_assistants/conversation_sketch.png){ width="600px" align=left}
+  ![Artifact-aware Conversation](./assets/artifact_aware_assistants/conversation_sketch.jpg){ width="600px" align=left}
   <figcaption>Simple Illustration of a Conversation with Artifacts</figcaption>
   <!-- https://excalidraw.com/#json=pGyeP3TpSWtYj6hOl6fev,k7-oGcwD6G5r6iYf19BwQw -->
 </figure>
@@ -64,13 +64,13 @@ This is not be a good experience. The user feels lost (not able to see the origi
   <div style="display: flex; justify-content: space-around; gap: 20px;">
     <div style="text-align: center;">
       <a href="https://www.anthropic.com/news/artifacts">
-        <img src="/blog/assets/artifact_aware_assistants/anthropic_artifacts.png" alt="Anthropic Artifacts" width="300">
+        <img src="/blog/assets/artifact_aware_assistants/anthropic_artifacts.jpg" alt="Anthropic Artifacts" width="300">
       </a>
       <figcaption style="margin-top: 10px; font-size: 0.9em;">Anthropic Artifacts: AI-generated diagrams and documents</figcaption>
     </div>
     <div style="text-align: center;">
       <a href="https://openai.com/index/introducing-canvas">
-        <img src="/blog/assets/artifact_aware_assistants/openai_canvas.png" alt="OpenAI Canvas" width="300">
+        <img src="/blog/assets/artifact_aware_assistants/openai_canvas.jpg" alt="OpenAI Canvas" width="300">
       </a>
       <figcaption style="margin-top: 10px; font-size: 0.9em;">OpenAI Canvas: Interactive content creation workspace</figcaption>
     </div>
@@ -78,13 +78,13 @@ This is not be a good experience. The user feels lost (not able to see the origi
   <div style="display: flex; justify-content: space-around; gap: 20px;">
     <div style="text-align: center;">
       <a href="https://www.cursor.com/">
-        <img src="/blog/assets/artifact_aware_assistants/cursor.png" alt="Cursor IDE" width="300">
+        <img src="/blog/assets/artifact_aware_assistants/cursor.jpg" alt="Cursor IDE" width="300">
       </a>
       <figcaption style="margin-top: 10px; font-size: 0.9em;">Cursor: Project-aware AI coding assistant</figcaption>
     </div>
     <div style="text-align: center;">
       <a href="https://www.hex.tech">
-        <img src="/blog/assets/artifact_aware_assistants/hex.png" alt="Hex Analytics" width="300">
+        <img src="/blog/assets/artifact_aware_assistants/hex.jpg" alt="Hex Analytics" width="300">
       </a>
       <figcaption style="margin-top: 10px; font-size: 0.9em;">Hex: AI-powered data analytics and dashboards</figcaption>
     </div>

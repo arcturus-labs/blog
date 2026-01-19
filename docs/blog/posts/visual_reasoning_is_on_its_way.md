@@ -5,13 +5,13 @@ categories:
   - Multimodal
 description: From silly cat costumes to world-changing innovations, OpenAI's latest release marks the beginning of something extraordinary. The fascinating world of visual reasoning is emerging, where AI models will soon think in pictures and solve complex spatial puzzles, transforming how machines understand and interact with the physical world.
 title: Visual Reasoning is Coming Soon
-image: /blog/assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.png
+image: /blog/assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.jpg
 ---
 
 I gotta say – _I love it living in exponential times_. I can just wish that something existed and then within a month it does! This time it happened with [OpenAI's 4o image generation release](https://openai.com/index/introducing-4o-image-generation/). In this blog post I'll briefly cover the release and why I think it's pretty cool. Then I'll dive into a new opportunity that I think is even more exciting – _visual reasoning_.
 
 
-![Visual Reasoning Robot](./assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.png){ align=left width=100% }
+![Visual Reasoning Robot](./assets/visual_reasoning_is_on_its_way/visual_reasoning_robot.jpg){ align=left width=100% }
 
 <!-- more -->
 
@@ -30,8 +30,8 @@ Working with images in Multimodal LLMs has been a mostly one-sided affair. On on
 The problem is most pronounced when attempting to go back and forth working on an idea for an image. You can show the LLM an image of your cat and then say "make this cat wear a detective hat and a monocle". The best the model can do is to put a detective hat and monocle on _some_ cat, not the one in your image. To make matters worse, the model can't even see the image that it has just created. So if you ask for a modification to first generation attempt, then the subsequent generations are really just starting over from scratch and hoping that a more detailed description to the image generation tool will make things better... it won't.
 
 <figure markdown="span">
-  ![Your Cat](./assets/visual_reasoning_is_on_its_way/cat.png){ width="300px" align=left}
-  ![Bad Cat Generation](./assets/visual_reasoning_is_on_its_way/bad_cat.png){ width="300px" align=right}
+  ![Your Cat](./assets/visual_reasoning_is_on_its_way/cat.jpg){ width="300px" align=left}
+  ![Bad Cat Generation](./assets/visual_reasoning_is_on_its_way/bad_cat.jpg){ width="300px" align=right}
   <figcaption>Left: OpenAI's pet cat. Right: The best a traditional LLM can do when asked to give it a detective hat and monocle.</figcaption>
 </figure>
 
@@ -42,8 +42,8 @@ OpenAI's image generation release changes all of this. OpenAI's newest GPT-4o mo
 Thus, stealing OpenAI's example, you can show it a photo of your cat, tell it to give _your cat_ a detective hat, et voila! It works!
 
 <figure markdown="span">
-  ![Your Cat](./assets/visual_reasoning_is_on_its_way/cat.png){ width="300px" align=left}
-  ![Good Cat Generation](./assets/visual_reasoning_is_on_its_way/good_cat.png){ width="300px" align=right}
+  ![Your Cat](./assets/visual_reasoning_is_on_its_way/cat.jpg){ width="300px" align=left}
+  ![Good Cat Generation](./assets/visual_reasoning_is_on_its_way/good_cat.jpg){ width="300px" align=right}
   <figcaption>Left: OpenAI's pet cat. Right: GPT-4o's generation when asked to give the same cat a detective hat and monocle. Much more consistent!</figcaption>
 </figure>
 
@@ -91,7 +91,7 @@ It's actually a pretty weird answer. It immediately answers – _incorrectly_ �
 Let's now do a vision-enhanced version of this chain-of-thought reasoning and demonstrate how spatial reasoning will improve the model's reasoning capabilities.
 
 <figure markdown="span">
-  ![Problem Statement](./assets/visual_reasoning_is_on_its_way/real_image.png){ width="600px" align=left}
+  ![Problem Statement](./assets/visual_reasoning_is_on_its_way/real_image.jpg){ width="600px" align=left}
   <figcaption>Problem Statement Image</figcaption>
 </figure>
 
@@ -105,7 +105,7 @@ I prompted it with the following (including extra requirements to think visually
 
 Here are the reasoning responses from the model:
 <figure markdown="span">
-  ![Step 1](./assets/visual_reasoning_is_on_its_way/step1.png){ width="600px" align=left}
+  ![Step 1](./assets/visual_reasoning_is_on_its_way/step1.jpg){ width="600px" align=left}
 </figure>
 
 > Step 1: Pick up the marble.
@@ -113,7 +113,7 @@ Here are the reasoning responses from the model:
 > In the image, the marble has not yet been moved, but we are about to pick it up and place it in the glass.
 
 <figure markdown="span">
-  ![Step 2](./assets/visual_reasoning_is_on_its_way/step2.png){ width="600px" align=left}
+  ![Step 2](./assets/visual_reasoning_is_on_its_way/step2.jpg){ width="600px" align=left}
 </figure>
 
 > Step 2: Put the marble in the glass.
@@ -121,7 +121,7 @@ Here are the reasoning responses from the model:
 > In the image, the marble is now inside the glass, and the plate is empty.
 
 <figure markdown="span">
-  ![Step 3](./assets/visual_reasoning_is_on_its_way/step3.png){ width="600px" align=left}
+  ![Step 3](./assets/visual_reasoning_is_on_its_way/step3.jpg){ width="600px" align=left}
 </figure>
 
 > Step 3: Turn the glass over onto the plate.
@@ -129,7 +129,7 @@ Here are the reasoning responses from the model:
 > In the image, the glass is now upside down on the plate, trapping the marble inside.
 
 <figure markdown="span">
-  ![Step 4](./assets/visual_reasoning_is_on_its_way/step4.png){ width="600px" align=left}
+  ![Step 4](./assets/visual_reasoning_is_on_its_way/step4.jpg){ width="600px" align=left}
 </figure>
 
 > Step 4: Pick the glass up.
@@ -137,7 +137,7 @@ Here are the reasoning responses from the model:
 > In the image, the hand is lifting the glass off the plate. The marble remains on the plate, as it is no longer contained.
 
 <figure markdown="span">
-  ![Step 5](./assets/visual_reasoning_is_on_its_way/step5.png){ width="600px" align=left}
+  ![Step 5](./assets/visual_reasoning_is_on_its_way/step5.jpg){ width="600px" align=left}
 </figure>
 
 > Step 5: Put the glass in the microwave.
@@ -174,7 +174,7 @@ Currently, there is one obvious problem with visual reasoning – image creation
 I'm excited about what's coming! Just like every moment for the past 4 years, we're on the cusp of a radical discovery that will change our world – a radical discovery which is soon realized. I don't think this one is going to let us down. The ever-more capable _visual_ reasoning models will be able to make better sense of our work – not only in terms of understanding the mechanics of physical objects, but also in reading social cues, and really in anything else that we do where vision is of use to us! And then 2026 will be the year of the robots...
 
 <figure markdown="span">
-  ![Terminator](./assets/visual_reasoning_is_on_its_way/terminator.png){ width="600px" align=left}
+  ![Terminator](./assets/visual_reasoning_is_on_its_way/terminator.jpg){ width="600px" align=left}
 </figure>
 
 

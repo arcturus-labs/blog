@@ -282,7 +282,7 @@ Alright! (Whew!) So by injecting synthetic tokens into our indexed documents we 
 I can feel my inner Hindsight Lad jumping up and down in my head. It's time to take a closer, more critical look at what we just accomplished. SPLADE is definitely neat, but it doesn't fix all of the problems we've identified with semantic search.
 
 <figure markdown="span">
-  ![Hindsight Lad](./assets/SPLADE_in_Elasticsearch/hindsight_lad_2.png){ width="400" }
+  ![Hindsight Lad](./assets/SPLADE_in_Elasticsearch/hindsight_lad_2.jpg){ width="400" }
   <figcaption>Image borrowed from the <a href="https://x.com/joepatrick116/status/1463351832458244097">some guy on X</a></figcaption>
 </figure>
 

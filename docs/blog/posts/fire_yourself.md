@@ -3,14 +3,14 @@ date: 2025-01-17
 categories:
   - Agentic AI
 description: Discover how to build reliable LLM applications by applying the E-Myth's systematic approach to automation. Learn why starting with human processes and incrementally automating tasks leads to more robust LLM applications. Perfect for startup founders and teams struggling to harness the power of LLMs effectively.
-image: /blog/assets/fire_yourself/top_image.png
+image: /blog/assets/fire_yourself/top_image.jpg
 ---
 
 # Fire Yourself First: The E-Myth Approach to Iteratively AI App Development
 
 I've always been interested in entrepreneurship, so, early on in my career, I asked my financial advisor for book recommendations about startups. He handed me "The E-Myth" by Michael Gerber – a book about... building food service franchises? In the heat of the dot-com explosion, this wasn't exactly the startup guide I was hoping for, but its core message stuck with me and turned out to be surprisingly relevant to the problems I hear about regularly when talking to people about building reliable LLM applications.
 
-![Fire Yourself](./assets/fire_yourself/top_image.png){ align=left width=100% }
+![Fire Yourself](./assets/fire_yourself/top_image.jpg){ align=left width=100% }
 
 <!-- more -->
 

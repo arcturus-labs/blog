@@ -5,7 +5,7 @@ categories:
   - Prompt Engineering
   - Development Methodology
 description: Transform your AI applications by thinking like an AI intern on their first day. This post reveals how empathy-driven context engineering leads to better LLM performance, covering everything from handling the intern's ADHD-like attention patterns to providing proper tools and clear instructions. Learn practical strategies for building AI agents that actually understand their tasks and deliver reliable results.
-image: /blog/assets/content_engineering_empathy/main.png
+image: /blog/assets/content_engineering_empathy/main.jpg
 title: Context Engineering Requires AI Empathy
 ---
 
@@ -15,7 +15,7 @@ Consider this, LLMs have been trained to act like humans. So when you are buildi
 
 In this post I'll go over several places where I've learned to empathize with the AI Intern. But understanding the world from their unique vantage point, you can build better context for the agents and drastically improve the quality of your AI application.
 
-![Spec-Driven Development](./assets/content_engineering_empathy/main.png){ align=left width=100% }
+![Spec-Driven Development](./assets/content_engineering_empathy/main.jpg){ align=left width=100% }
 
 
 <!-- more -->
@@ -96,7 +96,7 @@ Next, consider building a prosthesis for their memory. As the intern works with 
 ## **Prompt Engineering for LLMs**
 
 <figure markdown="span">
-  ![Spec-Driven Development](./assets/content_engineering_empathy/book.png){ width="60%" }
+  ![Spec-Driven Development](./assets/content_engineering_empathy/book.jpg){ width="60%" }
 </figure> 
 
 If you've found this post interesting, then you should read my book, [Prompt Engineering for LLMs](https://amzn.to/4gChsFf). Don't be fooled by the title, large portions of the book cover context engineering in great detail. It's just that while developing our approach at GitHub Copilot, the term "context engineering" didn't yet exist. The book also covers lots of information about how LLMs work (your intern's psychology and neurology), and it covers the philosophy of LLM application design.

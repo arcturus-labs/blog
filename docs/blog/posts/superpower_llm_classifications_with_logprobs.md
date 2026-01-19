@@ -4,13 +4,13 @@ categories:
   - Classification
 title: Supercharging LLM Classifications with Logprobs
 description: Turn your LLM into a precision instrument for classification – no fine-tuning required. This post shows how to go beyond simple "yes/no" answers and unlock soft classification using logprobs. You'll learn how to extract class probabilities in a single call, tune your classifier for optimal performance, and make your LLM behave more like a proper ML model. Perfect for anyone building smarter, more flexible AI applications.
-image: /blog/assets/superpower_llm_classifications_with_logprobs/top_image.png
+image: /blog/assets/superpower_llm_classifications_with_logprobs/top_image.jpg
 ---
 
 
 I was just reading the classification chapter of Jay Alammar and Maarten Grootendorst's excellent book [Hands-On Large Language Models](https://amzn.to/4lfynRy). I felt inspired to extend their work and show yet another cool trick you can do with LLM-based text classification. In their work they demonstrated how an LLM can be used as a "hard classifier" to determine the sentiment of movie reviews. By "hard" I mean that it gives a concrete answer, "positive" or "negative". However, we can do one better! Using _"this one simple trick"_™ we can make a "soft" classifier that returns the probabilities of each class rather than a concrete single choice. This makes it possible to _tune_ the classifier – you can set a threshold in the probabilities so that classifications are optimally aligned with a training set.
 
-![Soft Classification](./assets/superpower_llm_classifications_with_logprobs/top_image.png){ align=left width=100% }
+![Soft Classification](./assets/superpower_llm_classifications_with_logprobs/top_image.jpg){ align=left width=100% }
 
 <!-- more -->
 

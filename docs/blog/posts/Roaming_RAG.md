@@ -4,7 +4,7 @@ categories:
   - Retrieval
   - Prompt Engineering
 description: Roaming RAG offers a fresh take on Retrieval-Augmented Generation, letting LLMs navigate well-structured documents like a human—exploring outlines and diving into sections to find answers. Forget complex retrieval setups and vector databases; this streamlined approach delivers rich context and reliable answers with less hassle. It’s perfect for structured content like technical manuals, product guides, or the innovative llms.txt format designed to make websites LLM-friendly.
-image: /blog/assets/Roaming_RAG/top_image.png
+image: /blog/assets/Roaming_RAG/top_image.jpg
 ---
 
 # Roaming RAG – RAG without the Vector Database
@@ -14,7 +14,7 @@ There's a lot of moving parts. First you have to set up retrieval infrastructure
 
 If your RAG application is serving documentation, then there might be an easy alternative. Rather than setting up a traditional RAG pipeline, put the LLM assistant to work. Let _it_ navigate through the documentation and find the answers. I call this _"Roaming" RAG_, and in this post I'll show you how it's done.
 
-![Roaming RAG](./assets/Roaming_RAG/top_image.png){ align=left width=100% }
+![Roaming RAG](./assets/Roaming_RAG/top_image.jpg){ align=left width=100% }
 
 <!-- more -->
 

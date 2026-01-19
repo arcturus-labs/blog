@@ -4,7 +4,7 @@ categories:
   - Agentic AI
   - Development Methodology
 description: Natural language specs are inherently ambiguous, and AI agents lack the nuanced context that human developers have. This leads to codebases becoming patchwork quilts and product decisions getting trampled over. I'll explore why current spec-driven development fails at scale and how we might build conversational, living specifications that evolve with our codebases instead of being thrown away.
-image: /blog/assets/spec_driven_development/main.png
+image: /blog/assets/spec_driven_development/main.jpg
 title: Why Spec-Driven Development Breaks at Scale (And How to Fix It)
 ---
 
@@ -14,7 +14,7 @@ The most recent trend is spec-driven development. This term is still ill-defined
 
 This form of spec-driven dev is a good idea\! *But I want more\!* In this post I'll talk about a bigger notion of spec-driven development. I'm talking about an ideal world where we keep track of the global product specification, and then we allow the agent to build code based upon that.
 
-![Spec-Driven Development](./assets/spec_driven_development/main.png){ align=left width=100% }
+![Spec-Driven Development](./assets/spec_driven_development/main.jpg){ align=left width=100% }
 
 <!-- more -->
 

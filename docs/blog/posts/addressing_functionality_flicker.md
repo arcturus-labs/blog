@@ -4,7 +4,7 @@ categories:
   - Prompt Engineering
   - User Experience
 description: Explore the challenge of functionality flicker in spec-driven AI development - when different AI agents produce completely different implementations from the same specification. Discover why natural language specs are inherently ambiguous and learn practical strategies for building more consistent AI-driven development workflows.
-image: /blog/assets/functionality_flicker/top_image.png
+image: /blog/assets/functionality_flicker/top_image.jpg
 draft: true
 ---
 # Addressing the Problem of Functionality Flicker in Spec-Driven AI Development
