@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center; padding: 4rem 2rem; max-width: 800px; margin: 0 auto;">
+  
+  <h1 style="font-size: 3rem; margin-bottom: 1rem;">404</h1>
+  
+  <p style="font-size: 1.25rem; line-height: 1.8; margin-bottom: 2rem;">
+    This page does not exist.<br/>John probably linked to it just to see if anyone would actually click.<br/>(Sorry... he does that.)
+  </p>
+  
+  <img src="/assets/images/404.png" alt="John Berryman" style="max-width: 300px; width: 100%; border-radius: 8px; margin-bottom: 2rem;" />
+  
+  <p style="font-size: 1rem; line-height: 1.8; margin-bottom: 2rem; color: #666;">
+    Your click has been recorded in Google Analytics.<br/>Thank you for your vote. Thanks for playing. Better luck next time!
+  </p>
+  
+  <div style="margin-top: 3rem;">
+    <a href="javascript:history.back()" style="display: inline-block; padding: 0.75rem 2rem; background-color: #1976d2; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; transition: background-color 0.2s;">
+      Go Back to Where You Were
+    </a>
+  </div>
+  
+  <div style="margin-top: 1.5rem;">
+    <a href="/" style="display: inline-block; padding: 0.75rem 2rem; color: #1976d2; text-decoration: none; font-weight: 500;">
+      Or Go Home
+    </a>
+  </div>
+</div>
+{% endblock %}
