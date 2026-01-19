@@ -30,9 +30,7 @@ Unfortunately "right-out-of-the-box" search results are often not that great, an
       <iframe width="70%" src="https://www.youtube.com/embed/g3Jo9Rew6Kw" title="Incremental AI Adoption for E-commerce Search" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </figure>
 
-    Or jump straight to the live demo to try it yourself:
-    
-    **[https://morph-trad-search-into-ai-search.fly.dev/](https://morph-trad-search-into-ai-search.fly.dev/)**
+    Or jump straight to the live demo to try it yourself: **[CLICK HERE](https://morph-trad-search-into-ai-search.fly.dev/)**
 
 ## Dispelling the Magic of RAG and Agentic AI
 
