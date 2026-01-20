@@ -27,13 +27,13 @@
   - create new movie recording
   - record summary
   - upload you youtube https://studio.youtube.com/channel/UChBzAOm4bnuBWmvI8PDT79g/videos/upload?d=ud&filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D
-  - Add `<figure><iframe>` to the post
+  - Add a callout for the video to the post
 - git commit
 - git push (triggers automatic deployment via GitHub Actions)
 - share w/ close friends for feedback – always get someone different each time - add their names to the bottom
 - share X/bluesky/linked-in/? (maybe with https://typefully.com/)
 - direct ping individuals
-- run Notebooks/work/arcturus-internal/blog_newsletters/generate_newsletter_html.py
+- run scripts/generate_newsletter_html.py
 
 ## DONE
 - [x] Set up RSS https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#__codelineno-3-2

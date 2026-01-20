@@ -1,0 +1,17 @@
+[project]
+name = "blog"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11.9"
+dependencies = [
+    "mkdocs==1.6.1",
+    "mkdocs-rss-plugin==1.17.4",
+    "mkdocs-get-deps==0.2.0",
+    "mkdocs-material==9.5.39",
+    "mkdocs-material-extensions==1.3.1",
+    "mkdocs-redirects==1.2.2",
+    "pydantic",
+    "openai-agents",
+    "dotenv>=0.9.9",
+]
