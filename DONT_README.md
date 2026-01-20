@@ -5,6 +5,9 @@
 - Push to `main` branch triggers automatic build and deployment to GitHub Pages
 - No need for manual scripts - everything is automated!
 
+## Reminders
+- The text I like for Arcturus Labs is Raleway
+
 ## refs
 - https://www.mkdocs.org/getting-started/
 - https://www.mkdocs.org/user-guide/ 
