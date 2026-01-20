@@ -36,7 +36,7 @@
 - share w/ close friends for feedback – always get someone different each time - add their names to the bottom
 - share X/bluesky/linked-in/? (maybe with https://typefully.com/)
 - direct ping individuals
-- run scripts/generate_newsletter_html.py
+- run the cursor command /generate-arcturus-newsletter, create a new broadcast in kit.com using the arcturus template. Replace the content with `/html` and past in the html
 
 ## DONE
 - [x] Set up RSS https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#__codelineno-3-2
