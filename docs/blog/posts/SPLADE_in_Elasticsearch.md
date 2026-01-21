@@ -1,5 +1,7 @@
 ---
-date: 2024-10-09 
+date: 2024-10-09
+authors:
+  - john-berryman
 categories:
   - Retrieval
 description: Learn how to combine the best of keyword and semantic search using SPLADE - a powerful technique that delivers more accurate, transparent, and efficient search results. This practical guide shows you how to implement SPLADE in Elasticsearch to dramatically improve your search capabilities.

@@ -1,5 +1,7 @@
 ---
 date: 2025-06-17
+authors:
+  - john-berryman
 categories:
   - Coding Patterns
   - Automation

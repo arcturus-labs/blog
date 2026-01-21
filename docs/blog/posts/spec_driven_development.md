@@ -1,5 +1,7 @@
 ---
 date: 2025-10-17
+authors:
+  - john-berryman
 categories:
   - Agentic AI
   - Development Methodology

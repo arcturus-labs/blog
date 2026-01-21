@@ -1,5 +1,7 @@
 ---
 date: 2026-01-18
+authors:
+  - john-berryman
 categories:
   - Agentic AI
   - User Experience

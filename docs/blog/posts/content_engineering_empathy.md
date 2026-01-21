@@ -1,5 +1,7 @@
 ---
 date: 2025-10-25
+authors:
+  - john-berryman
 categories:
   - Agentic AI
   - Prompt Engineering

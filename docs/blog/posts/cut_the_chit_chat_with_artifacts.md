@@ -1,5 +1,7 @@
 ---
-date: 2024-11-11 
+date: 2024-11-11
+authors:
+  - john-berryman
 categories:
   - Prompt Engineering
   - User Experience

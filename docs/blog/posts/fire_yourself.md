@@ -1,5 +1,7 @@
 ---
 date: 2025-01-17
+authors:
+  - john-berryman
 categories:
   - Agentic AI
 description: Discover how to build reliable LLM applications by applying the E-Myth's systematic approach to automation. Learn why starting with human processes and incrementally automating tasks leads to more robust LLM applications. Perfect for startup founders and teams struggling to harness the power of LLMs effectively.

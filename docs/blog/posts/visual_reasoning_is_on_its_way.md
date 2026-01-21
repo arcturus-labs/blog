@@ -1,5 +1,7 @@
 ---
 date: 2025-03-31
+authors:
+  - john-berryman
 categories:
   - Reasoning
   - Multimodal

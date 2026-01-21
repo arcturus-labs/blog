@@ -1,5 +1,7 @@
 ---
 date: 2024-11-21
+authors:
+  - john-berryman
 categories:
   - Retrieval
   - Prompt Engineering
