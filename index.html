@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arcturus Labs - Empower Your AI Journey with Expert Insight">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arcturus-labs.com/">
+    <meta property="og:title" content="Arcturus Labs - Empower Your AI Journey with Expert Insight">
+    <meta property="og:description" content="We guide startups and established enterprises to turn ideas into innovative, industry-leading, ever-improving LLM applications."> 
+    <meta property="og:image" content="https://arcturus-labs.com/assets/images/logo_with_background.png">
+    
+    <!-- Twitter Card Meta Tags (Optional but recommended) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Arcturus Labs - Empower Your AI Journey with Expert Insight">
+    <meta name="twitter:description" content="We guide startups and established enterprises to turn ideas into innovative, industry-leading, ever-improving LLM applications.">
+    <meta name="twitter:image" content="https://arcturus-labs.com/assets/images/logo_with_background.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <title>Arcturus Labs</title>
+    <link rel="stylesheet" href="assets/stylesheets/home_custom.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGCYE3982"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9ZGCYE3982');
+    </script>
+    <script src="assets/scripts/starfield.js"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Arcturus Labs",
+        "description": "We guide startups and established enterprises to turn ideas into innovative, industry-leading, ever-improving LLM applications.",
+        "url": "https://arcturus-labs.com",
+        "founder": {
+        "@type": "Person",
+        "name": "John Berryman",
+        "sameAs": [
+            "https://www.amazon.com/stores/author/B0DJ3HCRV3/"
+        ]
+        },
+        "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+        },
+        "sameAs": [],
+        "offers": [
+        {
+            "@type": "Offer",
+            "name": "LLM Health Check",
+            "description": "Expert assessment of your LLM architecture, prompting strategy, and evaluation framework."
+        },
+        {
+            "@type": "Offer",
+            "name": "Focused LLM Training Workshop",
+            "description": "Transform your team into LLM experts through our intensive 3-day workshop."
+        },
+        {
+            "@type": "Offer",
+            "name": "Strategic LLM Advisory",
+            "description": "Accelerate your LLM initiatives with weekly expert guidance."
+        },
+        {
+            "@type": "Offer",
+            "name": "Embedded LLM Research & Engineering",
+            "description": "Fast-track your LLM development with a senior AI expert embedded in your team."
+        }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Arcturus Labs Logo">
+                <span>Arcturus Labs</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="blog">Blog</a></li>
+                    <li>
+                        <a href="https://x.com/JnBrymn" target="_blank" rel="noopener">
+                            <span class="twemoji">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"></path></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/john-berryman-864b1713/" target="_blank" rel="noopener">
+                            <span class="twemoji">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <a href="/contact" class="cta-button">Schedule a Discovery Call</a>
+        </div>
+    </header>
+    
+    <section id="hero">
+        <canvas id="starfield"></canvas>
+        <div class="hero-wrapper">
+            <div class="hero-content">
+                <h1>Empower Your AI Journey with Expert Insight</h1>
+                <p>At Arcturus Labs, we guide startups and established enterprises to turn ideas into </br> innovative, industry-leading, ever-improving LLM applications.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="hero-button">See Services</a>
+                    <a href="#contact-blog" class="hero-button-outline">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="client-needs">
+        <h2>Problems We Solve</h2>
+        <div class="needs-solutions">
+            <div class="need-solution-pair">
+                <div class="need">
+                    <p><strong>Starting your LLM journey?</strong> The gap between product vision and language model capabilities often leads to costly missteps and delayed launches.</p>
+                </div>
+                <div class="solution">
+                    <p>Turn your vision into reality faster with expert guidance on feasibility, architecture, and implementation strategy. Start building with confidence.</p>
+                </div>
+            </div>
+            <div class="need-solution-pair">
+                <div class="need">
+                    <p><strong>Maturing your LLM application?</strong> Opportunities are missed when building on wrong foundations. Progress stalls without the right processes in place.</p>
+                </div>
+                <div class="solution">
+                    <p>Build on solid foundations with proven monitoring and evaluation approaches. Establish clear processes for continuous improvement and growth.</p>
+                </div>
+            </div>
+            <div class="need-solution-pair">
+                <div class="need">
+                    <p><strong>Building a RAG application?</strong> High-Quality Retrieval-Augmented Generation requires optimal performance across multiple domains.</p>
+                </div>
+                <div class="solution">
+                    <p>Create more accurate applications through optimized retrieval strategies and well-engineered prompts. Improve precision and recall to deliver reliable results.</p>
+                </div>
+            </div>
+            <div class="need-solution-pair">
+                <div class="need">
+                    <p><strong>Building an Agentic application?</strong> When building an assistant or a workflow, it is critical to keep the model focused and on the right track.</p>
+                </div>
+                <div class="solution">
+                    <p>Create focused, effective assistants through smart task decomposition and clear tool definitions. Design workflows that keep your AI reliably on task.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="trusted-by">
+        <h2>Organizations We've Worked With</h2>
+        <div class="logo-carousel">
+            <div class="logo-track">
+                <!-- First set of logos -->
+                <div class="logo-slide"><img src="assets/images/trusted_by/github.jpg" alt="GitHub"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/tessl.webp" alt="Tessl"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/parlance.jpg" alt="Parlance Labs"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/jason_liu.jpg" alt="Jason Liu"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/andera.jpg" alt="Andera"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/eventbrite.jpg" alt="Eventbrite"></div>
+                <!-- TODO! Add Tribe -->
+                
+                <!-- Duplicate set for seamless loop -->
+                <div class="logo-slide"><img src="assets/images/trusted_by/github.jpg" alt="GitHub"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/tessl.webp" alt="Tessl"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/parlance.jpg" alt="Parlance Labs"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/jason_liu.jpg" alt="Jason Liu"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/andera.jpg" alt="Andera"></div>
+                <div class="logo-slide"><img src="assets/images/trusted_by/eventbrite.jpg" alt="Eventbrite"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="about">
+        <h2>Why Arcturus</h2>
+        <div class="bio-container">
+            <p>John Berryman is the founder of Arcturus Labs. His journey through AI and search technologies includes contributing to GitHub Copilot's early development, where he worked on the team that brought AI-assisted coding from concept to reality. Throughout his career, John has helped build search and recommendation systems that millions use daily – from GitHub's code search infrastructure to Eventbrite's discovery platform and the US Patent Office's next-generation search system. This blend of experience in both foundational search technologies and cutting-edge AI applications gives him unique insight into building practical, powerful LLM applications.
+            </br></br>
+            John shares his expertise through two books: <em><a href="https://amzn.to/3TXmDHk">Relevant Search</a></em>, which reveals the art and science of building search applications, and <em><a href="https://amzn.to/3zKIxGG">Prompt Engineering for LLMs</a></em>, which guides developers through the emerging practice of language model application development.
+            </p>
+            <img src="assets/images/john_berryman_face.jpg" alt="John Berryman" class="bio-photo">
+        </div>
+        <div class="book-covers">
+            <a href="https://amzn.to/3TXmDHk" target="_blank">
+                <img src="assets/images/relevant_search_cover.jpg" alt="Relevant Search: With Applications for Solr and Elasticsearch by John Berryman">
+            </a>
+            <a href="https://amzn.to/3zKIxGG" target="_blank">
+                <img src="assets/images/prompt_engineering_cover.jpg" alt="Prompt Engineering for LLMs: A Practical Guide to Building AI Applications by John Berryman">
+            </a>
+        </div>
+    </section>
+
+    <!-- <section id="testimonials">
+        <h2>Testimonials</h2>
+        <p>Client testimonials coming soon.</p>
+    </section> -->
+
+    <section id="services">
+        <h2>Services</h2>
+        <div class="services-list">
+            <div class="service-item">
+                <strong>Application Health Check:</strong>
+                <p>Expert assessment of your LLM architecture, prompting strategy, and evaluation framework. Receive actionable recommendations, performance optimization strategies, and a detailed roadmap in a comprehensive report and follow-up conversation.</p>
+            </div>
+            
+            <div class="service-item">
+                <strong>Focused LLM Training Workshop:</strong>
+                <p>Transform your team into language model experts through our intensive 3-day workshop. Master prompt engineering, and enable your team to build robust RAG systems and reliable AI agents.</p>
+            </div>
+            <div class="service-item">
+                <strong>Strategic Advisory:</strong>
+                <p>Accelerate your LLM initiatives with weekly expert guidance. Get unblocked on technical challenges, optimize system architecture, and achieve rapid progress through focused strategy sessions and hands-on technical leadership.</p>
+            </div>
+            <div class="service-item">
+                <strong>Embedded Research & Engineering:</strong>
+                <p>Fast-track the development of your language model application with a senior AI expert embedded in your team. Benefit from hands-on development, architecture guidance, and knowledge transfer while building production-grade LLM applications together.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-blog">
+        <!-- Get in Touch Section -->
+        <div class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>Whether you're just starting out or looking to optimize your existing language model applications, Arcturus Labs is here to help. Reach out to discuss how we can empower your AI journey.</p>
+            
+            <form  id="contact" action="https://formspree.io/f/xldejgen"  method="POST"> 
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject"  required>
+    
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <input type="text" name="_gotcha" />
+    
+                <button type="submit" class="cta-button">Send Message</button>
+                <p id="status"></p>
+            </form>
+        </div>
+        
+        <!-- Stay in Touch Section -->
+        <div class="blog-section">
+            <h2><em>Stay</em> in Touch</h2>
+            <p>Subscribe to receive the latest updates and insights on LLM application development and AI innovation.</p>
+            
+            <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+            <form action="https://app.convertkit.com/forms/7337584/subscriptions" 
+                  class="seva-form formkit-form" 
+                  method="post" 
+                  data-sv-form="7337584" 
+                  data-uid="d93a8a2003" 
+                  data-format="inline" 
+                  data-version="5">
+                <div data-style="clean">
+                    <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+                    <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields subscribe-form">
+                        <div class="formkit-field">
+                            <input class="formkit-input" 
+                                   name="email_address" 
+                                   aria-label="Email Address" 
+                                   placeholder="Email Address" 
+                                   required="" 
+                                   type="email">
+                        </div>
+                        <button data-element="submit" class="formkit-submit formkit-submit cta-button">
+                            <div class="formkit-spinner">
+                                <div></div><div></div><div></div>
+                            </div>
+                            <span class="formkit-label">Subscribe</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <p><a href="blog" class="blog-link">Read our Blog</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com/JnBrymn" target="_blank" rel="noopener">
+                <span class="twemoji">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"></path></svg>
+                </span>
+            </a>
+            <a href="https://www.linkedin.com/in/john-berryman-864b1713/" target="_blank" rel="noopener">
+                <span class="twemoji">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+                </span>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="fulfillment-policy" class="footer-policy-link">Fulfillment Policy</a>
+        </div>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> <a class="x" href="https://analytics.google.com/analytics/web/#/p465694174/reports/intelligenthome" class="invisible-link" target="_blank">A</a><a class="x" href="https://app.kit.com/subscribers">r</a><a class="x" href="https://studio.youtube.com/channel/UChBzAOm4bnuBWmvI8PDT79g/videos/upload">c</a><a class="x" href="https://affiliate-program.amazon.com/p/reporting/global">t</a><a class="x" href="https://news.ycombinator.com/from?site=arcturus-labs.com">u</a>rus Labs</p>
+    </footer>
+
+    <script src="assets/scripts/home_custom.js"></script>
+</body>
+</html>
