@@ -1,0 +1,1094 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Transform your AI applications by thinking like an AI intern on their first day. This post reveals how empathy-driven context engineering leads to better LLM performance, covering everything from handling the intern's ADHD-like attention patterns to providing proper tools and clear instructions. Learn practical strategies for building AI agents that actually understand their tasks and deliver reliable results.">
+      
+      
+      
+        <link rel="canonical" href="http://arcturus-labs.com/blog/2025/10/25/context-engineering-requires-ai-empathy/">
+      
+      
+        <link rel="prev" href="../../17/why-spec-driven-development-breaks-at-scale-and-how-to-fix-it/">
+      
+      
+        <link rel="next" href="../../../12/07/programming-in-english/">
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Context Engineering Requires AI Empathy - Arcturus Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-9ZGCYE3982"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-9ZGCYE3982",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-9ZGCYE3982",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+  <meta property="og:title" content="Context Engineering Requires AI Empathy">
+  <meta property="og:description" content="Transform your AI applications by thinking like an AI intern on their first day. This post reveals how empathy-driven context engineering leads to better LLM performance, covering everything from handling the intern's ADHD-like attention patterns to providing proper tools and clear instructions. Learn practical strategies for building AI agents that actually understand their tasks and deliver reliable results.">
+  <meta property="og:image" content="http://arcturus-labs.com/blog/assets/content_engineering_empathy/main.jpg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://arcturus-labs.com/blog/2025/10/25/context-engineering-requires-ai-empathy/">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Context Engineering Requires AI Empathy">
+  <meta name="twitter:description" content="Transform your AI applications by thinking like an AI intern on their first day. This post reveals how empathy-driven context engineering leads to better LLM performance, covering everything from handling the intern's ADHD-like attention patterns to providing proper tools and clear instructions. Learn practical strategies for building AI agents that actually understand their tasks and deliver reliable results.">
+  <meta name="twitter:image" content="http://arcturus-labs.com/blog/assets/content_engineering_empathy/main.jpg">
+  
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bright-but-not-psychic" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Arcturus Labs" class="md-header__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcturus Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Context Engineering Requires AI Empathy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Arcturus Labs" class="md-nav__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Arcturus Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/agentic-ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agentic AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/coding-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/development-methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/e-commerce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    E-commerce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/multimodal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multimodal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/prompt-engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/reasoning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reasoning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/retrieval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Retrieval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/user-experience/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User Experience
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/vibe-coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vibe Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bright-but-not-psychic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bright but not psychic
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefers-familiarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefers familiarity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cant-read-gobbledygook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can't read gobbledygook
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#needs-time-to-think" class="md-nav__link">
+    <span class="md-ellipsis">
+      Needs time to think
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#has-difficulties-with-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Has difficulties with attention
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-a-convincing-liar-and-sycophant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is a convincing liar and sycophant
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#has-unusual-vision-and-reading-disabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Has unusual vision and reading disabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#has-anterograde-amnesia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Has anterograde amnesia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prompt-engineering-for-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Engineering for LLMs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="/assets/images/john_berryman_face.jpg" alt="John Berryman">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://arcturus-labs.com/#about">John Berryman</a>
+                        
+                      </strong>
+                      <br>
+                      Founder of Arcturus Labs
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-10-25 00:00:00" class="md-ellipsis">October 25, 2025</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/agentic-ai/">Agentic AI</a>, 
+                              <a href="../../../../category/prompt-engineering/">Prompt Engineering</a>, 
+                              <a href="../../../../category/development-methodology/">Development Methodology</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              7 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+
+  <h1>Context Engineering Requires AI Empathy</h1>
+
+<p>A big part of context engineering comes down to <strong><em>empathy</em></strong>. ... Does this sound surprising?</p>
+<p>Consider this, LLMs have been trained to act like humans. So when you are building an AI agent, it's a useful exercise to put yourself in their shoes and walk around a bit. For me, I like to think of the AI agent as if it's an AI intern showing up for its first day of work. How would <em>you</em> feel if you were coming in for your first day of work and the boss gave you 50 pages to read? What if you only learned what you were supposed to do with this information after you had already read the 50 pages? And what if the instructions were poorly written, ambiguous, and impossible to achieve with the tools provided!?</p>
+<p>In this post I'll go over several places where I've learned to empathize with the AI Intern. But understanding the world from their unique vantage point, you can build better context for the agents and drastically improve the quality of your AI application.</p>
+<p><img align="left" alt="Spec-Driven Development" src="../../../../assets/content_engineering_empathy/main.jpg" width="100%" /></p>
+<!-- more -->
+
+<h2 id="bright-but-not-psychic">Bright but not psychic</h2>
+<p>The AI intern is exceptionally bright - he has read the internet several times and has memorized much of it. However, the intern is not psychic – he can't know information that is hidden behind corporate walls (client information, documentation). Therefore <em>you</em> have to provide this information for him or give him tools to get at it (context engineering). The intern also needs tools to access realtime data.</p>
+<p>Similarly, he has no knowledge of current events – a search tool comes in handy here, and the frontier models are getting really good at knowing when they need to use search.</p>
+<h2 id="prefers-familiarity">Prefers familiarity</h2>
+<p>In training, the intern has read lots of markdown, lots of html, plenty of standardized forms; the intern is familiar with commonly used processes and niche jargon. Therefore, if you can frame the intern's work to make use of familiar ideas and patterns, then you won't have to spend so much time explaining the task, and the intern is much more likely to just get it right.</p>
+<p>In our book (see below) we called this the Red Riding Hood principle – stay on the well trodden path because wolves are hiding in the forest.</p>
+<h2 id="cant-read-gobbledygook">Can't read gobbledygook</h2>
+<p>This is where prompt engineering is important. If you dump tons of information and scraps of text into the context without explaining it, then you're like the bad boss that slams the thick manilla folder on the intern's desk and yells "deal with it!" Instead, take time to help the intern understand their task:</p>
+<ul>
+<li>In the system message, lay out the context for the work. What are we doing? What is the goal we are trying to accomplish? What is a good outcome?</li>
+<li>Tell the intern their role in all of this. How are they to act? What tone should they take?</li>
+<li>Give the intern instructions on how to accomplish their goal. If he has clear steps to follow, the work will be easier to accomplish.</li>
+<li>Provide examples. The AI intern has amazing pattern recognition and a few examples do wonders – again, this is <em>especially true</em> if there aren't many examples in training.</li>
+<li>When providing the intern with context (documents, images), tell him how these might be of use in solving their problem. If you just have scraps of text, give the intern some sense of the context that this text was found within.</li>
+<li>Provide the intern with tools to do their work. Make sure that all tools are distinct – avoid confusing overlaps in domain. Use clear naming conventions and rich descriptions for the tool and argument names. If <em>you</em> wouldn't be able to understand how to use these tools, then your intern is sunk!</li>
+</ul>
+<h2 id="needs-time-to-think">Needs time to think</h2>
+<p>Your AI intern, just like you, does better when they have time to think. Before extracting complicated information from documentation, ask yourself if you would need to think a bit before performing the task. If so, give your intern the same allowance.</p>
+<p>The AI intern thinks by speaking (like I do... which is sometimes annoying) – let them do it! Challenge them to reason about the answer prior to providing the final result, or use a reasoning model which has been trained to be <em>good</em> at talking to itself about the problem. Once the intern has jabbered on for a bit, they will more likely to arrive at a more well-reasoned answer.</p>
+<h2 id="has-difficulties-with-attention">Has difficulties with attention</h2>
+<p>The intern is paradoxically both inattentive and hyperfocused.</p>
+<p>Inattention: If you drop long chunks of text into the prompt – especially if they have long chunks of unrelated content – then at some point in the middle, the intern gets bored, quits paying attention, and misses important details. In our book, we refer to this place as the "Valley of Meh".</p>
+<p>Hyperfocus: But, if the AI intern feels like he's really on a roll with his current approach, then he will sometimes follow that approach too far and fail to recognize that it's no longer beneficial.</p>
+<p>The fix for inattention requires strong context engineering. The middle chapters of our book focuses on this:
+1) select content carefully, 
+2) assign scores and priorities to content based upon how relevant it is, 
+3) extract the core pieces of content that are most relevant, and
+4) assemble into a prompt document that clearly lays out the significance of the text and how it is to be used.</p>
+<p>The remediation for hyperfocus is more about good application design, (which is covered in the latter chapters of the book.) Don't give your intern important and complex tasks without also giving them oversight. This could come in the form of a workflow that breaks complex tasks into simpler steps, or it could come in the form of a user experience that keeps the user in the loop, guiding and correcting the intern when they make small, forgivable mistakes.</p>
+<h2 id="is-a-convincing-liar-and-sycophant">Is a convincing liar and sycophant</h2>
+<p>Ah... the darker side of our AI intern. In order to keep you impressed, and to keep his job, you will often catch your intern in a lie or in unnecessary flattery. To deal with this:</p>
+<ul>
+<li>Never give the intern a mission critical task that can't either be verified algorithmically or by a human that has oversight.</li>
+<li>The most common form of oversight is fact grounding - making sure that the individual claims are justified by content in the provided context. You can ground the claims yourself by creating a side-agent that picks out claims and verifies them individually.</li>
+<li>If your agent is acting as a classifier, but you don't know all the possible classes, then make sure the agent has the option to say "other" or "unknown", otherwise you are compelling him to lie.</li>
+<li>Make sure that your agent has the tools that he needs to get the job done. If you ask an agent for information about a recent event, but he doesn't have a web search tool, then he is likely to just make up a story to appease you. If he has the search tool, then it will more likely go to the internet and get the facts he needs.</li>
+</ul>
+<h2 id="has-unusual-vision-and-reading-disabilities">Has unusual vision and reading disabilities</h2>
+<p>The AI intern has some pretty unusual vision and reading disabilities. For one thing, he can't really see letters. He sees tokens, which are like blurry chunks of letters. This sometimes causes confusion, like when you ask the intern for how many 'R's are in 'strawberry' and he says 2.</p>
+<p>The intern also isn't so great at reading tabular information without a lot of support. And it makes sense that it would be difficult, because, whereas I can look at a spreadsheet and pull in the 2 dimensional structure at a glance, your intern sees one row at a time serialized as a long stream of text. This means that he has to do a lot of work to keep up with which column corresponds to which field and how everything is related.</p>
+<p>In both of these cases, the situation is improving:
+- Models are getting more powerful, and even though they can't see the letters in the tokens, they understand that they are there. Models are getting better at keeping track of tabular content too.
+- Models are increasingly getting better vision capabilities that <em>do</em> allow them see at a glance how content is structured.
+- There are also plenty of services and libraries emerging that act as prosthetics, allowing models to make better sense of tabular data and give them the ability to query and navigate such data.</p>
+<h2 id="has-anterograde-amnesia">Has anterograde amnesia</h2>
+<p>The intern – poor fella – has a case of anterograde amnesia. He can't make new memories. When your intern shows up to work for day 2, or day 20, or day 200, it's just like day 1 to them. Unlike a human, they can't make mistakes, learn from them, and then recall them in the future. So - you must provide this for them.</p>
+<p>For starters, everyday when the intern sits down to start work (that is, for every single request), make sure you have him read the new employee onboarding documentation - at least the important parts (context engineering!), because otherwise, they don't really know how work is done at this company.</p>
+<p>Next, consider building a prosthesis for their memory. As the intern works with your users and makes mistakes, record them. And then, next time they appear in a similar situation, provide that information back to the intern so they will be able to make a better decision.</p>
+<h2 id="prompt-engineering-for-llms"><strong>Prompt Engineering for LLMs</strong></h2>
+<figure>
+  <img alt="Spec-Driven Development" src="../../../../assets/content_engineering_empathy/book.jpg" width="60%" />
+</figure>
+<p>If you've found this post interesting, then you should read my book, <a href="https://amzn.to/4gChsFf">Prompt Engineering for LLMs</a>. Don't be fooled by the title, large portions of the book cover context engineering in great detail. It's just that while developing our approach at GitHub Copilot, the term "context engineering" didn't yet exist. The book also covers lots of information about how LLMs work (your intern's psychology and neurology), and it covers the philosophy of LLM application design.</p>
+<p>And take a moment to follow me everywhere:
+- <a href="/#contact-blog">This blog</a>
+- <a href="https://x.com/JnBrymn">Twitter</a>
+- <a href="https://www.linkedin.com/in/john-berryman-864b1713/">LinkedIn</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../../../../assets/scripts/custom.js"></script>
+      
+    
+  </body>
+</html>

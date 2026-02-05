@@ -1,0 +1,1367 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn how to combine the best of keyword and semantic search using SPLADE - a powerful technique that delivers more accurate, transparent, and efficient search results. This practical guide shows you how to implement SPLADE in Elasticsearch to dramatically improve your search capabilities.">
+      
+      
+      
+        <link rel="canonical" href="http://arcturus-labs.com/blog/2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/">
+      
+      
+      
+        <link rel="next" href="../../../11/11/cut-the-chit-chat-with-artifacts/">
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Bridging the Gap Between Keyword and Semantic Search with SPLADE - Arcturus Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-9ZGCYE3982"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-9ZGCYE3982",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-9ZGCYE3982",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+  <meta property="og:title" content="Bridging the Gap Between Keyword and Semantic Search with SPLADE">
+  <meta property="og:description" content="Learn how to combine the best of keyword and semantic search using SPLADE - a powerful technique that delivers more accurate, transparent, and efficient search results. This practical guide shows you how to implement SPLADE in Elasticsearch to dramatically improve your search capabilities.">
+  <meta property="og:image" content="http://arcturus-labs.com/blog/assets/SPLADE_in_Elasticsearch/hindsight_lad.webp">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://arcturus-labs.com/blog/2024/10/09/bridging-the-gap-between-keyword-and-semantic-search-with-splade/">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bridging the Gap Between Keyword and Semantic Search with SPLADE">
+  <meta name="twitter:description" content="Learn how to combine the best of keyword and semantic search using SPLADE - a powerful technique that delivers more accurate, transparent, and efficient search results. This practical guide shows you how to implement SPLADE in Elasticsearch to dramatically improve your search capabilities.">
+  <meta name="twitter:image" content="http://arcturus-labs.com/blog/assets/SPLADE_in_Elasticsearch/hindsight_lad.webp">
+  
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bridging-the-gap-between-keyword-and-semantic-search-with-splade" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Arcturus Labs" class="md-header__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcturus Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bridging the Gap Between Keyword and Semantic Search with SPLADE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Arcturus Labs" class="md-nav__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Arcturus Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/agentic-ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agentic AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/coding-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/development-methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/e-commerce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    E-commerce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/multimodal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multimodal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/prompt-engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/reasoning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reasoning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/retrieval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Retrieval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/user-experience/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User Experience
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/vibe-coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vibe Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-unfortunate-state-of-the-art" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Unfortunate State of the Art
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enter-splade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enter SPLADE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indexing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Searching
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demo Time
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrospective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrospective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-go-exciting-news" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before You Go: Exciting News!
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="/assets/images/john_berryman_face.jpg" alt="John Berryman">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://arcturus-labs.com/#about">John Berryman</a>
+                        
+                      </strong>
+                      <br>
+                      Founder of Arcturus Labs
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-10-09 00:00:00" class="md-ellipsis">October 9, 2024</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/retrieval/">Retrieval</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              10 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+
+<h1 id="bridging-the-gap-between-keyword-and-semantic-search-with-splade">Bridging the Gap Between Keyword and Semantic Search with SPLADE</h1>
+<p>In information retrieval, we often find ourselves between two tools: keyword search and semantic search. Each has strengths and limitations. What if we could combine the best of both?</p>
+<p>By the end of this post, you will:</p>
+<ul>
+<li>Understand the challenges of keyword and semantic search</li>
+<li>Learn about SPLADE, an approach that bridges these methods</li>
+<li>See a practical implementation of SPLADE to enhance search</li>
+</ul>
+<p>If you've struggled with inaccurate search results or wanted a more transparent search system, this post is for you. Let's explore how SPLADE can change your approach to information retrieval.</p>
+<!-- more -->
+<h2 id="the-unfortunate-state-of-the-art">The <em>Unfortunate</em> State of the Art</h2>
+<p>With the rise of RAG methods in prompt engineering, vector-based semantic search has become essential for many applications. It's easy to see why: semantic search overcomes some key limitations of keyword search. In traditional keyword search, you might type terms that mean the same thing as the document you're seeking, but if you use different words, you won't get a match. For example, searching for "ape costume" won't find a document mentioning "gorilla suit." Semantic search, on the other hand, converts your query into a vector representing its meaning. If there's a document with a similar meaning (represented by a nearby vector), you get a match!</p>
+<p>Semantic search seems almost magical... until it's not.</p>
+<p>There are some gnarly challenges with semantic search that we're still grappling with:</p>
+<ul>
+<li><strong>Larger indexes</strong> – Keyword search indexes typically grow to 1.5x-2x the original document size. Semantic search indexes can be twice that size.</li>
+<li><strong>Chunking complexity</strong> – You need to split text into chunks because embedding quality degrades with too much input. But where do you split? Do chunks need to overlap? How do you ensure important context isn't lost?</li>
+<li><strong>Lack of transparency</strong> – With keyword search, debugging is straightforward – the tokens are human-readable, so you can understand why a document matches. You can adjust queries, field boosts, and phrase matches to tune relevance. Semantic search is opaque; if a query doesn't match as expected, it's hard to understand why. Fixing relevance often means training a new embedding model and reindexing everything. Ouch!</li>
+</ul>
+<p>Wouldn't it be great to have the best of both worlds? We want semantic search's ability to match on meaning, combined with the transparency and simplicity of traditional keyword search.</p>
+<h2 id="enter-splade">Enter SPLADE</h2>
+<p>SPLADE (Sparse Lexical and Expansion Model for First Stage Ranking) was introduced in a <a href="https://arxiv.org/abs/2107.05720">July 2021 paper</a> and quickly improved upon in <a href="https://arxiv.org/abs/2109.10086">a September follow-up</a>. The concept is simple: instead of asking a semantic model for a meaning-carrying vector, ask it for important terms that <em>should be in the document</em>, whether they're actually present or not. For instance, given a document containing "ape costume," the model might identify similar terms like "gorilla orangutan monkey suit clothes." These synthetic terms can then be indexed in a traditional search engine, boosting recall when added to the search field.</p>
+<p>In this post, we'll explore how to use SPLADE to enhance your search. We'll create a silly document set (because what fun is it to use a realistic example?), index it, and demonstrate how conventional search can fall short when query terms don't quite match. Then, we'll add SPLADE and show how it addresses this problem.</p>
+<h2 id="setup">Setup</h2>
+<p>What's your favorite superhero? Superman? Wolverine? Batman? ... Mine's got to be Hindsight Lad – a computer researcher who contributed to his team by critically reviewing past decisions and explaining what they should have done instead. (Real character! Look him up!)</p>
+<figure>
+  <img alt="Hindsight Lad" src="../../../../assets/SPLADE_in_Elasticsearch/hindsight_lad.webp" width="400" />
+<br />
+<figcaption>Image borrowed from the <a href="https://marvel.fandom.com/wiki/Carlton_LaFroyge_(Earth-616)">Marvel fandom wiki</a></figcaption>
+</figure>
+<p>Inspired by Hindsight Lad, I've chosen superheroes for our example dataset. It's a simple list of superheroes including their names, true identities, descriptions, and superpowers. Here's an excerpt:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>True Identity</th>
+<th>Description</th>
+<th>Superpowers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spider-Man</td>
+<td>Peter Parker</td>
+<td>A high school student bitten by a radioactive spider</td>
+<td>Web-slinging, superhuman strength, spider-sense</td>
+</tr>
+<tr>
+<td>Hindsight Lad</td>
+<td>Carlton LaFroyge</td>
+<td>A teenager with the ability to analyze past events and point out mistakes</td>
+<td>Retroactive clairvoyance, tactical analysis of past events</td>
+</tr>
+<tr>
+<td>Batman</td>
+<td>Bruce Wayne</td>
+<td>A billionaire industrialist and philanthropist</td>
+<td>Genius-level intellect, master detective, peak human physical condition</td>
+</tr>
+<tr>
+<td>Arm-Fall-Off Boy</td>
+<td>Floyd Belkin</td>
+<td>A superhero with the ability to detach his arms</td>
+<td>Detachable arms, using detached arms as weapons (yes... another real character!)</td>
+</tr>
+<tr>
+<td>Superman</td>
+<td>Clark Kent</td>
+<td>An alien from the planet Krypton</td>
+<td>Flight, super strength, heat vision, invulnerability</td>
+</tr>
+</tbody>
+</table>
+<p>To demonstrate the semantic mismatch problem, I've also generated alternative descriptions that convey the same meaning but use almost no common words:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Alternate Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spider-Man</td>
+<td>An adolescent scholar affected by an irradiated arachnid</td>
+</tr>
+<tr>
+<td>Hindsight Lad</td>
+<td>A young critic gifted with retrospective wisdom</td>
+</tr>
+<tr>
+<td>Batman</td>
+<td>A wealthy entrepreneur and humanitarian</td>
+</tr>
+<tr>
+<td>Arm-Fall-Off Boy</td>
+<td>A costumed vigilante capable of limb separation</td>
+</tr>
+<tr>
+<td>Superman</td>
+<td>An extraterrestrial being from a distant celestial body</td>
+</tr>
+</tbody>
+</table>
+<p>Our curated list has just 50 heroes, so querying with alternate descriptions might work well for semantic search, but traditional information retrieval will likely struggle.</p>
+<h3 id="indexing">Indexing</h3>
+<p>Let's demonstrate this. Here is function that will index all of our documents:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">index_superheroes</span><span class="p">(</span><span class="n">num_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="c1"># Create the index with mappings</span>
+    <span class="n">index_name</span> <span class="o">=</span> <span class="s2">&quot;superheroes&quot;</span>
+    <span class="n">mappings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;dynamic&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;english&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;splade&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1"># delete and recreate the index</span>
+    <span class="k">if</span> <span class="n">es</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index_name</span><span class="p">):</span>
+        <span class="n">es</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index_name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index &#39;</span><span class="si">{</span><span class="n">index_name</span><span class="si">}</span><span class="s2">&#39; deleted successfully.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index &#39;</span><span class="si">{</span><span class="n">index_name</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span>
+
+    <span class="n">es</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">mappings</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index &#39;</span><span class="si">{</span><span class="n">index_name</span><span class="si">}</span><span class="s2">&#39; created successfully.&quot;</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;superheroes.csv&#39;</span><span class="p">)</span>
+    <span class="c1"># Index the superheroes</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Combine the index (superhero name) with the row data</span>
+        <span class="n">full_row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">}),</span> <span class="n">row</span><span class="p">])</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">full_row</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="n">doc</span><span class="p">[</span><span class="s1">&#39;splade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_splade_embedding</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">],</span> <span class="n">num_tokens</span><span class="p">)</span>
+        <span class="n">es</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">doc</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Indexed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> superheroes.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>This script creates an index with two fields: <code>description</code> for superhero descriptions and <code>splade</code> for synthetic terms. The SPLADE content is generated by processing the <code>description</code> through <code>get_splade_embedding</code>, which we'll define next:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForMaskedLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Load the SPLADE model and tokenizer</span>
+<span class="n">model_id</span> <span class="o">=</span> <span class="s1">&#39;naver/splade-cocondenser-ensembledistil&#39;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForMaskedLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+
+<span class="c1"># Create a mapping from token IDs to tokens</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">get_vocab</span><span class="p">()</span>
+<span class="n">id2token</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vocab</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_splade_embedding</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">num_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="c1"># get the tokens</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
+
+    <span class="c1"># get the splade embedding</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">tokens</span><span class="p">)</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+            <span class="mi">1</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">logits</span><span class="p">)</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="n">tokens</span><span class="o">.</span><span class="n">attention_mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+
+    <span class="c1"># Convert vec to numpy for easier manipulation</span>
+    <span class="n">vec_np</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+    <span class="c1"># Get indices of non-zero elements</span>
+    <span class="n">non_zero_indices</span> <span class="o">=</span> <span class="n">vec_np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Create a list of (token, value) pairs for non-zero elements, excluding the input tokens</span>
+    <span class="n">token_value_pairs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">id2token</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">vec_np</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span> 
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">non_zero_indices</span> 
+        <span class="k">if</span> <span class="n">idx</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Sort by value in descending order</span>
+    <span class="n">token_value_pairs</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">new_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">token_value_pairs</span><span class="p">[:</span><span class="n">num_tokens</span><span class="p">]]</span>
+
+    <span class="k">return</span> <span class="n">new_tokens</span>
+</code></pre></div>
+<p>This code is more complex, but builds on existing work. It's adapted from Pinecone's <a href="https://www.pinecone.io/learn/splade/#SPLADE-Embeddings">SPLADE writeup</a>, with equations detailed in the <a href="https://arxiv.org/abs/2109.10086">SPLADEv2 paper</a>. Essentially, it extracts tokens from input text, uses the SPLADE model to identify important terms (SPLADE tokens), filters out original tokens, converts remaining tokens to readable text, and returns the result.</p>
+<h3 id="searching">Searching</h3>
+<p>What good is an index that can't be searched? Let's remedy that:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search_superheroes</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">splade</span><span class="p">):</span>
+    <span class="c1"># If SPLADE is enabled, we search both the description and SPLADE fields</span>
+    <span class="k">if</span> <span class="n">splade</span><span class="p">:</span>
+        <span class="c1"># Get SPLADE tokens for the description</span>
+        <span class="n">splade_tokens</span> <span class="o">=</span> <span class="n">get_tokens_as_text</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;should&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;multi_match&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+                                <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span>
+                            <span class="p">}</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;multi_match&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">splade_tokens</span><span class="p">,</span>
+                                <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;splade&quot;</span><span class="p">]</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="c1"># If SPLADE is not enabled, we only search the description field</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;multi_match&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+                    <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="c1"># Set the number of results to return</span>
+    <span class="n">query</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span>
+
+    <span class="c1"># Execute the search query</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;superheroes&quot;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="c1"># Extract the hits from the response</span>
+    <span class="n">hits</span> <span class="o">=</span> <span class="p">[</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">hits</span>
+</code></pre></div>
+<p>This function searches for superheroes based on a description (which will be drawn from our alternative 
+description list). When <code>splade</code> is true, it searches both <code>description</code> and <code>splade</code> fields; otherwise, only the <code>description</code> field.</p>
+<p>We still need the <code>get_tokens_as_text</code> function to convert descriptions into SPLADE tokens. Note that this doesn't expand the description with synthetic terms, it simply tokenizes it:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_tokens_as_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">input_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">id2token</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tokens</span><span class="o">.</span><span class="n">tolist</span><span class="p">()][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+<p>Now we're ready to see if this all actually works!</p>
+<h2 id="demo-time">Demo Time</h2>
+<p>Let's take the above code out for a spin.</p>
+<p>First we index our superheroes with <code>index_superheroes(num_tokens=50)</code>. Here we inject up to 50 SPLADE tokens for each row in our data set.</p>
+<p>Next, with SPLADE turned off, let's see if we can catch Iron Man using his alternative description:</p>
+<div class="highlight"><pre><span></span><code><span class="n">use_splade</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="n">hero</span> <span class="o">=</span> <span class="s2">&quot;Iron Man&quot;</span>
+<span class="n">alt_description</span> <span class="o">=</span> <span class="n">hero_dict_alt</span><span class="p">[</span><span class="n">hero</span><span class="p">]</span>
+<span class="n">search_results</span> <span class="o">=</span> <span class="n">search_superheroes</span><span class="p">(</span><span class="n">alt_description</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">use_splade</span><span class="p">)</span>
+<span class="n">result_heroes</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">search_results</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result_heroes</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;Beast&#39;]
+</code></pre></div>
+<p>Nope... that's a miss! Well, after I've spent all this time writing a blog post, I hope that we can turn SPLADE back on and see Iron Man in the results.</p>
+<div class="highlight"><pre><span></span><code>[&#39;Black Panther&#39;, &#39;Iron Man&#39;, &#39;Beast&#39;]
+</code></pre></div>
+<p>Yay! I mean, I would have preferred that Iron Man was number 1 in the search results. But being in the top 3 results out of 50 for something as generic as "A brilliant innovator and corporate magnate" is not bad.</p>
+<p>But perhaps we were lucky with this example. Let's create a new function <code>recall_at_3</code> that will run through every hero and and see if SPLADE is actually helping us improve recall.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">recall_at_3</span><span class="p">(</span><span class="n">splade</span><span class="p">):</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">hero</span> <span class="ow">in</span> <span class="n">hero_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">alt_description</span> <span class="o">=</span> <span class="n">hero_dict_alt</span><span class="p">[</span><span class="n">hero</span><span class="p">]</span>
+        <span class="n">search_results</span> <span class="o">=</span> <span class="n">search_superheroes</span><span class="p">(</span><span class="n">alt_description</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">splade</span><span class="p">)</span>
+        <span class="n">result_heroes</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">search_results</span><span class="p">]</span>
+        <span class="c1"># Check if the hero is in the top 3 search results</span>
+        <span class="k">if</span> <span class="n">hero</span> <span class="ow">in</span> <span class="n">result_heroes</span><span class="p">:</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Calculate and return the recall@3 score</span>
+    <span class="k">return</span> <span class="n">counter</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">hero_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</code></pre></div>
+<p>First we test without SPLADE <code>recall_at_3(False)</code> and see that the recall is 28% – as expected, not great. Now with SPLADE <code>recall_at_3(True)</code> returns <em>(... drum roll please ...)</em> 52%.</p>
+<p>Alright! (Whew!) So by injecting synthetic tokens into our indexed documents we have improved recall (recall@3 to be precise) by a hefty 24%!</p>
+<h2 id="retrospective">Retrospective</h2>
+<p>I can feel my inner Hindsight Lad jumping up and down in my head. It's time to take a closer, more critical look at what we just accomplished. SPLADE is definitely neat, but it doesn't fix all of the problems we've identified with semantic search.</p>
+<figure>
+  <img alt="Hindsight Lad" src="../../../../assets/SPLADE_in_Elasticsearch/hindsight_lad_2.jpg" width="400" />
+<br />
+<figcaption>Image borrowed from the <a href="https://x.com/joepatrick116/status/1463351832458244097">some guy on X</a></figcaption>
+</figure>
+<p>We've improved recall, but in a longer blog post (which I shall never write) we would also look at how precision changes. The problem is that sometimes the synthetic tokens produced in <code>get_splade_embedding</code> can be... wonky. Take a look at this example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">get_splade_embedding</span><span class="p">(</span><span class="s2">&quot;mary had a little lamb, it&#39;s fleece was white as snow&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;marriage&#39;,
+ &#39;married&#39;,
+ &#39;winter&#39;,
+ &#39;song&#39;,
+ &#39;wedding&#39;,
+ &#39;have&#39;,
+ &#39;sheep&#39;,
+ &#39;whites&#39;,
+ &#39;baby&#39;,
+ &#39;like&#39;,
+ &#39;color&#39;,
+ &#39;wearing&#39;,
+ &#39;film&#39;,
+ &#39;character&#39;,
+ &#39;murder&#39;]
+</code></pre></div>
+<p>There's a lot going on here. We start off with several words related to marriage (which is not mentioned in the original song) and then right at the end it takes a darker turn with <code>murder</code>. You know how the rest of that song goes, and these words are clearly a miss. There are also a couple of stop words (super common words) in there: <code>have</code>, and <code>like</code>. This will definitely increase recall as it will match about half of the docs in the index, but this will take it's toll on precision.</p>
+<p>Next, my SPLADE implementation in Elasticsearch is oversimplified. If you scroll back up to <code>get_splade_embedding</code>, we extract non-zero elements from <code>vec_np</code> (the SPLADE tokens) but discard their associated weights. This is a missed opportunity. The SPLADE papers use these weights for scoring matches. Incorporating this nuance – for instance, the fact that <em>murder</em> is less relevant to Mary than <em>sheep</em>, <em>song</em>, <em>baby</em>, and <em>white</em> – would significantly enhance precision.</p>
+<p>Finally, one of the problems with semantic search that we were trying to avoid is the complexity of dealing with the embedding model when it doesn't quite do what you want it to do. When an embedding model doesn't match the correct documents, then your only option is to retrain the model, reindex, and hope. But with SPLADE, if it thinks that Mary likes murder, our options aren't much better. The main benefit of SPLADE in this case is that you can actually see the words produced by the model, (rather than an opaque vector). This will make it easier to debug the problem and improve it. ... Maybe SPLADE's training data had too many references to Mary I of England (you know... "Bloody Mary").</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>SPLADE is a promising approach that bridges the gap between traditional keyword search and modern semantic search. And this is a good thing! In many ways, good ol' keyword search is the right tool because it's relatively simple, it's well understood, and it's easy to scale and maintain. But traditional keyword search still falls short when it comes to matching on meaning.</p>
+<p>This post is begging for follow-up posts:</p>
+<ul>
+<li>How does my implementation of SPLADE+Elasticsearch affect precision?</li>
+<li>How does semantic search perform against my implementation of SPLADE+Elasticsearch?</li>
+<li>Can we improve SPLADE+Elasticsearch? I want to see how tough it is to get the SPLADE weights into the Elasticsearch scoring.</li>
+<li>Did you know that Elasticsearch offers a SPLADE-like solution called <a href="https://www.elastic.co/search-labs/blog/elastic-learned-sparse-encoder-elser-retrieval-performance">ESLER</a>? I wonder how that compares with the solution presented here.</li>
+</ul>
+<p>If you're interested in hearing more about this topic, then let me know. We could write a post together about it.</p>
+<h2 id="before-you-go-exciting-news">Before You Go: Exciting News!</h2>
+<p>While we're on the topic of innovative technologies, I'm thrilled to announce that I'm authoring a book on <a href="https://amzn.to/3zKIxGG">LLM Application Development</a>, set to release in November 2024. This book distills years of experience building production-grade LLM applications at GitHub and for various consulting clients into practical, actionable insights.</p>
+<figure>
+  <img alt="Hindsight Lad" src="../../../../assets/book2.jpg" width="400" />
+</figure>
+<p>What's in it for you?</p>
+<ul>
+<li>Insider tips and tricks from real-world LLM projects</li>
+<li>Strategies to overcome common challenges in LLM application development</li>
+<li>A comprehensive guide to building robust, scalable LLM solutions</li>
+</ul>
+<p>Are you currently working on an LLM application and facing roadblocks? Or perhaps you're looking to leverage LLMs in your next big project? I'd be delighted to lend my expertise. Reach out to me at jfberryman﹫gmail‧com for consulting inquiries or just to chat about the exciting world of LLMs!</p>
+<p>Let's push the boundaries of what's possible with LLMs together!</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../../../../assets/scripts/custom.js"></script>
+      
+    
+  </body>
+</html>
