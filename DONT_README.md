@@ -31,6 +31,7 @@
   - record summary
   - upload you youtube https://studio.youtube.com/channel/UChBzAOm4bnuBWmvI8PDT79g/videos/upload?d=ud&filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D
   - Add a callout for the video to the post
+- update Blog Post Categories below
 - git commit
 - git push (triggers automatic deployment via GitHub Actions)
 - share w/ close friends for feedback – always get someone different each time - add their names to the bottom
@@ -40,6 +41,75 @@
 
 ## DONE
 - [x] Set up RSS https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#__codelineno-3-2
+
+## Blog Post Categories
+
+### All Categories Used (alphabetical)
+- Agentic AI
+- Automation
+- Classification
+- Coding Patterns
+- Development Methodology
+- E-commerce
+- Multimodal
+- Prompt Engineering
+- Reasoning
+- Retrieval
+- User Experience
+- Vibe Coding
+
+### Categories by Post
+
+**anthropic_skills_red_riding_hood.md** (2026-02-05)
+- Agentic AI
+- Prompt Engineering
+
+**incremental_ai_adoption_for_ecommerce.md** (2026-01-18)
+- Agentic AI
+- User Experience
+- E-commerce
+
+**programming_in_english.md** (2025-12-07)
+- Agentic AI
+- Development Methodology
+- Automation
+- Vibe Coding
+- Coding Patterns
+
+**content_engineering_empathy.md** (2025-10-25)
+- Agentic AI
+- Prompt Engineering
+- Development Methodology
+
+**spec_driven_development.md** (2025-10-17)
+- Agentic AI
+- Development Methodology
+
+**recipes_for_code_transformation.md** (2025-06-17)
+- Coding Patterns
+- Automation
+- Vibe Coding
+
+**visual_reasoning_is_on_its_way.md** (2025-03-31)
+- Reasoning
+- Multimodal
+
+**superpower_llm_classifications_with_logprobs.md** (2025-03-31)
+- Classification
+
+**fire_yourself.md** (2025-01-17)
+- Agentic AI
+
+**cut_the_chit_chat_with_artifacts.md** (2024-11-11)
+- Prompt Engineering
+- User Experience
+
+**Roaming_RAG.md** (2024-11-21)
+- Retrieval
+- Prompt Engineering
+
+**SPLADE_in_Elasticsearch.md** (2024-10-09)
+- Retrieval
 
 ## TODO
 - [ ] Add arin's logo to my site, and Tribe, and Peer Supply, and Contentful
