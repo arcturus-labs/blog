@@ -1,0 +1,1114 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Transform your e-commerce search from basic keyword matching to conversational AI—one step at a time. Learn how to incrementally adopt AI without overhauling your existing infrastructure, starting with simple query suggestions and building up to a full conversational assistant. No search experts required, just a thin AI layer that makes your current search engine smarter.">
+      
+      
+      
+        <link rel="canonical" href="http://arcturus-labs.com/blog/2026/01/18/incremental-ai-adoption-for-e-commerce/">
+      
+      
+        <link rel="prev" href="../../../../2025/12/07/programming-in-english/">
+      
+      
+        <link rel="next" href="../../../02/05/anthropic-skills--prime-example-of-red-riding-hood-principle/">
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Incremental AI Adoption for E-commerce - Arcturus Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-9ZGCYE3982"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-9ZGCYE3982",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-9ZGCYE3982",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+  <meta property="og:title" content="Incremental AI Adoption for E-commerce">
+  <meta property="og:description" content="Transform your e-commerce search from basic keyword matching to conversational AI—one step at a time. Learn how to incrementally adopt AI without overhauling your existing infrastructure, starting with simple query suggestions and building up to a full conversational assistant. No search experts required, just a thin AI layer that makes your current search engine smarter.">
+  <meta property="og:image" content="http://arcturus-labs.com/blog/assets/incremental_ai_adoption_for_ecommerce/top-image.jpg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://arcturus-labs.com/blog/2026/01/18/incremental-ai-adoption-for-e-commerce/">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Incremental AI Adoption for E-commerce">
+  <meta name="twitter:description" content="Transform your e-commerce search from basic keyword matching to conversational AI—one step at a time. Learn how to incrementally adopt AI without overhauling your existing infrastructure, starting with simple query suggestions and building up to a full conversational assistant. No search experts required, just a thin AI layer that makes your current search engine smarter.">
+  <meta name="twitter:image" content="http://arcturus-labs.com/blog/assets/incremental_ai_adoption_for_ecommerce/top-image.jpg">
+  
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#incremental-ai-adoption-for-e-commerce" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Arcturus Labs" class="md-header__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcturus Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Incremental AI Adoption for E-commerce
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Arcturus Labs" class="md-nav__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Arcturus Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/agentic-ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agentic AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/coding-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/development-methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/e-commerce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    E-commerce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/multimodal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multimodal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/prompt-engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/reasoning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reasoning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/retrieval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Retrieval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/user-experience/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User Experience
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/vibe-coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vibe Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dispelling-the-magic-of-rag-and-agentic-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dispelling the Magic of RAG and Agentic AI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#morphing-traditional-search-into-modern-ai-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Morphing Traditional Search into Modern AI Search
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Morphing Traditional Search into Modern AI Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-0-traditional-search-your-current-reality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 0: Traditional Search (Your Current Reality)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-1-beginner-ai-test-the-waters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 1: Beginner AI (Test the Waters)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-2-intermediate-ai-let-ai-take-the-wheel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 2: Intermediate AI (Let AI Take the Wheel)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-3-advanced-ai-full-conversational-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 3: Advanced AI (Full Conversational Assistant)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easier-than-you-think" class="md-nav__link">
+    <span class="md-ellipsis">
+      Easier Than You Think
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Easier Than You Think">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hey-and-if-you-liked-this-post-then-maybe-we-should-be-friends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hey, and if you liked this post, then maybe we should be friends!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="/assets/images/john_berryman_face.jpg" alt="John Berryman">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://arcturus-labs.com/#about">John Berryman</a>
+                        
+                      </strong>
+                      <br>
+                      Founder of Arcturus Labs
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-01-18 00:00:00" class="md-ellipsis">January 18, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/agentic-ai/">Agentic AI</a>, 
+                              <a href="../../../../category/user-experience/">User Experience</a>, 
+                              <a href="../../../../category/e-commerce/">E-commerce</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              10 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+
+<h1 id="incremental-ai-adoption-for-e-commerce">Incremental AI Adoption for E-commerce</h1>
+<p>When you think of e-commerce, your mind is probably drawn to Amazon.com as "the definitive" example. But it's actually the exception. The internet is filled with tons of small- and medium-sized e-commerce sites. These sites typically follow the same pattern - a search page with a search box at the top, selectable filters along the left side, and results filling the remainder of the screen. And the whole goal is to quickly usher customers to the products they seek.</p>
+<p>For most of these sites, the implementation is quite simple. Product metadata is indexed into a search engine such as Elasticsearch or Algolia. This includes fields like the title of the product, its description, its price, and other relevant features (sizes for shoes, square feet for houses, etc.) And the application is typically quite simple – the user submits a search, and the backend issues a query that <em>hopefully</em> captures the customers intent, and then captures the responses and sends them to the frontend for display in the search results.</p>
+<p>Unfortunately "right-out-of-the-box" search results are often not that great, and fixing the problem often requires hiring a team of search experts – something that smaller shops are unable to afford. Fortunately, modern AI is coming to the rescue! In this post we'll demonstrate how e-commerce shops can incrementally adopt AI and explore improvements in search which would have been unbelievable just 5 years ago.</p>
+<p><img align="center" alt="Search Architecture Evolution" src="../../../../assets/incremental_ai_adoption_for_ecommerce/top-image.jpg" width="100%" /></p>
+<!-- more -->
+
+<div class="admonition note">
+<p class="admonition-title">Want to see it in action?</p>
+<p>Not in the mood for reading? Watch the video version where I walk through the entire progression with live demos:</p>
+<p><figure markdown="span">
+  <iframe width="70%" src="https://www.youtube.com/embed/zzFd0ThDymk" title="Incremental AI Adoption for E-commerce Search" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</figure></p>
+<p>Or jump straight to the live demo to try it yourself: <strong><a href="https://morph-trad-search-into-ai-search.fly.dev/">CLICK HERE</a></strong></p>
+</div>
+<h2 id="dispelling-the-magic-of-rag-and-agentic-ai">Dispelling the Magic of RAG and Agentic AI</h2>
+<p>In 2024 "RAG" – Retrieval-Augmented Generation – became a very popular application of AI. It was sold to us as magic – just plug in RAG and point it at a set of documents and then you would instantly have a world-class agentic search application – like... "poof"! But the problem was that RAG was a black box component, and if something went wrong, then it was nigh impossible to identify the problem and fix it.</p>
+<p>In <a href="/blog/posts/rag-transparency">another post</a> I make black-box RAG transparent. <!-- good fodder for a post https://docs.google.com/presentation/d/1J6pTU699a5P9qDv18-BqebAu_mp-e3eBcbJgE6y_AIk/edit?slide=id.g3b61e4ee216_0_1063#slide=id.g3b61e4ee216_0_1063 - also the Maven talk with Doug – also cover that vector search isn't really necessary --> I explain how it's really a set of pipelines – one for indexing content, and another for retrieving it – For the sake of this post you just need to know that RAG isn't anything special; it's just a call to an LLM which has access to a well-described product search tool that is backed by any form of search including "old school" lexical search.</p>
+<p>2025 was "the year of Agentic AI". This was also amazingly overblown. No one could agree even on the definition of "agentic" at first, and when all the dust settled by the end of the year, we found out that Agentic AI was really, <em>literally</em>, just a couple of for-loops. The inner for-loop wrapped the LLM call and allowed "the agent" to make multiple sequential tool calls, learn from the responses, and continue until it had the results it needed. The outer for-loop incorporated the user input so that the agent actually acted like an AI Assistant, responding to the user's course corrections.</p>
+<p>But the big point for this post is that nothing is magical. A request to Gen AI is just an HTML request – text in, text out. Build an agent by wrapping that with a couple of for-loops. And make the agent a RAG agent by giving it your current search endpoint as a tool. Easy-peasy!</p>
+<h2 id="morphing-traditional-search-into-modern-ai-search">Morphing Traditional Search into Modern AI Search</h2>
+<p>Now let's see what this looks like from your customer's perspective. I'll walk through four levels of AI adoption, each building on the previous.</p>
+<h3 id="level-0-traditional-search-your-current-reality">Level 0: Traditional Search (Your Current Reality)</h3>
+<p>Most e-commerce sites today look like this:</p>
+<p><img align="center" alt="Traditional E-commerce Search" src="../../../../assets/incremental_ai_adoption_for_ecommerce/traditional.jpg" width="100%" /></p>
+<p>You've got a keyword search box at the top, a sidebar full of filters, and the remaining space for the search results. The burden is entirely on the user to understand the typical terminology used in the documents, learn what filters exist and how they work, and sort the results correctly.</p>
+<p>The reality? Most users type a query, scan the first page, and leave if nothing looks right; "Their search doesn't understand me."  Users don't explore filters and often type text in the search box which really should be a selected filter. For instance, in a home search, they might say "4BR" or "Under $750K" instead of selecting the right filters. </p>
+<p>Unless you've hired that top-notch machine learning team, queries like these aren't parlayed into the relevant results. You're probably seeing lots of confused usage patterns and correspondingly high bounce rates. Unfortunately, this is just par for the course for most traditional e-commerce applications. </p>
+<!-- __START HERE__ 
+
+we can add here that the AI understands real world, understands the type of terminology for your field, and can make a better query than what the user is typing in the keyword search box
+-->
+
+<h3 id="level-1-beginner-ai-test-the-waters">Level 1: Beginner AI (Test the Waters)</h3>
+<p>Let's take a baby step. In this step, we basically keep traditional search unchanged, but add only a small suggestion bar that appears after results load.</p>
+<p><img align="center" alt="Beginner AI Adoption" src="../../../../assets/incremental_ai_adoption_for_ecommerce/beginner.jpg" width="100%" /></p>
+<p>The AI interprets the user's natural language query and suggests a search that takes better advantage of filters and sorting, for example "Did you mean this? Property Type: Condo, Search Terms: 'Downtown'". Users can click to apply these suggestions or ignore them completely.</p>
+<p>Implementing this is quite easy – simply <a href="https://platform.openai.com/docs/guides/function-calling?api-mode=chat#defining-functions">define a search tool</a> that has well-specified arguments associated with the keyword search text, facet selections, and sorting. Then, whenever a user issues a search, you asynchronously send the request to this simple "agent" and instruct it to make the best search it can based upon the users' input. One great thing about the agent, is that it will automatically recover from misspellings and odd terminology. You can improve upon this further when writing the prompt: include examples and explanations so that the agent has an understanding of the vocabulary used in the products and the options available for the facets.</p>
+<p>Notice that this baby step is effectively risk-free for the user experience – the search app works no differently from what they are used to in the traditional app above. There is no extra latency incurred because the AI request is asynchronous. And the only concession we've made is about 50 pixels of vertical real estate on the screen.</p>
+<p>At this point you should be gathering data about your users' experiences. Track every time that the user is exposed to the "did you mean" text, track how often they click the associated search button, and track how often they convert. If the click-through and conversion are an improvement over the traditional search, then your users are resonating! Time for the next step.</p>
+<h3 id="level-2-intermediate-ai-let-ai-take-the-wheel">Level 2: Intermediate AI (Let AI Take the Wheel)</h3>
+<p>The easy and obvious next step is to let the AI actually execute the recommended search rather than waiting for their approval. See how we've replaced the "did you mean" text with "interpreted as" in the image below.</p>
+<p><img align="center" alt="Intermediate AI Adoption" src="../../../../assets/incremental_ai_adoption_for_ecommerce/intermediate.jpg" width="100%" /></p>
+<p>At this point you are incurring some real UX risk, because the snappy 10ms response your customers have become used to is now being replaced by a response that could take 2 or 3 seconds. As an old-school search engineer myself, this makes the sweat bead on my brow because "you must never let latency increase". But, if it takes your user 5 seconds to come up with a good query, and the AI can come up with that good query in two seconds, then we are actually saving the user some effort. What's more, the user's first query is never good, so they will either query multiple times to get what they want, or they will succumb to cognitive overload and abandon search. <em>AI is saving them a lot of effort.</em></p>
+<p>Notice one more change in the intermediate AI experience. We have added a new box just above the results which contains a summary of the results and some recommended next queries. The summary gives the user a holistic understanding of the search results, saving them from having to look through the results if they aren't quite what was expected; and the recommended next queries keep the user engaged with search, so that rather than abandoning, they might get new ideas for related content.</p>
+<p>As always, it's important to measure everything in order to understand what is working and what isn't. A/B test the beginner and intermediate experiences. Does automatic query rewriting lead to better or worse conversion? Are users engaging with the recommended next queries? If so... on to the advanced AI experience.</p>
+<h3 id="level-3-advanced-ai-full-conversational-assistant">Level 3: Advanced AI (Full Conversational Assistant)</h3>
+<p>Notice, during the intermediate AI phase, that in generating a summary of the results and recommended future queries, the AI is effectively having a conversation with the user. The only problem is that it's stateless, and it's one-sided – Issue a new query and the agent forgets all about the previous one. Does the user want to redirect the agent? They're out of luck.</p>
+<p><img align="center" alt="Advanced AI Adoption" src="../../../../assets/incremental_ai_adoption_for_ecommerce/advanced.jpg" width="100%" /></p>
+<p>With the advanced AI experience, we morph the traditional search experience into a guided, conversational experience. In this example, we ditch the search box, and replace it with a chat window on the right side of the screen.</p>
+<p>I'm a huge proponent of conversational UX. Why? Because it was the <em>first</em> UX – humans have been having conversations for 50 thousand years! It's only been in the last 30 or so years when clicking glowing rectangles has become the default UI/UX – and in my opinion, we only did this to address a technical limitation – machines didn't talk until just recently!</p>
+<p>When user's start interacting conversationally with your e-commerce app, you'll witness a Cambrian explosion of new user behaviors. For one thing, they will start leaning into the intuition of the model. Rather than taking time to type in "3-4 bedroom house over 2500sq ft" maybe they'll just say "Show me some big ass houses!" (why not?). The agent (now, really the "assistant") will attempt to map the user's wishes into a query.</p>
+<p>In traditional search, we only have the text from the keyword search box, and identifying user intent often requires your search application to be psychic (hint... <em>it's not</em>). But now since the conversation is stateful, magic happens. The user works <em>with</em> the assistant to clarify their intent, and the resulting queries are much better targeted, leading to much higher conversion rates.</p>
+<p>The assistant has also gained some other superpowers. Rather than just pasting results on the screen, the assistant can talk <em>about</em> the results. The user can ask "which one of <em>these</em> are more modern style?" The user can ask for simple aggregate analyses over the results: "what is the typical price distribution for houses of this size?". Leaning further into the assistants common-sense understanding the inventory, the user's intent, and the world at large, the user can brainstorm with the agent about future searches. Finally – maybe this is level 4 – you can make the agent perform asynchronous research on behalf of the user and really dig through the inventory once it feels like it has a good understanding of the user's needs.</p>
+<p>Regarding product measurement: traditional metrics still matter (conversion rates, A/B testing), but since conversations can drift into many domains, use LLMs to analyze collected conversations and map out typical user journeys. You're going to learn a lot more about your customers than you ever did just talking with them through the keyword search box!</p>
+<h2 id="easier-than-you-think">Easier Than You Think</h2>
+<p>The entire demo you just saw – including the whole, fake traditional search and fake inventory – took me 10 hours to build (ain't vibe-coding amazing?!). If you are interested in incrementally adopting AI, then nothing much has to change. Your existing search infrastructure (Elasticsearch, etc.) stays in place. All you have to do is write a thin, completely decoupled endpoint that looks at the user request, and attempts to map that into a proper search request (again... using your current system), and you incorporate that into the UI. If that works out to your expectations, then just make the integration thicker, bit-by-bit.</p>
+<p>Are the results really effective? Yes! Just take my app for a spin yourself and see. <strong><a href="https://morph-trad-search-into-ai-search.fly.dev/">CLICK HERE</a></strong>. After the page loads (first load might takes a few seconds) make sure to play with the demo controls at the top which let you try out each phase of AI integration. Start with traditional search, load some of the example queries, and then notice how the queries are interpreted, then move on to the more advanced AI integrations.</p>
+<p>Or, <strong>for e-commerce businesses</strong>, if you really want the "easy" button to speed you down your AI roadmap, then <a href="/#contact-blog">let's chat</a>. I can help you navigate from traditional search to conversational AI experiences with minimal the risk or complexity.</p>
+<p>The future of e-commerce search is conversational, and getting there is simpler than ever.</p>
+<hr />
+<h3 id="hey-and-if-you-liked-this-post-then-maybe-we-should-be-friends"><em>Hey, and if you liked this post, then maybe we should be friends!</em></h3>
+<ul>
+<li>I just wrote a book about Prompt Engineering for LLM Applications, which has now been published in 6 languages! <a href="/#about">Maybe you'd be interested in reading it.</a></li>
+<li>Are you stumped on a problem with your own LLM application? <a href="/#contact-blog">Let me hear about it.</a></li>
+<li>I'm going to write lots more posts. <a href="/#contact-blog">Subscribe and you'll be the first to know</a>.</li>
+</ul>
+<!-- 
+
+
+
+TODO:
+- make sure that I post this on the Relevant Saerch slack
+- Hugo - give them HN links and links to my Twitter and LinkedIn posts
+- Doug
+- Eric
+- My mailing list
+- think hard about whereelse
+
+-->
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../../../../assets/scripts/custom.js"></script>
+      
+    
+  </body>
+</html>
