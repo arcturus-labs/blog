@@ -26,7 +26,8 @@ plugins:
         - tags  
       image: meta.image
   - search
-  - blog
+  - blog:
+      draft_if_future_date: false
   - redirects:
       redirect_maps:
         'blog/2024/11/21/roaming-rag--make-_the-model_-find-the-answers/index.html': 'blog/posts/Roaming_RAG.md'
