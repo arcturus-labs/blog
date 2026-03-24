@@ -118,6 +118,7 @@ The following is a really rough outline - it's part outline part prose - it list
 
 Don't forget:
 - Make skill for how to write blog posts from an outline
+- Delete notes to AI at top
 - I need to say early on in the intro that there has been a pattern of slurping up good ideas and training them into the models and incorporating them into APIs and formalized into standards, so that the dominant abstraction in any epoch sets on top of those from the last
 - Aggressively cut the fat - make copies of old outlines
     - in 2024, shrink RAG and highlight workflows - they are closer to the agentic story I want to tell
