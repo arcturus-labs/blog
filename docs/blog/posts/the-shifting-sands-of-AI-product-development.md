@@ -21,9 +21,7 @@ In this post I'll walk through the history of AI product development, the presen
 
 <!-- Image: evolving AI - like the classic march-of-progress monkey drawing -->
 
-# The eras of AI history:
-
-## 2022 – Document Completion and the Age of Prompt Engineering
+## 2022 – Document Completion and the Era of Prompt Engineering
 
 In the beginning was the Prompt.
 
@@ -130,7 +128,7 @@ The answer was workflows – treating each LLM call as a node in a directed grap
 
 RAG was also a dominant theme in 2024, but I'll admit I never quite understood the fuss. RAG is just LLMs combined with a search tool. If retrieval is broken, there are 30 years of industry knowledge on how to fix it (buy [*Relevant Search*](https://amzn.to/3TXmDHk)). If the LLM isn't behaving, fix that too (buy [*Prompt Engineering for LLMs*](https://amzn.to/4gChsFf)). There's no reason to treat RAG as a black box – it's a pipeline.
 
-# 2025 – The Year We Figured Out What "Agent" Means
+## 2025 – The Year We Figured Out What "Agent" Means
 
 In February 2025, at the AI Engineering conference, Grace Isford of Lux Capital [declared that this would be the year of agents](https://www.youtube.com/watch?v=HS5a8VIKsvA). She was right - but the real accomplishment of 2025 was just agreeing on what an agent actually was.
 
@@ -158,7 +156,7 @@ By the end of 2025, the agentic frameworks were also converging. The main ingred
 
 The big shift in focus from earlier eras: rather than fine-grained prompt engineering tricks, the dominant abstraction in 2025 was context management. What does the agent need to know, when does it need to know it, and how do you keep the context window useful rather than bloated?
 
-## 2026 – The Agentic Runtime
+## 2026 – The Emerging Agentic Runtime
 
 Right now people in the software development world are calling it a "harness" – all the scaffolding that surrounds your agents and runs them: the agentic loop, tool handling, session and context management (compaction, skills, memory), sandboxing, subagent orchestration. Some prominent examples are Claude Code, Codex, Cursor, and OpenCode.
 
@@ -173,42 +171,46 @@ But it's deeper than that. Anthropic realized its models – and the frontier mo
 If English is the new programming language and the agentic runtime is the new interpreter, then the agent skill is the program itself. I've already written powerful programs with agent skills – including [building a simple OpenClaw clone in 15 minutes](openclaw_clone_in_15_minutes.md). And there are now places online where you can download skills like software libraries, because that's basically what they are – with package management systems starting to appear to manage them.
 
 
-- We're still in the early days of the agentic runtime. And like all eras before, you'll see the good ideas get slurped up and fine-tuned into the models, added to the agent APIs, and formalized into standards. Here are some of my guesses for what's coming next.
-  - context management will become completely standardized – the frontier labs will discover more and more efficient automatic ways to do memory extraction and context compaction, and progressive disclosure of skills instructions; this will become trained into models so that they just do the right thing – for my hint on how this might work, see my post on infinite compaction <this is another fake post that I want to see if anyone is clicking on it  so create a placeholder post for that and link to it - make the placeholder say "coming soon" - make sure it doesn't show up in the mkdocs Material blog page>
-  - we'll start to see skills packaged up as stand-alone products which can be run in your agentic runtime of choice (are you an Anthropic man, Stan?)
-    - they will be opensource by default (because it's hard to close source English), but they might not be free - so we'll have to figure out what to do to protect IP
-    - all skills will also be modifiable by default - I can easily imagine a skill editing skill that allows you to understand the functioning of existing skills and update them to match your preferences... what's that going to do to IP ownership?
-  - Orchestration will continue to morph. Remember, originally it was us creating workflows. And now we write the workflow state machine inside of loose English prose in skills and let the main agent determine if it wants to use subagents. Soon, higher-level workflows will form that are effectively at the level of the business. They will be composed of decoupled agents each with their own roles, goals, instructions, and tools. And they will communicate by loosely constructed message passing interfaces - and if I had to make a bet, this loose interface will be good ol' email (after all, there's plenty of email in training data). And you know who will be one of the agents in this network? You! You will be an agent working with a mix of AI and human colleagues - strange but true
+## What's Coming Next
 
-- Agents will be the building block for everything in the future. The agents will all run on this agentic runtime, and "programming" the agents will be as simple as providing them with the english-written skills they need and specialized tools (that they might very well just build themselves).
+We're still in the early days of the agentic runtime. And like all eras before, the good ideas will get fine-tuned into the models, added to the APIs, and formalized into standards. Here are my guesses for what comes next.
+
+**Context management gets standardized.** The frontier labs will find increasingly efficient automatic approaches for memory extraction, context compaction, and progressive disclosure of skills and tools. Eventually this gets trained into the models and they just do the right thing. For a hint at how this might work, see my post on [infinite compaction](infinite_context_compaction.md).
+
+**Skills become products.** We'll start to see skills packaged as standalone offerings that run in your agentic runtime of choice. ("Are you an Anthropic man, Stan?") They'll be open source by default, because it's hard to close-source English, but they won't necessarily be free. This creates interesting IP questions: skills are modifiable by design, so what does ownership even mean when anyone can edit your "program" to match their preferences?
+
+**Agents start learning on the job.** Right now an agent is defined by its instructions – its skills, its tools, its context. But continuous learning is coming. Agents will be able to learn the nuances of their jobs through trial, error, and correction, just like us meat computers. When that happens, an agent becomes something more than the sum of its instructions.
+
+**Embodied cognition arrives.** Increasingly capable world models (like [Google DeepMind's Genie 3](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/)) and a renewed interest and development in robotics are setting us up for agents that don't just act in software – they act in the physical world. And I, for one, am tired of folding laundry! However, I'm not really looking forward to the kill-bots that filled 80's sci-fi movies.
+
+**Orchestration escapes the agentic harness.** Orchestration went from handcrafted workflows to loose English prose in skills files. In the latter case, the primary agent decided whether to spin up subagents. The next step will be higher-level workflows at the scale of an entire business – decoupled agents with their own roles, goals, and tools, communicating through loosely defined interfaces. My bet for what that interface looks like? Email. There's plenty of it in the training data. And to make everything more sci-fi, _you'll_ likely one of the agents in that network, sometimes acting as orchestrator yourself, sometimes acting as quality control over the decisions that AI agents made, and sometimes serving as the subject matter expert in domains where agents don't yet pass muster.
+
+Agents will be the building block for everything going forward. "Programming" them will be as simple as giving them the skills they need and the tools to do the job – tools they may well just build themselves. High-level orchestration is probably the next hard frontier.
 
 
-# Conclusion: Building for success
-- Albert and I told O'Reilly that the important abstraction was document completion... but we weren't right for nearly as long as we thought. In the past 4 years several eras have passed, each burying the document completion abstraction in another layer....
-- The Agentic Runtime isn't the last abstraction either.
-  - With world models and robotics, we're getting all the pieces in place for embodied cognition
-  - We are also working hard on making it so that models can perform continously learning. This will make agents much more than their instructions because they will be able to learn the nuances of their jobs through trial and error and correction – just like us meat computers.
+## Conclusion: Build for What's Coming
 
-- It's challenging to give general advice when I don't know what you're working on, but through all the changes a key intuition has been empathy - It's always been weird that I find myself delivering this message, because my wife tells me I'm kinda like a lizard emotionally. But I actually don't mean the touchy feely type of emotional empathy - I mean cognitive empathy – can you put yourself in the shoes of the agent and of the user and make sure they have what they need to get the job done?
-  - agent – context engineering, tool descriptions, skills, instructions - does your intern have what they need and can they understand it? If the answer is "yes" then increasingly the agents will deliver success
-  - user – users intereacting with the AI system need to understand what the agents are doing, the conversation about work needs to be separated from the objects of work, the agent's reasoning needs to be visible, auditable, and explainable. The user needs to be able to _see_ what the agent is doing and redirect it and _teach_ it when it gets off course.
-  - lean into things that are familiar to the models – these days it is the notion of a filesysetem and a command line
-- The other piece of advice is to try to see the trajectory, not just a snapshot in time.
-  - Whatever we're interested in right now in this current news cycle isn't the be-all-end-all, but looking back we can see the trajectory - attempt to project that trajectory forward - you'll be _wrong_ but the exercise is useful.
-  - English will be a runnable software language - it already is
-  - Agents are the worst that they will ever be going forward becuase the technology is still on a more-or-less exponential upswing. Agents that are laughable today will be awesome in no time at all. Everyone will have a personal agent... which is actually a legion of agents at your bidding.
-  - The internet for humans will go away and be replaced with an internet for agents and highly personalized apps for humans - humans will work with agents to make the personalized apps
-  
-- It's a brave new world. Make the most of it.
+When Albert and I wrote [*Prompt Engineering for LLMs*](https://amzn.to/4gChsFf), we told O'Reilly that the important abstraction was document completion. That was true – for just about one year. Since then, several eras have stacked on top of it, each retaining the previous abstraction, but burying it under a new, more powerful layer. The agentic runtime is just the latest.
+
+It's hard for me to provide general advice without knowing what you are specifically building, but one intuition has held up through every era: cognitive empathy. I don't mean the warm-fuzzy kind of empathy – emotional empathy – I mean the practical kind: you need to put yourself in the shoes of both the agent _and_ the user and ensure that they each have what they need.
+
+For the agent – treat it like a capable intern. Does it have the instructions, context, and tools, that it needs? Can it actually understand them? If the answer is yes, increasingly it will deliver the desired results. Lean into constructs that agents already know. Right now that means filesystems and the command line. Soon it might mean something like email.
+
+ For the user – people working with an AI system need to understand what it's doing. The conversation needs to stay separate from the objects being worked on (see [my artifacts post](cut-the-chit-chat-with-artifacts.md) for more). The agent's reasoning should be visible, auditable, and redirectable so that the user can see what's happening, correct the agent when it goes off track, and teach it how to navigate similar problems in the future.
+
+One more: lean into constructs the models already know. Right now that means filesystems and the command line.
+
+The other piece of advice: try to see the technological trajectory, not just this current snapshot. Whatever is dominating the news cycle right now isn't the end state – but if you look back, the direction has been remarkably consistent. Try to project it forward. A few things I'm confident about: English is already a runnable software language. Agents are the worst that they will ever be going forward because the technology is still on an exponential upswing. The agent behavior that seems laughable today will soon be replaced by very adept handling of the same situations. Everyone will eventually have a personal agent at their disposal (which is really a legion of agents). And the internet as we know it today will give way to something built for agents – a place for them to retrieve data and interact with APIs. And it will be the role of the agents to provide us humans with highly personalized interfaces as we need them.
+
+It's a brave new world. Make the most of it.
 
 
 
 # Don't forget:
-- [ ] Label these as eras better - and have a fixed number and name for each
 - [ ] Make it a little more terse than my normal posts
 - [ ] Add images for every section
   - [ ] insert plot of time-length of task that are getting done and how it's on an exponential?
-- [ ] Make sure this is not a draft but also not listed in the "blogs" list [building a simple OpenClaw clone in 15 minutes](openclaw_clone_in_15_minutes.md)
+- [ ] Make sure this is not a draft but also not listed in the "blogs" list [building a simple OpenClaw clone in 15 minutes](openclaw_clone_in_15_minutes.md) and [infinite compaction](infinite_context_compaction.md)
 
 Follow-up
 - [ ] Make myself a speaker on this topic everywhere
