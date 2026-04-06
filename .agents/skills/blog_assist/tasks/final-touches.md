@@ -46,5 +46,25 @@ Read through all section headings. Do they scan well? Are any vague, redundant, 
 - The assets directory — `docs/blog/posts/assets/<slug>/` should match the post slug
 - All image references inside the post that point to that assets directory
 
-## 7. Deploy
+## 7. Social sharing meta tags
+
+The `overrides/main.html` template generates `og:image` and `twitter:image` from `page.meta.image`. Add an `image:` field to the frontmatter pointing to the hero image:
+
+```yaml
+image: /blog/posts/assets/<post-slug>/hero.jpg
+```
+
+The path must be absolute from the site root (starts with `/`). The template prepends `site_url` to build the full URL.
+
+Verify it works by serving the site and checking the meta tags:
+
+```bash
+curl -s http://127.0.0.1:8000/blog/YYYY/MM/DD/<post-slug>/ | grep -E 'og:image|twitter:image'
+```
+
+Both tags should contain the full URL to the image, not an empty string.
+
+The `title` and `description` frontmatter fields are already used for `og:title`/`twitter:title` and `og:description`/`twitter:description` respectively — no extra fields needed for those.
+
+## 8. Deploy
 Remind John to remove the draft tag in the yaml, to commit and push, to review the blog online.
