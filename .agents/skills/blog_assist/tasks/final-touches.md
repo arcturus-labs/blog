@@ -41,5 +41,10 @@ Light pass — the work is mostly done. Fix obvious errors. Tighten anything awk
 
 Read through all section headings. Do they scan well? Are any vague, redundant, or boring? Check the post title one more time against the title guidance in `tasks/reviewing-outline.md`.
 
+**If the title changes**, also update:
+- The post filename — it should be a kebab-case slug of the title (e.g. `the-ai-product-era-youre-building-for-might-already-be-over.md`)
+- The assets directory — `docs/blog/posts/assets/<slug>/` should match the post slug
+- All image references inside the post that point to that assets directory
+
 ## 7. Deploy
 Remind John to remove the draft tag in the yaml, to commit and push, to review the blog online.
