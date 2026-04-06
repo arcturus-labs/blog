@@ -19,7 +19,8 @@ Blog posts move through seven phases. John directs the pace – don't push him t
 | **4. Prose** | Convert the outline section by section into finished text |
 | **5. Images** | Generate hero and section art |
 | **6. Final touches** | Categories, description, TODOs, spelling, section titles |
-| **7. Deploying** | Draft LinkedIn and Twitter/X posts to promote the published piece |
+| **7. Deployed on social media** | Draft LinkedIn and Twitter/X posts to promote the published piece |
+| **8. Send newsletter** | Generate and verify an HTML newsletter for Kit broadcast sends |
 
 When a task is active, **read the relevant task file** below for detailed instructions before proceeding.
 
@@ -31,7 +32,8 @@ When a task is active, **read the relevant task file** below for detailed instru
 - `tasks/prose.md` – converting outline to prose, style, editing directly
 - `tasks/images.md` – pointer to the Gemini image generation skill
 - `tasks/final-touches.md` – YAML cleanup, categories, description, TODOs, final checks
-- `tasks/deploying.md` – LinkedIn and Twitter/X posts to promote the published piece
+- `tasks/social-media.md` – LinkedIn and Twitter/X posts to promote the published piece
+- `tasks/send-newsletter.md` – generate and verify the Kit newsletter HTML, then prep subject/preheader options
 
 ## Meta guidance
 
