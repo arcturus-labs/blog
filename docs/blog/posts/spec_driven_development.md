@@ -76,6 +76,6 @@ A global spec will also give product managers and even executives more insight i
 
 ## The Future of Spec-Driven Development
 
-The path forward for large-scale spec-driven development isn't about perfecting natural language specifications — it's about building systems that can navigate ambiguity through conversation and context. By combining hierarchical specifications with conversational clarification, and by grounding agents in existing code, we can create AI development workflows that are both powerful and consistent.
+The path forward for large-scale spec-driven development isn't about perfecting natural language specifications – it's about building systems that can navigate ambiguity through conversation and context. By combining hierarchical specifications with conversational clarification, and by grounding agents in existing code, we can create AI development workflows that are both powerful and consistent.
 
 The real breakthrough will come when specifications become living documents that evolve with our codebases, maintained by the same AI agents that implement them. This creates a feedback loop where product decisions are preserved, context is maintained, and the gap between specification and implementation disappears.  

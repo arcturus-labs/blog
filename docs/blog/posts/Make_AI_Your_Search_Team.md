@@ -7,7 +7,7 @@ categories:
   - Agentic AI
   - Retrieval
   - E-commerce
-description: Upgrading from basic keyword search to something smarter used to mean hiring an ML team. Modern AI changes that — wrap your existing search in an agent and get better results without expensive infrastructure. Here's what we learned experimenting with agent-wrapped product search.
+description: Upgrading from basic keyword search to something smarter used to mean hiring an ML team. Modern AI changes that – wrap your existing search in an agent and get better results without expensive infrastructure. Here's what we learned experimenting with agent-wrapped product search.
 image: /blog/assets/make-ai-your-search-team/top_image.jpg
 title: Make AI Your Search Team
 ---
@@ -22,19 +22,19 @@ Moving from traditional search to something smarter used to be *very* challengin
 
 Let's walk through the traditional progression.
 
-**Level 1 — The lowest common denominator.** You fire up ElasticSearch, point it at your data, and match keywords across all the relevant fields. The search engine isn't psychic. The user types something into a tiny text box, and the best you can do is search across the title and description fields and maybe boost by product popularity. That's about it.
+**Level 1 – The lowest common denominator.** You fire up ElasticSearch, point it at your data, and match keywords across all the relevant fields. The search engine isn't psychic. The user types something into a tiny text box, and the best you can do is search across the title and description fields and maybe boost by product popularity. That's about it.
 
-**Level 2 — A little smarter.** For the next step, you can actually go pretty far by hand-tuning search – Take your top 20 queries and experiment with field boosts. Maybe you can get fancier by introducing hand-curated judgment lists and then tune the parameter to optimize the performance against your judgment list.
+**Level 2 – A little smarter.** For the next step, you can actually go pretty far by hand-tuning search – Take your top 20 queries and experiment with field boosts. Maybe you can get fancier by introducing hand-curated judgment lists and then tune the parameter to optimize the performance against your judgment list.
 
-**Level 3 — Actually smart.** If you want to go farther, you'll need help. You can hire the ML team, and they can set up and tune semantic search and combine it with lexical search to produce some form of hybrid search. They can build complex systems that analyze clickstream data and optimize click-through. For many companies, this level of capability is out of reach because it's expensive and complex. _Not a thing you can typically do at your mom-and-pop Shopify sock shop._
+**Level 3 – Actually smart.** If you want to go farther, you'll need help. You can hire the ML team, and they can set up and tune semantic search and combine it with lexical search to produce some form of hybrid search. They can build complex systems that analyze clickstream data and optimize click-through. For many companies, this level of capability is out of reach because it's expensive and complex. _Not a thing you can typically do at your mom-and-pop Shopify sock shop._
 
-Here's the thing: with modern, agentic AI, you can likely get to level 3 quality without the cost. How? Wrap your base search API in an AI agent. The setup is straightforward — it's your typical while-loop agent with a search tool. Given the user's input, the agent calls the search tool, examines results, refines its queries, and sends back the best products. *The best part is that adopting agentic search doesn't require redoing your UX.* Keep the search API the same, put an agent shim between the API and the engine, and you're done. In this post we'll show you how.
+Here's the thing: with modern, agentic AI, you can likely get to level 3 quality without the cost. How? Wrap your base search API in an AI agent. The setup is straightforward – it's your typical while-loop agent with a search tool. Given the user's input, the agent calls the search tool, examines results, refines its queries, and sends back the best products. *The best part is that adopting agentic search doesn't require redoing your UX.* Keep the search API the same, put an agent shim between the API and the engine, and you're done. In this post we'll show you how.
 
 
 
 ## Rationale
 
-Frontier AI models — and increasingly many of the smaller ones — have strong, real-world common-sense knowledge; they understand most search domains out of the box. With a proper instruction (the system message), you can give the agent an understanding of your users' problem space and your catalog. You can coach it to start with general searches and then narrow down as it rummages through the index. In common domains, models naturally understand synonyms – in cooking, when a customer types "sheet pan" the agent understands that "baking tray" is probably a good alternative worth searching for. It knows when to use quotes – For instance, in fashion, "dress shoes" should be quoted because they are very different from a dress or a tennis shoe. And if you have lots of filter fields — brand, color, size — the model can infer the "grammar" users are speaking and correctly filter the search for more targeted results.
+Frontier AI models – and increasingly many of the smaller ones – have strong, real-world common-sense knowledge; they understand most search domains out of the box. With a proper instruction (the system message), you can give the agent an understanding of your users' problem space and your catalog. You can coach it to start with general searches and then narrow down as it rummages through the index. In common domains, models naturally understand synonyms – in cooking, when a customer types "sheet pan" the agent understands that "baking tray" is probably a good alternative worth searching for. It knows when to use quotes – For instance, in fashion, "dress shoes" should be quoted because they are very different from a dress or a tennis shoe. And if you have lots of filter fields – brand, color, size – the model can infer the "grammar" users are speaking and correctly filter the search for more targeted results.
 
 ## Experiment
 

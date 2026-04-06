@@ -72,9 +72,9 @@ I've added an extra item, a plate, for just a bit more complexity. Here's the an
 >
 > You placed a **marble on the plate.**
 >
-> You **picked up the marble and dropped it in the glass** — now the marble is **in the glass.**
+> You **picked up the marble and dropped it in the glass** – now the marble is **in the glass.**
 >
-> You **turned the glass upside down and set it on the plate** — unless the glass is sealed or the marble is somehow stuck, the marble would **fall out onto the plate.**
+> You **turned the glass upside down and set it on the plate** – unless the glass is sealed or the marble is somehow stuck, the marble would **fall out onto the plate.**
 >
 > Then you **picked up the glass (now empty) and put it in the microwave.**
 >

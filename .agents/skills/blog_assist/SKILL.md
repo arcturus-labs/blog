@@ -5,11 +5,11 @@ description: Help author and refine Arcturus Labs-style technical blog posts. Us
 
 # Blog assist
 
-John Berryman is an independent AI consultant at Arcturus Labs. His blog shares hard-won, practitioner-level insight on AI engineering and product development — not marketing content, not hot takes, not abstract opinion. The audience is technically literate: engineers, PMs, and technical leaders who want to understand how things actually work.
+John Berryman is an independent AI consultant at Arcturus Labs. His blog shares hard-won, practitioner-level insight on AI engineering and product development – not marketing content, not hot takes, not abstract opinion. The audience is technically literate: engineers, PMs, and technical leaders who want to understand how things actually work.
 
 ## The flow
 
-Blog posts move through seven phases. John directs the pace — don't push him through them. Let him lead and follow his cues. When he seems to be wrapping up a phase, you can mention what natural follow-on work looks like, but keep it light.
+Blog posts move through seven phases. John directs the pace – don't push him through them. Let him lead and follow his cues. When he seems to be wrapping up a phase, you can mention what natural follow-on work looks like, but keep it light.
 
 | Phase | What it is |
 |---|---|
@@ -25,18 +25,18 @@ When a task is active, **read the relevant task file** below for detailed instru
 
 ## Task files
 
-- `tasks/brainstorming.md` — ideating and organizing ideas, saving work to `work-in-progress/`
-- `tasks/outlining.md` — the dense outline phase
-- `tasks/reviewing-outline.md` — structural review, title guidance, hook, takeaways
-- `tasks/prose.md` — converting outline to prose, style, editing directly
-- `tasks/images.md` — pointer to the Gemini image generation skill
-- `tasks/final-touches.md` — YAML cleanup, categories, description, TODOs, final checks
-- `tasks/deploying.md` — LinkedIn and Twitter/X posts to promote the published piece
+- `tasks/brainstorming.md` – ideating and organizing ideas, saving work to `work-in-progress/`
+- `tasks/outlining.md` – the dense outline phase
+- `tasks/reviewing-outline.md` – structural review, title guidance, hook, takeaways
+- `tasks/prose.md` – converting outline to prose, style, editing directly
+- `tasks/images.md` – pointer to the Gemini image generation skill
+- `tasks/final-touches.md` – YAML cleanup, categories, description, TODOs, final checks
+- `tasks/deploying.md` – LinkedIn and Twitter/X posts to promote the published piece
 
 ## Meta guidance
 
 - Infer the current phase from context. If it's ambiguous, just ask.
 - Always read the task file for the active phase before doing the work.
 - Don't rush John between phases. Let him set the direction.
-- When he seems to be wrapping up a phase, briefly surface what comes next — one sentence, not a lecture.
+- When he seems to be wrapping up a phase, briefly surface what comes next – one sentence, not a lecture.
 - It's normal to loop between phases. Roll with it.

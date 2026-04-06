@@ -9,7 +9,6 @@ categories:
   - AI Product
 description: Each era of AI product development has absorbed and buried the last. A practitioner's account of five eras – from prompt engineering to agentic runtimes – and what the trajectory tells you about what to build next.
 title: The AI Product Era You're Building For Might Already Be Over
-image: /blog/assets/the-ai-product-era-youre-building-for-might-already-be-over/hero.jpg
 ---
 
 # The AI Product Era You're Building For Might Already Be Over
@@ -22,7 +21,7 @@ We are now at the beginning of a new era - and this one is going to make the ear
 
 In this post I'll walk through the history of AI product development, the present revolution, and what might be coming next. If you're building AI products, you need to understand this trajectory: to avoid building things that get immediately disrupted, to build things that hold up over time, and to take full advantage of what the technology can actually do.
 
-![The March of Progress, reimagined: from industrial robot arm to autonomous humanoid agent](./assets/the-ai-product-era-youre-building-for-might-already-be-over/hero.jpg){ align=center width=100% }
+![The March of Progress, reimagined: from industrial robot arm to autonomous humanoid agent](./assets/the-shifting-sands-of-AI-product-development/hero.jpg){ align=center width=100% }
 
 <!-- more -->
 
@@ -34,7 +33,7 @@ I was an early product engineer for GitHub Copilot - you remember it, right? You
 
 Think of the early models as being similar to the autocomplete on your iPhone when you're composing a text message – it reads your text so far and suggests the next word. Large language models of this era did the same thing except that they were trained on a vastly larger corpus – essentially all publicly available text on the internet, and therefore much more accurate. Given a scrap of text, they would find the statistically most likely next word, then the next, then the next. Do that enough times and you've completed the document.
 
-![A rusty industrial robot arm grips a pen and writes the bottom half of a software-history document](./assets/the-ai-product-era-youre-building-for-might-already-be-over/2022-document-completion.jpg){ align=center width=100% }
+![A rusty industrial robot arm grips a pen and writes the bottom half of a software-history document](./assets/the-shifting-sands-of-AI-product-development/2022-document-completion.jpg){ align=center width=100% }
 
 Because the training data included enormous amounts of code, and because code is more structured and predictable than human speech, these models turned out to be fantastic for code completion. Copilot was the first killer app of the AI era, and it was built on this simple trick.
 
@@ -119,7 +118,7 @@ Albert Ziegler (a founding research engineer on Copilot) and I documented this e
 
 ## 2023 – The Chat and Tool-Calling Revolution
 
-![A gritty early-era robot with glowing blue sensors holds a magnifying glass and calculator, tool belt loaded with wrench and gears](./assets/the-ai-product-era-youre-building-for-might-already-be-over/2023-eyes-and-hands.jpg){ align=center width=100% }
+![A gritty early-era robot with glowing blue sensors holds a magnifying glass and calculator, tool belt loaded with wrench and gears](./assets/the-shifting-sands-of-AI-product-development/2023-eyes-and-hands.jpg){ align=center width=100% }
 
 This is also where the defining meta-pattern of AI development first became clear: whatever the prompt engineers figure out in one era gets aggressively fine-tuned into the models and folded into the APIs of the next.
 
@@ -129,7 +128,7 @@ Then in May 2023 OpenAI fine-tuned models to interact with tools, baking in the 
 
 ## 2024 – Workflows Put LLMs on Rails
 
-![A futuristic bullet train navigating a DAG-shaped railway with glowing switch nodes on a circuit-board landscape](./assets/the-ai-product-era-youre-building-for-might-already-be-over/2024-train-on-rails.jpg){ align=center width=100% }
+![A futuristic bullet train navigating a DAG-shaped railway with glowing switch nodes on a circuit-board landscape](./assets/the-shifting-sands-of-AI-product-development/2024-train-on-rails.jpg){ align=center width=100% }
 
 By now you could string LLM calls together and hand a model a set of tools. The temptation was to just let it run in a loop. The problem: given that much freedom, models would wander off task and start making things up.
 
@@ -139,7 +138,7 @@ RAG was also a dominant theme in 2024, but I'll admit I never quite understood t
 
 ## 2025 – The Agent Awakes
 
-![The Loop Agent: a weathered robot with 'LOOP AGENT' on its chest stands at a crossroads signpost reading Iteration 1, Iteration 2, Final Path](./assets/the-ai-product-era-youre-building-for-might-already-be-over/2025-loop-agent.jpg){ align=center width=100% }
+![The Loop Agent: a weathered robot with 'LOOP AGENT' on its chest stands at a crossroads signpost reading Iteration 1, Iteration 2, Final Path](./assets/the-shifting-sands-of-AI-product-development/2025-loop-agent.jpg){ align=center width=100% }
 
 In February 2025, at the AI Engineering conference, Grace Isford of Lux Capital [declared that this would be the year of agents](https://www.youtube.com/watch?v=HS5a8VIKsvA). She was right - but the real accomplishment of 2025 was just agreeing on what an agent actually was.
 
@@ -169,7 +168,7 @@ The big shift in focus from earlier eras: rather than fine-grained prompt engine
 
 ## 2026 – The Emerging Agentic Runtime
 
-![A sleek chrome android stands at a holographic display, interacting with dashboards and data visualizations](./assets/the-ai-product-era-youre-building-for-might-already-be-over/2026-agentic-runtime.jpg){ align=center width=100% }
+![A sleek chrome android stands at a holographic display, interacting with dashboards and data visualizations](./assets/the-shifting-sands-of-AI-product-development/2026-agentic-runtime.jpg){ align=center width=100% }
 
 Right now people in the software development world are calling it a "harness" – all the scaffolding that surrounds your agents and runs them: the agentic loop, tool handling, session and context management (compaction, skills, memory), sandboxing, subagent orchestration. Some prominent examples are Claude Code, Codex, Cursor, and OpenCode.
 
@@ -186,7 +185,7 @@ If English is the new programming language and the agentic runtime is the new in
 
 ## What's Coming Next
 
-![Sleek chrome androids working alongside humans in a modern office, a robot and human shaking hands at center](./assets/the-ai-product-era-youre-building-for-might-already-be-over/whats-coming-next.jpg){ align=center width=100% }
+![Sleek chrome androids working alongside humans in a modern office, a robot and human shaking hands at center](./assets/the-shifting-sands-of-AI-product-development/whats-coming-next.jpg){ align=center width=100% }
 
 We're still in the early days of the agentic runtime. And like all eras before, the good ideas will get fine-tuned into the models, added to the APIs, and formalized into standards. Here are my guesses for what comes next.
 

@@ -1,12 +1,12 @@
 # Reviewing the outline
 
-Check the outline against four criteria. Be direct — point out what's weak and suggest fixes.
+Check the outline against four criteria. Be direct – point out what's weak and suggest fixes.
 
 ## 1. Vehicle
 
 Does the structure serve the ideas? The **vehicle** is the narrative frame that carries everything: a timeline, problem–solution, extended analogy, series of contrasts, guided demo, before/after, etc. Ask:
 - Does the section order build toward a satisfying payoff?
-- Is anything out of place — a section that interrupts momentum or belongs later?
+- Is anything out of place – a section that interrupts momentum or belongs later?
 - Is the vehicle clear to the reader, or does the structure feel arbitrary?
 
 ## 2. Opening
@@ -14,11 +14,11 @@ Does the structure serve the ideas? The **vehicle** is the narrative frame that 
 The opening has one job: make a technically literate reader want to keep going. Check:
 - Does it name a real tension, mistake, or counterintuitive fact?
 - Does it avoid a slow wind-up (definitions, background, "in recent years…")?
-- Does it create a specific curiosity — not vague hype, but a real question the reader now wants answered?
+- Does it create a specific curiosity – not vague hype, but a real question the reader now wants answered?
 
 ## 3. Title
 
-A good title is **specific + useful + slightly curious**. It doesn't overpromise and it doesn't underwhelm. Use the patterns below as a toolkit — no need to force a format, but if the title is close to one of these, lean into it.
+A good title is **specific + useful + slightly curious**. It doesn't overpromise and it doesn't underwhelm. Use the patterns below as a toolkit – no need to force a format, but if the title is close to one of these, lean into it.
 
 **Patterns that work:**
 
@@ -38,4 +38,4 @@ The best titles might use one of these patterns or even sometimes combine 2–3 
 
 ## 4. Takeaways
 
-By the end of the post, what will the reader know or do differently? Can you articulate 2–3 specific takeaways? If not, the outline may be too diffuse — flag it.
+By the end of the post, what will the reader know or do differently? Can you articulate 2–3 specific takeaways? If not, the outline may be too diffuse – flag it.

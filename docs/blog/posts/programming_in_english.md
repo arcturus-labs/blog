@@ -63,18 +63,18 @@ Here's what's really cool about this: I created a natural language markdown file
 
 The command is just a specification document that gets executed step-by-step. This represents a new paradigm: natural language specifications as executable workflows.
 
-It's super flexible—it can even do research outside of software. Check out this [Japanese-US economic relations example](https://github.com/arcturus-labs/llm_playground/issues/4) where it researched the web and provided justified references with links. As best I can tell, Cursor is quickly becoming the "anything agent" — and I wonder if they have even noticed this at this point (... we should talk Aman, Sualeh).
+It's super flexible—it can even do research outside of software. Check out this [Japanese-US economic relations example](https://github.com/arcturus-labs/llm_playground/issues/4) where it researched the web and provided justified references with links. As best I can tell, Cursor is quickly becoming the "anything agent" – and I wonder if they have even noticed this at this point (... we should talk Aman, Sualeh).
 
 ## Conclusion
 
-Simple idea, powerful results. If you want to try it yourself, here's the [cursor command gist](https://gist.github.com/JnBrymn/ca8b82ebd87b7fda0218b3bc90cfd878). Stick it in your Cursor today — I think it'll be useful to you, too.
+Simple idea, powerful results. If you want to try it yourself, here's the [cursor command gist](https://gist.github.com/JnBrymn/ca8b82ebd87b7fda0218b3bc90cfd878). Stick it in your Cursor today – I think it'll be useful to you, too.
 
-What I'm strarting to see is even more than [natural language as spec](../blog/spec-driven-development-breaks-at-scale-and-how-to-fix-it.md) — this is the English spec being run _as code_, and the large language model agent being its runtime. It's a brave new world, folks!
+What I'm strarting to see is even more than [natural language as spec](../blog/spec-driven-development-breaks-at-scale-and-how-to-fix-it.md) – this is the English spec being run _as code_, and the large language model agent being its runtime. It's a brave new world, folks!
 
 ---
 
 ### _Building something cool with AI?_
 
-If you're experimenting with programming in English, vibe-coding your way to automation, or building your own "anything agent," I'd love to hear about it. [Drop me a line](/#contact-blog) — I'm always curious what others are discovering in this space.
+If you're experimenting with programming in English, vibe-coding your way to automation, or building your own "anything agent," I'd love to hear about it. [Drop me a line](/#contact-blog) – I'm always curious what others are discovering in this space.
 
 And if you want to stay in the loop on more posts like this, [subscribe here](/#contact-blog) and you'll be the first to know when new content lands.

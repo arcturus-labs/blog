@@ -1,6 +1,6 @@
 # Final touches
 
-Work through these in order. The post should already be in good shape — this is about tying up loose ends, not rewriting.
+Work through these in order. The post should already be in good shape – this is about tying up loose ends, not rewriting.
 
 ## 1. Categories
 
@@ -15,7 +15,7 @@ Review the output and replace the post's categories with existing ones that fit.
 ## 2. Description
 
 Rewrite the `description` field in the frontmatter. It should be:
-- Matter-of-fact and specific — what is this post actually about?
+- Matter-of-fact and specific – what is this post actually about?
 - Engaging enough to make a reader curious
 - Not salesy, not hype-y
 
@@ -35,15 +35,15 @@ Resolve what you can. Flag what needs John.
 
 ## 5. Spelling, grammar, and clarity
 
-Light pass — the work is mostly done. Fix obvious errors. Tighten anything awkward. Don't rewrite paragraphs that are already working.
+Light pass – the work is mostly done. Fix obvious errors. Tighten anything awkward. Don't rewrite paragraphs that are already working.
 
 ## 6. Section titles and post title
 
 Read through all section headings. Do they scan well? Are any vague, redundant, or boring? Check the post title one more time against the title guidance in `tasks/reviewing-outline.md`.
 
 **If the title changes**, also update:
-- The post filename — it should be a kebab-case slug of the title (e.g. `the-ai-product-era-youre-building-for-might-already-be-over.md`)
-- The assets directory — `docs/blog/posts/assets/<slug>/` should match the post slug
+- The post filename – it should be a kebab-case slug of the title (e.g. `the-ai-product-era-youre-building-for-might-already-be-over.md`)
+- The assets directory – `docs/blog/posts/assets/<slug>/` should match the post slug
 - All image references inside the post that point to that assets directory
 
 ## 7. Social sharing meta tags
@@ -51,7 +51,7 @@ Read through all section headings. Do they scan well? Are any vague, redundant, 
 The `overrides/main.html` template generates `og:image` and `twitter:image` from `page.meta.image`. Add an `image:` field to the frontmatter pointing to the hero image:
 
 ```yaml
-image: /blog/posts/assets/<post-slug>/hero.jpg
+image: /blog/assets/<post-slug>/hero.jpg
 ```
 
 The path must be absolute from the site root (starts with `/`). The template prepends `site_url` to build the full URL.
@@ -64,7 +64,7 @@ curl -s http://127.0.0.1:8000/blog/YYYY/MM/DD/<post-slug>/ | grep -E 'og:image|t
 
 Both tags should contain the full URL to the image, not an empty string.
 
-The `title` and `description` frontmatter fields are already used for `og:title`/`twitter:title` and `og:description`/`twitter:description` respectively — no extra fields needed for those.
+The `title` and `description` frontmatter fields are already used for `og:title`/`twitter:title` and `og:description`/`twitter:description` respectively – no extra fields needed for those.
 
 ## 8. Deploy
 Remind John to remove the draft tag in the yaml, to commit and push, to review the blog online.

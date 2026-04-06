@@ -4,12 +4,12 @@ Convert the outline to finished prose, one section at a time, editing directly i
 
 ## Setup
 
-The target file lives at `docs/blog/posts/<post-slug>.md`. Create it if it doesn't exist yet, using the standard MkDocs frontmatter (look at an existing post for the template — e.g. `docs/blog/posts/Roaming_RAG.md`). Mark it `draft: true` until final touches.
+The target file lives at `docs/blog/posts/<post-slug>.md`. Create it if it doesn't exist yet, using the standard MkDocs frontmatter (look at an existing post for the template – e.g. `docs/blog/posts/Roaming_RAG.md`). Mark it `draft: true` until final touches.
 
 ## Style
 
 Before writing, read `docs/blog/posts/Roaming_RAG.md` and `docs/blog/posts/cut_the_chit_chat_with_artifacts.md` if you haven't recently. Match that tone:
-- Direct openings — no slow wind-up
+- Direct openings – no slow wind-up
 - Technical clarity without jargon for its own sake
 - Short paragraphs
 - Occasional wit (usually drawn from John's dense outline), but never forced
@@ -21,7 +21,7 @@ Use ` – ` (space–en-dash–space) for prose dashes. Never `—` (em dash).
 ## Process
 
 - Convert one section at a time, top to bottom, unless John directs otherwise.
-- Edit directly in the file — don't paste into chat. Let John review the file.
+- Edit directly in the file – don't paste into chat. Let John review the file.
 - After each section, stop and wait for John to react before moving on.
 
 ## Rules

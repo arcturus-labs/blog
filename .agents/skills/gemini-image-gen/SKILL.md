@@ -9,12 +9,12 @@ Google docs label these **Gemini image** / **nano banana** models (image in, ima
 
 ## Docs (official)
 
-- [Image generation (Gemini native)](https://ai.google.dev/gemini-api/docs/image-generation) — `generateContent` with image-capable Gemini models; text-only or text + reference images.
-- [Pricing](https://ai.google.dev/gemini-api/docs/pricing) — Gemini image models: image output priced per token (tiers differ by model, e.g. 3 Pro Image vs 3.1 Flash Image Preview vs 2.5 Flash Image).
+- [Image generation (Gemini native)](https://ai.google.dev/gemini-api/docs/image-generation) – `generateContent` with image-capable Gemini models; text-only or text + reference images.
+- [Pricing](https://ai.google.dev/gemini-api/docs/pricing) – Gemini image models: image output priced per token (tiers differ by model, e.g. 3 Pro Image vs 3.1 Flash Image Preview vs 2.5 Flash Image).
 
 ## Default model
 
-**`gemini-3.1-flash-image-preview`** — chosen as the **second tier** on the published image-output rate card vs **`gemini-3-pro-image-preview`** (higher) and **`gemini-2.5-flash-image`** (lower). Override with `-m` when you want Pro quality or a cheaper Flash variant.
+**`gemini-3.1-flash-image-preview`** – chosen as the **second tier** on the published image-output rate card vs **`gemini-3-pro-image-preview`** (higher) and **`gemini-2.5-flash-image`** (lower). Override with `-m` when you want Pro quality or a cheaper Flash variant.
 
 ## Where to write files
 
@@ -23,9 +23,9 @@ The repo gitignores `IGNORED/`. Prefer:
 - Active blog post: `IGNORED/<post-slug>/` (match the markdown basename under `docs/blog/posts/`, e.g. `IGNORED/the-shifting-sands-of-AI-product-development/`).
 - No specific post: `IGNORED/images/`.
 
-Each invocation saves into a **named subdirectory** under the base output dir. Always supply `-s` with a short, human-readable topic name — e.g. `-s "2025-agent-for-loop"` or `-s "hero-march-of-progress"`. This keeps runs organised by meaning, not by image specs. If `-s` is omitted, the CLI falls back to a slug from the first few words of the prompt (which is usually ugly).
+Each invocation saves into a **named subdirectory** under the base output dir. Always supply `-s` with a short, human-readable topic name – e.g. `-s "2025-agent-for-loop"` or `-s "hero-march-of-progress"`. This keeps runs organised by meaning, not by image specs. If `-s` is omitted, the CLI falls back to a slug from the first few words of the prompt (which is usually ugly).
 
-Images are numbered sequentially (`image-01`, `image-02`, …) and **never overwrite** existing files — re-running into the same subdir continues from the next available number.
+Images are numbered sequentially (`image-01`, `image-02`, …) and **never overwrite** existing files – re-running into the same subdir continues from the next available number.
 
 ## CLI
 
@@ -65,7 +65,7 @@ Flags:
 |------|--------|
 | `prompt` (positional) | What to generate or how to change the reference image(s) |
 | `-d`, `--output-dir` | Base output directory (required) |
-| `-s`, `--subdir` | **Subdirectory name — always set this to a short meaningful topic name** |
+| `-s`, `--subdir` | **Subdirectory name – always set this to a short meaningful topic name** |
 | `-n`, `--num-images` | Candidates to produce (default **3**) |
 | `-m`, `--model` | Gemini image model id (default **gemini-3.1-flash-image-preview**) |
 | `-i`, `--reference-image` | Reference image file; **repeat** for multiple references |
@@ -91,4 +91,4 @@ Task tool → subagent_type="shell", run_in_background=false
 prompt: "cd /path/to/repo && export GEMINI_API_KEY=... && ./.agents/skills/gemini-image-gen/gemini-image-gen ..."
 ```
 
-The shell subagent blocks internally while the CLI runs, then returns the saved paths. Alternatively, use the Shell tool with `block_until_ms` set high enough for the expected runtime (e.g. `block_until_ms: 120000` for Pro model, 3 candidates) — or set `block_until_ms: 0` to background immediately and poll with the `Await` tool until the terminal file shows an `exit_code` line.
+The shell subagent blocks internally while the CLI runs, then returns the saved paths. Alternatively, use the Shell tool with `block_until_ms` set high enough for the expected runtime (e.g. `block_until_ms: 120000` for Pro model, 3 candidates) – or set `block_until_ms: 0` to background immediately and poll with the `Await` tool until the terminal file shows an `exit_code` line.
