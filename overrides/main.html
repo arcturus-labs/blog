@@ -3,8 +3,15 @@
 {% block extrahead %}
   {{ super() }}
   {% set ns = namespace(social_image=(page.meta.get("image") if page and page.meta else none)) %}
-  {% if not ns.social_image and page and page.url == "blog/2026/03/22/the-ai-product-era-youre-building-for-might-already-be-over/" %}
-    {% set ns.social_image = "/blog/assets/the-ai-product-era-youre-building-for-might-already-be-over/hero.jpg" %}
+  {% if not ns.social_image and page and page.content and 'src="' in page.content %}
+    {% set extracted_image = page.content.split('src="', 1)[1].split('"', 1)[0] %}
+    {% if extracted_image.startswith("./assets/") %}
+      {% set ns.social_image = "/blog/assets/" ~ extracted_image.split("./assets/", 1)[1] %}
+    {% elif extracted_image.startswith("../../../../assets/") %}
+      {% set ns.social_image = "/blog/assets/" ~ extracted_image.split("../../../../assets/", 1)[1] %}
+    {% elif extracted_image.startswith("/blog/assets/") %}
+      {% set ns.social_image = extracted_image %}
+    {% endif %}
   {% endif %}
   {# Open Graph meta tags for social sharing #}
   <meta property="og:title" content="{% if page and page.title %}{{ page.title }}{% else %}{{ config.site_name }}{% endif %}">
