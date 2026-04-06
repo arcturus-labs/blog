@@ -8,8 +8,8 @@ categories:
   - Reasoning
   - AI Product
 description: Each era of AI product development has absorbed and buried the last. A practitioner's account of five eras – from prompt engineering to agentic runtimes – and what the trajectory tells you about what to build next.
-title: The AI Product Era You're Building For Might Already Be Over
 image: /blog/assets/the-ai-product-era-youre-building-for-might-already-be-over/hero.jpg
+title: The AI Product Era You're Building For Might Already Be Over
 ---
 
 # The AI Product Era You're Building For Might Already Be Over
