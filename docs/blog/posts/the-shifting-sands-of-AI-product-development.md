@@ -1,15 +1,17 @@
 ---
-draft: true
 date: 2026-03-22
 authors:
   - john-berryman
 categories:
   - Agentic AI
-  - AI History
-  - Product Development
-description: From document completion to agentic runtimes - a tour through every era of AI product development, and what it means for what you should build next.
-title: The Shifting Sands of AI Product Development
+  - Prompt Engineering
+  - Reasoning
+  - AI Product
+description: Each era of AI product development has absorbed and buried the last. A practitioner's account of five eras — from prompt engineering to agentic runtimes — and what the trajectory tells you about what to build next.
+title: The AI Product Era You're Building For Might Already Be Over
 ---
+
+# The AI Product Era You're Building For Might Already Be Over
 
 At the end of 2022, ChatGPT launched and immediately set records as the fastest-rising consumer product of all time. It gave us a glimpse of something genuinely alien. Humans are special - we make tools. But for the first time ever, we made a tool that could speak back.
 
@@ -19,7 +21,9 @@ We are now at the beginning of a new era - and this one is going to make the ear
 
 In this post I'll walk through the history of AI product development, the present revolution, and what might be coming next. If you're building AI products, you need to understand this trajectory: to avoid building things that get immediately disrupted, to build things that hold up over time, and to take full advantage of what the technology can actually do.
 
-<!-- Image: evolving AI - like the classic march-of-progress monkey drawing -->
+![The March of Progress, reimagined: from industrial robot arm to autonomous humanoid agent](./assets/the-shifting-sands-of-AI-product-development/hero.jpg){ align=center width=100% }
+
+<!-- more -->
 
 ## 2022 – Document Completion and the Era of Prompt Engineering
 
@@ -29,7 +33,7 @@ I was an early product engineer for GitHub Copilot - you remember it, right? You
 
 Think of the early models as being similar to the autocomplete on your iPhone when you're composing a text message – it reads your text so far and suggests the next word. Large language models of this era did the same thing except that they were trained on a vastly larger corpus – essentially all publicly available text on the internet, and therefore much more accurate. Given a scrap of text, they would find the statistically most likely next word, then the next, then the next. Do that enough times and you've completed the document.
 
-<!-- Image: a document cut in half - the model filling in the bottom half -->
+![A rusty industrial robot arm grips a pen and writes the bottom half of a software-history document](./assets/the-shifting-sands-of-AI-product-development/2022-document-completion.jpg){ align=center width=100% }
 
 Because the training data included enormous amounts of code, and because code is more structured and predictable than human speech, these models turned out to be fantastic for code completion. Copilot was the first killer app of the AI era, and it was built on this simple trick.
 
@@ -90,7 +94,7 @@ Observation: 81 F
 Answer: Miami is warmer right now.
 ```
 
-**Chat.** Possibly the silliest trick: you can craft a document that opens with "The following is a transcript between a brilliant assistant and a user," provide a few fake exchanges, and the model would keep the transcript going. If the end of the document had the text "assistant: " then the model would be oblidged to complete the text of the assistant. You would just need to make sure that you stopped the completion if you saw the text "user: " because that would be the model fabricating the entire rest of the conversation. You could then show the real human user the assistant response, allow the human to make their own reply, and incorporate that into the growing transcript – thus chat was born.
+**Chat.** Possibly the silliest trick: you can craft a document that opens with "The following is a transcript between a brilliant assistant and a user," provide a few fake exchanges, and the model would keep the transcript going. If the end of the document had the text "assistant: " then the model would be obliged to complete the text of the assistant. You would just need to make sure that you stopped the completion if you saw the text "user: " because that would be the model fabricating the entire rest of the conversation. You could then show the real human user the assistant response, allow the human to make their own reply, and incorporate that into the growing transcript – thus chat was born.
 
 ```
 The following is a transcript between a brilliant assistant and a user.
@@ -114,6 +118,8 @@ Albert Ziegler (a founding research engineer on Copilot) and I documented this e
 
 ## 2023 – The Chat and Tool-Calling Revolution
 
+![A gritty early-era robot with glowing blue sensors holds a magnifying glass and calculator, tool belt loaded with wrench and gears](./assets/the-shifting-sands-of-AI-product-development/2023-eyes-and-hands.jpg){ align=center width=100% }
+
 This is also where the defining meta-pattern of AI development first became clear: whatever the prompt engineers figure out in one era gets aggressively fine-tuned into the models and folded into the APIs of the next.
 
 ChatGPT launched in November 2022 and institutionalized the transcript trick. The jump in usefulness was immediate. Rather than coaxing answers out of a completion engine, you could hold a real conversation – the model stayed on topic, remembered what was said, responded to corrections. Much easier to direct.
@@ -122,13 +128,17 @@ Then in May 2023 OpenAI fine-tuned models to interact with tools, baking in the 
 
 ## 2024 – Workflows Put LLMs on Rails
 
+![A futuristic bullet train navigating a DAG-shaped railway with glowing switch nodes on a circuit-board landscape](./assets/the-shifting-sands-of-AI-product-development/2024-train-on-rails.jpg){ align=center width=100% }
+
 By now you could string LLM calls together and hand a model a set of tools. The temptation was to just let it run in a loop. The problem: given that much freedom, models would wander off task and start making things up.
 
 The answer was workflows – treating each LLM call as a node in a directed graph, with defined inputs and outputs. Rather than one long improvised session, you broke complex jobs into discrete steps. Workflows kept the work on the rails and made it possible to get real results on hard tasks.
 
 RAG was also a dominant theme in 2024, but I'll admit I never quite understood the fuss. RAG is just LLMs combined with a search tool. If retrieval is broken, there are 30 years of industry knowledge on how to fix it (buy [*Relevant Search*](https://amzn.to/3TXmDHk)). If the LLM isn't behaving, fix that too (buy [*Prompt Engineering for LLMs*](https://amzn.to/4gChsFf)). There's no reason to treat RAG as a black box – it's a pipeline.
 
-## 2025 – The Year We Figured Out What "Agent" Means
+## 2025 – The Agent Awakes
+
+![The Loop Agent: a weathered robot with 'LOOP AGENT' on its chest stands at a crossroads signpost reading Iteration 1, Iteration 2, Final Path](./assets/the-shifting-sands-of-AI-product-development/2025-loop-agent.jpg){ align=center width=100% }
 
 In February 2025, at the AI Engineering conference, Grace Isford of Lux Capital [declared that this would be the year of agents](https://www.youtube.com/watch?v=HS5a8VIKsvA). She was right - but the real accomplishment of 2025 was just agreeing on what an agent actually was.
 
@@ -158,24 +168,28 @@ The big shift in focus from earlier eras: rather than fine-grained prompt engine
 
 ## 2026 – The Emerging Agentic Runtime
 
+![A sleek chrome android stands at a holographic display, interacting with dashboards and data visualizations](./assets/the-shifting-sands-of-AI-product-development/2026-agentic-runtime.jpg){ align=center width=100% }
+
 Right now people in the software development world are calling it a "harness" – all the scaffolding that surrounds your agents and runs them: the agentic loop, tool handling, session and context management (compaction, skills, memory), sandboxing, subagent orchestration. Some prominent examples are Claude Code, Codex, Cursor, and OpenCode.
 
 But the harness metaphor is too narrow. We're already seeing it extend beyond code. Claude Cowork and OpenClaw are the most obvious examples – they're essentially coding agent harnesses with more flexible input and output (voice, email, whatever) and less rigid expectations about the work being done. The name "harness" won't stick (I hope).
 
-What we're really seeing is the emergence of an _agentic runtime_. Think of it like a code interpreter – The Python interpreter takes structured source code and executes it. The agentic runtime takes English (or whatever language you prefer) and executes _that_, using available tools to get real work done. The difference is that a code interpreter does exactly what the code says. The agentic runtime understands what you're getting at, and can be creative in addressing your problem – including wild things like writing its own tools to make work easier and more repeatable, or spinning off subagents to parallelize the load.
+What we're really seeing is the emergence of an _agentic runtime_. Think of it like a code interpreter – Python takes structured source code and executes it. The agentic runtime takes English and executes _that_, using available tools to get real work done. But unlike a code interpreter, which does exactly what the code says, the agentic runtime understands what you're getting at. It can write its own tools, spin off subagents to parallelize the work, and be genuinely creative in how it solves your problem.
 
 The key new development that makes this click – in my opinion – is [agent skills](https://docs.anthropic.com/en/docs/claude-code/skills), introduced by Anthropic in October 2025. On the surface, skills are a ridiculously simple idea: a folder with a `SKILL.md` that acts as a README for a specialized task, with optional subdirectories, explanatory markdown, and runnable scripts. You tell the runtime to use skills as needed, and it does.
 
-But it's deeper than that. Anthropic realized its models – and the frontier models generally – have become very good at navigating a filesystem, working at a command line, and using an operating system. Skills allow these agentic runtimes to leverage constructs the models already know intimately, which gives agents a natural leg up compared to arbitrary tool APIs for which the model has no trained-in intuition.
+But it's deeper than that. Anthropic realized its models – and the frontier models generally – have become very good at navigating filesystems, working at a command line, and using an operating system. Skills leverage these familiar constructs, giving agents a natural leg up compared to arbitrary tool APIs for which the model has no trained-in intuition.
 
-If English is the new programming language and the agentic runtime is the new interpreter, then the agent skill is the program itself. I've already written powerful programs with agent skills – including [building a simple OpenClaw clone in 15 minutes](openclaw_clone_in_15_minutes.md). And there are now places online where you can download skills like software libraries, because that's basically what they are – with package management systems starting to appear to manage them.
+If English is the new programming language and the agentic runtime is the new interpreter, then the agent skill is the program itself. I've already written powerful programs with agent skills – including [building a simple OpenClaw clone in 15 minutes](../openclaw_clone_in_15_minutes.md). And there are now places online where you can download skills like software libraries, because that's basically what they are – with package management systems starting to appear to manage them.
 
 
 ## What's Coming Next
 
+![Sleek chrome androids working alongside humans in a modern office, a robot and human shaking hands at center](./assets/the-shifting-sands-of-AI-product-development/whats-coming-next.jpg){ align=center width=100% }
+
 We're still in the early days of the agentic runtime. And like all eras before, the good ideas will get fine-tuned into the models, added to the APIs, and formalized into standards. Here are my guesses for what comes next.
 
-**Context management gets standardized.** The frontier labs will find increasingly efficient automatic approaches for memory extraction, context compaction, and progressive disclosure of skills and tools. Eventually this gets trained into the models and they just do the right thing. For a hint at how this might work, see my post on [infinite compaction](infinite_context_compaction.md).
+**Context management gets standardized.** The frontier labs will find increasingly efficient automatic approaches for memory extraction, context compaction, and progressive disclosure of skills and tools. Eventually this gets trained into the models and they just do the right thing. For a hint at how this might work, see my post on [infinite compaction](../infinite_context_compaction.md).
 
 **Skills become products.** We'll start to see skills packaged as standalone offerings that run in your agentic runtime of choice. ("Are you an Anthropic man, Stan?") They'll be open source by default, because it's hard to close-source English, but they won't necessarily be free. This creates interesting IP questions: skills are modifiable by design, so what does ownership even mean when anyone can edit your "program" to match their preferences?
 
@@ -183,7 +197,7 @@ We're still in the early days of the agentic runtime. And like all eras before, 
 
 **Embodied cognition arrives.** Increasingly capable world models (like [Google DeepMind's Genie 3](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/)) and a renewed interest and development in robotics are setting us up for agents that don't just act in software – they act in the physical world. And I, for one, am tired of folding laundry! However, I'm not really looking forward to the kill-bots that filled 80's sci-fi movies.
 
-**Orchestration escapes the agentic harness.** Orchestration went from handcrafted workflows to loose English prose in skills files. In the latter case, the primary agent decided whether to spin up subagents. The next step will be higher-level workflows at the scale of an entire business – decoupled agents with their own roles, goals, and tools, communicating through loosely defined interfaces. My bet for what that interface looks like? Email. There's plenty of it in the training data. And to make everything more sci-fi, _you'll_ likely one of the agents in that network, sometimes acting as orchestrator yourself, sometimes acting as quality control over the decisions that AI agents made, and sometimes serving as the subject matter expert in domains where agents don't yet pass muster.
+**Orchestration escapes the agentic harness.** We went from handcrafted workflows to loose English prose in skills files, with the agent deciding when to spin up subagents. The next step is higher-level workflows at the scale of an entire business – decoupled agents with their own roles, goals, and tools, communicating through loosely defined interfaces. My bet for what that interface looks like? Email – there's plenty of it in the training data. And to make everything even more sci-fi, _you'll_ be one of the agents in that network, sometimes orchestrating, sometimes doing QA on agent decisions, sometimes serving as the subject matter expert where agents don't yet pass muster.
 
 Agents will be the building block for everything going forward. "Programming" them will be as simple as giving them the skills they need and the tools to do the job – tools they may well just build themselves. High-level orchestration is probably the next hard frontier.
 
@@ -198,24 +212,6 @@ For the agent – treat it like a capable intern. Does it have the instructions,
 
  For the user – people working with an AI system need to understand what it's doing. The conversation needs to stay separate from the objects being worked on (see [my artifacts post](cut-the-chit-chat-with-artifacts.md) for more). The agent's reasoning should be visible, auditable, and redirectable so that the user can see what's happening, correct the agent when it goes off track, and teach it how to navigate similar problems in the future.
 
-One more: lean into constructs the models already know. Right now that means filesystems and the command line.
-
 The other piece of advice: try to see the technological trajectory, not just this current snapshot. Whatever is dominating the news cycle right now isn't the end state – but if you look back, the direction has been remarkably consistent. Try to project it forward. A few things I'm confident about: English is already a runnable software language. Agents are the worst that they will ever be going forward because the technology is still on an exponential upswing. The agent behavior that seems laughable today will soon be replaced by very adept handling of the same situations. Everyone will eventually have a personal agent at their disposal (which is really a legion of agents). And the internet as we know it today will give way to something built for agents – a place for them to retrieve data and interact with APIs. And it will be the role of the agents to provide us humans with highly personalized interfaces as we need them.
 
 It's a brave new world. Make the most of it.
-
-
-
-# Don't forget:
-- [ ] Make it a little more terse than my normal posts
-- [ ] Add images for every section
-  - [ ] insert plot of time-length of task that are getting done and how it's on an exponential?
-- [ ] Make sure this is not a draft but also not listed in the "blogs" list [building a simple OpenClaw clone in 15 minutes](openclaw_clone_in_15_minutes.md) and [infinite compaction](infinite_context_compaction.md)
-
-Follow-up
-- [ ] Make myself a speaker on this topic everywhere
-- [ ] Notify these people and get them to repost
-  - [ ] Grace Isford
-  - [ ] swyx
-- [ ] add TODO to write participatory UX post
-- [ ] advertise with shock - "AI Product Developers - in a couple of months you will never need to build another AI agent"

@@ -1,0 +1,205 @@
+#!/usr/bin/env python3
+"""Generate images with Gemini native image models ("nano banana" / image output via generateContent).
+
+Requires GEMINI_API_KEY in the environment. Deps are in pyproject.toml (uv sync / pip install -e .).
+"""
+
+from __future__ import annotations
+
+import argparse
+import base64
+import os
+import re
+import sys
+from pathlib import Path
+
+# Second tier by image output token price vs gemini-3-pro-image-preview (see Gemini API pricing).
+DEFAULT_MODEL = "gemini-3.1-flash-image-preview"
+
+REF_PROMPT_PREFIX = (
+    "Reference image(s) are included with this request. Treat them as visual anchors: "
+    "modify, stay faithful to their style, or create a similar composition as described below.\n\n"
+)
+
+
+def _mime_to_suffix(mime: str | None) -> str:
+    if not mime:
+        return ".png"
+    m = mime.lower()
+    if "jpeg" in m or m == "image/jpg":
+        return ".jpg"
+    if "webp" in m:
+        return ".webp"
+    return ".png"
+
+
+def _prompt_slug(prompt: str, max_len: int = 45) -> str:
+    words = re.sub(r"[^\w\s]", "", prompt.lower()).split()
+    slug = "-".join(words[:6])
+    return slug[:max_len] or "generated"
+
+
+def _next_image_index(out_dir: Path) -> int:
+    existing = []
+    if out_dir.exists():
+        for p in out_dir.iterdir():
+            m = re.match(r"image-(\d+)\.", p.name)
+            if m:
+                existing.append(int(m.group(1)))
+    return max(existing, default=0) + 1
+
+
+def _save_response_images(response, out_dir: Path, stem: str, start_index: int) -> int:
+    if not response.candidates:
+        fb = getattr(response, "prompt_feedback", None)
+        msg = str(fb) if fb else "no candidates (blocked or empty response)"
+        raise RuntimeError(msg)
+
+    saved = 0
+    parts = response.candidates[0].content.parts or []
+    idx = start_index
+    for part in parts:
+        if part.inline_data is not None and part.inline_data.data:
+            raw = part.inline_data.data
+            if isinstance(raw, str):
+                raw = base64.b64decode(raw)
+            elif isinstance(raw, (bytes, bytearray)) and not raw[:4].startswith(
+                (b"\xff\xd8", b"\x89PNG", b"RIFF")
+            ):
+                raw = base64.b64decode(raw)
+            ext = _mime_to_suffix(part.inline_data.mime_type)
+            path = out_dir / f"{stem}-{idx:02d}{ext}"
+            path.write_bytes(raw)
+            print(path)
+            idx += 1
+            saved += 1
+    return saved
+
+
+def run_generate(
+    client,
+    model: str,
+    prompt: str,
+    out_dir: Path,
+    num_images: int,
+    reference_image_paths: list[Path],
+) -> None:
+    from google.genai import types
+    from PIL import Image
+
+    config = types.GenerateContentConfig(
+        response_modalities=[types.Modality.IMAGE],
+    )
+
+    if reference_image_paths:
+        refs = [Image.open(p) for p in reference_image_paths]
+        contents: list = [REF_PROMPT_PREFIX + prompt] + refs
+    else:
+        contents = [prompt]
+
+    next_idx = _next_image_index(out_dir)
+    total_saved = 0
+    for n in range(num_images):
+        response = client.models.generate_content(
+            model=model,
+            contents=contents,
+            config=config,
+        )
+        saved = _save_response_images(response, out_dir, "image", next_idx)
+        if saved == 0:
+            raise RuntimeError(
+                f"Call {n + 1}/{num_images}: no image bytes in response "
+                "(model may have returned only text or blocked output)."
+            )
+        next_idx += saved
+        total_saved += saved
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Generate candidate images via Gemini native image models (generateContent).",
+    )
+    parser.add_argument(
+        "prompt",
+        help="Text request describing the image(s) to generate.",
+    )
+    parser.add_argument(
+        "-d",
+        "--output-dir",
+        required=True,
+        type=Path,
+        help="Base output directory; a named subdirectory is auto-created from the prompt.",
+    )
+    parser.add_argument(
+        "-n",
+        "--num-images",
+        type=int,
+        default=3,
+        metavar="N",
+        help="Number of candidate images to produce (default: 3).",
+    )
+    parser.add_argument(
+        "-m",
+        "--model",
+        default=DEFAULT_MODEL,
+        help=f"Gemini image model id (default: {DEFAULT_MODEL}).",
+    )
+    parser.add_argument(
+        "-i",
+        "--reference-image",
+        action="append",
+        type=Path,
+        default=None,
+        dest="reference_images",
+        metavar="FILE",
+        help="Reference image (may be repeated to supply multiple references).",
+    )
+    parser.add_argument(
+        "-s",
+        "--subdir",
+        default=None,
+        metavar="NAME",
+        help="Subdirectory name under the base output dir. Use a short meaningful topic name (e.g. '2025-agent-for-loop'). Defaults to a slug derived from the prompt.",
+    )
+    args = parser.parse_args()
+
+    if args.num_images < 1:
+        print("--num-images must be at least 1", file=sys.stderr)
+        return 2
+
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        print("Set GEMINI_API_KEY in the environment.", file=sys.stderr)
+        return 2
+
+    refs: list[Path] = args.reference_images or []
+    for ref in refs:
+        if not ref.is_file():
+            print(f"Reference image not found: {ref}", file=sys.stderr)
+            return 2
+
+    model = args.model.strip()
+    base_dir = args.output_dir.expanduser().resolve()
+    slug = args.subdir.strip() if args.subdir else _prompt_slug(args.prompt)
+    out_dir = base_dir / slug
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    try:
+        from google import genai
+    except ImportError:
+        print("Install google-genai and Pillow (e.g. pip install google-genai Pillow).", file=sys.stderr)
+        return 2
+
+    client = genai.Client(api_key=api_key)
+
+    try:
+        run_generate(client, model, args.prompt, out_dir, args.num_images, refs)
+    except Exception as e:
+        print(e, file=sys.stderr)
+        return 1
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
