@@ -15,11 +15,12 @@ Review the output and replace the post's categories with existing ones that fit.
 ## 2. Description
 
 Rewrite the `description` field in the frontmatter. It should be:
-- Matter-of-fact and specific – what is this post actually about?
-- Engaging enough to make a reader curious
+- Specific and accurate – what is this post actually about?
+- Engaging enough to make a reader curious; it should make the post feel worth clicking
+- Ambitious enough to match the scope of the post, especially for big-idea pieces
 - Not salesy, not hype-y
 
-One or two sentences. Don't start with "In this post…"
+One to three sentences. Don't start with "In this post…"
 
 ## 3. Include a `<!-- more -->` tag
 The `<!-- more -->` tag indicates where to cut off the blog post in https://arcturus-labs.com/blog/ which lists all of the posts. Typically the cut-off is after the hero image but make sure that the text above this provides a good idea of what the content of the blog will be when the reader clicks through.
