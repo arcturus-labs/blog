@@ -51,7 +51,14 @@ Use:
 Use this template, replacing placeholders:
 
 ```html
-<table width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 600px; width: 100%;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 600px; width: 100%;">
+    
+    <!-- Hero Image -->
+    <tr>
+        <td style="padding: 0; border-bottom: 1px solid #edf2f7;">
+            <img src="[HERO_IMAGE_URL]" alt="[HERO_IMAGE_ALT]" width="600" style="display: block; width: 100%; max-width: 600px; height: auto;">
+        </td>
+    </tr>
     
     <!-- Introductory Text Section -->
     <tr>
@@ -104,6 +111,8 @@ Use this template, replacing placeholders:
 ```
 
 Template notes:
+- Always include a full-width hero image at the top of the newsletter before the introductory text. Prefer the main image that best represents the newsletter's central post or topic.
+- In Kit, the hero image only reliably spans the available card width when the outer table uses `width="100%"` with `max-width: 600px`. Do not use `width="600"` on the outer table, and avoid adding extra outer-table classes that can affect Kit's rendering. The hero image itself should keep `width="600"` plus `style="display: block; width: 100%; max-width: 600px; height: auto;"`.
 - Post entry image width: 150px (left side)
 - Use section headers for groups like "Recent Posts" and "Older Favorites"
 - Last post in each section uses extra bottom padding: `padding: 20px 30px 40px 30px;`
@@ -114,7 +123,8 @@ Template notes:
 The newsletter HTML must work on both desktop and narrow screens. Do not ship fixed two-column cards that stay side-by-side on phones.
 
 Required pattern:
-1. Use fluid container sizing: table width `100%` with `max-width: 600px`.
+1. Use fluid container sizing: table width `100%` with `max-width: 600px`. Keep the outer table simple and email-client-friendly so Kit renders the hero image full-width:
+   `<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 600px; width: 100%;">`
 2. For each post card, mark image/text cells with a shared class (for example `stack`).
 3. Add a mobile breakpoint (for example `@media only screen and (max-width: 480px)`) that sets:
    - `.stack { display: block !important; width: 100% !important; }`
@@ -139,8 +149,9 @@ After generating HTML:
 
 ### Step 7: Save output
 
-1. Ensure `IGNORED/` exists.
-2. Save HTML to `IGNORED/newsletter.html`.
+1. Ensure the root-level `newsletters/` directory exists.
+2. Save HTML to `newsletters/<YYYY-MM-DD-HHMM>-<main-topic>.html`, using the local send/prep time and a short kebab-case topic slug.
+   - Example: `newsletters/2026-04-24-1759-unharnessed-agents.html`
 
 ### Step 8: Final checklist
 
@@ -150,8 +161,9 @@ After generating HTML:
 - Layout verified on both wide and narrow screens (stacking behavior works)
 - Intro text matches request
 - Requested posts included
+- Full-width hero image included at the top
 - Section headers make sense
-- File saved to `IGNORED/newsletter.html`
+- File saved to `newsletters/<YYYY-MM-DD-HHMM>-<main-topic>.html`
 - No empty `href` values
 
 ### Step 9: Subject lines and preview text
@@ -181,7 +193,7 @@ Once John confirms the newsletter HTML is final, explain this manual send flow:
 
 1. Open [Kit draft campaign](https://app.kit.com/campaigns/23592296/draft).
 2. Add a new **Advanced HTML** content block.
-3. Paste in the full contents of `IGNORED/newsletter.html`.
+3. Paste in the full contents of the generated file under `newsletters/`.
 4. Delete all other default content blocks so only the newsletter HTML remains.
 5. Set an appropriate campaign title/subject (it should start with "Arcturus Labs – ").
 6. Click **Continue** and send.

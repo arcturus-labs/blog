@@ -28,7 +28,9 @@ Use ` - ` (space-hyphen-space) for prose dashes. Never em dashes.
 
 ## Draft in chat
 
-Generate posts for both platforms directly in the conversation for John to review and edit. Don't write them to a file unless he asks. Twitter will naturally compress to a tighter version of the same structure; LinkedIn can breathe a little more.
+Generate posts for both platforms directly in the conversation for John to review and edit. Twitter will naturally compress to a tighter version of the same structure; LinkedIn can breathe a little more.
+
+Once John is happy with the social copy, also append the final LinkedIn and Twitter/X drafts to the bottom of the blog post inside a hidden HTML/XML comment. This keeps the launch copy next to the post without rendering on the site.
 
 ## Reminder: push to Slack
 
