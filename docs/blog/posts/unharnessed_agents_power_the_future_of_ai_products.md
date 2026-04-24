@@ -85,3 +85,40 @@ Once we get through this step, we won't be building our own agents from scratch.
 We need to form a standards committee to tackle this problem. I have a lot of ideas, but I only have one set of experiences, and they are not yours. Let's compare notes. If we can catalog the behaviors that agents need to satisfy across real tasks, real environments, and real users, then we can outline a new standard for how agents are built and how they are expected to behave.
 
 That is how we unlock the next level of abstraction: not just more powerful agents, but entire "agencies" – business processes run by coordinated swarms of agents that work side-by-side with humans.
+
+---
+
+### _Building agents beyond the IDE?_
+
+If you're experimenting with agents, skills, or new AI product patterns, I'd love to compare notes. [Get in touch](/#contact-blog).
+
+And if you want to follow along as this thinking develops, [subscribe here](/#contact-blog).
+
+<!--
+LinkedIn:
+We are thinking too narrowly about agents.
+
+The phrase "agent harness" is a problem here. We associate it too closely with coding only - agent harnesses are something that lives in an IDE, wraps an LLM loop, and helps software developers.
+
+But agents are bigger than that.
+
+They are the building blocks of what comes next: personal assistants that carry context, tools, memory, skills, and interfaces with us across whatever software we move through.
+
+If we standardize our understanding of agents and their parts, we can stop trapping them inside coding environments. We can unharness them from the IDE and let them follow us into the rest of digital life.
+
+That's the future of AI product I'm trying to point at in my new blog post.
+
+
+https://arcturus-labs.com/blog/2026/04/24/unharnessed-agents-power-the-future-of-ai-products/
+
+Twitter/X:
+We are thinking too narrowly about agents.
+
+Even "agent harness" makes them sound like coding tools - something trapped inside an IDE.
+
+But agents are bigger than that. They are the building blocks of what comes next: assistants that carry context, tools, memory, skills, and interfaces across whatever software we move through.
+
+If we standardize agents and their parts, we can unharness them from the IDE.
+
+https://arcturus-labs.com/blog/2026/04/24/unharnessed-agents-power-the-future-of-ai-products/
+-->
