@@ -29,3 +29,7 @@ Use ` - ` (space-hyphen-space) for prose dashes. Never em dashes.
 ## Draft in chat
 
 Generate posts for both platforms directly in the conversation for John to review and edit. Don't write them to a file unless he asks. Twitter will naturally compress to a tighter version of the same structure; LinkedIn can breathe a little more.
+
+## Reminder: push to Slack
+
+After drafting the social posts, remind John to also share the post in his Slack communities.
