@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "subreddit": "AI_Agents",
+      "kind": "self",
+      "flair_id": "c0fb994c-948c-11ef-838b-96bd8d9b4e91",
+      "flair_text": "Discussion",
+      "title": "Stop calling it an \"agent harness.\" It's an Agent Runtime.",
+      "selftext": "Hot take I've been chewing on: the \"agent harness\" framing is wrong, and it's holding back the way we think about this whole space.\n\nLook at what's actually inside Claude Code, Cursor, Codex, OpenCode. It's still the while loop agent we invented in 2023 - LLM call, tool call, repeat. We've just added some genuinely interesting machinery on top: context compaction, memory management, skills, MCP integrations, sandboxing, subagents. That machinery is real and worth building. But it isn't a harness wrapped around an agent. The agent is the loop plus that machinery. The whole composition is the agent.\n\nI think the right name is Agent Runtime. Like a code interpreter for English. And the people deeply building them out aren't infra or tools engineers, they're Agent Runtime Engineers. New job title. Calling it now.\n\nThis also matters because once you stop thinking of the runtime as IDE-shaped scaffolding for coding tools, you can unharness it. The same runtime can drive personal assistants, email triage, meeting agents, voice navigation, dynamically generated UI - anywhere you have an API.\n\nCurious where people push back. Is Agent Runtime the right name, or is something better hiding?",
+      "first_comment": "Two posts where I work through this:\n\nThe eras of AI product development and how we got to agentic runtimes: https://arcturus-labs.com/blog/2026/03/22/the-ai-product-era-youre-building-for-might-already-be-over/\n\nWhy the agent harness frame is wrong and what to do about it: https://arcturus-labs.com/blog/2026/04/24/unharnessed-agents-power-the-future-of-ai-products/"
+    },
+    {
+      "subreddit": "SaaS",
+      "kind": "self",
+      "title": "Agent Runtime Engineer is going to be a real job title",
+      "selftext": "A bet I'd make on the next 12 months: Agent Runtime Engineer becomes a real role, and the companies that hire for it earliest get a real edge.\n\nThe argument. What everyone is calling an agent harness is really an Agent Runtime. Underneath, it's still a while loop calling an LLM and tools - the pattern we figured out in 2023. What's actually new is the layer around it: context compaction, memory management, skills, sandboxing, subagent orchestration, modality bridging. That layer is becoming the most important software in the company that has it.\n\nIf that's right, the product question shifts. It stops being where do we add a chatbot and becomes what does our agent runtime know, what tools can it use, what skills does it have, what interfaces does it create, and where does the human stay in the loop. The agent is no longer a feature in your product. It's the runtime your product is being built around.\n\nAnd it's not staying in IDEs. Once you stop thinking of the runtime as a coding-tool wrapper, it can drive personal assistants, internal tools, customer workflows, dynamically generated UI - anywhere there's an API.\n\nTwo posts that walk through this:\n\nThe eras of AI product development and how we got here: https://arcturus-labs.com/blog/2026/03/22/the-ai-product-era-youre-building-for-might-already-be-over/\n\nWhy we should unharness our agent harnesses and just call them agents: https://arcturus-labs.com/blog/2026/04/24/unharnessed-agents-power-the-future-of-ai-products/\n\nFor founders and product folks here: are you treating agents as a feature inside your app, or starting to build around a runtime?"
+    }
+  ]
+}

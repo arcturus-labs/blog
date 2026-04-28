@@ -40,7 +40,7 @@ Light pass – the work is mostly done. Fix obvious errors. Tighten anything awk
 
 ## 6. Section titles and post title
 
-Read through all section headings. Do they scan well? Are any vague, redundant, or boring? Check the post title one more time against the title guidance in `tasks/reviewing-outline.md`.
+Read through all section headings. Do they scan well? Are any vague, redundant, or boring? Check the post title one more time against the title guidance in `references/reviewing-outline.md`.
 
 **If the title changes**, also update:
 - The post filename – it should be a kebab-case slug of the title (e.g. `the-ai-product-era-youre-building-for-might-already-be-over.md`)

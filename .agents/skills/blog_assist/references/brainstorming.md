@@ -32,4 +32,4 @@ As the brainstorm matures, draw attention to these:
 - **Hook?** Is there a lead-in moment that makes a technically literate reader want to keep reading? Something surprising, counterintuitive, or that names a real pain?
 - **Takeaway lessons?** Can we articulate 2–3 things the reader will walk away knowing or thinking differently about?
 
-Once the ideas and rough structure are clear, offer a **candidate title** – see `tasks/reviewing-outline.md` for title guidance.
+Once the ideas and rough structure are clear, offer a **candidate title** – see `references/reviewing-outline.md` for title guidance.
