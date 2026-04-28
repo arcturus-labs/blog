@@ -17,6 +17,7 @@ Ask John for:
    - Ask which posts should be featured.
    - Typical sets: recent posts (2-5), older favorites (1-3), or any custom grouping.
    - Needed for each post: title, description, image path, URL, and date.
+3. **Call to action**: Ask whether to include a CTA in the email, such as inviting readers to visit `https://arcturus-labs.com/`, explore consulting services, or reply with questions. If John wants one, ask for the CTA text and URL.
 
 ### Step 2: Locate post files
 
@@ -107,6 +108,16 @@ Use this template, replacing placeholders:
     <!-- Add section headers between different groups of posts if needed -->
     <!-- For example, "Recent Posts" vs "Older Favorites" -->
 
+    <!-- Optional CTA Section -->
+    <tr>
+        <td style="padding: 30px; border-top: 1px solid #edf2f7; text-align: center;">
+            <p style="font-size: 16px; color: #4a5568; line-height: 1.7; margin: 0 0 20px 0;">
+                [CTA_TEXT]
+            </p>
+            <a href="[CTA_URL]" style="background-color: #3b82f6; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block;">[CTA_BUTTON_TEXT]</a>
+        </td>
+    </tr>
+
 </table>
 ```
 
@@ -117,6 +128,7 @@ Template notes:
 - Use section headers for groups like "Recent Posts" and "Older Favorites"
 - Last post in each section uses extra bottom padding: `padding: 20px 30px 40px 30px;`
 - Other posts use: `padding: 20px 30px 30px 30px;`
+- Include a CTA section only if John wants one. Default CTA URL, when requested and not otherwise specified: `https://arcturus-labs.com/blog`.
 
 ### Step 5b: Make the email responsive (required)
 
@@ -163,6 +175,7 @@ After generating HTML:
 - Requested posts included
 - Full-width hero image included at the top
 - Section headers make sense
+- CTA included or intentionally omitted based on John's answer
 - File saved to `newsletters/<YYYY-MM-DD-HHMM>-<main-topic>.html`
 - No empty `href` values
 
