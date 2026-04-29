@@ -22,15 +22,15 @@ Infer the current phase from context. If a task is active, read the matching ref
 
 ## Promotion Rule
 
-When advertising a blog post, draft LinkedIn, Twitter/X, and Reddit copy. For Reddit:
+When advertising a blog post, draft LinkedIn, Twitter/X, Reddit, and Bluesky copy. For social posting:
 
 1. Use post frontmatter dates to identify the newest post when John asks for "latest" or "most recent".
 2. Recommend subreddits based on the post topic and subreddit norms.
-3. Draft subreddit-specific text posts or link posts.
+3. Draft platform-specific posts that fit each platform's norms.
 4. Ask John whether the drafts are good before posting.
-5. Only after explicit approval, use [post_to_reddit.py](scripts/post_to_reddit.py) to submit approved drafts.
-6. After submitting, report the live Reddit post links in chat.
-7. After reporting links, remind John that posts can be AI/AutoModerator filtered and should be manually checked.
+5. Only after explicit approval, use the skill scripts to submit (`post_to_reddit.py`, `post_to_bluesky.py`, `post_to_twitter.py`).
+6. After submitting, report the live post links in chat.
+7. After reporting links, remind John that posts can be filtered and should be manually checked.
 
 For all ad copy (LinkedIn, Twitter/X, Reddit), if it fits naturally, end with a short question that invites discussion and comments.
 
