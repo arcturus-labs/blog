@@ -32,7 +32,7 @@ Images are numbered sequentially (`image-01`, `image-02`, …) and **never overw
 Path: `.agents/skills/gemini-image-gen/gemini-image-gen`
 
 ```bash
-export GEMINI_API_KEY=...   # required
+export GEMINI_API_KEY=$_GEMINI_API_KEY # required
 
 # Text-to-image
 ./.agents/skills/gemini-image-gen/gemini-image-gen \

@@ -6,7 +6,7 @@
 - No need for manual scripts - everything is automated!
 
 ## Reminders
-- The text I like for Arcturus Labs is Raleway
+- The text I like for Arcturus Labs is Gruppo
 
 ## refs
 - https://www.mkdocs.org/getting-started/

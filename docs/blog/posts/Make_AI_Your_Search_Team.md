@@ -16,9 +16,17 @@ title: Make AI Your Search Team
 
 Moving from traditional search to something smarter used to be *very* challenging. Before the current AI revolution, you basically had to hire a full-time machine learning team. But now you can skip all that extra cost and effort.
 
-![Traditional search vs agentic search: user query → Search API → results; then agentic flow with Agent (common sense, intent, reformulate, research/filter) calling Search API and returning better results](./assets/make-ai-your-search-team/agentic-search-diagram.png){ align=center width=100% }
+![Agent robots working together to search through file cabinets with magnifying glasses](./assets/make-ai-your-search-team/top_image.jpg){ align=center width=100% }
 
 <!-- more -->
+
+!!! note "Prefer watching?"
+
+    Here's a short video walkthrough of this topic:
+
+    <figure markdown="span">
+      <iframe width="70%" src="https://www.youtube.com/embed/T2fp8WTVVl4" title="Make AI Your Search Team" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </figure>
 
 Let's walk through the traditional progression.
 
@@ -29,6 +37,10 @@ Let's walk through the traditional progression.
 **Level 3 – Actually smart.** If you want to go farther, you'll need help. You can hire the ML team, and they can set up and tune semantic search and combine it with lexical search to produce some form of hybrid search. They can build complex systems that analyze clickstream data and optimize click-through. For many companies, this level of capability is out of reach because it's expensive and complex. _Not a thing you can typically do at your mom-and-pop Shopify sock shop._
 
 Here's the thing: with modern, agentic AI, you can likely get to level 3 quality without the cost. How? Wrap your base search API in an AI agent. The setup is straightforward – it's your typical while-loop agent with a search tool. Given the user's input, the agent calls the search tool, examines results, refines its queries, and sends back the best products. *The best part is that adopting agentic search doesn't require redoing your UX.* Keep the search API the same, put an agent shim between the API and the engine, and you're done. In this post we'll show you how.
+
+Here's the flow we have in mind:
+
+![Traditional search vs agentic search: user query -> Search API -> results; then agentic flow with Agent (common sense, intent, reformulate, research/filter) calling Search API and returning better results](./assets/make-ai-your-search-team/agentic-search-diagram.png){ align=center width=100% }
 
 
 
