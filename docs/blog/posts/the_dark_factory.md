@@ -1,6 +1,5 @@
 ---
 date: 2026-05-03
-draft: true
 authors:
   - john-berryman
 categories:
@@ -108,4 +107,59 @@ Two things make it work: constrain the factory to your team's actual patterns, a
 - Is your company building toward something like this? [I'd love to hear about it – and I can help you navigate the design and adoption challenges.](/#contact-blog)
 - I write regularly about agentic AI and what it looks like in practice. [Subscribe and get new posts as they land.](/#contact-blog)
 - Dave and Jami go into much more detail in the full conversation – PR review mechanics, design review challenges, how they get team buy-in, and where they see this going next. [Watch the video.](https://www.youtube.com/watch?v=kkvi2Rm-K84)
+
+<!--
+POST_URL: https://arcturus-labs.com/blog/2026/05/03/the-dark-factory-how-twin-sun-automated-their-entire-dev-pipeline/
+HERO_IMAGE: https://arcturus-labs.com/blog/assets/the_dark_factory/hero.jpg
+
+=== LINKEDIN ===
+Twin Sun's code review bot approves 70% of pull requests without a human. No one reads those PRs. No one sees that code until it's already merged.
+
+I sat down with Dave Lane and Jami Couch - the CEO and CTO of Twin Sun - to understand how a Nashville software agency actually got there.
+
+Two principles made it work. First: build *your* factory, not a factory. Generic pipelines give the agent too much rope. Constrain it to how your team already writes code - the rules you use, the templates you start from, the patterns already in the codebase - and the output becomes dependable enough to trust. Second: go gradually darker. Twin Sun's PR reviewer started as an optional advisory tool with no authority. They watched how it behaved, gave it more responsibility over time, and only then let it approve on its own.
+
+The factory didn't get flipped on. It got earned.
+
+Full post + 70-minute conversation linked below. How is your team thinking about automating parts of your dev pipeline?
+
+https://arcturus-labs.com/blog/2026/05/03/the-dark-factory-how-twin-sun-automated-their-entire-dev-pipeline/
+
+=== TWITTER/X ===
+Twin Sun's code review bot approves 70% of PRs on its own. No human sees that code until it's already merged.
+
+Two principles that make a dev factory actually work - and neither is "just build a general-purpose pipeline."
+
+https://arcturus-labs.com/blog/2026/05/03/the-dark-factory-how-twin-sun-automated-their-entire-dev-pipeline/
+
+=== BLUESKY (264 chars) ===
+Twin Sun's code review bot approves 70% of PRs on its own. No human sees that code until it's merged.
+
+Two principles that make a dev factory work - and neither is "just be generic."
+
+https://arcturus-labs.com/blog/2026/05/03/the-dark-factory-how-twin-sun-automated-their-entire-dev-pipeline/
+
+=== REDDIT: r/ExperiencedDevs (text post) ===
+TITLE: We let an AI approve 70% of our pull requests. Two principles that made it work.
+
+Twin Sun (a Nashville software agency) built a dev pipeline called Scarif where Claude Code agents handle coding, review, and merging. Their PR review bot now autonomously approves about 70% of PRs - no human reads that code until it's already merged.
+
+I wrote up the two principles that made it actually work, based on a long conversation with their CEO and CTO:
+
+1. Build *your* factory, not *a* factory. Generic pipelines give the agent too much rope. Constrain it to your existing conventions and codebase patterns, and the output becomes trustworthy.
+2. Go gradually darker. They didn't flip it on - they introduced one component at a time, ran it manually, built confidence, and only then let it run autonomously.
+
+Full post: https://arcturus-labs.com/blog/2026/05/03/the-dark-factory-how-twin-sun-automated-their-entire-dev-pipeline/
+
+Curious how others are thinking about this - are you automating any parts of your review or deployment pipeline? What's been the hardest part to hand off?
+
+=== REDDIT: r/ClaudeAI (text post) ===
+TITLE: Built a dev pipeline on Claude Code that autonomously handles 70% of PR reviews - here's what made it work
+
+Twin Sun built their factory (Scarif) on top of Claude Code. PR review agent, code writer, CI feedback loop - all running without humans in the loop for most tasks.
+
+The key insight: they made it opinionated. Started from Flutter's official AI rules file, fed it their actual codebase, and had Claude adapt the rules to match how *they* write code. Combined with base app templates and the codebase itself as few-shot examples, the output became consistent enough to trust.
+
+Full writeup + 70-min video conversation: https://arcturus-labs.com/blog/2026/05/03/the-dark-factory-how-twin-sun-automated-their-entire-dev-pipeline/
+-->
 

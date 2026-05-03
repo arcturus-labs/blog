@@ -32,7 +32,29 @@ If it fits naturally, end the post with a short question that invites reader com
 
 Generate LinkedIn and Twitter/X posts directly in the conversation for John to review and edit. Twitter will naturally compress to a tighter version of the same structure; LinkedIn can breathe a little more.
 
-As part of drafting, append the platform drafts to the bottom of the corresponding blog post inside a hidden HTML/XML comment so John can review and edit in-place. Do this for every platform being drafted (LinkedIn, Twitter/X, Reddit, Bluesky). Keep this comment block updated as drafts evolve.
+**REQUIRED: append all drafts to the blog post file.**
+After showing drafts in chat, immediately append them to the bottom of the corresponding blog post inside a hidden HTML comment. Do this before asking for approval – John reviews and edits the drafts in-file, not just in chat. Do this for every platform (LinkedIn, Twitter/X, Reddit, Bluesky). Keep the comment block updated as drafts evolve.
+
+Format:
+```
+<!--
+POST_URL: https://arcturus-labs.com/blog/...
+HERO_IMAGE: https://arcturus-labs.com/blog/assets/.../hero.jpg
+
+=== LINKEDIN ===
+...
+
+=== TWITTER/X ===
+...
+
+=== BLUESKY (N chars) ===
+...
+
+=== REDDIT: r/subreddit (text post) ===
+TITLE: ...
+...
+-->
+```
 
 ## Reddit
 
