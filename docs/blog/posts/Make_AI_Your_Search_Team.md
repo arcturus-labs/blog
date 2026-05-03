@@ -103,3 +103,22 @@ If you have a search application and you'd like to experiment with AI in the loo
 - I recently wrote a book about Prompt Engineering for LLM Applications. [Maybe you'd be interested in reading it.](/#about)
 - Are you stumped on a problem with your own agentic product? [Let me hear about it.](/#contact-blog)
 - I'm going to write lots more posts. [Subscribe and you'll be the first to know](/#contact-blog).
+
+<!--
+SOCIAL_DRAFTS
+
+LinkedIn:
+If your ecommerce search quality is stuck, the next step might not be "hire an ML team."
+
+In our latest experiment, we wrapped a plain keyword search API in a loop-based agent and measured the result on a 100-query benchmark. The initial agent was far from perfect, but with better prompting and a few-shot strategy, it improved NDCG@10 by about 6 - 10% on complex queries.
+
+The interesting part: no new retrieval infrastructure, no UX overhaul. Just an agent shim that can reformulate queries, apply filters more intelligently, and iterate.
+
+As the models get better, faster, and cheaper, the results can only improve!
+
+Links in the comments.
+---
+Post: https://arcturus-labs.com/blog/make-ai-your-search-team/
+Video: https://www.youtube.com/watch?v=T2fp8WTVVl4
+
+-->

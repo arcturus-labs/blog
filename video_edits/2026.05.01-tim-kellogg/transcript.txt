@@ -1,0 +1,258 @@
+# video1101350765
+
+[00:00:00] I'm sitting down with Principle AI Architect, Tim Catalog at Icertis, a contract management software company. And we've got a lot of ground to cover. We're gonna talk about shared nothing architecture. It's an infrastructure principle from the 2010s where you partition your system into independent groups that share no state with each other.
+
+[00:00:20] The payoff is massive scale because you eliminate all the bottlenecks. Tim makes the case that the same thinking applies to AI-driven software development.
+
+[00:00:29] Instead of one big modulith absorbing a flood of colliding AI commits, keep your modules small and independent so that the collisions rarely occur.
+
+[00:00:39] We're also going to talk about why dropping in a generic agent is rarely enough. A lot of companies think that introducing something like Microsoft Copilot is going to transform the business, but a generic agent only gets you maybe 10% of the potential value.
+
+[00:00:57] The other 90% comes from [00:01:00] encoding your company's bespoke domain knowledge into the agent. Skip that step and you're leaving most of the benefit on the table. And finally, Tim builds his own stateful agent called OpenStrix. Uh, and he's got kind of a contrary intake on memory management. Instead of letting context grow indefinitely and then catastrophically compacting it, he keeps a small sliding window. He'll explain why sometimes that's actually safer and cheaper. Let's dive in.
+
+[00:01:28] So currently, I am a principal, AI architect at a company that we do law tech. So currently deep, really deep into AI and agents and building building AI infrastructure, more or less.
+
+[00:01:42] I've been let's see, I worked at Amazon briefly, got there via an acquisition. So I worked for a startup for a bit there where, just building out some internet of things, infrastructure there, and that ended up becoming part of AWS IoT core, or actually became the core, honestly.
+
+[00:01:59] And yeah. [00:02:00] So yeah, a bit of basically, like, ML for the last 2018 and then AI since, like, 23 or so. Tried doing some startups. I'm not very good at it.
+
+[00:02:16] Yeah, I've always been kind of a wannabe for, startups. I've had several ideas, and the closest I ever got was a, a hackathon, that turned into, like, a few months long project, but I found out it was just the engineering bit that was interesting to me.
+
+[00:02:30] Yeah, so, for this podcast, the stuff that I'm really interested in is anything, related to AI-driven software development lifecycle. There's a lot of content that's out there right now related to you know, how can you build stuff really quickly with, cloud code and, and a bunch of stuff that's really directed towards individuals, and it's amazing.
+
+[00:02:51] But what I think I think companies are really wrestling with right now is, like, how to actually m- make use of all [00:03:00] this stuff that's changing. Everybody's board says you've got, you, you've gotta sprinkle some AI on it. And it's, and it's not a fad, it's not going away, it's making huge differences, but they're really kinda lumpy.
+
+[00:03:12] Some people feel, seem like they're taking advantage of it and doing a great job. Some people are struggling, some companies are struggling, and so I'm really interested in how teams are working with AI and being productive and how companies as a whole are working with AI and being productive.
+
+[00:03:31] And you got a couple of blog posts that you posted recently that I think really kinda, kinda nail this domain. Shared nothing engineering and you can't sell an agent. Which one of those ... let, I guess let's chat about those. Which one would you prefer to start with? They're the both, probably both the same thing.
+
+[00:03:54] They felt very different. Like, I just wrote them for different perspectives, honestly. Like, the shared nothing engineering, that's, [00:04:00] like, oriented towards, like, if you were already, like, deep in software for the last 10 years be like, "Oh, yeah, that's how you do it now.
+
+[00:04:06] It makes sense." Mm-hmm. And then the other one is really just the same angle, but it's it's coming at from, like, the product side where it's like, but in, in both cases it's, I think there, there's a, this, this underlying, like, mentality that you need to treat a software team as being a machine that produces software.
+
+[00:04:30] But now things are changing. Like, there's, like, the costs are changing and various things. And so as, as a software engineer, like, I, you know, most, most of my peers as well used to, like, we've always considered ourselves, like, we're just great coders. We, we build software and now what's changing is, no, now we are building systems that build software.
+
+[00:04:52] Mm-hmm. Managers and, like, VPs of engineering and those people they, they've all been used to this idea and they're actually kind of [00:05:00] ex- like, you'll talk to VP of engineering about, like how coding is changing and they get really excited because they already understand it. They rock it. They've done been doing this for, like, you know, a decade or whatever, versus you talk to an engineer and it's like, just pure burnout.
+
+[00:05:12] I think you have to, like, come to recognize, like, what you're dealing with, first of all. And so there's, there's two, two ways of looking at it. So, like, the, on the, shared methane engineering, basically I took it as, like, okay, so what if we took it and looked at it as if it was, like, a dis- distributed system, like, if it's a database or whatever.
+
+[00:05:29] But instead of, like, traffic going through it, like, still, like, web requests, make it change requests instead. And how do you deal with that? And, like, in distributed systems, like, you can do things like if you can turn into, like, a hash map, you know, or whatever, like, you know, partition it out.
+
+[00:05:42] Then the low just partitions out and you can grow horizontally and whatever, which is great, right? But then so, like, the yeah, so c- can, first of all, can we do that with engineering teams as well? Like, that's, that's the first question. I'm not sure it's really that easy. But, if you, if, if someone figures it out, then that's, that's the key to, like, scaling [00:06:00] out an engineering team.
+
+[00:06:01] This idea I've had for a while on this particular topic is, I, one of the first things that occurred to me a long time ago, like, a whole year ago probably, was that, like, we mentioned it earlier, like, every, everyone mentions it. It's really easy to produce a prototype with- Yes. ... talk code.
+
+[00:06:17] But then, like, it's harder to work on really large systems. So why not just do that? Well, break that down. What, what does that mean? I've worked at ... GitHub itself was a mono repo. So all the stuff that you see in GitHub, the big chunk of it is, like, in one place.
+
+[00:06:32] Now it's ... When I got there, it kind of started doing this thing. The previous company I worked at was, was Eventbrite. Same deal. It's like everything's in Winter Repo. And as a human interacting with that sometimes becomes overwhelming. So, like, what's the alternative? I mean, even with humans, it's overwhelming.
+
+[00:06:48] So of course- Yeah. ... early on in the agent story, it's gonna be very overwhelming, right? No. Well, like, what I was getting at is, like, if you, if you double down on the idea that it's easy to produce a prototype, the problem the, the reason [00:07:00] why it's easy is because it's small, right? Mm-hmm. If you keep it small and focused, it's gonna be easy because it's, that's kinda how software works.
+
+[00:07:08] It's always been like that. When you add someone to the team it's like, it's not like
+
+[00:07:13] If you have, like, four people and you add a fifth person, it's not just, like, one more person. It's actually you look at the lines of communication- it actually goes up by, like, NSquared and you, you kind of get the same thing, like, as the software project grows, there's more modules that kind of plug together.
+
+[00:07:27] Mm-hmm. And more things to keep, all in the air at the same time and they all, you know, different things have to function well together. And you ... Also, the testing becomes, like, comple- more complex on, like, an NSquared basis as well. Mm-hmm. Is combined. And so, like, everything is honestly easier when it's small, so why not just keep it small?
+
+[00:07:48] So how can you keep it small? I've cheated and I've read, read your blog post already, so I, I know what you'll probably say to this, but, like, Starting Point is complex systems that for whatever reason in our [00:08:00] history we have chosen to make as a giant freaking monorepo. How do you get there and then, like, like, how are the benefits realized on- once we get there?
+
+[00:08:09] So, like, I think in the blog post, I just said, like, "Oh, you just break it down in, like, smaller features and do that.
+
+[00:08:13] But I think one, one other dynamic that's going on that I'm kind of thinking about is these agents, yes, they're coding agents. They're trained to be coding agents, but they're also general, right? They're ver- very general purpose answers. Yeah. And so you can take, you can absolutely take something that's been specialized for, or not, not even specialized.
+
+[00:08:32] You can take, like, Opus 4.7 or whatever. Mm-hmm. And yeah, it'll knock it out and park with the code, but it also, it also do well with marketing. I have friend, Lilly who's been do- building awesome stuff in the marketing world or sales or QA or, there's a whole bunch of different areas.
+
+[00:08:48] So if they're already general agents, why can't one agent ... Why can't, like, that system that, that, that builds software, why can't that be, like, a whole end-to-end system? Why does it [00:09:00] have to stop at just engineering and product? Why can't it extend into, like, ops, DevOps, then also sales and marketing and just include the whole entire stack.
+
+[00:09:09] You could have, like, one narrow slice that goes fully end to end from go to market all the way down to, like, operating a server. That's cool. Like, your blog post, you referred to this and I think you just expanded the warrant a bit. In your, in your blog post, it was about the handoffs that happened that caused so much of, the extra burn, the, the extra complexity.
+
+[00:09:31] Okay, products that says this, o- and actually, this can, I can share my ex- experience. Product says, "Here's what we want. " Engineers halfway listen, build whatever the crap they want. There's a loss of context right there. Quality assurance doesn't know necessarily what, exactly what it's supposed to be.
+
+[00:09:49] They're looking for bugs and stuff. There's a little, bit of an issue there and then it get, gets handed off to ops. Something breaks in production fire's coming on the machine and they don't know why the fire's coming out of the machine, and so [00:10:00] they've got to coordinate. And you also just, if I understand correctly, you, you added a couple more bookends to that.
+
+[00:10:05] It's like, we know our business well, and so we know the person, the product manager, which is the engineer, which is the QA, which is the ops in, in tandem with the agent knows the thing that they just built. So they, they can also work with, like, the marketing aspects of it, and, and every, all the other ancillary stuff that's even outside what I would normally think of as the technical aspects of the product, right?
+
+[00:10:32] It, so I don't know if that's really gonna work that way. That totally comes up to, like, how things actually work in prod- pro- pro- in in actuality. But if, if it did turn out to go in that direction, I would imagine engineering transforming into, like, a systems engineering team where you're just engineering these systems end to end and you'd have these specialists who've been doing sales for all their life, you know as a, a subject matter expert for helping to guide it.
+
+[00:10:58] And, like, I don't ... Yeah, I think [00:11:00] people would still have jobs that would just look very different. Interesting. So, like, this is kinda like brainstorming. Let's figure out where this goes. Everyone's trying all this stuff, so- ... And these are some neat ideas that I think we, we really need to investigate.
+
+[00:11:15] Historically, specialization has organized itself into kind of horizontal layers. I, I come from an engineering background specializing in search and AI now. But we can still have those experts, but they're not on the vertical team. There's a vertical team that's like, this is my portion of the product, engineering, QA even possibly bits of sales stuff that, you know, who knows how far that vertical goes.
+
+[00:11:43] And so the individuals that work at a company are, like, th- the, the vertical generalists somehow, and the horizontal people that are just real specialists in, in the domains that apply to all this stuff are on kind of this meta team that is building the beast, [00:12:00] building the, the agent framework building, the workflows that you referred to in the you can't sell an agent, post. Yeah, those are some really neat ideas. I, I think, I think that this is the same, the same thing, in my head, and that's how I'm thinking about it, mainly because I'm looking at it like, okay, so in order to make the system we just talked about, make it all work where the agents belong and everything if you were to just drop in cloud code, it doesn't actually work because cloud code doesn't actually do all these things.
+
+[00:12:31] You have to reorient it so that there's someone who's watching to making sure, like, that they're putting out the right protections in place and we're changing how we work. It's, it gets acquired and it's, you know, works, pushed through the chain. So you can't just simply drop in cloud code and make it work.
+
+[00:12:46] And on the other front, I've also been building agents, like, I'm selling them externally, and I've been noticing the same thing. You can't just take ... if you give someone a tool, it's just yet another tool. They have to learn how to use it. They have to fit into the [00:13:00] workflow.
+
+[00:13:00] Fundamentally, the real problem is you need to transform the workflow to take advantage of AI. And that's what you see over and over again, because I think it's just because there's so many things changing about how software functions that, it's just, yeah, like, you, you, you really
+
+[00:13:19] No, okay. I, I was thinking about it in terms of my, my brother. He, he's runs a company that sells Nitinol. They manufacture Nitinol. It's, it's pretty cool metal if you I don't know, you probably- Nitinol.
+
+[00:13:32] N- yeah, Nitinol. Um- I thought it would be a sleep aid, but all right. No, no. It's got some interesting properties where, like, you, you can heat, you can sh- put it into, like, a shape and then once you heat it up, you can bend it out of shape. Yeah, smart materials. Those things are neat. And when you heat it back up to this trigger temperature, it'll, like, snap back to its original shape.
+
+[00:13:53] It's got all sorts of crazy applications. It's almost like software and how malleable it is, [00:14:00] but it's materials, geo size. But anyway, so he's, he's got this, this company that does this, and I've been thinking about, like, how to, like, enable him in AI and, like, what tool can we, you know, big, make form, build form?
+
+[00:14:13] Ultimately, it's not about a single tool, it's about changing the way the company works to see a workflow step or an activity and be like, "Oh, that could be automated by this tool." So it's really a participation by everybody. Like, you have to enable the entire organization to be on the lookout for things that could be automated or things that could be smoother or opportunities that you could do with AI you can't do today.
+
+[00:14:38] I think everyone has to participate. From that perspective, like, can you sell an agent? You can sell it, I guess, but, like, will it transform a company? Not con- not convinced. It's like the agent is too general out of the box, right? Like, you get, Microsoft Copilot and it, the people that use it, well, you got s- [00:15:00] some people that use it and they're not gonna get it immediately and then, and then that goes away.
+
+[00:15:05] But the people that use it really well are going to make good use of it for individual tasks. It's like, cool, this helped me be good at this thing. But, it's leaving so much potential on the table and it's and the potential is in, like, understanding not just this activity they did right now, but learning from that activity and being able to incorporate the, the knowledge there into future things and wiring up all these activities together so that over time as a individual acts, interacts with the agent and as the company as a whole is interacting with the same agent effectively, it's the b- the business process becomes codified in this agent and the way the agent behaves.
+
+[00:15:52] Yeah. But we're not quite doing that right now. We're trying to, sell AI agents into companies and they just don't have the [00:16:00] intelligence for all this stuff, right? For, for OpenStrix, this is my open source project I've been- Do you wanna introduce that a litle bit? Sure.
+
+[00:16:07] Yeah. So it's, it's, I guess, kind of an equivalent to say, like, Clogbot or OpenCloud or whatever calling this thing today. But it's, it's kind of in that same realm. It's a stateful agent. So it's not actually a coding agent. It's a, very minimal harness. It's just absolute, like, bare bones, but you can plug in a skill so that it can use log code, kind of like you would use it.
+
+[00:16:33] Okay. Or, or codex or any, any of the coding agents. I have my keel, my, my, OpenStrix agent that's able to, launch off, like, several jobs in parallel. So it's, like, running tests, running, like, three different codex terminals, whatever else.
+
+[00:16:48] But, so it's not, it's not a coding agent, but it is a stateful agent, meaning that, like, every time you, it's always, like, writing files and trying to remember, remember what you've been talking about, also memory blocks and skills [00:17:00] and whatnot. Mm-hmm. But, the, what I, what I was gonna, what I was gonna say is, like, basically I've been trying to reorient this agent, so it's it's not just simply, like, a stateful agent, but it actually, like, embeds, like, systems thinking into the agent.
+
+[00:17:15] And so, the thing I was trying to get at is, like, when you're, when you're talking earlier is, I'm actually trying to embed skills into the agent so the agent teaches the user how to use it. Oh. As I said, spent a bunch of time, putting together a skill last night about this about, like documenting all the different patterns we use.
+
+[00:17:35] We have, like, for instance, like, we have polars, which are really nice. Like, instance, I think OpenClaw will, like, go off and just, like, invoke the LLM every five minutes or something like that, do that, I guess. But, in OpenStrix you just write, like, a, a bash script or whatever, and then you admit, like, step one line, like, standard out, like, JSNL.
+
+[00:17:56] So you basically have a, a script that will, will, go [00:18:00] pull the API, go see if there's, like, you know, GitHub issues or go see if there's a Jira ticket that has new comment or something like that. Go see, like, LinkedIn not LinkedIn because they don't have an open API, but, you know, just whatever.
+
+[00:18:10] Go, go see anything. But it'll, it'll then, and you only invoke the, the LLM when there's, like, actual real things happening. So it becomes, like, an event oriented harness.
+
+[00:18:20] And as of now, like the OpenStrix agent will, will be constantly brainstorming ways you can, like, use the harness better. Oh, that's cool. It's also its own meta agent. It's improving itself. It's recommending ways to improve itself. Yeah. Yeah.
+
+[00:18:40] Cool. So, how do we ... Let's see. We haven't cleared up all the points for you can't sell an agent. I definitely wanna get back to that. So you have an agent that is teaching itself to become, like, the things that we're talking about. And then you ... At, at these companies that are adopting AI, one of the places they're falling short is they [00:19:00] just grab the, the AI by itself and hope that they're joining the limelight, joining the party.
+
+[00:19:05] They're hitting, according to your post, 10% of the potential that they could have. And the other 90% is in, just knowing the specifics of that business and incorporating that into that. And the other aspect that you hit hard on in, in that post is that this is where SaaS is going.
+
+[00:19:24] I've got kind of a, a beef with SaaS myself in, in this new age that we're entering into. I've noticed how quickly I can create my own applications, like my SaaS application and it doesn't do all the stuff that the SaaS thing does but that's okay because I don't need all the things that it does.
+
+[00:19:44] I just need the things that I want and I need it to be free. And so it's, I mean, it's scary times for these traditional SaaS companies. How are you incorporating that, that SaaS element into you can't sell an agent? Maybe touch on that a [00:20:00] bit. Actually, a really good way of phrasing this is, kind of joining those two concepts together is, yeah, a lot of the SaaS companies are going out to sell you agents because that's what they do. Every time, you know, new quarter rolls around, you, they, they, you do the, the, the QBR, brainstorm new ideas and then build new features, right?
+
+[00:20:25] Build new features. And so agents fit really well into that because it's just a new feature. You just swap it on, sell it, new, new skew and more revenue rolls in. So it fits really well into that model, but, like, it's not actually changing workflows
+
+[00:20:38] so a different way of looking at it though is rather than just throwing on agents, like I said, A- AI enablement as, like, a new feature, instead you can, like, bake AI enablement into your product into the core, not bake AI, but make it easy so that you can make it so that it's easy to use AI with your product, [00:21:00] right?
+
+[00:21:00] Like, if I'm just, like, absolutely, in love with Gemini CLI because it's just, like, my coolest thing ever or whatever, you're what, whatever your favorite AI tool is then that's, it's, I, I don't know if you've noticed this, but, like, A- AI has started to become not a commodity at all, like, quite the opposite of commodity.
+
+[00:21:20] It's like, it's very, come, become, like, very personal- mm-hmm. ... where it's, like, everyone has, like, you know, deep preferences of, like, GPT versus, anthropic or whatever, whatever your favorite model is that becomes, you become, like, a big fan of it, I think. Interesting. I, I, that's, that's what I think anyway.
+
+[00:21:35] Let's, let's pause there for a moment because, like, I've heard deep conversations about, like, you know, which agent do you use for this task or this task? And they're like, you know, they'll say, "Oh, well, this, you know, GPT is great for code and Claude is good. I mean, Claude's good for good."
+
+[00:21:52] You can tell that I don't care. Generally the best agent for a particular task is whichever agent released, whichever [00:22:00] model was released most recently. And that's, that didn't always- Even better point, actually. Even better points. Even if you're not, like, picking a favorite, you're picking whatever's the latest or someone- Well, okay, yeah.
+
+[00:22:09] So, someone has, like, everyone has, like, very strong preferences. Okay. I guess I, I, I occupy the realm that does have strong preferences. Okay. Not everyone does. Not everyone does, right? But, more to the point though is, like, there, there's a ton of tools out there and
+
+[00:22:22] Oh, actually, just forget people, like, need to have strong preferences. And enterprises, IT departments have strong preferences. They wanna have the minimum number of tools, they don't have to support, like, everything under the sun. Sure. So, I mean, hey, there's, that's for no other reason than that.
+
+[00:22:35] So, if you're trying to sell an agent and you say like, "We're gonna, we're gonna use Claude with this. " Cloud is great. Everyone loves Claude. But then you go to your, like, your fifth customer and then suddenly like, actually, we are a Google shop. Sorry. Like, you know? And then, then you run into, like, sales issues.
+
+[00:22:50] So you, you have this, like, big end to end, problem, like, trying to, like, I'm, I'm gonna give you an agent, but then do I just, like, let you bring your own model or, like, you bring your own [00:23:00] harness or do, ... So, like, and the alternate way of doing it is to flip it on your head, on its head and instead just make the APIs very accessible.
+
+[00:23:08] Probably through an API right now, maybe, maybe, like, provide a skill as well, maybe, make it installable. Maybe, maybe even, like, make Fatta SKU, ma- maybe make it, let's say, like, you have a, a separate, like, login that's specifically for agents and you track it differently.
+
+[00:23:22] That could be a, that could be a, school that you could add on. But instead, just make it so that it's, like, super easy to, like, install, get started, and make the product extremely accessible from an agent's perspective. And then, when Mythos drops finally it'll be just you're a better product, you know?
+
+[00:23:39] Interesting, you're, you're taking the tact that i- is you're, you're helping out SaaS right now, whereas the, the, the original post is, like, SaaS is in a bit of trouble. And let's, let's definitely cover both of those. But the direction that you're headed is, is one thing that I've been thinking about as well.
+
+[00:23:56] Like, right now, if I need to do anything [00:24:00] online, I go to a destination online. I go to a webpage and I do whatever I need to do there. But in, in the future, I wonder if we're moving to, toward a point where the internet is internet for the machines only. And so, like, in front of us, we have our agent, the place we're comfortable, it's already generated you know, the, the software that we like working with, and it's very bespoke, but it has all these cool capabilities because now, what used to be SaaS destinations on the internet or, you know, however they, they worked it out, are going to be addressable by the agents and that, that will be something that keeps SaaS alive.
+
+[00:24:42] Yeah. I think, I think a lot of us are already operating like that, to be honest. Like, I don't know how many people are really operating. I am, I think. Like, the, but I, I do use certain websites and applications. I use the ones that are worth it for me to go individually, personally, too.
+
+[00:24:59] Like, that's kind of how, [00:25:00] like, you divide ... i, I have, so I have a couple agents that I have, like, that have my own, like, you know, personality and state. And they're not actually a copy of me. They're not taking away everything I do. They're, there's, there's this activity I have to do every time I'm, you know, working with them.
+
+[00:25:14] It's like, "What do I, what part do I do? What part do they do? " And I think that'll always be the case where when you're approaching, like, booking flights to go to Mexico or something like that, do you want an agent to do it? Well, no, because I wanna, like, look for myself to see, like, what the destination really looks like and they can't do that.
+
+[00:25:32] Maybe that's, that's my preferences, right? You know? So, and so there's, there's even stuff, like, there's certain, certain blogs and Substacks that, I, I'll insist on reading for myself, even though the agent is more than capable of reading, you know, and they summarize it to me and they do a great job of it, but there's, it's, like, some things I just need to, like, deeply internalize and so it's still I need to do it for myself, right?
+
+[00:25:53] I don't think, even though, yeah, I think we are moving that direction, I don't think it'll ever, like, completely go. But, like, in general, [00:26:00] when it comes to SaaS it's like a, a friction versus value thing, and it always will be this. It's like if, if the, if the friction is too high that it'll overcome the value when I was building myself or something like that.
+
+[00:26:12] So do you think companies are going to be moving towards building it themselves, building their own bespoke products? The, the posts you had talked about consultants kind of being a, a sort of replacement for SaaS. They're al- already, already doing it pretty significantly noticeably, yes.
+
+[00:26:34] There's probably public reports. There's gotta be public reports for this, but yeah, there's gotta be public reports. But, like, stuff where, if you look at the, the, the, the competition for, like, different SaaS project, products you'll see the, you'll see maybe, like, one or two key players, they're still growing their market share.
+
+[00:26:52] Then, like, well, the luster players will be, like, shrinking dramatically, but then you look at this big new section that's appearing, well, [00:27:00] it's always been there, but, like, now it's actually growing of, like, a new, this category of IT shops building their own software. And, like, over the last six to nine months, it's been shifting and now it's just, like, accelerating.
+
+[00:27:12] And to the point where, yeah, you probably still will have, like, one or two players per category that remain there for quite a while, but I think the lower players are gonna be knocked out and then yeah, it's already a thing IT shops building, A lot of times, IT, internal IT shops are the primary competitor now.
+
+[00:27:30] So effectively, since they already have the in- house talent for exactly what they do as opposed to the SaaS, which knows generally what they do, then ... and they ... Especially for IT companies, it just becomes so much easier for them to build exactly what they want. So there's the ... One of the things that you talked about in the, in the post was the intersecting the Venn diagram of people that know a lot about AI, [00:28:00] but also have very, very specific knowledge about that domain a- as well.
+
+[00:28:06] And that is ... it's not SAS, it's just they go in and, surgically build exactly the tools or experiences or, it might not even look like a tool. It might be an API, as opposed to widgets on the screen. Yeah. I don't know what it's gonna look like. I feel like, the deep experience is not easily replaced.
+
+[00:28:29] Today we're talking about things like marketing and sales and, and software engineering, of course. Like my brother, he talks about this a lot with his NightNold company, because Nitinol has ... The thing he always mentions is, like, how, he thinks the vast majority of knowledge about Nitinol is not written down.
+
+[00:28:45] AI is not gonna touch that for a while, but, you throw an agent into the mix there and eventually they start picking up things and they'll be more and more helpful and won't be as big of a barrier anymore. But, ultimately, you still need someone who knows the domain to even get an agent [00:29:00] in the door and configure it so that it starts picking up the knowledge and becoming more useful.
+
+[00:29:05] I think there's ... i've been, like, floating this, this, this job title of, like, a workflow engineer, someone who has the, is able to, like, think about agents and how they fit into teams from, like, a systems perspective, but they also have that domain expertise, like someone who, who knows about manufacturing processes and also knows, how to, how to, how to work with agents, how to work them into workflows and whatnot.
+
+[00:29:31] All right. Maybe let's move to AI product a bit. You've done some interesting work. You've got some interesting opinions, about how agents themselves should be constructed, particularly around memory. And my hot take from just reading through your blog post is it is more beneficial to focus on what you forget as opposed to focusing on how you recall.
+
+[00:29:56] And that sounds like a really, probably a bad ... That's a [00:30:00] pretty poor hot take for myself. I, I'm sure I phrased it wrong, but, like, you know, what, what are your thoughts there? How does that end up working out? Isn't it cheaper to go, you know, make sure you've got all this long memory cached and com- compress it stuff like that?
+
+[00:30:15] H- So to be, to be clear, when I'm thinking about this, I'm talking about, like, stateful agents. So a stateful agent, meaning, like, an agent that has beginning, but not really an end necessarily, just keeps on running forever. And so- with that perspective, it runs forever eventually your memory's gonna fill up.
+
+[00:30:33] We can go to 10 million contact, but eventually it's gonna fill up, right? So you gotta do something with the memory. And the longer ... It's ki- kinda like with climbing, like, if you go rock climbing, you have to, like- yeah, you have to do, like, the, the bolts every now and then.
+
+[00:30:47] The longer you go between them, the more, the further fall, gotta fall to, like, you know, twice as far. And so, if you know you have to clean up the memory eventually, if you, and you wait for a compaction at one million context then [00:31:00] the fall is potentially, like, very big because you go, like, probably down to, like, 1% or less of what the memory was there.
+
+[00:31:06] Second of all, it doesn't happen very often because it's, like, every one million or two million or 10 million or whatever the number's gonna be tomorrow. And then when, when things don't happen very often, they tend to not get tested very well.
+
+[00:31:16] Yeah, it's that angle. Then also, more importantly, the thing that was really bugging me about this is, like, but what you end up remembering matters a lot because it carries forward, like, everything ... Once, once you compact and you go down to that small chunk- mm-hmm. ... what's, what remains affects what happens from there on out.
+
+[00:31:37] And that was, like, the light bulb moment for me. I was like, oh, so it's like ... So first of all, like, you can ... Well, it basically, the, the memory that's already there, every, everything, everything that's in the chat affects what happens next, right? So if you start off a chat and you're like, "This session is gonna be about writing code and we're gonna do this thing," it's not gonna just
+
+[00:31:58] It's kinda hard to [00:32:00] give it, get it to pivot into, like, you know, giving, legal advice or something like that, right? Or actually a better example is, like, we, we're, this is gonna be about debuggings. I need you to be really careful.
+
+[00:32:08] Then you try to, like, get it to give you, like, really good ideas and be creative. Like, no, care, being careful and being creative are kind of, like, different modes, yeah, for sure. A lot of times, it gets stuck in one, it can't move to the other. You know, same, same with people, I guess, right?
+
+[00:32:23] But, at this, at the, at some point, I realized that like, yeah, might as well just keep it always small because then you avoid the, the constant, like, you know, the cold paths, right? Like the, you, you, you won't avoid the, infrequent events of compaction, you're just doing every single time, so you're always working on
+
+[00:32:40] You're instead constantly acutely aware of what the agent is writing down or not writing down because if they don't do it right they don't write down the right things, then when they wake up to handle your next message, then it's very obvious.
+
+[00:32:54] So you get a little frustrated, like, let's just fix this problem. And so it kinda happens to, like, solve itself, [00:33:00] right? And when you're talking about writing down the right things, is that some, like, short-term memory type thing?
+
+[00:33:06] What is writing down? Well, you see, we don't have actual real continual memory these days. People, like, thinking about, like, continual learning, continual learning is being, like, the, the agent learns things and update, updates their weights. Yeah. Um, And we do have continued learning, but it's not like that yet.
+
+[00:33:25] It might be eventually. We'll see. Right now we have ... You can do this right now. You can make an agent that feels like an employee that's, that's, you know, or, or a friend or whoever, you know, whatever you wanna, want it to be. Like, so OpenClaude does this, OpenStrips but all these stateful agents, do this.
+
+[00:33:42] But to do is that you basically you, you get into the mode where it knows that, it's going to, like, be around for a long period of time, but in order to it has to, like, remember things, you have to write things down and to put files in order to, like, remember it in the future, otherwise it'll just be [00:34:00] forgotten.
+
+[00:34:00] Right. So, so you, you, you tune the system prompts that knows how to use, files and skills and memor- and, and memory blocks so that it doesn't, doesn't forget these things in the future. But yeah, all it is, is just plain text, just, writes it into these various different places, has, like, a whole, like, directory structure of markdown files.
+
+[00:34:20] Mm-hmm. It's just plain text. And there's nothing special to it. I actually almost think that this will likely be the way it is for a very long time. I think the models might just get more effective at remembering the right things, but, I'm actually kind of doubtful that the whole modifying the way it's kind of continual memory will actually take off because it's so much harder.
+
+[00:34:43] It's hard enough to, like, understand agents and, like, the, like, the systems thinking as well as also Groc how manufacturing works or something like that. It's hard enough to manage those two domains. If suddenly the agent side of it is, [00:35:00] like, is something you can't ever see because it's in the weights, it's gonna be a lot harder to, like, really understand what's going on versus some plain text, you can always just drop down to the text and just read what the, try to remember, go back through GitHistory and see when it did and what, what wrong when.
+
+[00:35:15] The, the ideal for me ... this is kind of how I, I talk to people that I'm consulting is you get your agent and intentionally anthropo-morphies it. Pretend it's an AI intern, but it has, like, zero, memory. It's a antegrade amnesia. What was that movie, Memento?
+
+[00:35:33] It's that guy. And so it's constantly making tattoos on itself. That's the memory, I guess, right? It's writing down what it needs, needs to know. The cool thing that we will have perhaps with the continual learning is it's automatically updating its weights, and so it's automatically it's automatically indexed to exactly this feels like a situation I've been in before.
+
+[00:35:56] That's really appealing, but the thing I hadn't really, considered [00:36:00] is how opaque that will be, though, because it'll remember something, or maybe it will remember incorrectly, or maybe it'll just screw up entirely and you really don't ... I mean, that's buried in, floating point numbers, millions of floating point numbers.
+
+[00:36:14] So, you can't really debug that. So, is, is your memory system, effectively it's, it's just a nested directory structure of files and whenever your agent knows it's in a particular domain, it looks it up and just, appends in those files. Is that, mm-hmm. Yeah, yeah. So, yeah, there ... Yeah, it's, it's, it's that.
+
+[00:36:35] And then there's also a thing called memory blocks, which is, like, a key, key value pair. Like, so you got, like, a name, like, a chunk of text and then there's a tool that, that agent can use to set it. And those things are appended to the prompt, so that if you're, like, highly visible to the agent, so they're really good for, like, controlling the agent's behavior.
+
+[00:36:54] I like think about it as being, like, a learnable learnable system prompt. So, like, they'll have, [00:37:00] like, a memory block for, like, persona, member block for, like, you know, guideline, their mem- member block for, like, how to work with people or other one ... And some of them will, will do, like, memory block for, for projects, but it's the stuff that, like, the, that particular agent would want to know all the time and it kind of shapes who they are.
+
+[00:37:16] And then files, that's, yeah, just data, you know, nested directory structures they can go find. And there's skills, which is kind of, like, kind of half of between, honestly. Like, there's a portion ... It's, there's, like, representation in the, the system prompt but then it's also just regular files as well at the same time.
+
+[00:37:33] A lot of agent harnesses will have like really good search tools. I ... We're, we're, we probably will put a better search tool into OpenStrike soon, but so far I've been going without it just to see how ... I try to encourage the agent to just put a drop file references better so they can, like, have better associated memory.
+
+[00:37:55] So it reads one file and knows like, "Oh, now I need to go to this one." Not because they're, like, constantly [00:38:00] listing directories, but because the files themselves are telling which, where to go next, you know? Yep. Okay. Makes sense. But yeah. And whenever, for OpenStrix in particular, you don't do context compression you are rebuilding the context every time.
+
+[00:38:15] It's easier than it sounds. It sounds like really fancy when I, when I say it that way, but all that is, like, it's, like, sliding window versus not. So, like, if you, if you're, if you're not rebuilding the context you're remembering all messages since the beginning of the conversation, and if you are rebuil- rebuilding the context every time, you just have a fixed sliding window.
+
+[00:38:37] So, like, every, if it gets past to, like, 10 or 20 or 30 messages, it just drops off and you can, can use a tool to go see the, see it if it was, you know, further back, but, like, by default, it's just not there. That's all it really means. Okay. So yeah, I think it become ... My, my point here becomes a little more stark when you start l- running into, like, one million context. So, like, [00:39:00] if you're, if you're constantly, like, if you're getting upwards of, one million and you're, you're, you're sitting there for a long time, then, like, basically on average, through the whole, the whole lifetime of the agent from zero to, like, one million, on average you're filling it up to about, like, 500,000, right?
+
+[00:39:17] So per message it ends up being, like, 500,000 token context, got rough numbers, right? And so from that perspective I'm only rebuilding, like, what, maybe 10,000, 15,000 every message. And so it's actually, sure, it, I am, you know, not cashing anything, so that's, I'm paying higher prices per token, but I'm also not using as many tokens.
+
+[00:39:41] That makes sense. For long-running agents, this makes per- particular sense. I've started a, a new thing. Why, why do I care about the task I was working on a long time ago?
+
+[00:39:52] Well, we're about at the end of our time, do you have any calls to action? Wh- what do you do? What would you [00:40:00] drive the listeners to? So I, I've been writing on Substack.
+
+[00:40:06] So I, I've been ... I, I've been writing on a blog for a long time. My, my blog is kind of like a technical blog. So it's timkellog.me. But, the stuff that- We'll make, we'll, we'll post things, for sure. More, like, business oriented versus the blog is more like a technical blog.
+
+[00:40:20] So I've been trying to maintain those and post frequently there. But, I think really I'm ... I don't know. I'm thinking just, like, I want to engage with people who are thinking about how to fit AI into society. Like, really honestly thinking about it, not just, like, throwing tools and, like, embracing the latest tool, but, like, actually thinking, like, how does it fit?
+
+[00:40:42] How does their workflow change? How do our lives change with it? So I, I think if I can get more deeply connected with people who are, thinking along those lines, I think that's kind of my goal, honestly, but ... That's cool. That's the reason I'm podcasting.
+
+[00:40:58] Cool. How, how should they [00:41:00] contact you? Just come to your website? Is there, like, a subscriber or something like that? Yeah. So if you go to my website, there's all the links you need. I, I've been good about removing the ones I don't respond to anymore. So, so yeah, I'm on BlueSky Twitter, LinkedIn and then Substack and the blog, so
+
+[00:41:20] Very cool. Thanks for joining us. And, yeah, we'll definitely make sure to check out the next blog post you right. These last two are just killer. Thank you much and goodbye. All right. 
+

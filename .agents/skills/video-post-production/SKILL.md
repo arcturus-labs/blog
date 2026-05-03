@@ -68,6 +68,7 @@ Once the final edited transcript is available, produce:
 **Title options** (5–8 candidates):
 - Aim for curiosity-gap hooks, specific surprising facts, or direct statements of the core lesson
 - Good sources: a striking number from the conversation, a guest's own words, or the central tension
+- John prefers a **double-layered format**: 2–4 word main title + subtitle. E.g. *"The Missing 90%: Why Generic AI Agents Don't Transform Companies"*. The main title should be punchy and standalone; the subtitle adds the "why" or context.
 - John will pick one
 
 **Description** (~150–200 words):
