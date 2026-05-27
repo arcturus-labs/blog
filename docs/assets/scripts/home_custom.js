@@ -1,11 +1,17 @@
 // Use AJAX to submit forms
+function setFormSourceToCurrentUrl(form) {
+    var source = form.querySelector('input[name="source"]')
+    if (source) source.value = window.location.href
+}
+
 async function handleSubmit(event) {
     event.preventDefault();
     var form = event.currentTarget
+    setFormSourceToCurrentUrl(form)
     var button = form.querySelector('button')
     var originalText = button.innerHTML
     var status = form.querySelector('#status')
-    status.innerHTML = ""
+    if (status) status.innerHTML = ""
     button.innerHTML = "Submitting..."
     var data = new FormData(event.target);
     fetch(event.target.action, {
@@ -19,19 +25,20 @@ async function handleSubmit(event) {
             button.innerHTML = "Submitted";
             button.disabled = true;
             form.reset()
+            if (status) status.innerHTML = "Thanks — your message was sent."
         } else {
             button.innerHTML = originalText
             response.json().then(data => {
                 if (Object.hasOwn(data, 'errors')) {
-                    status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                    if (status) status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
                 } else {
-                    status.innerHTML = "Oops! There was a problem submitting your form"
+                    if (status) status.innerHTML = "Oops! There was a problem submitting your form"
                 }
             })
         }
     }).catch(error => {
         button.innerHTML = originalText
-        status.innerHTML = "Oops! There was a problem submitting your form"
+        if (status) status.innerHTML = "Oops! There was a problem submitting your form"
     });
 }
 
@@ -61,6 +68,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // set up form submission
     var contact_form = document.getElementById("contact");
     var subscribe_form = document.getElementById("subscribe");
-    contact_form.addEventListener("submit", handleSubmit)
-    subscribe_form.addEventListener("submit", handleSubmit)
+    if (contact_form) {
+        setFormSourceToCurrentUrl(contact_form)
+        contact_form.addEventListener("submit", handleSubmit)
+    }
+    if (subscribe_form) subscribe_form.addEventListener("submit", handleSubmit)
 });
