@@ -6,10 +6,14 @@ Once the post is published (or nearly so), draft social posts for LinkedIn, Twit
 
 The audience is technically literate. They can smell a marketing post in two words and will scroll past. The goal is to surface the genuine insight from the post in a way that makes someone stop and think "wait, I want to read that."
 
+John's voice is casual, direct, and practitioner-level. He shows people how to do neat things with AI. He is pragmatic and humble - not a hype fighter, not a thought leader selling a brand.
+
 - No emoji parade. One or two max, only if they genuinely add something.
-- No salesy language ("groundbreaking," "game-changing," "thrilled to share").
+- No salesy language ("groundbreaking," "game-changing," "thrilled to share," "way easier than the hype suggests").
+- Don't frame posts as debunking or fighting hype - that itself reads as hype.
+- Casual and specific beats polished and vague.
 - The first line or two must work as a standalone hook - that's what shows before the fold on both platforms.
-- The hook should be specific, not vague. Name the thing. Name the tension.
+- The hook should be specific, not vague. Name the thing. Name the tension. Don't lead with an abstract observation.
 
 ## Post structure
 
@@ -22,11 +26,11 @@ maybe a specific detail or concrete example that teases without giving everythin
 [Link to post]
 ```
 
-The body paragraphs can briefly describe what the post covers and what the reader will get out of it. Two or three sentences is plenty. Don't summarize the whole post - leave something to discover.
+The body paragraphs can briefly describe what the post covers and what the reader will get out of it. Two or three sentences is plenty. Don't summarize the whole post - leave something to discover. The goal is to make someone curious enough to click, not to give them a reason not to.
 
 Use ` - ` (space-hyphen-space) for prose dashes. Never em dashes.
 
-If it fits naturally, end the post with a short question that invites reader commentary.
+If it fits naturally, end the post with a short question that invites reader commentary. Make it personal and practical - ask about their situation, not a hypothetical about "most teams" or "the industry." Bad: "What level do you think most teams get stuck at?" Good: "Where does your stack sit today - and what's the next step you'd actually take?"
 
 ## Draft in chat
 
@@ -64,13 +68,23 @@ Also prepare Reddit promotion:
 - Recommend subreddits that match the post's real topic and likely audience.
 - Read or search subreddit rules before recommending an actual post.
 - Draft subreddit-specific posts. Prefer discussion-first text posts; use link posts only where normal for the subreddit.
+- Titles: say what the thing is, succinctly. No "wrote up", no "here's a...", no listicle framing. Sound like a person describing something, not a marketer naming a content piece. Bad: "Wrote up how to add agentic AI to search". Bad: "A 4-level path to agentic search - here's what I learned". Good: "Incrementally adding agentic AI to an existing keyword search app".
+- Body: lead with substance. Sound like a person sharing something they built or learned. Don't open with "I wrote a blog post about..." - Reddit can smell promotion instantly.
 - Ask John if the Reddit drafts are good before posting.
 - Do not submit anything until John explicitly approves.
+
+Before submitting, check whether the target subreddit requires post flair:
+
+```bash
+python .agents/skills/blog_assist/scripts/post_to_reddit.py --list-flairs SUBREDDIT
+```
+
+If flair is required, pick the most appropriate one and include `flair_id` in the post JSON.
 
 Approved Reddit posts are submitted with a JSON blob argument:
 
 ```bash
-python .agents/skills/blog_assist/scripts/post_to_reddit.py '{"posts":[{"subreddit":"AI_Agents","kind":"self","title":"...","selftext":"..."}]}'
+python .agents/skills/blog_assist/scripts/post_to_reddit.py '{"posts":[{"subreddit":"AI_Agents","kind":"self","title":"...","selftext":"...","flair_id":"optional-flair-uuid"}]}'
 ```
 
 After posting:
@@ -127,6 +141,19 @@ After posting to Bluesky or X:
 - Share each submitted URL in chat so John has direct links.
 - Remind John to manually verify post rendering and visibility.
 
-## Reminder: push to Slack
+## Reminder: manual community shares
 
-After drafting the social posts, remind John to also share the post in his Slack communities.
+After drafting the social posts, remind John to manually share in these communities (copy-paste the LinkedIn copy, lightly adapted if needed):
+
+**Slack**
+- [Search Relevance — #blogs-papers-books](https://relevancy.slack.com/archives/CA7U4PTGS)
+- [Tribe AI — #be-shameless](https://tribeai.slack.com/archives/C0390USJVC2)
+- [Nashville Developer — #ai](https://nashdev.slack.com/archives/C04H3UX5A8J)
+
+**Discord**
+- [Build with AI — #look-what-i-built](https://discord.com/channels/1324240687641657484/1468425992992460911)
+- [AGI Ventures Canada — #promote-your-work](https://discord.com/channels/1167423028553056268/1193518490464821258)
+
+## Reminder: individual outreach
+
+After the community shares, remind John to think about specific people who might find the post genuinely useful - collaborators, past colleagues, anyone mentioned in or relevant to the post - and reach out to them directly with a personal note and link.

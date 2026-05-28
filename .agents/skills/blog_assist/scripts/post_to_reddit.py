@@ -65,7 +65,7 @@ def request_form(url: str, data: dict[str, str], headers: dict[str, str]) -> dic
         raise RuntimeError(f"Could not reach Reddit: {exc}") from exc
 
 
-def get_access_token() -> tuple[str, str]:
+def get_access_token(scope: str = "submit flair read") -> tuple[str, str]:
     client_id = require_env("REDDIT_CLIENT_ID")
     client_secret = require_env("REDDIT_CLIENT_SECRET")
     username = require_env("REDDIT_USERNAME")
@@ -79,7 +79,7 @@ def get_access_token() -> tuple[str, str]:
             "grant_type": "password",
             "username": username,
             "password": password,
-            "scope": "submit",
+            "scope": scope,
         },
         {
             "Authorization": f"Basic {basic}",
@@ -90,6 +90,20 @@ def get_access_token() -> tuple[str, str]:
     if not token:
         raise RuntimeError(f"Reddit token response missing access_token: {response}")
     return token, user_agent
+
+
+def list_flairs(subreddit: str, token: str, user_agent: str) -> list[dict]:
+    url = f"https://oauth.reddit.com/r/{subreddit}/api/link_flair_v2"
+    request = urllib.request.Request(
+        url,
+        headers={"Authorization": f"Bearer {token}", "User-Agent": user_agent},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return json.loads(response.read().decode())
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode(errors="replace")
+        raise RuntimeError(f"HTTP {exc.code} fetching flairs for r/{subreddit}: {body}") from exc
 
 
 def submit_post(post: RedditPost, token: str, user_agent: str) -> dict:
@@ -151,12 +165,35 @@ def parse_payload(json_blob: str) -> RedditPayload:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Post to Reddit from a JSON blob.")
-    parser.add_argument("json_blob", help="JSON string matching RedditPayload schema")
+    parser.add_argument(
+        "--list-flairs",
+        metavar="SUBREDDIT",
+        help="List available post flairs for a subreddit and exit.",
+    )
+    parser.add_argument(
+        "json_blob",
+        nargs="?",
+        help="JSON string matching RedditPayload schema",
+    )
     args = parser.parse_args()
 
     load_dotenv()
-    payload = parse_payload(args.json_blob)
     token, user_agent = get_access_token()
+
+    if args.list_flairs:
+        flairs = list_flairs(args.list_flairs, token, user_agent)
+        if not flairs:
+            print(f"r/{args.list_flairs} has no post flairs (or flair is not required).")
+        else:
+            print(f"r/{args.list_flairs} flairs:")
+            for f in flairs:
+                print(f"  id={f['id']}  text={f['text']}")
+        return 0
+
+    if not args.json_blob:
+        parser.error("json_blob is required when not using --list-flairs")
+
+    payload = parse_payload(args.json_blob)
     for post in payload.posts:
         result = submit_post(post, token, user_agent)
         submitted = result.get("json", {}).get("data", {})

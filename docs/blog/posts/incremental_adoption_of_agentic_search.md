@@ -26,11 +26,16 @@ Unfortunately "right-out-of-the-box" search results are often not that great, an
 
 !!! note "Want to see it in action?"
 
-    Not in the mood for reading? Watch the video version where I walk through the entire progression with live demos:
+    Not in the mood for reading? Watch the video version where I walk through the entire progression with live demos (14 min), or for a more polished deep-dive check out my lightning lesson with Doug Turnbull (1 hr):
 
-    <figure markdown="span">
-      <iframe width="70%" src="https://www.youtube.com/embed/zzFd0ThDymk" title="Incremental AI Adoption for E-commerce Search" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </figure>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <figure markdown="span" style="flex: 1; min-width: 280px; margin: 0;">
+        <iframe width="100%" style="aspect-ratio: 16/9;" src="https://www.youtube.com/embed/zzFd0ThDymk" title="Incremental AI Adoption for E-commerce Search" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </figure>
+      <figure markdown="span" style="flex: 1; min-width: 280px; margin: 0;">
+        <iframe width="100%" style="aspect-ratio: 16/9;" src="https://www.youtube.com/embed/AI9tL0kwNF4?t=4" title="Lightning Lesson with Doug Turnbull" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </figure>
+    </div>
 
     Or jump straight to the live demo to try it yourself: **[CLICK HERE](https://morph-trad-search-into-ai-search.fly.dev/)**
 
@@ -135,4 +140,40 @@ TODO:
 - My mailing list
 - think hard about whereelse
 
+-->
+
+<!--
+POST_URL: http://arcturus-labs.com/blog/2026/01/18/incremental-adoption-of-agentic-search/
+HERO_IMAGE: http://arcturus-labs.com/blog/assets/incremental_adoption_of_agentic_search/top-image.jpg
+
+=== LINKEDIN ===
+You don't have to rip out your keyword search to make it feel like AI. You just layer on top of it.
+
+This post walks through 4 levels of incrementally adopting agentic search - starting small enough that users barely notice, ending with a full conversational assistant. Your existing search stack stays intact the whole way. Each level is independently useful, and there's a live demo so you can feel the difference at each stage.
+
+http://arcturus-labs.com/blog/2026/01/18/incremental-adoption-of-agentic-search/
+
+Where does your search stack sit today - and what's the next step you'd actually take?
+
+=== TWITTER/X ===
+You don't have to rip out your keyword search and start over with AI. You just layer on top of it.
+
+In this post: 4 levels of incrementally adopting agentic search, with a live demo at each stage.
+
+http://arcturus-labs.com/blog/2026/01/18/incremental-adoption-of-agentic-search/
+
+Where does your search stack sit today - and what's the next step you'd actually take?
+
+=== BLUESKY (252 chars) ===
+You don't need to rip out your search stack to add agentic AI to it. A thin AI layer on top of what you have is enough. I mapped out 4 levels of adoption with a live demo at each stage. http://arcturus-labs.com/blog/2026/01/18/incremental-adoption-of-agentic-search/
+
+=== REDDIT: r/ecommerce (text post) ===
+TITLE: Incrementally adding agentic AI to an existing keyword search app
+
+Most "add AI to search" advice assumes you're starting from scratch. But if you already have Elasticsearch, Algolia, or similar, you're most of the way there. I wrote up a step-by-step path from traditional keyword search to a full conversational AI assistant - each level builds on the last, and each one is measurable before you commit to the next. There's a live demo you can click through at each stage. https://arcturus-labs.com/blog/2026/01/18/incremental-adoption-of-agentic-search/ Happy to answer questions about implementation.
+
+=== REDDIT: r/artificial (text post) ===
+TITLE: Adding agentic AI to an existing search app without replacing anything
+
+A lot of agentic AI content focuses on greenfield builds. I wanted to show what it looks like when you have an existing search stack and want to supercharge it without a rewrite. Built a demo with four levels of AI adoption - from a zero-risk async suggestion bar up to a full conversational search assistant - and wrote up the architecture at each level. The whole demo took 10 hours to build. Live app included. https://arcturus-labs.com/blog/2026/01/18/incremental-adoption-of-agentic-search/
 -->
