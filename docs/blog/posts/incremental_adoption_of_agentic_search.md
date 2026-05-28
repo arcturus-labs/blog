@@ -7,10 +7,10 @@ categories:
   - User Experience
   - E-commerce
 description: Transform your e-commerce search from basic keyword matching to conversational AI—one step at a time. Learn how to incrementally adopt AI without overhauling your existing infrastructure, starting with simple query suggestions and building up to a full conversational assistant. No search experts required, just a thin AI layer that makes your current search engine smarter.
-image: /blog/assets/incremental_ai_adoption_for_ecommerce/top-image.jpg
+image: /blog/assets/incremental_adoption_of_agentic_search/top-image.jpg
 ---
 
-# Incremental AI Adoption for E-commerce
+# Incremental Adoption of Agentic Search
 
 When you think of e-commerce, your mind is probably drawn to Amazon.com as "the definitive" example. But it's actually the exception. The internet is filled with tons of small- and medium-sized e-commerce sites. These sites typically follow the same pattern - a search page with a search box at the top, selectable filters along the left side, and results filling the remainder of the screen. And the whole goal is to quickly usher customers to the products they seek.
 
@@ -19,7 +19,7 @@ For most of these sites, the implementation is quite simple. Product metadata is
 Unfortunately "right-out-of-the-box" search results are often not that great, and fixing the problem often requires hiring a team of search experts – something that smaller shops are unable to afford. Fortunately, modern AI is coming to the rescue! In this post we'll demonstrate how e-commerce shops can incrementally adopt AI and explore improvements in search which would have been unbelievable just 5 years ago.
 
 
-![Search Architecture Evolution](./assets/incremental_ai_adoption_for_ecommerce/top-image.jpg){ align=center width=100% }
+![Search Architecture Evolution](./assets/incremental_adoption_of_agentic_search/top-image.jpg){ align=center width=100% }
 
 <!-- more -->
 
@@ -52,7 +52,7 @@ Now let's see what this looks like from your customer's perspective. I'll walk t
 
 Most e-commerce sites today look like this:
 
-![Traditional E-commerce Search](./assets/incremental_ai_adoption_for_ecommerce/traditional.jpg){ align=center width=100% }
+![Traditional E-commerce Search](./assets/incremental_adoption_of_agentic_search/traditional.jpg){ align=center width=100% }
 
 You've got a keyword search box at the top, a sidebar full of filters, and the remaining space for the search results. The burden is entirely on the user to understand the typical terminology used in the documents, learn what filters exist and how they work, and sort the results correctly.
 
@@ -61,16 +61,11 @@ The reality? Most users type a query, scan the first page, and leave if nothing 
 Unless you've hired that top-notch machine learning team, queries like these aren't parlayed into the relevant results. You're probably seeing lots of confused usage patterns and correspondingly high bounce rates. Unfortunately, this is just par for the course for most traditional e-commerce applications. 
 
 
-<!-- __START HERE__ 
-
-we can add here that the AI understands real world, understands the type of terminology for your field, and can make a better query than what the user is typing in the keyword search box
--->
-
 ### Level 1: Beginner AI (Test the Waters)
 
 Let's take a baby step. In this step, we basically keep traditional search unchanged, but add only a small suggestion bar that appears after results load.
 
-![Beginner AI Adoption](./assets/incremental_ai_adoption_for_ecommerce/beginner.jpg){ align=center width=100% }
+![Beginner AI Adoption](./assets/incremental_adoption_of_agentic_search/beginner.jpg){ align=center width=100% }
 
 The AI interprets the user's natural language query and suggests a search that takes better advantage of filters and sorting, for example "Did you mean this? Property Type: Condo, Search Terms: 'Downtown'". Users can click to apply these suggestions or ignore them completely.
 
@@ -84,7 +79,7 @@ At this point you should be gathering data about your users' experiences. Track 
 
 The easy and obvious next step is to let the AI actually execute the recommended search rather than waiting for their approval. See how we've replaced the "did you mean" text with "interpreted as" in the image below.
 
-![Intermediate AI Adoption](./assets/incremental_ai_adoption_for_ecommerce/intermediate.jpg){ align=center width=100% }
+![Intermediate AI Adoption](./assets/incremental_adoption_of_agentic_search/intermediate.jpg){ align=center width=100% }
 
 At this point you are incurring some real UX risk, because the snappy 10ms response your customers have become used to is now being replaced by a response that could take 2 or 3 seconds. As an old-school search engineer myself, this makes the sweat bead on my brow because "you must never let latency increase". But, if it takes your user 5 seconds to come up with a good query, and the AI can come up with that good query in two seconds, then we are actually saving the user some effort. What's more, the user's first query is never good, so they will either query multiple times to get what they want, or they will succumb to cognitive overload and abandon search. _AI is saving them a lot of effort._
 
@@ -96,7 +91,7 @@ As always, it's important to measure everything in order to understand what is w
 
 Notice, during the intermediate AI phase, that in generating a summary of the results and recommended future queries, the AI is effectively having a conversation with the user. The only problem is that it's stateless, and it's one-sided – Issue a new query and the agent forgets all about the previous one. Does the user want to redirect the agent? They're out of luck.
 
-![Advanced AI Adoption](./assets/incremental_ai_adoption_for_ecommerce/advanced.jpg){ align=center width=100% }
+![Advanced AI Adoption](./assets/incremental_adoption_of_agentic_search/advanced.jpg){ align=center width=100% }
 
 With the advanced AI experience, we morph the traditional search experience into a guided, conversational experience. In this example, we ditch the search box, and replace it with a chat window on the right side of the screen.
 

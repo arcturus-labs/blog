@@ -22,8 +22,8 @@ async function handleSubmit(event) {
         }
     }).then(response => {
         if (response.ok) {
-            button.innerHTML = "Submitted";
-            button.disabled = true;
+            button.innerHTML = originalText;
+            status.innerHTML = "Message sent! Feel free to send another."
             form.reset()
             if (status) status.innerHTML = "Thanks — your message was sent."
         } else {

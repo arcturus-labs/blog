@@ -47,19 +47,9 @@ Cold-open quotes go at the very top of the final video, before John speaks. Pick
 
 ### 4. YouTube Thumbnail
 
-Generate a thumbnail using the Gemini Image Gen skill (`gemini-image-gen` CLI). 
+Read [references/thumbnail.md](references/thumbnail.md) for the full composition process.
 
-**Requirements — every thumbnail must have:**
-1. **The Arcturus Labs logo** (`docs/assets/images/logo_attempt.png`) in the upper-left corner — pass it as a `-i` reference image
-2. **The selected video title** as text rendered into the image — do this in a second pass once John has picked a title (see Title step above)
-
-**Two-pass workflow:**
-1. First pass: generate background scene candidates (3, Pro model), logo in upper-left, bottom third clear for text. Save to `IGNORED/video-thumbnails/<episode-slug>/`.
-2. John picks a candidate and a title. Second pass: use the chosen image as `-i` reference and instruct the model to add the title text (bold white sans-serif, lower portion of image, dark semi-transparent backing for legibility). **Text must be large** — YouTube thumbnails are viewed at small sizes, so the title needs to be big enough to read at a glance. "The Dark Factory" style headings should dominate the lower third.
-
-A good base prompt for a dark factory video: futuristic automated server room at night, glowing code on racks, robotic arms, no humans, deep blues and blacks with electric blue and amber accents, cinematic lighting, 16:9.
-
-Generate 3 candidates per pass with the Pro model and iterate from the best one.
+In short: start with a base image (post hero or Gemini-generated scene), then use Pillow to composite the logo watermark and bold Impact text. Ask John which corner to place the logo — it depends on which corner is least cluttered. Thumbnail text should be a hook, not the video title; draft 2–3 options for John to pick from before composing.
 
 ### 5. YouTube Title, Description & Chapters
 
