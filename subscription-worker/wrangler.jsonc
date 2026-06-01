@@ -1,0 +1,16 @@
+{
+  "name": "arcturus-subscription",
+  "main": "src/index.js",
+  "compatibility_date": "2026-05-31",
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "routes": [
+    { "pattern": "kit.arcturus-labs.com/verify_subscription", "zone_name": "arcturus-labs.com" }
+  ],
+  "vars": {
+    "ALLOWED_ORIGIN": "https://arcturus-labs.com",
+    "CONVERTKIT_FORM_ID": "7337584"
+  }
+}

@@ -72,6 +72,10 @@ Icon
 .cursor/
 .cursor-cache/
 
+# Cloudflare Worker local secrets
+.dev.vars
+.wrangler/
+
 # etc.
 IGNORED/
 site/

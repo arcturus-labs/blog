@@ -40,3 +40,65 @@
 a {
     font-weight: bold;
 }
+
+/* ── Subscription gate modal ─────────────────────────────────────────────── */
+#sub-gate-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#sub-gate-modal {
+    background: #f8f9fa;
+    color: #212529;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+#sub-gate-modal h2 {
+    margin-top: 0;
+    color: var(--md-primary-fg-color, #004d80);
+}
+
+#sub-gate-modal p {
+    font-weight: normal;
+}
+
+#sub-gate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+#sub-gate-email {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #212529;
+    font-weight: normal;
+}
+
+#sub-gate-btn {
+    padding: 0.6rem 1rem;
+    background: var(--md-primary-fg-color, #004d80);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#sub-gate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
