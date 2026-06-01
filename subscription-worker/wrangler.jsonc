@@ -2,12 +2,9 @@
   "name": "arcturus-subscription",
   "main": "src/index.js",
   "compatibility_date": "2026-05-31",
-  "observability": {
-    "enabled": true,
-    "head_sampling_rate": 1
-  },
+  "workers_dev": false,
   "routes": [
-    { "pattern": "kit.arcturus-labs.com/verify_subscription", "zone_name": "arcturus-labs.com" }
+    { "pattern": "kit.arcturus-labs.com", "custom_domain": true }
   ],
   "vars": {
     "ALLOWED_ORIGIN": "https://arcturus-labs.com",

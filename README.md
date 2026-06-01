@@ -19,4 +19,6 @@ Links in blog posts can be gated behind a Kit (ConvertKit) subscription check. T
 
 The gate is handled by a Cloudflare Worker at `kit.arcturus-labs.com/verify_subscription` (source in `subscription-worker/`). Existing subscribers get through immediately; new visitors are subscribed to the newsletter and must confirm their email first.
 
+This uses the **Workers Free** plan only (no KV, D1, Queues, etc.). Do not enable **Workers Paid** ($5/mo) in the Cloudflare dashboard unless you intentionally want it.
+
 See `IGNORED/subscription-gating.md` for full setup instructions.

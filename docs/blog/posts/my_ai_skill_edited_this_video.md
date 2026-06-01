@@ -12,15 +12,11 @@ title: "My AI Skill Edited This Video That Explains My AI Skill"
 
 # My AI Skill Edited This Video That Explains My AI Skill
 
-These are amazing times in AI. I just created an automated video editing tool – and the video embedded in this post (below) was edited by the tool I created. Here's how I did it.
+These are amazing times in AI. I just created an automated video editing tool – and the walkthrough at the end of this post was edited by the tool I created. Here's how I did it.
 
 ![Two chrome robotic hands in an Escher-style loop, each drawing the other from a YouTube video frame](./assets/my_ai_skill_edited_this_video/hero.jpg){ align=center width=100% }
 
 <!-- more -->
-
-<div style="width: 100%; aspect-ratio: 16/9;">
-  <iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/oV9AMnDuiec" title="My AI Skill Edited This Video That Explains My AI Skill" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
 
 It started with a video: [_Building an AI Agent to Edit Your Videos_](https://www.youtube.com/watch?v=QVDGtKX3IPY) with Hamel Hussein and Shaw Talebi. They describe a process for AI-assisted video editing, and I was inspired enough to try to replicate it – but using a _very_ meta process. Rather than building the thing myself, I told my Cursor agent to watch their video and figure out how to make effectively the same thing locally.
 
@@ -32,14 +28,22 @@ I uploaded a video of myself talking to my camera, told it to do the works – t
 
 For my second attempt I gave it the same task but flagged the clipping issue and asked it to figure out what was going wrong. It came back with some ideas and asked what I wanted to do. I said "do what you think is best." 🤣 (This was just supposed to be a side project, so code quality isn't my biggest concern on this one.) It ran for about 30 more seconds, I put the next video through, and the results were not bad – actually pretty impressive for about five minutes of total investment.
 
-Which brings us here. The video you see above is my third attempt. Take a look! I explain how I built the editing suite that is, itself, editing this video. The recording is all done in OBS. (Again, I don't really know how OBS works, but I asked an AI for pointers and it got me going well enough to fake it.)
+Which brings us here. My third attempt was the walkthrough – me on camera in OBS explaining how I built the editing suite. (Again, I don't really know how OBS works, but I asked an AI for pointers and it got me going well enough to fake it.)
 
-Want to see what a difference it makes? Here's the original, unedited version. I was reading from a script and pausing a lot. The difference is striking.
+**Auto-edited**
+
+<div style="width: 100%; aspect-ratio: 16/9;">
+  <iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/oV9AMnDuiec" title="My AI Skill Edited This Video That Explains My AI Skill" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+**Original, unedited**
 
 <div style="width: 100%; aspect-ratio: 16/9;">
   <iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/sM4cdc6mEE4" title="My AI Skill Edited This Video – Original Unedited" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+The top video is the auto-edited walkthrough – the one where I explain how the tool works, edited by the tool itself. The bottom is the same recording before editing. I was reading from a script and pausing a lot. The difference is striking.
+
 If you want to try this yourself, the skill is in <a href="https://github.com/arcturus-labs/video-editing" data-gated>this repo</a>. Fair warning: it's raw. By default the skill exports to Final Cut Pro, though if you ask it to just stitch the clips together directly it'll do that instead. Also, the way it manages files for each video project is a bit quirky. But the core idea works, and that's the point. Grab it, play with it, make it your own – a copy of a copy – just like I made mine from Shaw Talebi's approach my own.
 
-This post, by the way, was semi-automated from the transcript of the video above. I think I'll write another recursive blog post about that approach too!
+This post, by the way, was semi-automated from the transcript of the edited walkthrough above. I think I'll write another recursive blog post about that approach too!
