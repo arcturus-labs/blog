@@ -1,4 +1,5 @@
 const CONVERTKIT_API = "https://api.convertkit.com/v3";
+const FORM_ID = "7337584";
 
 function corsHeaders(origin, env) {
   const allowed = env.ALLOWED_ORIGIN || "https://arcturus-labs.com";
@@ -11,33 +12,57 @@ function corsHeaders(origin, env) {
   };
 }
 
+// Mirrors stateful-objects-of-discourse/backend/app/routes/subscription/routes.py
 async function handleVerify(request, env) {
   const { email } = await request.json();
   if (!email) {
     return Response.json({ subscribed: false, error: "Email is required." }, { status: 400 });
   }
 
-  // Check if already a subscriber.
-  const checkUrl = `${CONVERTKIT_API}/subscribers?api_secret=${env.CONVERTKIT_API_SECRET}&email_address=${encodeURIComponent(email)}`;
-  const checkRes = await fetch(checkUrl);
-  const checkData = await checkRes.json();
+  const trimmedEmail = email.trim();
 
-  if (checkData.total_subscribers > 0) {
-    return Response.json({ subscribed: true, error: null });
+  try {
+    const checkUrl = new URL(`${CONVERTKIT_API}/subscribers`);
+    checkUrl.searchParams.set("api_secret", env.CONVERTKIT_API_SECRET);
+    checkUrl.searchParams.set("email_address", trimmedEmail);
+
+    const checkRes = await fetch(checkUrl);
+    if (!checkRes.ok) {
+      const errBody = await checkRes.json().catch(() => ({}));
+      console.error("ConvertKit subscriber check failed", checkRes.status, errBody);
+      return Response.json({ subscribed: false, error: "Verification service unavailable. Please try again later." });
+    }
+
+    const subscriberData = await checkRes.json();
+    if (subscriberData.total_subscribers && subscriberData.total_subscribers > 0) {
+      return Response.json({ subscribed: true, error: null });
+    }
+  } catch (err) {
+    console.error("ConvertKit subscriber check exception", err);
+    return Response.json({ subscribed: false, error: "Verification error." });
   }
 
-  // Not subscribed – add them to the newsletter form.
-  const subRes = await fetch(`${CONVERTKIT_API}/forms/${env.CONVERTKIT_FORM_ID}/subscribe`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ api_key: env.CONVERTKIT_API_KEY, email }),
-  });
+  try {
+    const subRes = await fetch(`${CONVERTKIT_API}/forms/${FORM_ID}/subscribe`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify({
+        api_key: env.CONVERTKIT_API_KEY,
+        email: trimmedEmail,
+      }),
+    });
 
-  if (!subRes.ok) {
-    return Response.json({ subscribed: false, error: "Subscription failed. Please try again." });
+    if (!subRes.ok) {
+      const errBody = await subRes.json().catch(() => ({}));
+      console.error("ConvertKit subscribe failed", subRes.status, errBody);
+      return Response.json({ subscribed: false, error: "Subscription failed. Please try again." });
+    }
+  } catch (err) {
+    console.error("ConvertKit subscribe exception", err);
+    return Response.json({ subscribed: false, error: "Subscription error." });
   }
 
-  // Subscribed but not yet confirmed – tell them to check email.
+  // New signup – same as Flask (not yet confirmed). Blog JS treats null error as pending UX.
   return Response.json({
     subscribed: false,
     error: null,
@@ -63,6 +88,7 @@ export default {
         Object.entries(headers).forEach(([k, v]) => res.headers.set(k, v));
         return res;
       } catch (err) {
+        console.error("verify_subscription error", err);
         return Response.json({ subscribed: false, error: "Server error." }, { status: 500, headers });
       }
     }

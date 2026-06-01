@@ -21,4 +21,4 @@ The gate is handled by a Cloudflare Worker at `kit.arcturus-labs.com/verify_subs
 
 This uses the **Workers Free** plan only (no KV, D1, Queues, etc.). Do not enable **Workers Paid** ($5/mo) in the Cloudflare dashboard unless you intentionally want it.
 
-See `IGNORED/subscription-gating.md` for full setup instructions.
+See [subscription-worker/README.md](subscription-worker/README.md) for setup, deploy, and troubleshooting.
