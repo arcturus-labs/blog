@@ -45,13 +45,28 @@ class Star {
             }
         }
 
-        // Calculate gravitational forces from all other stars
+        // Toroidal gravity: rectangular interaction box (±1/4 screen per axis)
+        const W = this.canvas.width;
+        const H = this.canvas.height;
+        const gravityRangeX = W / 4;
+        const gravityRangeY = H / 4;
+
         stars.forEach(star => {
             if (star === this || !star.active) return;
 
-            const dx = star.x - this.x;
-            const dy = star.y - this.y;
+            // Shortest toroidal displacement (wrap around edges like a torus)
+            let dx = star.x - this.x;
+            let dy = star.y - this.y;
+            if (dx > W / 2) dx -= W;
+            if (dx < -W / 2) dx += W;
+            if (dy > H / 2) dy -= H;
+            if (dy < -H / 2) dy += H;
+
+            // Only interact within the rectangular gravity neighborhood
+            if (Math.abs(dx) > gravityRangeX || Math.abs(dy) > gravityRangeY) return;
+
             const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 0.001) return;
 
             // Check for collision/merging
             if (distance < 3) {
