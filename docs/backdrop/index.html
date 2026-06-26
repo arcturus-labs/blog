@@ -22,19 +22,17 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('message-overlay');
-            const overlayText = document.getElementById('overlay-text');
-            const params = new URLSearchParams(window.location.search);
-            const text = params.get('overlay_text');
+        const overlay = document.getElementById('message-overlay');
+        const overlayText = document.getElementById('overlay-text');
+        const params = new URLSearchParams(window.location.search);
+        const text = params.get('overlay_text');
 
-            if (text) {
-                overlayText.textContent = text;
-                overlay.hidden = false;
-            } else {
-                overlay.hidden = true;
-            }
-        });
+        if (text) {
+            overlayText.textContent = text;
+            overlay.hidden = false;
+        } else {
+            overlay.hidden = true;
+        }
     </script>
 </body>
 </html>
