@@ -1,0 +1,115 @@
+:root {
+
+    /* Primary color shades */
+    --md-primary-fg-color: #004d80;
+    --md-primary-fg-color--light: #861f4194;
+    --md-primary-fg-color--dark: #ac325a;
+    --md-primary-bg-color: hsla(0, 0%, 100%, 1);
+    --md-primary-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    --md-text-link-color: hsla(231, 48%, 48%, 1);
+
+    /* Accent color shades */
+    --md-accent-fg-color: #0073bf;
+    /* --md-accent-fg-color--transparent: hsla(189, 100%, 37%, 0.1);
+    --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+    --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7); */
+}
+
+:root > * {
+
+    /* Code block color shades
+    /* --md-code-bg-color: hsla(0, 0%, 96%, 1);
+    --md-code-fg-color: hsla(200, 18%, 26%, 1); */
+
+    /* Footer */
+    /* --md-footer-bg-color: #861f41;
+    --md-footer-bg-color--dark: hsla(0, 0%, 0%, 0.32);
+    --md-footer-fg-color: hsla(0, 0%, 100%, 1);
+    --md-footer-fg-color--light: hsla(0, 0%, 100%, 0.7);
+    --md-footer-fg-color--lighter: hsla(0, 0%, 100%, 0.3); */ 
+}
+
+.md-header__title {
+    cursor: pointer;
+}
+
+.md-header__title:hover {
+    opacity: 0.7;
+}
+
+a {
+    font-weight: bold;
+}
+
+/* ── Subscription gate modal ─────────────────────────────────────────────── */
+#sub-gate-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#sub-gate-modal {
+    background: #f8f9fa;
+    color: #212529;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    font-size: 1.125rem;
+    line-height: 1.55;
+}
+
+#sub-gate-modal h2 {
+    margin-top: 0;
+    color: var(--md-primary-fg-color, #004d80);
+    font-size: 1.5rem;
+}
+
+#sub-gate-modal p,
+#sub-gate-msg {
+    font-weight: normal;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    margin: 0 0 0.75rem;
+}
+
+#sub-gate-msg {
+    margin-bottom: 0;
+}
+
+#sub-gate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+#sub-gate-email {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.0625rem;
+    color: #212529;
+    font-weight: normal;
+}
+
+#sub-gate-btn {
+    padding: 0.65rem 1rem;
+    background: var(--md-primary-fg-color, #004d80);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.0625rem;
+    font-weight: bold;
+}
+
+#sub-gate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

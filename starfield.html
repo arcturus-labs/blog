@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Starfield</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html {
+            background: white;
+        }
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            width: 1920px;
+            height: 1080px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <script>
+class Star {
+    constructor(canvas, x, y, radius) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.mass = Math.PI * radius * radius;
+        this.velocity = {
+            x: (Math.random() - 0.5) * 0.1,
+            y: (Math.random() - 0.5) * 0.1
+        };
+        this.active = true;
+    }
+
+    draw() {
+        this.ctx.beginPath();
+        const f = 1.0 / 4;
+        this.ctx.moveTo(this.x, this.y - this.radius);
+        this.ctx.lineTo(this.x + this.radius * f, this.y - this.radius * f);
+        this.ctx.lineTo(this.x + this.radius, this.y);
+        this.ctx.lineTo(this.x + this.radius * f, this.y + this.radius * f);
+        this.ctx.lineTo(this.x, this.y + this.radius);
+        this.ctx.lineTo(this.x - this.radius * f, this.y + this.radius * f);
+        this.ctx.lineTo(this.x - this.radius, this.y);
+        this.ctx.lineTo(this.x - this.radius * f, this.y - this.radius * f);
+        this.ctx.closePath();
+        this.ctx.fillStyle = 'rgba(255,255,255,0.8)';
+        this.ctx.fill();
+    }
+
+    update(stars, mouse, gravityRange) {
+        if (mouse.x && mouse.y) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy) + 50;
+            if (distance < 100) {
+                const repulsionStrength = 50;
+                const force = repulsionStrength / (distance * distance);
+                this.velocity.x += (force * dx / distance);
+                this.velocity.y += (force * dy / distance);
+            }
+        }
+
+        const W = this.canvas.width;
+        const H = this.canvas.height;
+
+        stars.forEach(star => {
+            if (star === this || !star.active) return;
+
+            // Toroidal shortest-path delta
+            let dx = star.x - this.x;
+            let dy = star.y - this.y;
+            if (dx >  W / 2) dx -= W;
+            if (dx < -W / 2) dx += W;
+            if (dy >  H / 2) dy -= H;
+            if (dy < -H / 2) dy += H;
+
+            // Only interact within the square gravity box
+            if (Math.abs(dx) > gravityRange || Math.abs(dy) > gravityRange) return;
+
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 3) {
+                if (this.mass <= star.mass) { this.active = false; return; }
+            }
+            const G = 0.005;
+            const force = G * (this.mass * star.mass) / (distance * distance);
+            this.velocity.x += (force * dx / distance) / this.mass;
+            this.velocity.y += (force * dy / distance) / this.mass;
+        });
+
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.velocity.x *= 0.99;
+        this.velocity.y *= 0.99;
+
+        if (this.x < 0) this.x = this.canvas.width;
+        if (this.x > this.canvas.width) this.x = 0;
+        if (this.y < 0) this.y = this.canvas.height;
+        if (this.y > this.canvas.height) this.y = 0;
+    }
+}
+
+function createNewStar(canvas, radius, allowShooting = false) {
+    const star = new Star(canvas, Math.random() * canvas.width, Math.random() * canvas.height, radius);
+    if (allowShooting && Math.random() < 1 / 100) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 4 + Math.random() * 4; // 4–8 px/frame
+        star.velocity.x = Math.cos(angle) * speed;
+        star.velocity.y = Math.sin(angle) * speed;
+        star.shooting = true;
+    }
+    return star;
+}
+
+function initStarField() {
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 1920;
+    canvas.height = 1080;
+
+    // Square gravity interaction box: ~1/4 of the shorter screen dimension
+    const gravityRange = Math.min(canvas.width, canvas.height) / 2;
+
+    const mouse = { x: undefined, y: undefined };
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+    canvas.addEventListener('mouseleave', () => {
+        mouse.x = undefined;
+        mouse.y = undefined;
+    });
+
+    let stars = [];
+    const starCount = Math.floor((canvas.width * canvas.height) / (8000 / 3));
+    for (let i = 0; i < starCount; i++) {
+        stars.push(createNewStar(canvas, Math.random() * 5 + 2));
+    }
+
+    function animate() {
+        ctx.fillStyle = 'rgb(0, 78, 128)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        stars.forEach(star => {
+            if (star.active) {
+                star.update(stars, mouse, gravityRange);
+                star.draw();
+            }
+        });
+
+        stars = stars.map(star => {
+            if (!star.active) return createNewStar(canvas, star.radius, true);
+            return star;
+        });
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+document.addEventListener('DOMContentLoaded', initStarField);
+    </script>
+</body>
+</html>
