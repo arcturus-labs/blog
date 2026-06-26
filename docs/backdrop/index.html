@@ -12,9 +12,29 @@
 <body>
     <div id="backdrop">
         <canvas id="starfield"></canvas>
+        <div id="message-overlay" class="message-overlay" hidden>
+            <div class="message-card">
+                <h1 id="overlay-text">We'll be back soon</h1>
+            </div>
+        </div>
         <div class="brand">
             <img src="../assets/images/logo_w_name_horizontal.png" alt="Arcturus Labs">
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('message-overlay');
+            const overlayText = document.getElementById('overlay-text');
+            const params = new URLSearchParams(window.location.search);
+            const text = params.get('overlay_text');
+
+            if (text) {
+                overlayText.textContent = text;
+                overlay.hidden = false;
+            } else {
+                overlay.hidden = true;
+            }
+        });
+    </script>
 </body>
 </html>
