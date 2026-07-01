@@ -4,7 +4,7 @@ Once the post is published (or nearly so), draft social posts for LinkedIn, Twit
 
 ## General principles
 
-The audience is technically literate. They can smell a marketing post in two words and will scroll past. The goal is to surface the genuine insight from the post in a way that makes someone stop and think "wait, I want to read that."
+The audience is technically literate. They can smell a marketing post in two words and will scroll past. The goal is **curiosity**, not comprehension: make someone want to click, not feel like they already read the post.
 
 John's voice is casual, direct, and practitioner-level. He shows people how to do neat things with AI. He is pragmatic and humble - not a hype fighter, not a thought leader selling a brand.
 
@@ -13,20 +13,39 @@ John's voice is casual, direct, and practitioner-level. He shows people how to d
 - Don't frame posts as debunking or fighting hype - that itself reads as hype.
 - Casual and specific beats polished and vague.
 - The first line or two must work as a standalone hook - that's what shows before the fold on both platforms.
-- The hook should be specific, not vague. Name the thing. Name the tension. Don't lead with an abstract observation.
+
+## Curiosity, not summary
+
+**Do not restate or summarize the post.** No blow-by-blow of steps, tools, timelines, or "here's what I did" that duplicates the article. If the reader gets the story from the social post, they won't click.
+
+Instead:
+
+1. **Lead with the post's curiosity hook** - often the title itself, or one tight sentence that captures the same surprise. Example: *My AI skill edited the video that explains my AI skill.*
+2. **Promise what they'll get by clicking** - typically: you'll see how I did it, and you get the skill/repo/workflow to extend for yourself. Tease the payoff; don't deliver it.
+3. **Leave the mechanism on the other side of the link** - before/after, the weird meta loop, the one surprising detail. Mention that something is in the post only if it creates itch, not if it satisfies it.
+
+Bad (reads like the post abstract): "I used yt-dlp on a YouTube transcript, packaged an agent skill in five minutes, fixed word-clipping with AssemblyAI timestamps…"
+
+Good (curiosity + promise): "My AI skill edited the video that explains my AI skill. In the post I show how I built it - and you get the skill to fork and make yours."
+
+When the title already carries the hook, **use it** (or a close paraphrase) rather than inventing a weaker alternate headline.
+
+When the title is cryptic or recursive (the joke needs a beat to land), **do not paste the title verbatim** on LinkedIn. Write one or two plain sentences that explain what actually happened - what the skill does, what got edited, why that's weird - then make the click promise. The title's job is to intrigue on the blog; the social post's job is to make that intrigue legible in five seconds.
 
 ## Post structure
 
 ```
-[Short, punchy hook - 1-2 lines max. Something that names a real tension or surprising fact.]
+[Hook - 1-2 lines: the curiosity catch, often from the title]
 
-[1-3 short paragraphs of substance: the core insight, what makes this post worth reading,
-maybe a specific detail or concrete example that teases without giving everything away.]
+[Promise - 1-2 short sentences: what they'll learn or take away by clicking,
+e.g. how you did it + the skill/asset to extend themselves. No step-by-step recap.]
+
+[Optional: one line that deepens curiosity without explaining, OR a short question]
 
 [Link to post]
 ```
 
-The body paragraphs can briefly describe what the post covers and what the reader will get out of it. Two or three sentences is plenty. Don't summarize the whole post - leave something to discover. The goal is to make someone curious enough to click, not to give them a reason not to.
+Two or three sentences total before the link is often enough. The goal is to make someone curious enough to click, not to give them a reason not to.
 
 Use ` - ` (space-hyphen-space) for prose dashes. Never em dashes.
 
@@ -69,7 +88,7 @@ Also prepare Reddit promotion:
 - Read or search subreddit rules before recommending an actual post.
 - Draft subreddit-specific posts. Prefer discussion-first text posts; use link posts only where normal for the subreddit.
 - Titles: say what the thing is, succinctly. No "wrote up", no "here's a...", no listicle framing. Sound like a person describing something, not a marketer naming a content piece. Bad: "Wrote up how to add agentic AI to search". Bad: "A 4-level path to agentic search - here's what I learned". Good: "Incrementally adding agentic AI to an existing keyword search app".
-- Body: lead with substance. Sound like a person sharing something they built or learned. Don't open with "I wrote a blog post about..." - Reddit can smell promotion instantly.
+- Body: same curiosity rules as other platforms - hook + promise (how + skill/repo to extend), not a recap of the article. Lead with the surprising loop or build, not "I wrote a blog post about..." Reddit can smell promotion instantly.
 - Ask John if the Reddit drafts are good before posting.
 - Do not submit anything until John explicitly approves.
 
@@ -157,3 +176,7 @@ After drafting the social posts, remind John to manually share in these communit
 ## Reminder: individual outreach
 
 After the community shares, remind John to think about specific people who might find the post genuinely useful - collaborators, past colleagues, anyone mentioned in or relevant to the post - and reach out to them directly with a personal note and link.
+
+## TODO: Substack
+
+**Not yet set up.** John is considering cross-posting blog posts to Substack. Once set up, add a Substack section here covering how to publish (or cross-post) each new post. Remind John to investigate this - it may be as simple as pasting the markdown or connecting an RSS feed.

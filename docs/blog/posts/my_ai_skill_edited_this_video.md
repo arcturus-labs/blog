@@ -47,3 +47,46 @@ The top video is the auto-edited walkthrough – the one where I explain how the
 If you want to try this yourself, the skill is in <a href="https://github.com/arcturus-labs/video-editing" data-gated>this repo</a>. Fair warning: it's raw. By default the skill exports to Final Cut Pro, though if you ask it to just stitch the clips together directly it'll do that instead. Also, the way it manages files for each video project is a bit quirky. But the core idea works, and that's the point. Grab it, play with it, make it your own – a copy of a copy – just like I made mine from Shaw Talebi's approach my own.
 
 This post, by the way, was semi-automated from the transcript of the edited walkthrough above. I think I'll write another recursive blog post about that approach too!
+
+<!--
+POST_URL: https://arcturus-labs.com/blog/2026/05/31/my-ai-skill-edited-this-video-that-explains-my-ai-skill/
+HERO_IMAGE: https://arcturus-labs.com/blog/assets/my_ai_skill_edited_this_video/hero.jpg
+
+=== LINKEDIN ===
+I built an agent skill that edits video - cuts ums, silences, that sort of thing. Then I recorded a walkthrough explaining how the skill works, and had the skill edit that recording!
+
+In the post I show how I set it up. You can compare the edited walkthrough to the raw take, and you get the skill so you can fork it for your own footage.
+
+https://arcturus-labs.com/blog/2026/05/31/my-ai-skill-edited-this-video-that-explains-my-ai-skill/
+
+=== TWITTER/X ===
+I built an agent skill that edits video - ums, silences. Recorded a walkthrough explaining how it works, then had the skill edit that recording!
+
+Post: how I set it up, edited vs raw, skill to fork.
+
+https://arcturus-labs.com/blog/2026/05/31/my-ai-skill-edited-this-video-that-explains-my-ai-skill/
+
+=== BLUESKY (272 chars) ===
+I built an agent skill that edits video - ums, silences. Recorded a walkthrough on how it works; the skill edited that recording! Post shows setup, edited vs raw, and the skill to fork.
+
+https://arcturus-labs.com/blog/2026/05/31/my-ai-skill-edited-this-video-that-explains-my-ai-skill/
+
+=== REDDIT: r/ClaudeAI (text post) ===
+TITLE: Built a video-editing agent skill, then had it edit the walkthrough where I explain it
+
+I built an agent skill that edits video - cuts ums, silences, that sort of thing. Then I recorded a walkthrough explaining how the skill works, and had the skill edit that recording!
+
+In the post I show how I set it up. You can compare the edited walkthrough to the raw take, and you get the skill so you can fork it for your own footage.
+
+https://arcturus-labs.com/blog/2026/05/31/my-ai-skill-edited-this-video-that-explains-my-ai-skill/
+
+=== REDDIT: r/SideProject (text post) ===
+TITLE: Built a video-editing agent skill, then had it edit the walkthrough where I explain it
+
+I built an agent skill that edits video - cuts ums, silences, that sort of thing. Then I recorded a walkthrough explaining how the skill works, and had the skill edit that recording!
+
+In the post I show how I set it up. You can compare the edited walkthrough to the raw take, and you get the skill so you can fork it for your own footage.
+
+https://arcturus-labs.com/blog/2026/05/31/my-ai-skill-edited-this-video-that-explains-my-ai-skill/
+
+-->

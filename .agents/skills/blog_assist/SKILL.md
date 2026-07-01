@@ -26,7 +26,7 @@ When advertising a blog post, draft LinkedIn, Twitter/X, Reddit, and Bluesky cop
 
 1. Use post frontmatter dates to identify the newest post when John asks for "latest" or "most recent".
 2. Recommend subreddits based on the post topic and subreddit norms.
-3. Draft platform-specific posts that fit each platform's norms.
+3. Draft platform-specific posts that fit each platform's norms. Lead with the post's curiosity hook (often the title), promise how-to + something they can extend (skill, repo, pattern) - do not summarize or restate the article (see `references/social-media.md`).
 4. Ask John whether the drafts are good before posting.
 5. Only after explicit approval, use the skill scripts to submit (`post_to_reddit.py`, `post_to_bluesky.py`, `post_to_twitter.py`).
 6. After submitting, report the live post links in chat.

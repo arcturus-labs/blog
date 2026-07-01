@@ -49,6 +49,17 @@ def _next_image_index(out_dir: Path) -> int:
     return max(existing, default=0) + 1
 
 
+THUMBNAIL_SIZE = (1280, 720)
+
+
+def _resize_to_thumbnail(path: Path) -> None:
+    """Resize image in-place to 1280x720 (YouTube thumbnail / blog hero standard)."""
+    from PIL import Image
+    with Image.open(path) as img:
+        resized = img.resize(THUMBNAIL_SIZE, Image.LANCZOS)
+        resized.save(path)
+
+
 def _save_response_images(response, out_dir: Path, stem: str, start_index: int) -> int:
     if not response.candidates:
         fb = getattr(response, "prompt_feedback", None)
@@ -70,6 +81,7 @@ def _save_response_images(response, out_dir: Path, stem: str, start_index: int) 
             ext = _mime_to_suffix(part.inline_data.mime_type)
             path = out_dir / f"{stem}-{idx:02d}{ext}"
             path.write_bytes(raw)
+            _resize_to_thumbnail(path)
             print(path)
             idx += 1
             saved += 1
