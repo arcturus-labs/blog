@@ -15,11 +15,11 @@ TypeSafe just announced [System One models and Jev](https://typesafe.ai/blog/int
 
 The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with calibrated, consistent, numerical `answers` to those questions, almost instantaneously. The answers come in three flavors – `choice`, `noul`, and `score` – which I'll describe below.
 
-<!-- more -->
-
 The utility of this model comes from its speed and the accuracy with which it makes its numerical predictions. Conventional LLMs are orders of magnitude slower, and if you ask how confident they are, they'll give you a number that often has little bearing on reality.
 
-The demos for Jev are super impressive. Literally, stop reading my blog post right now and go look at the Doom demo. They are sending 7 requests per second and having Jev predict which button should be pressed in real time. Jev can easily navigate the Doom map and blow away the baddies. ... Try that with an LLM.
+The demos for Jev are super impressive. In their Doom demo, they send 7 requests per second, having Jev predict which button should be pressed in real time. Jev can easily navigate the Doom map and blow away the baddies. ... Try that with an LLM.
+
+<!-- more -->
 
 ## The API in brief
 
@@ -111,13 +111,17 @@ And the answers would come back under those named questions (illustrative respon
 }
 ```
 
-## My bet on what's under the hood
+## What's under the hood?
 
-What follows is me guessing how this roughly works. ([Find me on X.com](https://x.com/JnBrymn) or [LinkedIn](https://www.linkedin.com/in/john-berryman-864b1713/) and correct me!) Simplisticaly this might be a new take on BERT – Take a transformer encoder, pull in all the text and process it like a normal, and replaced the output head with something that has a bunch of "slots" of these different types. The API's `questions` are associated with slots that select among a set of choices, score a rubric, or produce the probability that a statement is true.
+How do they do this? My initial guess was that this might be a new take on BERT – Take a transformer encoder, pull in all the text and process it like a normal, and replaced the output head with something that has a bunch of "slots" of these different types. The API's `questions` are associated with slots that select among a set of choices, score a rubric, or produce the probability that a statement is true.
 
-My guess is that internally this gets turned into a prompt that dumps in the request structure (`state` and `questions`) but replaces the actual variable names with slot names so that the model knows where to stick the output data. Then, once the answer comes back, the API translates the slot names back to variable names.
+Then, internally this gets turned into a prompt that dumps in the request structure (`state` and `questions`) but replaces the actual variable names with slot names so that the model knows where to stick the output data. Then, once the answer comes back, the API translates the slot names back to variable names.
 
-And to train the model, they probably start with a conventionally pre-trained model, then they follow that up with supervised fine-tuning. The data set must be really interesting – they must gather up outcomes for events that happened in real life and make up random questions like these with known answers.
+[This X post](https://x.com/harshagundal/status/2100044305536889015) provides an even simpler possibility. This person (Harsha Gundala) has apparently replicated some of the success of Jev by fine tuning a conventional LLM. Rather than having a special output head, they just make the LLM generate the next token and then they use the logprobs to populate the probability numbers. For instance, if the `question` is boolean, then they look at the tokens `true` and `false`; if the `question` is over a set of enumerated choices, then they look at the logprobs of the tokens `A`, `B`, `C`, `D`, etc. Makes perfect sense.
+
+Dang it... it makes perfect sense. I even [wrote about a similar idea a year and a half ago](./superpower_llm_classifications_with_logprobs.md). Shame I didn't follow that to its logical conclusion, found a company, and pull in millions of dollars in venture capital! Oh well.
+
+In any case, the secret sauce to make the outputs make sense is in training the model. Starting with a pre-trained model, they would likely follow up with supervised fine-tuning. The data set they use would be really interesting because they need to collect outcomes for events that happened in real life and make up random questions like these with known answers.
 
 The weird challenge is coming up with good confidence or probability values for each training example. For instance, if you know Thunderhoof did win, you have a clean answer for the Choice question or the Noul question. But you don't automatically have a clean answer for whether this particular input should have caused the model to be 51% confident or 95% confident.
 
