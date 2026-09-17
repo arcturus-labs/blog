@@ -11,7 +11,9 @@ Thumbnails are composed using standard image manipulation (Pillow), not AI gener
 ## Steps
 
 ### 1. Start with a base image
-Use the post's hero image or generate a scene with the Gemini CLI. Target 16:9 aspect ratio.
+Use the post's hero image or generate a scene with the Gemini CLI. Target **16:9** aspect ratio.
+
+For YouTube thumbnails, the official recommended size is **3840×2160**. Minimum width is **640 px**, but prefer **3840×2160** whenever practical so the thumbnail stays crisp across surfaces.
 
 ### 2. Add the logo watermark
 - Resize logo to ~15% of image width.
