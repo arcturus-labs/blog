@@ -144,7 +144,7 @@ But this feels awkward. The `catch_ball` tool is incredibly bespoke. You'd have 
 
 This is where Jev might come in handy as an intermediate layer. [Go watch that Doom demo again](https://typesafe.ai/blog/introducing-system-one-models-and-jev) for a hint about how this might work. The high-level, abstract, navigational thinking could be performed by a conventional LLM, while the low-level motion of robotic limbs could be handled by conventional kinematic/dynamic models. In between, Jev could be watching streaming video from the robot's camera and estimating the ball's trajectory parameters to figure out the `x,y,z` location where the robot should place its hand to catch it.
 
-(Update: The current model does not actually take visual inputs. Apparently, they're feeding it text telemetry from the Doom environment. But I see no reason that future models couldn't take in raw images. My assumption is that this model is a transformer model.)
+(Update: The current model does not actually take visual inputs. Apparently, they're feeding it text telemetry from the Doom environment. But since this is a transformer model there's no reason that future models wouldn't be able to process image inputs.)
 
 What's more – and it blows my mind to think about the possibilities – the high-level LLM can specify requests to Jev on the fly, as needed. The LLM, using Jev as a tool, can call on it to make arbitrary predictions about salient things in its environment.
 
