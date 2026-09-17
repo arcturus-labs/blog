@@ -11,13 +11,13 @@ description: TypeSafe's Jev skips text generation entirely, answering structured
 
 # TypeSafe's Jev Trades Text Generation for Instant, Calibrated Decisions
 
-TypeSafe just announced [System One models and Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), and it's an interesting new take on transformer-based language models that could be _really_ useful if some of their claims bear out.
+TypeSafe just announced [System One models and Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), and it's an interesting new take on transformer-based language models that could be _really_ useful.
 
-The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with `answers` to those questions, almost instantaneously. The answers can be of a few different types: a `choice` picks one item from a fixed list, a `noul` (whatever the heck that means) gives the probability from zero to one that something is true, and a `score` picks a position on an ordered rubric. Each answer also comes back with probabilities and (except `noul`, weirdly) a confidence value.
+The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with `answers` to those questions, almost instantaneously. The answers come in three flavors – `choice`, `noul`, and `score` – which I'll describe below.
 
 <!-- more -->
 
-The utility of this model comes from its speed and the accuracy with which it makes its numerical predictions. Conventional LLMs are orders of magnitude slower, and if you ask how confident they are, they famously just make crap up that has little bearing on reality.
+The utility of this model comes from its speed and the accuracy with which it makes its numerical predictions. Conventional LLMs are orders of magnitude slower, and if you ask how confident they are, they'll give you a number that often has little bearing on reality.
 
 The demos for Jev are super impressive. Literally, stop reading my blog post right now and go look at the Doom demo. They are sending 7 requests per second and having Jev predict which button should be pressed in real time. Jev can easily navigate the Doom map and blow away the baddies. ... Try that with an LLM.
 
@@ -29,7 +29,7 @@ Here are the three question types:
 
 - `choice`: picks one item from a fixed list. It returns `{choice, probabilities, confidence}`.
 - `score`: picks a position on an ordered rubric. It returns `{score, legend, probabilities, confidence}`.
-- `noul`: asks whether something is true. It returns `{noul}`, which is the probability from zero to one that the answer is yes. Weirdly, no separate confidence field on this one.
+- `noul`: asks whether something is true. It returns `{noul}`, which is the probability from zero to one that the answer is yes. No separate confidence field on this one.
 
 ## Example: handicapping a horse race
 
@@ -113,19 +113,19 @@ And the answers would come back under those named questions (illustrative respon
 
 ## My bet on what's under the hood
 
-What follows is me guessing how this roughly works. ([Find me on X.com](https://x.com/JnBrymn) or [LinkedIn](https://www.linkedin.com/in/john-berryman-864b1713/) and correct me!) I think they're using a transformer to pull in all the text and process it like a normal LLM. But they've replaced the output head with something that has a bunch of "slots" of these different types. The API's `questions` are associated with slots that select among a set of choices, score a rubric, or produce the probability that a statement is true.
+What follows is me guessing how this roughly works. ([Find me on X.com](https://x.com/JnBrymn) or [LinkedIn](https://www.linkedin.com/in/john-berryman-864b1713/) and correct me!) Simplisticaly this might be a new take on BERT – Take a transformer encoder, pull in all the text and process it like a normal, and replaced the output head with something that has a bunch of "slots" of these different types. The API's `questions` are associated with slots that select among a set of choices, score a rubric, or produce the probability that a statement is true.
 
-Internally, I bet this gets turned into a prompt that basically dumps in the request structure (`state` and `questions`) but replaces the actual variable names with slot names so that the model knows where to stick the output data. Then, once the answer comes back, the API translates the slot names back to variable names.
+My guess is that internally this gets turned into a prompt that dumps in the request structure (`state` and `questions`) but replaces the actual variable names with slot names so that the model knows where to stick the output data. Then, once the answer comes back, the API translates the slot names back to variable names.
 
-And to train the model, I bet they start with a conventionally pre-trained model, pop off the last head, and replace it with this structured data head. Then they follow that up with supervised fine-tuning. The data set must be really interesting – they must gather up outcomes for events that happened in real life (hopefully after the pre-training data window) and make up random questions like these with known answers.
+And to train the model, they probably start with a conventionally pre-trained model, then they follow that up with supervised fine-tuning. The data set must be really interesting – they must gather up outcomes for events that happened in real life and make up random questions like these with known answers.
 
 The weird challenge is coming up with good confidence or probability values for each training example. For instance, if you know Thunderhoof did win, you have a clean answer for the Choice question or the Noul question. But you don't automatically have a clean answer for whether this particular input should have caused the model to be 51% confident or 95% confident.
 
-Perhaps that's where the reinforcement learning comes in – what TypeSafe is calling "Reinforcement Learning for Calibrated Decisions". SFT would push the model to mimic the training data (where confidence is poorly defined), whereas reinforcement learning would allow the model to "introspect" into its own knowledge state and learn confidence values that aren't just wild guesses. For this, you would definitely need to collect data that was outside of the original pre-training and SFT set.
+Perhaps that's where the reinforcement learning comes in – what TypeSafe is calling "Reinforcement Learning for Calibrated Decisions". SFT would push the model to mimic the training data (where confidence is poorly defined), whereas reinforcement learning would allow the model to "introspect" into its own knowledge state and learn confidence/probability values that aren't just wild guesses. For this, you would definitely need to collect data that was outside of the original pre-training and SFT set.
 
 Another place where RL can be useful is in a domain like the Doom demo. Given some "environment" (which could be real-world 3D like in the Doom video, or it could be a board game, or anything), you can have the model make predictions about what will happen next and how to interact in the world. Then you can let that play out in simulated worlds and use the results for policy updates.
 
-Finally, these models aren't doing any reasoning. Reasoning requires token generation, which is _much_ slower than processing input tokens and would slow these models down tremendously. Though I do wonder if they have some generic "thinking" placeholder tokens. There's precedent for this. In [Think before you speak: Training Language Models With Pause Tokens](https://arxiv.org/abs/2310.02226), they trained models with repeated `<pause>` tokens before the answer, giving them extra computational workspace without adding any new information. So maybe there's something like that going on here.
+Finally, these models aren't doing any reasoning. Reasoning requires token generation, which is _much_ slower than processing input tokens and would slow these models down tremendously. And like I said, these are probably encoders only, so they wouldn't be able to produce tokens in any case. Though I do wonder if they have some generic "thinking" placeholder tokens. There's precedent for this. In [Think before you speak: Training Language Models With Pause Tokens](https://arxiv.org/abs/2310.02226), they trained models with repeated `<pause>` tokens before the answer, giving them extra computational workspace without adding any new information. Something like that could be going on here.
 
 ## What can you do with this?
 
