@@ -13,7 +13,7 @@ description: TypeSafe's Jev skips text generation entirely, answering structured
 
 TypeSafe just announced [System One models and Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), and it's an interesting new take on transformer-based language models that could be _really_ useful.
 
-The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with `answers` to those questions, almost instantaneously. The answers come in three flavors – `choice`, `noul`, and `score` – which I'll describe below.
+The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with calibrated, consistent, numerical `answers` to those questions, almost instantaneously. The answers come in three flavors – `choice`, `noul`, and `score` – which I'll describe below.
 
 <!-- more -->
 
