@@ -156,25 +156,3 @@ But... the key thing yet to be proven is how accurate it is in general real-worl
 
 What I really want next is a fine-tuning API for Jev where I can dump in a big blob of text and data, have TypeSafe convert all of that into good training data with example states, questions, and outputs, and then fine-tune the model for me. If TypeSafe offers anything like that, then I'm going to gather up all the horse racing data I can find and head to the tracks. 😆
 
-!--
-POST_URL: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
-HERO_IMAGE: https://arcturus-labs.com/blog/assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/hero.jpg
-=== LINKEDIN ===
-What if an LLM never generated a single token?
-TypeSafe's Jev points toward a different interface: ask structured questions about a state and get calibrated decisions back in milliseconds. I dug into the API, what might be under the hood, and where this kind of model could fit between a high-level LLM and a real-time system.
-Where would you put a model like this first - robotics, games, or something else?
-https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
-=== TWITTER/X ===
-What if an LLM never generated a single token?
-TypeSafe's Jev returns calibrated decisions instead. I dug into the API and what this suggests for real-time agents.
-https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
-=== BLUESKY (276 chars) ===
-What if an LLM never generated a single token? TypeSafe's Jev returns calibrated decisions instead. I dug into the API and what this suggests for real-time agents. https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
-=== REDDIT: r/AI_Agents (text post) ===
-TITLE: What happens when an LLM stops generating text and just makes decisions?
-TypeSafe's Jev takes a different approach to an LLM interface: send it state plus named questions, and get back choices, scores, or probabilities instead of a generated response.
-I wrote up my read of the API and the architectural question it raises. A conventional LLM is good at open-ended, high-level planning, but token-by-token generation is a strange fit for decisions that need to happen repeatedly and quickly. Jev looks like a possible middle layer for that gap.
-The post explores what might be under the hood, including whether a fine-tuned conventional model plus logprobs could reproduce some of the behavior, and what calibrated decisions could mean for real-time agents.
-Full disclosure: this is my own blog post, not affiliated with TypeSafe: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
-Where would you use this interface first - as a policy layer, classifier, evaluator, or something else?
--->
