@@ -12,9 +12,7 @@ image: /blog/assets/typesafe_jev_trades_text_generation_for_instant_calibrated_d
 
 # TypeSafe's Jev Trades Text Generation for Instant, Calibrated Decisions
 
-TypeSafe just announced [System One models and Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), and it's an interesting new take on transformer-based language models that could be _really_ useful.
-
-The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with calibrated, consistent, numerical `answers` to those questions, almost instantaneously.
+TypeSafe just announced an exciting new take on LLM called [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev). The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with calibrated, consistent, numerical `answers` to those questions, almost instantaneously.
 
 ![Calibrated decisions](./assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/hero.jpg){ align=center width=100% }
 
