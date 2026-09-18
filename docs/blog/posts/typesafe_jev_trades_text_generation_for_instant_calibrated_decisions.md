@@ -162,27 +162,25 @@ There are plenty of other things you can do with a model like this:
 - Just-in-time context gathering. Useful for a long-running, top-level orchestrator agent that is constantly context switching as you feed it every task you're working with. (I keep a "generic agent" around for random tasks so that it has access to all the context I've been giving it, but it's kinda dumb because the useless context stays with it and I pay for it!)
 - Browser and computer usage where a traditional LLM decides the broad goal, Jev quickly decides the next legal actions to take, the browser or accessibility code actually do the text entry and button clicks.
 - Super fast/cheap LLM-as-Judges.
+- For AI search, one challenge you run into is making the search select the correct filters, sometimes from a very long list of possible filters (think about a complex hierarchical taxonomy of products for example). Jev could be given the entire list and instantly predict the most likely filters to try.
+- Query understanding - I want to give ecommerce companies the ability to tag "ecommerce part of speech" for incomming queries. So instead of part of speech – noun, verb, adjective, you could identify which search terms are brand, color, style, product, etc.
 
 
 But... the key thing yet to be proven is how accurate it is in general real-world tasks. It might be the case that Jev – a general model – is not terribly accurate on your specific domain and the better approach is to just use their approach to fine tune a model for your own domain.
 
 ## Should TypeSafe be scared?
 
-TypeSafe Jev is awesome. Jev will soon be competing head to head with Anthropic and OpenAI.
+If I was TypeSafe, I would be concerned about competing head to head with Anthropic and OpenAI.
 
-Before we get too far, I realize that Jev is not a conventional LLM. It can't generate text. However, best we can tell its architecture is pretty close to a conventional LLM, it's just being used differently.
+As I covered above, Jev isn't a conventional LLM - it can't generate text. But its architecture is pretty close to one, it's just being used differently. A conventional LLM iteratively calculates the probabilities for each token and then picks the highest, and those probabilities are typically hidden from us. Jev instead predicts only the next token and uses those probability values to calculate the answer. Over-simplified example: you give Jev "User comment: This product sucks!" and ask "Choose sentiment: satisfied, dissatisfied". Jev ignores every token except those two and reads off "satisfied: 1%; dissatisfied: 99%".
 
-LLMs generate text by iteratively calculating the probabilities for each token and then selecting the highest probability token – these probabilities are typically hidden from us.
+So, in principle, all that OpenAI or Anthropic might have to do is swap out the output head of the LLM with something fine-tuned to act like Jev and then they have their own competing product. And with the speed at which Jev clones are arriving, this might be an easy feat.
 
-Jev is instead using its LLM to predict only the next token, and then using the probability values to calculate the answer. For example (over-simplified), you say to Jev: "User comment: This product sucks!" and ask "Choose sentiment: satisfied, dissatisfied". Jev ignores the probabilities of all tokens besides these two and sees that they are "satisfied: 1%; dissatisfied: 99%".
+What's more, the frontier labs would have an even more compelling product than Jev, because they could run both the conventional LLM and their version of Jev concurrently, in the same GPU! During a GPT-6 reasoning trace, the LLM could decide it's time for a quick Jev decision, swap over to that head, emit a single token, and then jump back into conventional token generation after that. Frontier models would gain a new ability to make certain types of snap judgments more quickly.
 
-So, in principle, all that OpenAI or Anthropic might have to do is to swap out the output head of the LLM with something that has been fine-tuned to act like Jev and then they have their own competing product. And with the speed at which Jev clones are arriving, this might be an easy feat.
+The big unknown for me is still what Jev's "Reinforcement Learning for Calibrated Decisions" actually is. If that's their secret sauce, they better hold it close! Maybe generating datasets of "calibrated decisions" is genuinely hard. And maybe it's difficult to coax a model into producing realistic probabilities when it's partly learning from past events that don't come with probabilities attached – either the event did or did not happen.
 
-What's more, frontier labs will have an even more compelling product than Jev, because they can run both the conventional LLM and their version of Jev concurrently, in the same GPU! During a GPT-6 reasoning trace, the LLM could decide if it's time for a quick Jev decision and swap over to that head, emit a single token, and then jump back into conventional token generation after that. This means that frontier models would have a new ability to make certain types of snap judgements more quickly.
-
-The big unknown to me right now is what Jev's "Reinforcement Learning for Calibrated Decisions" actually is. If this is their secret sauce, then they better hold it close! Maybe the techniques for generating data sets of "calibrated decisions" is challenging. And maybe it is difficult to coax a model into generating realistic probabilities when it's partially learning from past events that don't have associated probabilities – either the event did or did not happen.
-
-## But what I really want
+## What I really want
 
 What I really want next is a fine-tuning API for Jev where I can dump in a big blob of text and data, have TypeSafe convert all of that into good training data with example states, questions, and outputs, and then fine-tune the model for me. If TypeSafe offers anything like that, then I'm going to gather up all the horse racing data I can find and head to the tracks. 😆
 
@@ -209,22 +207,17 @@ Feels like magic. How does it work? And what can you do with these new models?
 
 Here are my thoughts: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
 
-=== BLUESKY OPTION A (252 chars) ===
-TypeSafe's Jev skips text generation and returns calibrated decisions in milliseconds. How it might work, and what you could build with it: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
-
-=== BLUESKY OPTION B (283 chars) ===
-TypeSafe just announced Jev, a new take on LLMs: send state + questions, get calibrated numerical answers back in milliseconds. My read on how it works and what to build: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
+=== BLUESKY (285 chars) ===
+Everyone's talking about TypeSafe's Jev - decisions instead of text generation. I dug into how it might work, what to build with it, and whether the big labs eat its lunch: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
 
 === REDDIT: r/AI_Agents (text post, DRAFT - needs approval) ===
-TITLE: TypeSafe's Jev trades text generation for instant calibrated decisions
+TITLE: Trying to figure out how TypeSafe's Jev actually works - and whether it survives the frontier labs
 
-TypeSafe's Jev takes a different approach to an LLM interface: you send state plus named questions, and get back choices, scores, or probabilities instead of generated text. Their Doom demo runs 7 decisions per second, which is the part that got my attention.
+Okay so by now everyone's heard about Jev - the model that skips text generation entirely and just hands you "calibrated decisions" instead. It's awesome.
 
-I spent time with the API and wrote up what might be under the hood - whether this is an encoder with separate output heads, or a fine-tuned generative model reading logprobs - and where a model like this fits in agent architectures. Token-by-token generation is a strange fit for decisions that need to happen repeatedly and quickly; Jev looks like a possible middle layer between a high-level planning LLM and low-level control.
+I spent a while poking at the API and wrote up my best guesses on how it works under the hood, how they might have trained the thing, and a whole list of stuff I'd actually try building with it – routing, judges, RAG relevance checks, NPC brains, salience callouts, that kind of thing.
 
-The post walks through the choice/noul/score question types with a worked example, plus a list of places I'd try it first (routing, judges, RAG relevance, NPC behavior, salience).
+The part I keep coming back to: if Jev is basically a conventional LLM wearing a different output head, what's stopping OpenAI or Anthropic from just bolting one onto their own models? And then running both heads on the same GPU, so the model can flip between reasoning and snap judgments mid-trace? Maybe the RL dataset and technique is their secret sauce and moat.
 
-Full disclosure: this is my own blog post, not affiliated with TypeSafe: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
-
-Where would you slot this in your stack - policy layer, classifier, evaluator, or something else?
+Curious what you all think. Poke holes in my understanding and help me learn more.
 -->
