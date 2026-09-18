@@ -146,7 +146,23 @@ This is where Jev might come in handy as an intermediate layer. [Go watch that D
 
 What's more – and it blows my mind to think about the possibilities – the high-level LLM can specify requests to Jev on the fly, as needed. The LLM, using Jev as a tool, can call on it to make arbitrary predictions about salient things in its environment. This is very generalizable!
 
-There are plenty of other things you can do with a model like this. Think about sticking it into smart glasses and quickly classifying all the things around you and their location. Or think about quickly batch processing very general classification tasks. Rather than having a traditional LLM slowly and expensively reason through a stack of resumes to determine if a person is right for the job, you could send them all to Jev and blow through the stack quickly and cheaply.
+There are plenty of other things you can do with a model like this:
+
+- Document intake. Review, classify, and route incoming documents. For instance, reason through a stack of resumes to determine if a person is a good match to the job they are applying for.
+- Spreadsheet AI computations. Quickly and cheaply classify text or estimate things like text sentiment across hundreds of rows.
+- An agent or model router within your agent harness so that the best agent is selected for a particular task.
+- Quickly read foreign skill files and foreign inputs to scan for prompt injection.
+- Reading tool calls before submitting them to make sure they are safe. Easy example – scan for secrets.
+- Image classification tasks in the future once the underlying model can process images. Stick it in smart glasses or an iPhone.
+- Quickly classifying and sorting memories collected by an agent so they can be stored in the correct location.
+- Fuzzy if statements. For example taking human interactions and determine whether to show them help text or offer refund or escalate to a human responder.
+- Quickly review RAG search results for relevance to current context.
+- Quick AI decisions, for instance useful in game engine to power the behavior of non-player characters where the number of possible decisions is limited.
+- AI "salience" judgement. For proactive AI, use Jev to determine whether an incoming task should be dealt with now or put somewhere on a backlog.
+- Just-in-time context gathering. Useful for a long-running, top-level orchestrator agent that is constantly context switching as you feed it every task you're working with. (I keep a "generic agent" around for random tasks so that it has access to all the context I've been giving it, but it's kinda dumb because the useless context stays with it and I pay for it!)
+- Browser and computer usage where a traditional LLM decides the broad goal, Jev quickly decides the next legal actions to take, the browser or accessibility code actually do the text entry and button clicks.
+- Super fast/cheap LLM-as-Judges.
+
 
 But... the key thing yet to be proven is how accurate it is in general real-world tasks. It might be the case that Jev – a general model – is not terribly accurate on your specific domain and the better approach is to just use their approach to fine tune a model for your own domain.
 

@@ -68,4 +68,4 @@ Both tags should contain the full URL to the image, not an empty string.
 The `title` and `description` frontmatter fields are already used for `og:title`/`twitter:title` and `og:description`/`twitter:description` respectively – no extra fields needed for those.
 
 ## 8. Deploy
-Remind John to remove the draft tag in the yaml, to commit and push, to review the blog online.
+Remind John to remove the draft tag in the yaml, commit and push, then review the blog online. Pushing to `main` triggers the CI workflow (`.github/workflows/deploy.yml`), which runs `mkdocs gh-deploy --force` automatically - NEVER run `mkdocs gh-deploy` locally for a normal publish, it is redundant with CI.
