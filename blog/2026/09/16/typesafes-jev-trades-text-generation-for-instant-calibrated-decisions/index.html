@@ -1,0 +1,1266 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TypeSafe's Jev skips text generation entirely, answering structured questions with calibrated probabilities in milliseconds. Here's how the API works, what might be under the hood, and why it could matter for robotics and real-time AI.">
+      
+      
+      
+        <link rel="canonical" href="http://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/">
+      
+      
+        <link rel="prev" href="../../../05/31/my-ai-skill-edited-this-video-that-explains-my-ai-skill/">
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>TypeSafe's Jev Trades Text Generation for Instant, Calibrated Decisions - Arcturus Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-9ZGCYE3982"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-9ZGCYE3982",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-9ZGCYE3982",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+  
+  
+  <meta property="og:title" content="TypeSafe's Jev Trades Text Generation for Instant, Calibrated Decisions">
+  <meta property="og:description" content="TypeSafe's Jev skips text generation entirely, answering structured questions with calibrated probabilities in milliseconds. Here's how the API works, what might be under the hood, and why it could matter for robotics and real-time AI.">
+  <meta property="og:image" content="http://arcturus-labs.com/blog/assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/hero.jpg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TypeSafe's Jev Trades Text Generation for Instant, Calibrated Decisions">
+  <meta name="twitter:description" content="TypeSafe's Jev skips text generation entirely, answering structured questions with calibrated probabilities in milliseconds. Here's how the API works, what might be under the hood, and why it could matter for robotics and real-time AI.">
+  <meta name="twitter:image" content="http://arcturus-labs.com/blog/assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/hero.jpg">
+  
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#typesafes-jev-trades-text-generation-for-instant-calibrated-decisions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Arcturus Labs" class="md-header__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcturus Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TypeSafe's Jev Trades Text Generation for Instant, Calibrated Decisions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Arcturus Labs" class="md-nav__button md-logo" aria-label="Arcturus Labs" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Arcturus Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/ai-product/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Product
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/agentic-ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agentic AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/coding-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/development-methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/e-commerce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    E-commerce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/multimodal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multimodal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/prompt-engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/reasoning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reasoning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/retrieval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Retrieval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/user-experience/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User Experience
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/vibe-coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vibe Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-api-in-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      The API in brief
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-handicapping-a-horse-race" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: handicapping a horse race
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-under-the-hood" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's under the hood?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-can-you-do-with-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      What can you do with this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#but-are-those-probabilities-any-good" class="md-nav__link">
+    <span class="md-ellipsis">
+      But are those probabilities any good?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-typesafe-be-scared" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should TypeSafe be scared?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-really-want" class="md-nav__link">
+    <span class="md-ellipsis">
+      What I really want
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="/assets/images/john_berryman_face.jpg" alt="John Berryman">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://arcturus-labs.com/#about">John Berryman</a>
+                        
+                      </strong>
+                      <br>
+                      Founder of Arcturus Labs
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-09-16 00:00:00" class="md-ellipsis">September 16, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/agentic-ai/">Agentic AI</a>, 
+                              <a href="../../../../category/ai-product/">AI Product</a>, 
+                              <a href="../../../../category/automation/">Automation</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              13 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+
+<h1 id="typesafes-jev-trades-text-generation-for-instant-calibrated-decisions">TypeSafe's Jev Trades Text Generation for Instant, Calibrated Decisions</h1>
+<p>TypeSafe just announced an exciting new take on LLM called <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Jev</a>. The basic idea: you send the model a <code>state</code> (all the text or JSON data you want it to consider) plus a list of <code>questions</code> you want answered. But instead of responding with more text predicted one token at a time, Jev responds with calibrated, consistent, numerical <code>answers</code> to those questions, almost instantaneously.</p>
+<p><img align="center" alt="Calibrated decisions" src="../../../../assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/hero.jpg" width="100%" /></p>
+<p>The answers come in three flavors – <code>choice</code>, <code>noul</code>, and <code>score</code> – which I'll describe below.</p>
+<p>The utility of this model comes from its speed and the accuracy with which it makes its numerical predictions. Conventional LLMs are orders of magnitude slower, and if you ask how confident they are, they'll give you a number that often has little bearing on reality.</p>
+<p>The demos for Jev are super impressive. In their Doom demo, they send 7 requests per second, having Jev predict which button should be pressed in real time. Jev can easily navigate the Doom map and blow away the baddies. ... Try that with an LLM.</p>
+<!-- more -->
+
+<h2 id="the-api-in-brief">The API in brief</h2>
+<p>A request has a <code>state</code> and a <code>questions</code> map. The <code>state</code> is like the prompt in a conventional LLM: all the text or JSON data you want the model to consider. Each named question in <code>questions</code> has a type, instructions, and sometimes a set of allowed answers or a rubric.</p>
+<p>Here are the three question types:</p>
+<ul>
+<li><code>choice</code>: picks one item from a fixed list. It returns <code>{choice, probabilities, confidence}</code>.</li>
+<li><code>score</code>: picks a position on an ordered rubric. It returns <code>{score, legend, probabilities, confidence}</code>.</li>
+<li><code>noul</code>: asks whether something is true. It returns <code>{noul}</code>, which is the probability from zero to one that the answer is yes. No separate confidence field on this one.</li>
+</ul>
+<h2 id="example-handicapping-a-horse-race">Example: handicapping a horse race</h2>
+<p>For example, the input for a horse race could look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jev-latest&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;race_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;distance_m&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1600</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;track&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;muddy&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;horse_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;thunderhoof&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Won 2 of last 3 races; strong in mud.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;saddleflash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Won last race; prefers dry tracks.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;gallopjack&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Second in last 2 races; untested in mud.&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;questions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;winner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;choice&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Predict the winner of this horse race using horse ability, recent form, and fit for the course conditions. Select the horse most likely to win, not merely the favorite.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;criteria&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;thunderhoof&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thunderhoof wins the race.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;saddleflash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Saddleflash wins the race.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;gallopjack&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gallopjack wins the race.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;thunderhoof_handles_mud&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;noul&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Does Thunderhoof appear likely to perform well on the current track condition?&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;race_competitiveness&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;How competitive is this race?&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;criteria&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;One horse is clearly favored.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;A few horses have plausible winning chances.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Many horses have similarly plausible winning chances.&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And the answers would come back under those named questions (illustrative response – I made up these numbers):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;answers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;winner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;choice&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;choice&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;thunderhoof&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;probabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;thunderhoof&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;saddleflash&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.27</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;gallopjack&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.71</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;thunderhoof_handles_mud&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;noul&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;noul&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.82</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;race_competitiveness&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.61</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;One horse is clearly favored.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A few horses have plausible winning chances.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Many horses have similarly plausible winning chances.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;probabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.31</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.65</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.63</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="whats-under-the-hood">What's under the hood?</h2>
+<p>How do they do this? My initial guess was that this might be a new take on BERT – Take a transformer encoder, pull in all the text and process it like a normal, and replaced the output head with something that has a bunch of "slots" of these different types. The API's <code>questions</code> are associated with slots that select among a set of choices, score a rubric, or produce the probability that a statement is true.</p>
+<p>Then, internally this gets turned into a prompt that dumps in the request structure (<code>state</code> and <code>questions</code>) but replaces the actual variable names with slot names so that the model knows where to stick the output data. Then, once the answer comes back, the API translates the slot names back to variable names.</p>
+<p><a href="https://x.com/harshagundal/status/2100044305536889015">This X post</a> provides an even simpler possibility. This person (Harsha Gundala) has apparently replicated some of the success of Jev by fine tuning a conventional LLM. Rather than having a special output head, they just make the LLM generate the next token and then they use the logprobs to populate the probability numbers. For instance, if the <code>question</code> is boolean, then they look at the tokens <code>true</code> and <code>false</code>; if the <code>question</code> is over a set of enumerated choices, then they look at the logprobs of the tokens <code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>, etc. Makes perfect sense.</p>
+<p>Dang it... it makes perfect sense. I even <a href="../../../../2025/03/31/supercharging-llm-classifications-with-logprobs/">wrote about a similar idea a year and a half ago</a>. In that post I show how logprobs can be used as a "soft classifier" in exactly the way that the above X post says that Jev works. But I didn't follow up on that approach because I was getting some wonky values for logprobs in some of my experiments. Shame I didn't follow that to its logical conclusion, found a company, and pull in millions of dollars in venture capital! Oh well. At least I don't have to think hard about the hero image for this blog post. I'll borrow the one from my old blog post.</p>
+<p>In any case, the secret sauce to make the outputs make sense is in training the model. Starting with a pre-trained model, they would likely follow up with supervised fine-tuning. The data set they use would be really interesting because they need to collect outcomes for events that happened in real life and make up random questions like these with known answers.</p>
+<p>The weird challenge is coming up with good confidence or probability values for each training example. For instance, if you know Thunderhoof did win, you have a clean answer for the Choice question or the Noul question. But you don't automatically have a clean answer for whether this particular input should have caused the model to be 51% confident or 95% confident.</p>
+<p>Perhaps that's where the reinforcement learning comes in – what TypeSafe is calling "Reinforcement Learning for Calibrated Decisions". SFT would push the model to mimic the training data (where confidence is poorly defined), whereas reinforcement learning would allow the model to "introspect" into its own knowledge state and learn confidence/probability values that aren't just wild guesses. For this, you would definitely need to collect data that was outside of the original pre-training and SFT set.</p>
+<p>Another place where RL can be useful is in a domain like the Doom demo. Given some "environment" (which could be real-world 3D like in the Doom video, or it could be a board game, or anything), you can have the model make predictions about what will happen next and how to interact in the world. Then you can let that play out in simulated worlds and use the results for policy updates.</p>
+<p>Finally, these models aren't doing any reasoning. Reasoning requires token generation, which is <em>much</em> slower than processing input tokens and would slow these models down tremendously. And like I said, these are probably encoders only, so they wouldn't be able to produce tokens in any case. Though I do wonder if they have some generic "thinking" placeholder tokens. There's precedent for this. In <a href="https://arxiv.org/abs/2310.02226">Think before you speak: Training Language Models With Pause Tokens</a>, they trained models with repeated <code>&lt;pause&gt;</code> tokens before the answer, giving them extra computational workspace without adding any new information. Something like that could be going on here.</p>
+<h2 id="what-can-you-do-with-this">What can you do with this?</h2>
+<p>I've been wondering how LLMs might be used for embodied AI. My concern has been that any conventional LLM that cranks out one token at a time is going to be way too slow to interact with the world and make decisions in real time. So, perhaps these embodied AI agents will use LLMs for high-level decision making and then use dynamic models of real-world systems that can be called as tools. For example, the LLM could say "catch the ball that the boy is throwing at you" and then call the <code>catch_ball</code> tool, which internally uses visual input and a kinematic/dynamic model of the robot to actually reach out and catch the thing.</p>
+<p>But this feels awkward. The <code>catch_ball</code> tool is incredibly bespoke. You'd have to make a buzillion little tools like this, and even then it wouldn't be great. How would you fold laundry? Instead, you'd want lower-level functions that generalize to any task, like <code>move_left_hand_to_coordinates(x,y,z)</code>, but an LLM is going to take way too long to generate the tool call and won't have the correct <code>x,y,z</code> values anyway.</p>
+<p>This is where Jev might come in handy as an intermediate layer. <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Go watch that Doom demo again</a> for a hint about how this might work. The high-level, abstract, navigational thinking could be performed by a conventional LLM, while the low-level motion of robotic limbs could be handled by conventional kinematic/dynamic models. In between, Jev could be watching streaming video from the robot's camera and estimating the ball's trajectory parameters to figure out the <code>x,y,z</code> location where the robot should place its hand to catch it.</p>
+<p>(Update: The current model does not actually take visual inputs. Apparently, they're feeding it text telemetry from the Doom environment. But since this is a transformer model there's no reason that future models wouldn't be able to process image inputs.)</p>
+<p>What's more – and it blows my mind to think about the possibilities – the high-level LLM can specify requests to Jev on the fly, as needed. The LLM, using Jev as a tool, can call on it to make arbitrary predictions about salient things in its environment. This is very generalizable!</p>
+<p>There are plenty of other things you can do with a model like this:</p>
+<ul>
+<li>Document intake. Review, classify, and route incoming documents. For instance, reason through a stack of resumes to determine if a person is a good match to the job they are applying for.</li>
+<li>Spreadsheet AI computations. Quickly and cheaply classify text or estimate things like text sentiment across hundreds of rows.</li>
+<li>An agent or model router within your agent harness so that the best agent is selected for a particular task.</li>
+<li>Quickly read foreign skill files and foreign inputs to scan for prompt injection.</li>
+<li>Reading tool calls before submitting them to make sure they are safe. Easy example – scan for secrets.</li>
+<li>Image classification tasks in the future once the underlying model can process images. Stick it in smart glasses or an iPhone.</li>
+<li>Quickly classifying and sorting memories collected by an agent so they can be stored in the correct location.</li>
+<li>Fuzzy if statements. For example taking human interactions and determine whether to show them help text or offer refund or escalate to a human responder.</li>
+<li>Quickly review RAG search results for relevance to current context.</li>
+<li>Quick AI decisions, for instance useful in game engine to power the behavior of non-player characters where the number of possible decisions is limited.</li>
+<li>AI "salience" judgement. For proactive AI, use Jev to determine whether an incoming task should be dealt with now or put somewhere on a backlog.</li>
+<li>Just-in-time context gathering. Useful for a long-running, top-level orchestrator agent that is constantly context switching as you feed it every task you're working with. (I keep a "generic agent" around for random tasks so that it has access to all the context I've been giving it, but it's kinda dumb because the useless context stays with it and I pay for it!)</li>
+<li>Browser and computer usage where a traditional LLM decides the broad goal, Jev quickly decides the next legal actions to take, the browser or accessibility code actually do the text entry and button clicks.</li>
+<li>Super fast/cheap LLM-as-Judges.</li>
+<li>For AI search, one challenge you run into is making the search select the correct filters, sometimes from a very long list of possible filters (think about a complex hierarchical taxonomy of products for example). Jev could be given the entire list and instantly predict the most likely filters to try.</li>
+<li>Query understanding - I want to give ecommerce companies the ability to tag "ecommerce part of speech" for incomming queries. So instead of part of speech – noun, verb, adjective, you could identify which search terms are brand, color, style, product, etc.</li>
+<li>Aside detection – When chatting with an agent, have a hook that determines if the current question is in a side. If so The current conversation will be forked rather than muddling the context and disrupting the current work.</li>
+</ul>
+<p>But... the key thing yet to be proven is how accurate it is in general real-world tasks. It might be the case that Jev – a general model – is not terribly accurate on your specific domain. Maybe the better approach is to just use TypeSafe's process and fine tune a model for each specific domain.</p>
+<h2 id="but-are-those-probabilities-any-good">But are those probabilities any good?</h2>
+<p>Let's revisit some wonky values I ran into a couple of years ago, while experimenting with the my "soft classifier" described in <a href="../../../../2025/03/31/supercharging-llm-classifications-with-logprobs/">my old blog post</a>.</p>
+<p>Let's say you have a coin that comes up heads 60% of the time. If I ask you for the probability that the next flip comes up heads, any sane human should say 60%. Nothing tricky here.</p>
+<p>But when I asked a conventional LLM (probably GPT-4) to answer "heads or tails" and looked at the probabilities derived from its logprobs, I saw something strange. If the coin's heads rate was anything above 50%, the probability associated with the <code>heads</code> token would be almost 100%, while <code>tails</code> would be almost 0%. I wanted the odds of the next flip, but the model's probabilities collapsed toward the winning answer.</p>
+<p>So... does Jev do better?</p>
+<p>We can ask it the same question in two different ways. A <code>noul</code> question asks for the probability that the next flip will be heads. A <code>choice</code> question asks it to pick heads or tails, and gives us probabilities for both. Here's the request I made:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;We have an unfair coin that comes up heads 60.0% of the time.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jev-latest&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;questions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;next_flip&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;choice&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Which side will come up on the next flip of this coin?&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;criteria&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;heads&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The next flip comes up heads&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tails&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The next flip comes up tails&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;will_be_heads&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;noul&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The next flip of this coin will come up heads.&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And here's what came back. Unlike the horse-race example above, these numbers are real:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jev-1.13.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;answers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;next_flip&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;choice&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;choice&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heads&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.99</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;probabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;tails&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;heads&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.99</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;will_be_heads&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;noul&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;noul&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.58</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;usage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;input_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">360</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;output_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>noul</code> answer is <em>almost</em> what we'd hope for: 58% instead of 60%. But look at that <code>choice</code> response. It gives heads a 99% probability! Heads is the better bet, sure. But that doesn't make the next flip 99% likely to be heads. We told it the odds were 60%.</p>
+<p>Okay, let's extend this across the full range of possible coin biases. I swept the stated heads rate from 0% to 100% in steps of 0.25 percentage points – 401 requests in all. The dashed line in each chart shows the ideal answer, where Jev's probability matches the coin's stated heads rate.</p>
+<p>First, <code>choice</code>:</p>
+<p><img align="center" alt="Jev choice probabilities for heads collapse toward zero or one instead of tracking the coin's stated heads rate." src="../../../../assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/chart_choice.png" width="100%" /></p>
+<p>There's that familiar pattern. Above roughly 50%, the heads probabilities jump to almost 100%. Below that, they tend toward 0%, with some messy behavior near the middle. As probabilities of the next flip, these values are very inconsistent with reality. They collapse to the winner.</p>
+<p>Now compare that with <code>noul</code>:</p>
+<p><img align="center" alt="Jev noul probabilities track the coin's stated heads rate much more closely, though they generally underestimate it." src="../../../../assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/chart_noul.png" width="100%" /></p>
+<p>That's much closer! <code>noul</code> does a pretty good job of tracking the expected answer, although it generally undershoots. The biggest miss was 9 percentage points: when the coin's heads rate was 49%, Jev said 40%. The 48% coin was tied for worst, with Jev returning 39%.</p>
+<p>So this gives me a bit of pause. Asking for a probability with <code>noul</code> works reasonably well here – though still more off that it should be. Asking about the same event with <code>choice</code> gives me something that is just wrong. How will I know which kinds of questions Jev handles well, and which ones give me confident-looking numbers that don't mean what I think they mean?</p>
+<h2 id="should-typesafe-be-scared">Should TypeSafe be scared?</h2>
+<p>Presuming my above coin toss example is a fluke and presuming the typical outputs are more accurate than this... if I was TypeSafe, I would be concerned about competing head to head with Anthropic and OpenAI.</p>
+<p>As I covered above, Jev isn't a conventional LLM - it can't generate text. But its architecture is pretty close to one, it's just being used differently. A conventional LLM iteratively calculates the probabilities for each token and then picks the highest, and those probabilities are typically hidden from us. Jev instead predicts only the next token and uses those probability values to calculate the answer. Over-simplified example: you give Jev "User comment: This product sucks!" and ask "Choose sentiment: satisfied, dissatisfied". Jev ignores every token except those two and reads off "satisfied: 1%; dissatisfied: 99%".</p>
+<p>So, in principle, all that OpenAI or Anthropic might have to do is swap out the output head of the LLM with something fine-tuned to act like Jev and then they have their own competing product. And with the speed at which Jev clones are arriving, this might be an easy feat.</p>
+<p>What's more, the frontier labs would have an even more compelling product than Jev, because they could run both the conventional LLM and their version of Jev concurrently, in the same GPU! During a GPT-6 reasoning trace, the LLM could decide it's time for a quick Jev decision, swap over to that head, emit a single token, and then jump back into conventional token generation after that. Frontier models would gain a new ability to make certain types of snap judgments more quickly.</p>
+<p>The big unknown for me is still what Jev's "Reinforcement Learning for Calibrated Decisions" actually is. If that's their secret sauce, they better hold it close! Maybe generating datasets of "calibrated decisions" is genuinely hard. And maybe it's difficult to coax a model into producing realistic probabilities when it's partly learning from past events that don't come with probabilities attached – either the event did or did not happen.</p>
+<h2 id="what-i-really-want">What I really want</h2>
+<p>What I really want next is a fine-tuning API for Jev where I can dump in a big blob of text and data, have TypeSafe convert all of that into good training data with example states, questions, and outputs, and then fine-tune the model for me. If TypeSafe offers anything like that, then I'm going to gather up all the horse racing data I can find and head to the tracks. 😆</p>
+<!--
+POST_URL: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
+HERO_IMAGE: https://arcturus-labs.com/blog/assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/hero.jpg
+
+=== LINKEDIN (posted) ===
+TypeSafe just announced an exciting new take on LLM called Jev.
+
+The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with calibrated, consistent, numerical `answers` to those questions, almost instantaneously.
+
+Feels like magic. How does it work? And what can you do with these new models?
+
+Here are my thoughts: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
+
+=== TWITTER/X (posted: https://x.com/jnbrymn/status/2100597901227384947) ===
+TypeSafe just announced an exciting new take on LLM called Jev.
+
+The basic idea: you send the model a `state` (all the text or JSON data you want it to consider) plus a list of `questions` you want answered. But instead of responding with more text predicted one token at a time, Jev responds with calibrated, consistent, numerical `answers` to those questions, almost instantaneously.
+
+Feels like magic. How does it work? And what can you do with these new models?
+
+Here are my thoughts: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
+
+=== BLUESKY (posted: https://bsky.app/profile/jnbrymn.bsky.social/post/3mvskngynz22n) ===
+Everyone's talking about TypeSafe's Jev - decisions instead of text generation. I dug into how it might work, what to build with it, and whether the big labs eat its lunch: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
+
+=== REDDIT: r/AI_Agents (posted: https://www.reddit.com/r/AI_Agents/comments/1wjuki8/trying_to_figure_out_how_typesafes_jev_actually/) ===
+TITLE: Trying to figure out how TypeSafe's Jev actually works - and whether it survives the frontier labs
+
+Okay so by now everyone's heard about Jev - the model that skips text generation entirely and just hands you "calibrated decisions" instead. It's awesome.
+
+I spent a while poking at the API and wrote up my best guesses on how it works under the hood, how they might have trained the thing, and a whole list of stuff I'd actually try building with it – routing, judges, RAG relevance checks, NPC brains, salience callouts, that kind of thing.
+
+The part I keep coming back to: if Jev is basically a conventional LLM wearing a different output head, what's stopping OpenAI or Anthropic from just bolting one onto their own models? And then running both heads on the same GPU, so the model can flip between reasoning and snap judgments mid-trace? Maybe the RL dataset and technique is their secret sauce and moat.
+
+Here's a blog post I wrote about all of the above: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
+
+Curious what you all think. Poke holes in my understanding and help me learn more.
+-->
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../../../../assets/scripts/custom.js"></script>
+      
+    
+  </body>
+</html>
