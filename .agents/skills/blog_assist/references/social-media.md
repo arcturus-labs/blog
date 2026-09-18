@@ -47,7 +47,7 @@ e.g. how you did it + the skill/asset to extend themselves. No step-by-step reca
 
 Two or three sentences total before the link is often enough. The goal is to make someone curious enough to click, not to give them a reason not to.
 
-Use ` - ` (space-hyphen-space) for prose dashes. Never em dashes.
+Use ` – ` (space-en-dash-space) for prose dashes. Never em dashes.
 
 If it fits naturally, end the post with a short question that invites reader commentary. Make it personal and practical - ask about their situation, not a hypothetical about "most teams" or "the industry." Bad: "What level do you think most teams get stuck at?" Good: "Where does your stack sit today - and what's the next step you'd actually take?"
 

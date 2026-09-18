@@ -122,7 +122,7 @@ Then, internally this gets turned into a prompt that dumps in the request struct
 
 [This X post](https://x.com/harshagundal/status/2100044305536889015) provides an even simpler possibility. This person (Harsha Gundala) has apparently replicated some of the success of Jev by fine tuning a conventional LLM. Rather than having a special output head, they just make the LLM generate the next token and then they use the logprobs to populate the probability numbers. For instance, if the `question` is boolean, then they look at the tokens `true` and `false`; if the `question` is over a set of enumerated choices, then they look at the logprobs of the tokens `A`, `B`, `C`, `D`, etc. Makes perfect sense.
 
-Dang it... it makes perfect sense. I even [wrote about a similar idea a year and a half ago](./superpower_llm_classifications_with_logprobs.md). Shame I didn't follow that to its logical conclusion, found a company, and pull in millions of dollars in venture capital! Oh well. At least I don't have to think hard about the hero image for this blog post. I'll borrow the one from my old blog post.
+Dang it... it makes perfect sense. I even [wrote about a similar idea a year and a half ago](./superpower_llm_classifications_with_logprobs.md). In that post I show how logprobs can be used as a "soft classifier" in exactly the way that the above X post says that Jev works. But I didn't follow up on that approach because I was getting some wonky values for logprobs in some of my experiments. Shame I didn't follow that to its logical conclusion, found a company, and pull in millions of dollars in venture capital! Oh well. At least I don't have to think hard about the hero image for this blog post. I'll borrow the one from my old blog post.
 
 In any case, the secret sauce to make the outputs make sense is in training the model. Starting with a pre-trained model, they would likely follow up with supervised fine-tuning. The data set they use would be really interesting because they need to collect outcomes for events that happened in real life and make up random questions like these with known answers.
 
@@ -164,13 +164,91 @@ There are plenty of other things you can do with a model like this:
 - Super fast/cheap LLM-as-Judges.
 - For AI search, one challenge you run into is making the search select the correct filters, sometimes from a very long list of possible filters (think about a complex hierarchical taxonomy of products for example). Jev could be given the entire list and instantly predict the most likely filters to try.
 - Query understanding - I want to give ecommerce companies the ability to tag "ecommerce part of speech" for incomming queries. So instead of part of speech – noun, verb, adjective, you could identify which search terms are brand, color, style, product, etc.
+- Aside detection – When chatting with an agent, have a hook that determines if the current question is in a side. If so The current conversation will be forked rather than muddling the context and disrupting the current work.
 
+But... the key thing yet to be proven is how accurate it is in general real-world tasks. It might be the case that Jev – a general model – is not terribly accurate on your specific domain. Maybe the better approach is to just use TypeSafe's process and fine tune a model for each specific domain.
 
-But... the key thing yet to be proven is how accurate it is in general real-world tasks. It might be the case that Jev – a general model – is not terribly accurate on your specific domain and the better approach is to just use their approach to fine tune a model for your own domain.
+## But are those probabilities any good?
+
+Let's revisit some wonky values I ran into a couple of years ago, while experimenting with the my "soft classifier" described in [my old blog post](./superpower_llm_classifications_with_logprobs.md).
+
+Let's say you have a coin that comes up heads 60% of the time. If I ask you for the probability that the next flip comes up heads, any sane human should say 60%. Nothing tricky here.
+
+But when I asked a conventional LLM (probably GPT-4) to answer "heads or tails" and looked at the probabilities derived from its logprobs, I saw something strange. If the coin's heads rate was anything above 50%, the probability associated with the `heads` token would be almost 100%, while `tails` would be almost 0%. I wanted the odds of the next flip, but the model's probabilities collapsed toward the winning answer.
+
+So... does Jev do better?
+
+We can ask it the same question in two different ways. A `noul` question asks for the probability that the next flip will be heads. A `choice` question asks it to pick heads or tails, and gives us probabilities for both. Here's the request I made:
+
+```json
+{
+  "state": "We have an unfair coin that comes up heads 60.0% of the time.",
+  "model": "jev-latest",
+  "questions": {
+    "next_flip": {
+      "type": "choice",
+      "instructions": "Which side will come up on the next flip of this coin?",
+      "criteria": {
+        "heads": "The next flip comes up heads",
+        "tails": "The next flip comes up tails"
+      }
+    },
+    "will_be_heads": {
+      "type": "noul",
+      "instructions": "The next flip of this coin will come up heads."
+    }
+  }
+}
+```
+
+And here's what came back. Unlike the horse-race example above, these numbers are real:
+
+```json
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "next_flip": {
+      "type": "choice",
+      "choice": "heads",
+      "confidence": 0.99,
+      "probabilities": {
+        "tails": 0.01,
+        "heads": 0.99
+      }
+    },
+    "will_be_heads": {
+      "type": "noul",
+      "noul": 0.58
+    }
+  },
+  "usage": {
+    "input_tokens": 360,
+    "output_tokens": 51
+  }
+}
+```
+
+The `noul` answer is _almost_ what we'd hope for: 58% instead of 60%. But look at that `choice` response. It gives heads a 99% probability! Heads is the better bet, sure. But that doesn't make the next flip 99% likely to be heads. We told it the odds were 60%.
+
+Okay, let's extend this across the full range of possible coin biases. I swept the stated heads rate from 0% to 100% in steps of 0.25 percentage points – 401 requests in all. The dashed line in each chart shows the ideal answer, where Jev's probability matches the coin's stated heads rate.
+
+First, `choice`:
+
+![Jev choice probabilities for heads collapse toward zero or one instead of tracking the coin's stated heads rate.](./assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/chart_choice.png){ align=center width=100% }
+
+There's that familiar pattern. Above roughly 50%, the heads probabilities jump to almost 100%. Below that, they tend toward 0%, with some messy behavior near the middle. As probabilities of the next flip, these values are very inconsistent with reality. They collapse to the winner.
+
+Now compare that with `noul`:
+
+![Jev noul probabilities track the coin's stated heads rate much more closely, though they generally underestimate it.](./assets/typesafe_jev_trades_text_generation_for_instant_calibrated_decisions/chart_noul.png){ align=center width=100% }
+
+That's much closer! `noul` does a pretty good job of tracking the expected answer, although it generally undershoots. The biggest miss was 9 percentage points: when the coin's heads rate was 49%, Jev said 40%. The 48% coin was tied for worst, with Jev returning 39%.
+
+So this gives me a bit of pause. Asking for a probability with `noul` works reasonably well here – though still more off that it should be. Asking about the same event with `choice` gives me something that is just wrong. How will I know which kinds of questions Jev handles well, and which ones give me confident-looking numbers that don't mean what I think they mean?
 
 ## Should TypeSafe be scared?
 
-If I was TypeSafe, I would be concerned about competing head to head with Anthropic and OpenAI.
+Presuming my above coin toss example is a fluke and presuming the typical outputs are more accurate than this... if I was TypeSafe, I would be concerned about competing head to head with Anthropic and OpenAI.
 
 As I covered above, Jev isn't a conventional LLM - it can't generate text. But its architecture is pretty close to one, it's just being used differently. A conventional LLM iteratively calculates the probabilities for each token and then picks the highest, and those probabilities are typically hidden from us. Jev instead predicts only the next token and uses those probability values to calculate the answer. Over-simplified example: you give Jev "User comment: This product sucks!" and ask "Choose sentiment: satisfied, dissatisfied". Jev ignores every token except those two and reads off "satisfied: 1%; dissatisfied: 99%".
 
@@ -207,10 +285,10 @@ Feels like magic. How does it work? And what can you do with these new models?
 
 Here are my thoughts: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
 
-=== BLUESKY (285 chars) ===
+=== BLUESKY (posted: https://bsky.app/profile/jnbrymn.bsky.social/post/3mvskngynz22n) ===
 Everyone's talking about TypeSafe's Jev - decisions instead of text generation. I dug into how it might work, what to build with it, and whether the big labs eat its lunch: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
 
-=== REDDIT: r/AI_Agents (text post, DRAFT - needs approval) ===
+=== REDDIT: r/AI_Agents (posted: https://www.reddit.com/r/AI_Agents/comments/1wjuki8/trying_to_figure_out_how_typesafes_jev_actually/) ===
 TITLE: Trying to figure out how TypeSafe's Jev actually works - and whether it survives the frontier labs
 
 Okay so by now everyone's heard about Jev - the model that skips text generation entirely and just hands you "calibrated decisions" instead. It's awesome.
@@ -218,6 +296,8 @@ Okay so by now everyone's heard about Jev - the model that skips text generation
 I spent a while poking at the API and wrote up my best guesses on how it works under the hood, how they might have trained the thing, and a whole list of stuff I'd actually try building with it – routing, judges, RAG relevance checks, NPC brains, salience callouts, that kind of thing.
 
 The part I keep coming back to: if Jev is basically a conventional LLM wearing a different output head, what's stopping OpenAI or Anthropic from just bolting one onto their own models? And then running both heads on the same GPU, so the model can flip between reasoning and snap judgments mid-trace? Maybe the RL dataset and technique is their secret sauce and moat.
+
+Here's a blog post I wrote about all of the above: https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/
 
 Curious what you all think. Poke holes in my understanding and help me learn more.
 -->
