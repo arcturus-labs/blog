@@ -6,12 +6,16 @@ categories:
   - Agentic AI
   - AI Product
 description: TypeSafe's Jev is a genuine breakthrough – snap judgments with calibrated probabilities instead of generated text. My bet is OpenAI is already figuring out how to copy it, and then embed it inside its own models where Jev can't follow.
-draft: true
+image: /blog/assets/will-openai-eat-jevs-lunch/hero.jpg
 ---
 
-# OpenAI Will Eat Jev's Lunch in GPT-6.1
+# Will OpenAI Eat Jev's Lunch?
 
-[TypeSafe's Jev](./typesafe_jev_trades_text_generation_for_instant_calibrated_decisions.md) introduced a new spin on large language models that has taken the AI world by storm. According to [Vercel](https://vercel.com/blog/ai-gateway-jev-model-launch), "Jev was adopted faster than any other model in AI Gateway history." ... But there are clouds forming on the horizon. OpenAI is undoubtedly discussing Jev right now and what they shall do.
+[TypeSafe's Jev](./typesafe_jev_trades_text_generation_for_instant_calibrated_decisions.md) introduced a new spin on large language models that has taken the AI world by storm. According to [Vercel](https://vercel.com/blog/ai-gateway-jev-model-launch), "Jev was adopted faster than any other model in AI Gateway history." ... But there are clouds forming on the horizon. OpenAI is undoubtedly paying attention – and deciding what to do next.     
+
+![A bulky OpenAI robot licks its lips and reaches toward the enormous sandwich a skinny TypeSafe robot is happily eating.](./assets/will-openai-eat-jevs-lunch/hero.jpg){ align=center width=100% }
+
+<!-- more -->
 
 I wish all the best for TypeSafe, but if they truly live up to their promises, then I'm concerned that OpenAI is well positioned to fast-follow – not only to replicate Jev's flagship product, but also to fold that capability into upcoming models and agents and offer some really useful new behavior that Jev is not positioned to reproduce.
 
@@ -33,7 +37,7 @@ Part of the premise of this post is that OpenAI might be poised to quickly take 
 
 Back in early 2024 I wrote [Tool Invocation – Demonstrating the Marvel of GPT's Flexibility](https://blog.jnbrymn.com/2024/01/30/tool-invocation--demonstrating-the-marvel-of-gpts-flexibility), where I coaxed a GPT model into revealing exactly how it decides to call a tool. The following is what a chat session looks like internally. Here there is a user message, then an assistant response without a tool call followed by a user message with a tool call:
 
-![A ChatML transcript with each token highlighted in a different color to show token boundaries, ending in a tool call to get_temperature for Berlin.](./assets/openai-will-eat-jevs-lunch-in-gpt-6-1/token_render.png){ align=center width=100% }
+![A ChatML transcript with each token highlighted in a different color to show token boundaries, ending in a tool call to get_temperature for Berlin.](./assets/will-openai-eat-jevs-lunch/token_render.png){ align=center width=100% }
 
 I've color-coded the text to indicate token boundaries. If you haven't seen ChatML before, it's the internal markup language that OpenAI introduced for organizing user-agent conversation prompts. `<|im_start|>` and `<|im_end|>` are reserved tokens that delimit the messages, and the first token after `<|im_start|>` identifies the speaker, either `user` or `assistant`.
 
@@ -101,7 +105,7 @@ Normal decoding works like this: at each position, the model produces a set of l
 
 The other trick is that this one special position needs to behave differently from a normal token prediction. Normally the model is estimating "what token comes next in this text". Here we need it to estimate something closer to "what's the true answer to this question", which is a related but distinct skill. Every frontier model these days is a mixture of experts, so it's not a stretch to imagine that a few rounds of fine-tuning could carve out an expert that specializes in exactly this kind of calibrated snap judgment, while the rest of the model keeps doing what it already does well. (I'm oversimplifying MoE routing considerably, but I suspect you understand how this might map to a real system.)
 
-### The Payoff for a Classifying LLM
+### The Payoff for an LLM with Built-In Classification
 
 Look how the model just used itself in that Donny and Jess example. If TypeSafe is right, these little Jev-like judgments will be quite accurate – and less prone to hallucination than just asking a model to state a confidence value in plain text. (Caveats apply – see TypeSafe's own [rundown of Jev's jagged edges](https://docs.typesafe.ai/model-jaggedness/jev-1.13). Jev works best for fast, System One judgments, not math or multi-hop reasoning.)
 
@@ -163,5 +167,7 @@ Finally, everyone is going to want classification for images and speech as soon 
 Time will tell whether Jev's claims about accuracy and generality actually hold up across the full range of tasks people are already throwing at it. If they do, TypeSafe's survival comes down to the moat: how hard it really is to replicate their training data and their reinforcement learning process. If that's genuinely hard, they'll probably be fine – and might even end up in an unusually good position to get acquired by OpenAI outright, rather than out-competed by them. Everything I've sketched above is a real capability upgrade for a frontier lab: faster thinking, cheaper thinking, and sharper System One judgment baked directly into the flagship model.
 
 If the moat is thin, OpenAI just builds it themselves, and TypeSafe's window closes fast.
+
+Meanwhile, Diogo Almeida, TypeSafe's Founder CEO is confident "If model quality matters then we are going to be in a very good position for a long time." ([from his interview with Latent Space](https://www.youtube.com/watch?v=cFx9Z3ZXca0&t=1925s))
 
 Godspeed, TypeSafe. Godspeed.
