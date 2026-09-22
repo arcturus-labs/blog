@@ -168,6 +168,6 @@ Time will tell whether Jev's claims about accuracy and generality actually hold 
 
 If the moat is thin, OpenAI just builds it themselves, and TypeSafe's window closes fast.
 
-Meanwhile, Diogo Almeida, TypeSafe's Founder CEO is confident "If model quality matters then we are going to be in a very good position for a long time." ([from his interview with Latent Space](https://www.youtube.com/watch?v=cFx9Z3ZXca0&t=1925s))
+Meanwhile, Diogo Almeida, TypeSafe's Founder CEO is confident "If model quality matters, then we are going to be in a very good position for a long time." ([from his interview with Latent Space](https://www.youtube.com/watch?v=cFx9Z3ZXca0&t=1925s))
 
 Godspeed, TypeSafe. Godspeed.
