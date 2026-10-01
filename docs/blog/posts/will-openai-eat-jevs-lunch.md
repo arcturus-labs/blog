@@ -172,6 +172,12 @@ Meanwhile, Diogo Almeida, TypeSafe's Founder CEO is confident "If model quality 
 
 Godspeed, TypeSafe. Godspeed.
 
+## Addendum: Fourteen Days Later
+
+Well that was fast. At [DevDay 2026](https://openai.com/index/devday-2026-recap/), fourteen days after Jev's launch, OpenAI announced the Decisions API in limited preview: context plus a bounded question in, one allowed answer out. Same shape as Jev running on Luna 6 at a reported ~150ms. Moreover, image context is supported on day one, whereas Jev is text-only.
+
+Accuracy is still the open question for both of these. These models can not employ reasoning, otherwise they would not be so fast. Instead, they are making quick snap judgements of the inputs. No matter how well they're trained (and TypeSafe here may have real calibration special sauce), neither one is trained on your very own bespoke in-house process. All of that has to live in the prompt. So how does an instantaneous gut reaction to criteria it never trained on reliably give good answers? TBD!
+
 <!--
 POST_URL: https://arcturus-labs.com/blog/2026/09/21/will-openai-eat-jevs-lunch/
 HERO_IMAGE: https://arcturus-labs.com/blog/assets/will-openai-eat-jevs-lunch/hero.jpg
