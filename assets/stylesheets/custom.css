@@ -1,0 +1,238 @@
+/* ── Slide-in subscription bar (blog posts) ──────────────────────────────── */
+#sub-slide-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    background: #123043;
+    color: #fff;
+    padding: 0.85rem 1.5rem;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#sub-slide-bar.sub-slide-bar--visible {
+    transform: translateY(0);
+}
+
+.sub-slide-bar__close {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.sub-slide-bar__close:hover {
+    color: #fff;
+}
+
+.sub-slide-bar__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.sub-slide-bar__avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.sub-slide-bar__text {
+    flex: 1;
+    min-width: 200px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.85);
+}
+
+.sub-slide-bar__text strong {
+    color: #fff;
+}
+
+.sub-slide-bar__form {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.sub-slide-bar__form input[type="email"] {
+    min-width: 180px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 5px;
+    font-size: 0.875rem;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+.sub-slide-bar__form input[type="email"]::placeholder {
+    color: rgba(255,255,255,0.45);
+}
+
+.sub-slide-bar__form button {
+    background: #007acc;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.sub-slide-bar__form button:hover {
+    background: #005fa3;
+}
+
+@media (max-width: 768px) {
+    #sub-slide-bar {
+        padding: 1rem;
+    }
+    .sub-slide-bar__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+    .sub-slide-bar__avatar {
+        display: none;
+    }
+    .sub-slide-bar__form {
+        width: 100%;
+    }
+    .sub-slide-bar__form input[type="email"] {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+:root {
+
+    /* Primary color shades */
+    --md-primary-fg-color: #004d80;
+    --md-primary-fg-color--light: #861f4194;
+    --md-primary-fg-color--dark: #ac325a;
+    --md-primary-bg-color: hsla(0, 0%, 100%, 1);
+    --md-primary-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    --md-text-link-color: hsla(231, 48%, 48%, 1);
+
+    /* Accent color shades */
+    --md-accent-fg-color: #0073bf;
+    /* --md-accent-fg-color--transparent: hsla(189, 100%, 37%, 0.1);
+    --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+    --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7); */
+}
+
+:root > * {
+
+    /* Code block color shades
+    /* --md-code-bg-color: hsla(0, 0%, 96%, 1);
+    --md-code-fg-color: hsla(200, 18%, 26%, 1); */
+
+    /* Footer */
+    /* --md-footer-bg-color: #861f41;
+    --md-footer-bg-color--dark: hsla(0, 0%, 0%, 0.32);
+    --md-footer-fg-color: hsla(0, 0%, 100%, 1);
+    --md-footer-fg-color--light: hsla(0, 0%, 100%, 0.7);
+    --md-footer-fg-color--lighter: hsla(0, 0%, 100%, 0.3); */ 
+}
+
+.md-header__title {
+    cursor: pointer;
+}
+
+.md-header__title:hover {
+    opacity: 0.7;
+}
+
+a {
+    font-weight: bold;
+}
+
+/* ── Subscription gate modal ─────────────────────────────────────────────── */
+#sub-gate-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#sub-gate-modal {
+    background: #f8f9fa;
+    color: #212529;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    font-size: 1.125rem;
+    line-height: 1.55;
+}
+
+#sub-gate-modal h2 {
+    margin-top: 0;
+    color: var(--md-primary-fg-color, #004d80);
+    font-size: 1.5rem;
+}
+
+#sub-gate-modal p,
+#sub-gate-msg {
+    font-weight: normal;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    margin: 0 0 0.75rem;
+}
+
+#sub-gate-msg {
+    margin-bottom: 0;
+}
+
+#sub-gate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+#sub-gate-email {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.0625rem;
+    color: #212529;
+    font-weight: normal;
+}
+
+#sub-gate-btn {
+    padding: 0.65rem 1rem;
+    background: var(--md-primary-fg-color, #004d80);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.0625rem;
+    font-weight: bold;
+}
+
+#sub-gate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
