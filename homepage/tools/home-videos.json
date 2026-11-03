@@ -1,0 +1,114 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=pqzj94_pZa8",
+    "thumb": "talk-pqzj94_pZa8",
+    "caption": "Prompt Engineering for LLMs course at AgilityFeat",
+    "channel": "AgilityFeat ",
+    "channel_icon": "channel-pqzj94_pZa8.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=I4Ef7NwUKDc",
+    "thumb": "talk-I4Ef7NwUKDc",
+    "caption": "Lexical Love: Rediscovering the Power of Text in RAG [John Berryman]",
+    "channel": "Jason Liu",
+    "channel_icon": "channel-I4Ef7NwUKDc.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=htBTho6oEJA",
+    "thumb": "talk-htBTho6oEJA",
+    "caption": "Prompt Engineering Workshop",
+    "channel": "Hamel Husain",
+    "channel_icon": "channel-htBTho6oEJA.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=H6ua9HjGq60",
+    "thumb": "talk-H6ua9HjGq60",
+    "caption": "A Builder’s Guide to Agentic Search & Retrieval with Doug Turnbull & John Berryman",
+    "channel": "Vanishing Gradients",
+    "channel_icon": "channel-6zju7hyCFl0.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=mKTQGKIUq8M",
+    "thumb": "talk-mKTQGKIUq8M",
+    "caption": "Patterns and Anti-Patterns For Building with AI (with John Berryman)",
+    "channel": "Vanishing Gradients",
+    "channel_icon": "channel-6zju7hyCFl0.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=BZwIhAuJMhI",
+    "thumb": "talk-BZwIhAuJMhI",
+    "caption": "He Built AI for GitHub Copilot. Now He Says We're All Doomed | John Berryman, Github Engineer",
+    "channel": "TwoSetAI",
+    "channel_icon": "channel-BZwIhAuJMhI.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=60HAtHVBYj8",
+    "thumb": "talk-60HAtHVBYj8",
+    "caption": "Code search, Copilot, LLM prompting with empathy and Artifacts - John Berryman, ex-GitHub Copilot",
+    "channel": "Vector Podcast",
+    "channel_icon": "channel-60HAtHVBYj8.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=LwLxlEwrtRA",
+    "thumb": "talk-LwLxlEwrtRA",
+    "caption": "The Evals That Made GitHub Copilot",
+    "channel": "Hamel Husain",
+    "channel_icon": "channel-htBTho6oEJA.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=6DjFKzUrNao",
+    "thumb": "talk-6DjFKzUrNao",
+    "caption": "Prompt Engineering for LLMs: Best Practices With John Berryman of Arcturus Labs",
+    "channel": "Scaling Tech Podcast",
+    "channel_icon": "channel-6DjFKzUrNao.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=kkvi2Rm-K84",
+    "thumb": "talk-kkvi2Rm-K84",
+    "caption": "The Dark Factory: How Twin Sun Automated Their Entire Dev Pipeline",
+    "channel": "Arcturus Labs",
+    "channel_icon": "channel-YmD5V8g-DGw.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=g4cfjz5AKxY",
+    "thumb": "talk-g4cfjz5AKxY",
+    "caption": "This Week in AI: Rethinking the Agent Harness with Eric Freeman and John Berryman",
+    "channel": "O'Reilly",
+    "channel_icon": "channel-UBFh5UXXMIA.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=YmD5V8g-DGw",
+    "thumb": "talk-YmD5V8g-DGw",
+    "caption": "You Built It With AI. How Do You Deploy It? Operate It",
+    "channel": "Arcturus Labs",
+    "channel_icon": "channel-YmD5V8g-DGw.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=4ISj9sxKDAQ",
+    "thumb": "talk-4ISj9sxKDAQ",
+    "caption": "B.Y.O.A. – Bring Your Own Agent",
+    "channel": "Arcturus Labs",
+    "channel_icon": "channel-YmD5V8g-DGw.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=MXwf5-nTPlE",
+    "thumb": "talk-MXwf5-nTPlE",
+    "caption": "RAG is two things. Prompt Engineering and Search. Keep it Separate | S2 E28",
+    "channel": "How AI Is Built",
+    "channel_icon": "channel-MXwf5-nTPlE.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=6zju7hyCFl0",
+    "thumb": "talk-6zju7hyCFl0",
+    "caption": "Show Us Your (Agent) Skills Episode 5 - w/ John Berryman, Isaac Flath, & Matt Palmer",
+    "channel": "Vanishing Gradients",
+    "channel_icon": "channel-6zju7hyCFl0.jpg"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=UBFh5UXXMIA",
+    "thumb": "talk-UBFh5UXXMIA",
+    "caption": "Zero to Agent in 30 Minutes: Build a Workflow Agent Without Code with John Berryman",
+    "channel": "O'Reilly",
+    "channel_icon": "channel-UBFh5UXXMIA.jpg"
+  }
+]

@@ -5,7 +5,7 @@ Copies the four pages to docs/, their CSS/JS to docs/home/, referenced images to
 docs/home/assets/, rewrites paths, and injects GA, canonical, Open Graph and Twitter tags.
 Re-run after editing the draft; output is deterministic.
 
-    python3 -I scripts/publish_home.py [SOURCE_DIR]
+    python3 -I scripts/publish_home.py
 """
 import html
 import re
@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_SRC = ROOT.parent / "content-production/2026.10.29--Arcturus-Labs-Website/draft_site_4"
+DEFAULT_SRC = ROOT / "homepage"
 DOCS = ROOT / "docs"
 PAGES = ["index.html", "agentic-web.html", "workflows.html", "software-factories.html"]
 SITE = "https://arcturus-labs.com"

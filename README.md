@@ -25,14 +25,12 @@ See [subscription-worker/README.md](subscription-worker/README.md) for setup, de
 
 ## Homepage
 
-The homepage (`docs/index.html`) and its three story pages (`agentic-web.html`, `workflows.html`, `software-factories.html`) are generated from the draft site in `content-production/2026.10.29--Arcturus-Labs-Website/draft_site_4`. After editing the draft, re-run:
+Source lives in `homepage/` (builders, templates, tests, research); `docs/index.html`, the three story pages and `docs/home/` are generated. Workflow, commands and research guidance: `.agents/skills/build_homepage/SKILL.md`. Quick version:
 
 ```bash
-python3 -I scripts/publish_home.py   # copies pages to docs/, CSS/JS to docs/home/, images to docs/home/assets/; injects GA, canonical, Open Graph, Twitter tags
+(cd homepage && python3 -I tools/build_home.py)   # or build_agentic_web / build_workflows / build_software_factories
+python3 -I scripts/publish_home.py                # homepage/ -> docs/, injects GA/OG/Twitter tags
+mkdocs serve
 ```
 
-Do not hand-edit those four HTML files or `docs/home/`; changes are overwritten.
-
-The "recent posts" list is filled at build time by `hooks/recent_posts.py` (five newest posts, no manual upkeep).
-
-Tests (after `mkdocs build`): `python3 scripts/test_home.py`, and with `mkdocs serve` running, `node scripts/test_home_browser.cjs` (needs Playwright; Kit calls are mocked, no subscribers are created).
+The "recent posts" list is filled at build time by `hooks/recent_posts.py`. Tests: `python3 scripts/test_home.py` (after `mkdocs build`), `node scripts/test_home_browser.cjs` (Kit mocked).

@@ -1,0 +1,9 @@
+# ponder.ai, "An editor that works the way you do" (four feature cards)
+**Structure:** `section#features > .vp_row > article.vp_card` x4. Each card holds a demo stage (`.vp_stage > .vp_ui`, a small animated mock of the product), a copy block (title + one paragraph, always visible), and an absolutely positioned link (`a.vp_try`) that is hidden at rest. The site uses Lenis smooth scrolling.
+**Hover (CSS, measured with a real hover):**
+- Accordion: at rest each card is 291px wide (`flex: 1 1 0`). While the row is hovered the cards drop to `flex-grow: .8`; the hovered card goes to `flex-grow: 1.7`. Measured: hovered card 291 -> 481px (+65%), the other three 291 -> 228px (-22%), settled in about 0.45s (`flex-grow .5s cubic-bezier(.22, 1, .36, 1)`). The border also brightens.
+- Reveal: `a.vp_try` goes from opacity 0 and 4px down to opacity 1 in place (about 0.3s). Link text differs per card: "Match a style", "Try a first cut", "Try commenting", "Try exporting". Each is `href="/download"` with `data-analytics-cta` tags (features_style, features_cut, features_direct, features_export), so the reveal is a tracked download call to action. The arrow nudges up and right on hover.
+- The demo scales to the new card size (a CSS variable `--s` is recomputed to fit the width) and a veil layer over the stage (`.vp_stage::after`) fades out.
+**Demos keep animating** (keyframes `vp-float`, `vp-spin`, `vp-glow`, `vp-bar`, and JavaScript-toggled states like `.is-listening` and `.is-on`), so the cards look alive before anyone hovers.
+**Gating:** all of the hover behavior is inside `@media (hover: hover)` and, for the resize and scale, `(min-width: 1100px)`. Touch and narrow screens get static cards. I did not test those.
+**Click target:** the card has `cursor: auto`; only the small "Try..." link is clickable, so clickability is signalled by the text and arrow, not by the whole card.

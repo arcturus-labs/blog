@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Constellation studies | Arcturus Labs</title>
+<style>
+* { box-sizing: border-box; }
+html,body { margin: 0; background: #090f21; color: #eef2ff; font-family: system-ui, sans-serif; }
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+main { position: relative; }
+.study { min-height: 115svh; padding: 5vh 3%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+h2 { font-size: clamp(1rem, 1.7vw, 1.5rem); font-weight: 500; text-align: center; margin: 0 0 2vh; }
+img { display: block; width: min(100%, 1300px); max-height: 88svh; object-fit: contain; }
+</style>
+<script src="constellation-sky.js" defer></script>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main>
+<section class="study"><h2>The bear – visual pattern</h2><img src="../website_copy/supporting_images/constellation-experiments/bear-ghost-v2/bear-transparent.png" width="1536" height="1024" alt="The Arcturus bear with four-pointed stars, connecting lines and translucent haze."></section>
+<section class="study"><h2>We’re losing our website traffic to chat.</h2><img src="../website_copy/supporting_images/constellation-experiments/choice-customer-robot-v5/transparent.png" width="1536" height="1024" alt="An awestruck woman reaches toward a confident office-assistant robot with a sensor-visor head."></section>
+<section class="study"><h2>Our expert staff is toiling away on tasks that should be automated.</h2><img src="../website_copy/supporting_images/constellation-experiments/choice-expert/transparent.png" width="1536" height="1024" alt="An expert with arms raised in despair amid towering stacks of paper, represented by a brilliant central star."></section>
+<section class="study"><h2>Competitors ship at the speed of AI. We’re stuck in the stone age.</h2><img src="../website_copy/supporting_images/constellation-experiments/choice-stone-wheel/transparent.png" width="1536" height="1024" alt="A kneeling craftsperson using a hammer and chisel to carve a stone wheel by hand."></section>
+</main>
+</body>
+</html>

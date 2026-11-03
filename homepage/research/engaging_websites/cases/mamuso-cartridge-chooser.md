@@ -1,0 +1,6 @@
+# mamuso.dev, cartridge stack
+**Structure:** a full-width WebGL canvas (pointer events on) draws six 3D cartridges (SpaceXAI, Vercel, GitHub, Microsoft x2, Tuenti), one per job. A second small WebGL canvas has pointer events off. The page renders on demand: I counted only a handful of frames in 3 seconds.
+**Hover:** the page does its own hit-testing in the 3D scene. With a pointer over the Vercel cartridge, the canvas's cursor changed to `pointer` (inline style); off a cartridge it returned to `auto`.
+**Accessibility twin:** six real `<button>` elements (2x2px, tab-focusable, `aria-label="View Vercel cartridge"` and so on) sit at each cartridge's location. Pressing one (keyboard path) opens that cartridge.
+**Click/activate result:** the stack spreads apart; the chosen cartridge rotates to face front and enlarges; a caption ("Vercel / 2024-2026") appears as real DOM text; and a real "Close Vercel" button appears. The front shows the role ("VP OF DESIGN"), dates, and location.
+**Not reproduced:** the wiggle on hover. My synthetic pointer events triggered the cursor change but no visible motion, so the effect probably needs a real mouse movement or animates too briefly for my sampling. Needs a human-driven check or a better capture.
