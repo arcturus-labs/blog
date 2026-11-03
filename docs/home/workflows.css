@@ -1,0 +1,29 @@
+/* Workflow draft only: real text over a dimmed constellation, not baked-in quotes. */
+.moment-copy { font-size: clamp(1rem, 1.25vw, 1.2rem); }
+.moment-copy blockquote p { font-size: clamp(1.05rem, 1.35vw, 1.3rem); }
+.quote-overlay { position: relative; isolation: isolate; min-height: 72svh; }
+.quote-overlay .scene { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: .33; pointer-events: none; z-index: -1; }
+.quote-overlay .moment-copy { position: relative; padding: clamp(1rem, 3vw, 2.5rem); background: radial-gradient(ellipse, #071127a8 0%, #07112745 65%, transparent 100%); text-shadow: 0 2px 12px #030916; }
+.quote-overlay .evidence-number { color: var(--gold); font: 700 clamp(3rem, 5vw, 6rem)/1.08 var(--heading); letter-spacing: -.045em; margin-bottom: 1.2rem; }
+.quote-overlay .evidence-number span { display: inline; font-size: clamp(1.3rem, 2.1vw, 2rem); font-weight: 500; letter-spacing: -.025em; }
+.quote-overlay .source-context { margin-top: 1.3rem; }
+@media (min-width: 901px) and (min-height: 660px) {
+  .is-pinned .quote-overlay { min-height: 0; }
+}
+@media (max-width: 900px), (max-height: 659px) {
+  .quote-overlay { min-height: 560px; justify-content: center; }
+  .quote-overlay .mobile-heading { position: relative; z-index: 1; margin-bottom: .5rem; }
+  .quote-overlay .scene { width: 100%; }
+  .quote-overlay .moment-copy { padding: 1rem .4rem; }
+}
+@media (max-width: 400px) {
+  .quote-overlay { min-height: 600px; }
+}
+
+/* Three-line solution lead-in: one slide, white setup lines and a gold payoff. */
+.turning-point .hero-copy { max-width: 1400px; }
+.turning-point h2,.turning-point .hero-turn { text-align: center; }
+.turning-point h2 { font-size: clamp(2.2rem, 4.4vw, 5.4rem); }
+@media (max-width: 900px), (max-height: 659px) {
+  .turning-point h2 { font-size: clamp(1.9rem, 6.2vw, 3.4rem); }
+}

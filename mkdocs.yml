@@ -16,6 +16,8 @@ extra_css:
   - assets/stylesheets/custom.css
 extra_javascript:
     - assets/scripts/custom.js      
+hooks:
+  - hooks/recent_posts.py
 plugins:
   - rss:
       match_path: blog/posts/.* 
