@@ -5,6 +5,18 @@ This is a handoff document: these are requests to implement or questions to disc
 
 **Next iteration: content first.** Work through the wording with John before polishing graphics, animation, or interaction. Keep the three story pages visually balanced, even though John's interest is Agentic Web first, workflows second, factories third.
 
+## Software Factories replacement – 2026-11-03
+
+- [x] Replace the previous page from the owner-directed draft in `IGNORED/software_factory_copy.md`, without using the old page as a creative starting point. Maintained copy is now `homepage/software-factories-copy.md`, read directly by the new builder.
+- [x] Three fears: falling behind, unreliable software production, and rebuilding the factory as technology changes. Three solution headings, with separate shared-understanding and verification moments under solution 2.
+- [x] Generate seven new reference-guided constellation scenes with `gpt-image-2.5-sunburst`, matching the workflow robots; retain originals/settings/prompts outside the repo and ship responsive alpha WebPs.
+- [x] Apply the second owner-directed copy round: remove hero period, replace problem-1 paragraph with Intercom's linked quote, revise problems 2/3, center the new collaboration-to-automation transition, separate supervised process development from standards/shared understanding/QA, and shorten the future-proofing solution.
+- [x] Revise the assembly illustration: the same chassis gains a prominent gear and then a pipe from left to right, retaining previous parts. Selected `p1-assembly-v2/image-01.png`; original preserved.
+- [x] Second-draft checks: copy/builder/site tests, MkDocs build, byte-identical rebuild, protected sibling/style hashes, nine browser configurations and desktop/phone screenshot inspection. No remote deployment.
+- [x] Follow-up: use “A faster way to build software is taking shape.” and prepend “But” to problem 2. Replace the plug/socket illustration with a clean mechanical cog beside sealed electronics (`p3-gear-electronics/image-01.png`), preserving the earlier candidate.
+- [ ] John to review the current rendered draft, especially the new gear-versus-electronics metaphor. Complexity/inconsistent-widgets imagery remains open to visual feedback.
+- [ ] Existing shared launch checks still apply: testimonial permissions, final Calendly destination, authorized real Kit signup, Safari/iOS and assistive technology. No software-factory client outcomes or mature team-scale CI/CD implementation are claimed.
+
 ## Shared across all pages
 
 - [ ] **Wrap-up – John’s original-source audit:** Trace every quote and number across all pages to its original source. Assemble direct links and relevant passages so John can personally reread them and check for hallucinations, misquoting, missing context and incorrect figures before publication.

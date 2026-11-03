@@ -1,4 +1,16 @@
-# Fourth draft – Agentic Web
+# Homepage and story pages
+
+## Software Factories replacement – 2026-11-03
+
+The current factory story is the second owner-directed draft. `software-factories-copy.md` is its maintained Markdown input; `tools/build_software_factories.py` parses visible copy, standalone quotations and linked attributions, omitting editorial/graphic notes. The hero has no final period. Problem 1 uses Intercom's firsthand quote, rather than the previous paragraph (self-reported experience, not an independent productivity measurement). Problems 2 and 3 now explicitly concern an AI software factory and becoming out of date. The centered transition reads “Start with hands-on collaboration / Build toward hands-off automation.” Solutions distinguish developing the process together, defining standards and verifying results, and future-proofing through portable practices. The first rendered draft/copy is preserved locally in `IGNORED/software-factory-draft-1/`.
+
+Seven new `gpt-image-2.5-sunburst` constellation illustrations use the workflow page's approved robot/human references. Raw renders, prompts and settings: `content-production/2026.10.29--Arcturus-Labs-Website/website_copy/supporting_images/software-factory-constellations/` (outside this repo). Responsive alpha exports use the `sf-constellation-` prefix. All seven scenes share identical canvas dimensions; solution 3's shortened copy no longer needs a panoramic canvas. The revised assembly scene (`p1-assembly-v2/image-01.png`) shows the same chassis progressively gaining a large gear and then a pipe, retaining the gear. Problem 3 now uses `p3-gear-electronics/image-01.png`: a robot holding a clean mechanical cog beside sealed electronics with no place to fit it. The previous plug/socket render is preserved. Follow-up headings are “A faster way to build software is taking shape.” and “But an AI software factory is worthless if the process is not dependable.” Prompts, settings, original renders and the previous candidate are preserved. `software-factories.css` only centers and sizes the transition, leaving shared styles untouched. Shared chrome, proof, contact and subscription behavior are unchanged. Other pages and shared CSS/JS are checksum-protected during this rebuild.
+
+Rebuild: `python3 -I homepage/tools/build_software_factories.py`, then `python3 -I scripts/publish_home.py` from repo root. Asset rebuilds require `HOMEPAGE_SCENES` pointing to the external `supporting_images` directory. New regression checks: `python3 -I homepage/tests/software-factories.py`. Browser suite accepts `BASE_URL` and `PAGES=software-factories.html`. The second rendered draft and revised assembly artwork await John's review; the usual shared launch checks below remain open. Publishing into `docs/` is local preparation, not a remote deployment.
+
+Validation for this replacement: factory unit/copy tests, shared builder tests, site tests and MkDocs build passed (existing unrelated link warnings remain). Factory browser checks passed all nine configurations: wide desktop through 320px phone, reduced motion and no JavaScript. Checked every moment, outline navigation, transition dwell, layout alignment, decoded assets, fixed booking tab and shared proof; desktop and phone screenshots were inspected. Other homepage/story HTML and shared CSS/JS hashes are unchanged. No real newsletter signup, Safari/iOS or assistive-technology test was performed.
+
+## Earlier Agentic Web implementation history
 
 Open **`agentic-web.html`**. Drafts 1–3 are preserved. The approved copy plus this round's requested revisions are in **`copy.md`**.
 
@@ -23,7 +35,7 @@ Agentic Web is generated from `tools/templates/agentic-web.html` plus the canoni
 
 `tests/builders.py` verifies construction with no existing output, exact approved output bytes and repeatability. Browser validation also passed Agentic smoke, all 27 story configurations and all 9 homepage configurations. Before/after screenshots at 1280, 1440, 1840, 390 and 320 widths were captured under `/tmp/agentic-{before,after}-<width>-{hero,problem,proof}.png`; rendered main text compares exactly. Agentic's compact proof now fits desktop viewports; narrow screens retain natural scrolling without clipping.
 
-Sibling rebuilds remain `python3 -I tools/build_workflows.py` and `python3 -I tools/build_software_factories.py`. Workflow artwork now uses `tools/constellation_assets.py` to preserve variable alpha and cache responsive exports; factory scenes retain their original chroma-key exporter. Do not rebuild unrelated pages for an Agentic-only markup edit. Homepage videos are maintained in `tools/home-videos.json`. See project skill reference 07 for the full asset/test workflow.
+Sibling rebuilds remain `python3 -I tools/build_workflows.py` and `python3 -I tools/build_software_factories.py`. Workflow and replacement factory artwork use `tools/constellation_assets.py` to preserve variable alpha and cache responsive exports. The replacement factory builder also normalizes its exported canvases for stable layout. Do not rebuild unrelated pages for an Agentic-only markup edit. Homepage videos are maintained in `tools/home-videos.json`. See project skill reference 07 for the full asset/test workflow.
 
 ## Changes in this iteration
 

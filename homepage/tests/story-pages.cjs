@@ -5,7 +5,7 @@ const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const pages = (process.env.PAGES || 'workflows.html').split(',');
-const base = 'http://127.0.0.1:8001/';
+const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const results = [];
@@ -61,6 +61,35 @@ const base = 'http://127.0.0.1:8001/';
           assert(body.includes('determined to be low-risk and highly dependable'), tag + ' solution 3 copy');
           assert(body.includes('rerun the benchmarks to ensure workflow quality stays on track'), tag + ' solution 4 copy');
           assert.equal(await page.locator('#s4 .moment-copy p').count(), 1, tag + ' removed trailing sentence');
+        }
+        if (file === 'software-factories.html') {
+          assert.equal(await page.locator('#problem .story-outline li').count(), 3, tag + ' factory problem outline');
+          assert.equal(await page.locator('#solution .story-outline li').count(), 3, tag + ' factory solution outline');
+          assert.equal(await page.locator('#problem .moment').count(), 3, tag + ' factory problems');
+          assert.equal(await page.locator('#solution .moment').count(), 4, tag + ' factory solution moments');
+          assert.equal(await page.locator('.scene img[src*="sf-constellation"]').count(), 7, tag + ' factory artwork');
+          assert(body.includes('Getting started iseasier than you think'), tag + ' approved factory hero');
+          assert(!body.includes('easier than you think.'), tag + ' no hero period');
+          assert(body.includes('Future-proof your software factory.'), tag + ' portable process');
+          assert.match(await page.locator('#p1 blockquote').textContent(), /Within weeks, hundreds of engineers/);
+          assert.equal(await page.locator('#p1 .moment-copy > p').count(), 0, tag + ' quote replaces paragraph');
+          assert.equal(await page.locator('#p1 cite a').getAttribute('href'), 'https://ideas.fin.ai/p/we-gave-claude-code-to-everyone-at');
+          assert.match(await page.locator('#p1 img').getAttribute('src'), /p1-assembly-v2/);
+          assert(body.includes('A faster way to build software is taking shape.'), tag + ' upbeat opportunity');
+          assert(body.includes('But an AI software factory is worthless'), tag + ' factory dependability');
+          assert.match(await page.locator('#p3 img').getAttribute('src'), /p3-gear-electronics/);
+          assert(body.includes('Will your software factory be out of date'), tag + ' technology concern');
+          const lead = await page.locator('#turn-title').evaluate(e => ({
+            align: getComputedStyle(e).textAlign,
+            turn: getComputedStyle(e.querySelector('.hero-turn')).textAlign,
+            width: e.getBoundingClientRect().width,
+            viewport: innerWidth
+          }));
+          assert.equal(lead.align, 'center', tag + ' centered factory transition');
+          assert.equal(lead.turn, 'center', tag + ' centered factory transition relief');
+          assert(lead.width <= lead.viewport, tag + ' factory transition width');
+          assert.equal((await page.locator('#turn-title').textContent()).trim(), 'Start with hands-on collaborationBuild toward hands-off automation');
+          assert.equal(await page.locator('#s2-verify').count(), 1, tag + ' independent verification');
         }
         const moments = await page.locator('.moment').count();
         const pinned = await page.locator('.is-pinned').count();

@@ -12,11 +12,9 @@ image: /blog/assets/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/he
 
 # AI Can Read Neural Network Weights. I Wasn’t Ready for That.
 
-Frontier models can apparently read, reason about, and even update neural network weights directly. Not by running a training loop, but by directly reading the numbers and figuring out what to change.
+Frontier models can apparently read, reason about, and even update neural network weights directly. ([Read the report here](https://rikiyat.github.io/blog/weight-space-programming/)!) They do this not by running a training loop, but by directly reading the numbers and figuring out what to change.
 
-[Take a look at this report on weight-space programming](https://rikiyat.github.io/blog/weight-space-programming/).
-
-My first reaction was: *Wait. How the hech does that work?*
+My first reaction was: *Wait. How the heck does that work?*
 
 I'm used to models surprising me with what they can do with language and code. But handing one a pile of neural network weights and asking it to make sense of the behavior encoded there? That feels like a different kind of capability.
 
@@ -30,32 +28,32 @@ Here's the analogy. Human brains are made of neurons, and so are fruit fly brain
 
 Of course not! That's friggin' crazy. Our brains haven't learned to read other brains. They've learned to take in sensory data and produce behaviors – move muscles and squirt hormones.
 
-By analogy, an LLM has learned to take in text and images and generate useful output. Its being a neural network doesn't automatically give it an understanding of what the 17th weight in some other network does. And when when these weights are shown to the LLM, they aren't being plugged into the LLM in some special, native neural-weight format. They're being presented as text.
+By analogy, an LLM has learned to take in text and images and generate useful output. Its being a neural network doesn't automatically give it an understanding of what the 17th weight in some other network does. And when these weights are shown to the LLM, they aren't being plugged into the LLM in some special, native neural-weight format. They're being presented as plain text.
 
 Consider "strawberry." The model sees pieces of words – `st`, `raw`, and `berry` – rather than a sequence of individual letters. This is why in 2025 frontier models kept swearing to us that "strawberry" had 2 r's.
 
-So when you look at one of the prompts used in this study ([here's a prompt asking the model to identify a Pac-Man-playing neural network based solely on its architecture and weights](https://raw.githubusercontent.com/RikiyaT/lm_understand-logs/refs/heads/main/exp1_which_game/runs/pacman/prompt.txt)), the model reads numbers like `0.054 -0.026 0.014`, tokenized just like any other text input. In this case: `0`, `.`, `054`, <code>&nbsp;-</code>, `0`, `.`, `026`, <code>&nbsp;0</code>, `.`, `014`. There's no special channel that turns those numbers into a network the LLM can directly "experience". Nevertheless, it can successfully pick out relationships that suggest it's looking at a Pac-Man-playing neural network.
+So when you look at one of the prompts used in this study ([here's a prompt asking the model to identify a Pac-Man-playing neural network based solely on its architecture and weights](https://raw.githubusercontent.com/RikiyaT/lm_understand-logs/refs/heads/main/exp1_which_game/runs/pacman/prompt.txt)), the model reads numbers like `0.054 -0.026 0.014`, tokenized just like any other text input. In this case: `0`, `.`, `054`, <code>&nbsp;-</code>, `0`, `.`, `026`, <code>&nbsp;0</code>, `.`, `014`. There's no special channel that turns those numbers into a network the LLM can directly "experience." Nevertheless, it can successfully pick out relationships that suggest it's looking at a Pac-Man-playing neural network.
 
 ## Where Did This Ability Come From?
 
-You won't find much training data available on the internet that is analogous to this. Humans simply train neural networks. We don't look at specific networks and write essays describing how model weights lead to various model behaviors.
+You won't find much training data available on the internet that is analogous to this. Humans train neural networks, but we don't look at specific networks and write essays describing how model weights lead to various model behaviors.
 
 So where does a model learn to do this?
 
-This capability is so unnatural, that my first instinct was that the frontier labs are explicitly training this behavior into the models so that they can take advantage of it. Clever - and surprising that this would even work at all.
+This capability is so unnatural that my first instinct was that the frontier labs are explicitly training this behavior into the models so that they can take advantage of it. Clever – and surprising that this would even work at all.
 
-The other possibility is frankly a bit startling: models are getting smart enough that they can generalize to extremely foreign tasks like this, and they can hold much much more information in their attention than I had given them credit for.
+The other possibility is frankly a bit startling: models are way more intelligent than I had given them credit for.
 
 
 ## Maybe This Is Just What Generalization Looks Like
 
 We already train models to trace programs and reason about their behavior. And through reinforcement learning we have trained models to be quite good at extrapolating to reading and writing programs that are well outside of their training set. Maybe we're at the point where that extrapolation really goes to an extreme that I wouldn't have expected the LLMs to handle.
 
-If I look at code, there are several things that my feeble brain keeps track of. I see where variables are defined, I see how they are manipulated, I trace boolean logic to understand the flow of information and I reason about behaviore.
+If I look at code, there are several things that my feeble brain keeps track of. I see where variables are defined, I see how they are manipulated, I trace Boolean logic and control loops to understand the flow of information and reason about behavior.
 
-But take a look at that Pac-Man prompt again. When behavior is represented as matrix multiplications then you have _way_ more variables, one for every row and every column of each matrix, and you have _way_ more possible ways to manipulate variables, one for every value in each of those matrices. It seems that models can now basically glance at these opaque weights and intuit relationships.
+But take a look at that Pac-Man prompt again. When behavior is represented as matrix multiplications, then you have _way_ more variables – simplistically, one for every row and column of each matrix. And the control code and the variable manipulations are now captured by every numerical value in each of those matrices. Even this tiny network has 569 "variables" linked by 17,184 weighted connections (and then toss in a few more bias values to boot). And if all this wasn't challenging enough, there are no nice semantic clues, like variable names and programming language keywords, to help us. I can't hold this in my head. Can you? Yet, it seems that models can now basically glance at these opaque weights and intuit relationships and behaviors.
 
-And I do mean glance. After a very short amount of thinking, here is what GPT-6 Astra said with reasoning set to `minimal`.
+And I do mean _glance_. After a very short amount of thinking, here is what GPT-6 Astra said with reasoning set to `minimal`.
 
 ???+ quote "GPT-6 Astra’s observations"
 
@@ -81,8 +79,45 @@ And I do mean glance. After a very short amount of thinking, here is what GPT-6 
 
     **Confidence:** 93%
 
-I've run that Pac-Man prompt through Astra, Opus 5.5, and even Muse Spark 1.3. They all picked up the idea of Pac-Man, though they expressed different levels of confidence.
+I've run that Pac-Man prompt through Astra, Opus 5.5, and even Muse Spark 1.3. They _all_ picked up the idea of Pac-Man, though they expressed different levels of confidence.
 
-So maybe this is where we're at now! Previously mental model for LLMs was not so alien to my mental model for human brains – we take in raw sensory data, and over a cascade of computations arrive at more abstract information that we use to navigate the world. And attention is a resource that is limited - there are only so many things that humans and LLMs can keep track of. I still think all of this is true. But this study just made me realize how vastly more information an LLM can hold in its working memory, how quickly it can identify the big important abstract thoughts, and how well training is generalizing into new domains.
+So maybe this is where we're at now! Previously, my mental model for LLMs was not so alien to my mental model for human brains – we take in raw sensory data, and over a cascade of computations, arrive at more abstract information that we use to navigate the world; attention is a resource that is limited and there are only so many things that we – both humans and LLMs – can keep track of. I still think all of this is true. But this study just made me realize how vastly more information an LLM can hold in its working memory, how quickly it can identify the big important abstract ideas and manipulate them, and how well training is generalizing into new domains.
 
 Maybe we're toast. Maybe I'm just jealous that I can't edit my own neural weights.
+
+<!--
+POST_URL: https://arcturus-labs.com/blog/2026/11/03/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/
+HERO_IMAGE: https://arcturus-labs.com/blog/assets/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/hero.jpg
+
+=== LINKEDIN ===
+AI Can Read Neural Network Weights. I Wasn’t Ready for That.
+
+I included the prompt and Astra’s response so you can try it yourself. What model capability last broke your intuition?
+
+https://arcturus-labs.com/blog/2026/11/03/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/
+
+=== TWITTER/X ===
+AI can read neural network weights. I wasn’t ready for that.
+
+Prompt + model response inside, if you want to try it yourself. What capability surprised you lately?
+
+https://arcturus-labs.com/blog/2026/11/03/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/
+
+=== BLUESKY ===
+AI can read neural network weights. I wasn’t ready for that.
+
+Prompt + model response inside, if you want to try it yourself. What capability surprised you lately?
+
+https://arcturus-labs.com/blog/2026/11/03/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/
+
+=== REDDIT: community pending rules check (text post) ===
+TITLE: Identifying a game from a neural network’s weights
+
+How much behavior can an LLM infer from a network’s architecture and weights written out as text?
+
+This result caught me off guard. I included the original prompt and a model’s response so you can test it yourself:
+
+https://arcturus-labs.com/blog/2026/11/03/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/
+
+What would you change about the test to distinguish weight-based reasoning from guesses based on the input and output descriptions?
+-->
