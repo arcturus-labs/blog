@@ -15,6 +15,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import story_page as sp
 from proof_component import compact_proof
+from page_chrome import sky_script_url
 
 DRAFT = sp.DRAFT
 H = sp.SCENES / 'home-scenes'
@@ -119,7 +120,7 @@ html = f'''<!doctype html>
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="compact-proof.css">
   <script src="home.js" defer></script>
-  <script src="home-sky.js" defer></script>
+  <script src="{sky_script_url()}" defer></script>
   <script src="subscribe.js" defer></script>
 </head>
 <body class="home">

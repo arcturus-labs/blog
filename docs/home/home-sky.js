@@ -1,4 +1,4 @@
-/* Return to draft_site's continuous star field and depth-based scroll parallax.
+/* Continuous star field with slow westward drift; no scroll/pointer parallax.
    No phase darkening. Dawn/star fade is reserved for the bottom of the page.
    Bounded DPR, 30fps ceiling, reduced-motion and hidden-tab handling; no pause UI. */
 (() => {
@@ -8,7 +8,8 @@
   if (!ctx) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let width = 0, height = 0, stars = [], raf = 0, lastTime = 0;
-  let mx = 0, my = 0, tx = 0, ty = 0;
+  let meteor = null, nextMeteor = Infinity;
+  const meteorDelay = () => 5000 + Math.random() * 10000;
   const clamp = x => Math.min(1, Math.max(0, x));
   const smooth = (a, b, x) => { x = clamp((x - a) / (b - a)); return x * x * (3 - 2 * x); };
   const color = (a, b, t) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',')})`;
@@ -45,8 +46,6 @@
     const footer = document.querySelector('footer').getBoundingClientRect();
     const ground = Math.min(height * .945, footer.top - 24);
     const motion = !reduced.matches;
-    tx += ((motion && width > 700 ? mx : 0) - tx) * .05;
-    ty += ((motion && width > 700 ? my : 0) - ty) * .05;
     if (sun > 0) {
       const x = width * .65, radius = Math.min(width, height) * .085, y = ground + radius * .35 + height * .12 * (1 - sun);
       const glow = ctx.createRadialGradient(x, y, radius * .4, x, y, Math.max(width, height) * .55);
@@ -61,19 +60,52 @@
       ctx.lineTo(width, ground + 6 * Math.sin(width * .006) + 4 * Math.sin(width * .017 + 1));
       ctx.lineTo(width, height); ctx.closePath(); ctx.fill();
     }
-    const fade = 1 - .94 * smooth(.87, 1, progress);
+    const dawnWash = smooth(.87, 1, progress);
     stars.forEach(star => {
       const twinkle = motion ? .75 + .25 * Math.sin(time / 1000 * star.speed + star.phase) : .85;
-      ctx.globalAlpha = twinkle * fade * (.35 + .5 * star.depth);
       ctx.fillStyle = '#fff';
-      const x = star.x * width + tx * star.depth * 14;
-      let y = (star.y * height - (motion ? scrollY * star.depth * .18 : 0)) % height;
-      if (y < 0) y += height;
-      y += ty * star.depth * 10;
+      // Slow westward drift (about 3–6 px/sec), with seamless wrapping.
+      const drift = motion ? time / 1000 * (3 + 3 * star.depth) : 0;
+      let x = (star.x * width - drift) % width;
+      if (x < 0) x += width;
+      const y = star.y * height;
+      // Dawn washes out the low sky first, leaving the high stars visible.
+      const altitudeFade = 1 - dawnWash * smooth(.15, .8, y / height);
+      if (sun > 0 && y >= ground) return; // Never paint stars over the ground.
+      ctx.globalAlpha = twinkle * altitudeFade * (.35 + .5 * star.depth);
       if (star.four) fourStar(x, y, star.r);
       else { ctx.beginPath(); ctx.arc(x, y, star.r, 0, Math.PI * 2); ctx.fill(); }
     });
+    if (motion) drawMeteor(time, dawnWash, sun > 0 ? ground : height);
     ctx.globalAlpha = 1;
+  }
+  function drawMeteor(time, dawnWash, horizon) {
+    if (time >= nextMeteor) {
+      const direction = Math.random() < .5 ? -1 : 1;
+      const angle = .2 + Math.random() * .35;
+      meteor = { start: time, duration: 850 + Math.random() * 400,
+        x: width * (.25 + Math.random() * .5), y: height * (.08 + Math.random() * .3),
+        dx: Math.cos(angle) * direction, dy: Math.sin(angle),
+        distance: Math.min(width * .35, 480) };
+      nextMeteor = time + meteorDelay();
+    }
+    if (!meteor) return;
+    const t = (time - meteor.start) / meteor.duration;
+    if (t >= 1) { meteor = null; return; }
+    const x = meteor.x + meteor.dx * meteor.distance * t;
+    const y = meteor.y + meteor.dy * meteor.distance * t;
+    if (y >= horizon) return;
+    const length = Math.min(width * .16, 150) * Math.min(1, t * 5);
+    const tailX = x - meteor.dx * length, tailY = y - meteor.dy * length;
+    const visibility = 1 - dawnWash * smooth(.15, .8, y / height);
+    ctx.globalAlpha = Math.min(1, Math.sin(Math.PI * t) * 1.1 * visibility);
+    const trail = ctx.createLinearGradient(tailX, tailY, x, y);
+    trail.addColorStop(0, 'rgba(190,215,255,0)');
+    trail.addColorStop(1, 'rgba(225,237,255,.8)');
+    ctx.strokeStyle = trail; ctx.lineWidth = 2.4; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(tailX, tailY); ctx.lineTo(x, y); ctx.stroke();
+    ctx.fillStyle = '#eef5ff';
+    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fill();
   }
   function loop(time) {
     if (time - lastTime >= 33) { draw(time); lastTime = time; }
@@ -81,12 +113,13 @@
   }
   function restart() {
     cancelAnimationFrame(raf);
+    meteor = null;
+    nextMeteor = performance.now() + meteorDelay();
     if (!document.hidden && !reduced.matches) raf = requestAnimationFrame(loop);
     else if (!document.hidden) draw(performance.now());
   }
   addEventListener('resize', resize);
   addEventListener('scroll', () => { if (reduced.matches) draw(performance.now()); }, { passive: true });
-  addEventListener('pointermove', e => { mx = e.clientX / width - .5; my = e.clientY / height - .5; }, { passive: true });
   document.addEventListener('visibilitychange', restart);
   reduced.addEventListener('change', restart);
   resize(); restart();

@@ -1,5 +1,9 @@
 # Homepage and story pages
 
+## Shared sky updates
+
+`home-sky.js` renders the shared canvas background. Dawn now fades stars by altitude, retaining the high sky and hiding stars over the ground. A silent shooting star with a faint gradient trail appears at randomized 5–15 second intervals, lasts roughly one second, and respects dawn visibility, reduced motion and hidden tabs. Scroll and pointer parallax are completely removed. Stars still drift left at roughly 3–6 px/sec depending on depth, wrapping across the viewport; reduced-motion mode remains still. No audio or extra input assets. Script URLs carry a content hash so normal reloads pick up changes. Checks: `node homepage/tests/sky.cjs` and `node homepage/tests/shooting-star.cjs`; browser rendering also inspected.
+
 ## Software Factories replacement – 2026-11-03
 
 The current factory story is the second owner-directed draft. `software-factories-copy.md` is its maintained Markdown input; `tools/build_software_factories.py` parses visible copy, standalone quotations and linked attributions, omitting editorial/graphic notes. The hero has no final period. Problem 1 uses Intercom's firsthand quote, rather than the previous paragraph (self-reported experience, not an independent productivity measurement). Problems 2 and 3 now explicitly concern an AI software factory and becoming out of date. The centered transition reads “Start with hands-on collaboration / Build toward hands-off automation.” Solutions distinguish developing the process together, defining standards and verifying results, and future-proofing through portable practices. The first rendered draft/copy is preserved locally in `IGNORED/software-factory-draft-1/`.

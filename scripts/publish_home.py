@@ -53,14 +53,14 @@ def main(src: Path) -> None:
     local_files, asset_files = set(), set()
     for page in PAGES:
         text = (src / page).read_text(encoding="utf-8")
-        for ref in re.findall(r'(?:href|src)="([\w\-]+\.(?:css|js))"', text):
+        for ref in re.findall(r'(?:href|src)="([\w\-]+\.(?:css|js))(?:\?[^"\s]*)?"', text):
             local_files.add(ref)
         for ref in re.findall(r'assets/([\w.\-]+)', text):
             asset_files.add(ref)
         title = html.unescape(re.search(r"<title>(.*?)</title>", text, re.S).group(1)).strip()
         desc = html.unescape(re.search(r'<meta name="description" content="(.*?)"', text, re.S).group(1))
 
-        text = re.sub(r'((?:href|src)=")([\w\-]+\.(?:css|js))"', r'\1home/\2"', text)
+        text = re.sub(r'((?:href|src)=")([\w\-]+\.(?:css|js))(\?[^"\s]*)?"', r'\1home/\2\3"', text)
         text = re.sub(r'(?<![\w/\-])assets/([\w.\-]+)', r'home/assets/\1', text)
         # Keep internal navigation on this host, including during local preview.
         text = text.replace(f'href="{SITE}/blog/', 'href="/blog/')
