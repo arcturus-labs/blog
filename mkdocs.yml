@@ -10,10 +10,18 @@ theme:
   custom_dir: overrides
   logo: assets/images/logo.png
   favicon: assets/images/favicon.ico
+  palette:
+    scheme: slate
+    primary: custom
+    accent: custom
+  font:
+    text: DM Sans
+    code: Roboto Mono
   features:
     - content.code.copy
 extra_css:
   - assets/stylesheets/custom.css
+  - assets/stylesheets/blog-theme.css
 extra_javascript:
     - assets/scripts/custom.js      
 hooks:
