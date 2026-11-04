@@ -56,8 +56,10 @@ h1,h2,h3 { font-family: var(--heading); letter-spacing: -.045em; line-height: 1.
 .story-outline a.active { background: #f3f4f6; color: #172136; }
 .story-outline a.active .number { color: #47546c; }
 .moments { min-width: 0; }
-.moment { min-height: 90svh; display: flex; flex-direction: column; justify-content: center; padding: 5vh 0; gap: 28px; scroll-margin-top: 24px; }
-.scene { width: 100%; }
+.moment-group { min-height: 90svh; display: flex; flex-direction: column; justify-content: center; padding: 5vh 0; gap: 28px; scroll-margin-top: 24px; }
+/* A group draws its picture once; the copy of each moment follows it. */
+.moment-copies { display: grid; gap: 24px; }
+.scene { width: 100%; opacity: var(--scene-opacity,1); }
 .scene img { width: 100%; height: auto; display: block; }
 .moment-copy { width: 100%; margin-inline: auto; font-size: clamp(1.05rem,1.5vw,1.4rem); line-height: 1.55; padding: 0; }
 .moment-copy p+p { margin-top: 12px; }
@@ -83,13 +85,19 @@ h1,h2,h3 { font-family: var(--heading); letter-spacing: -.045em; line-height: 1.
   .is-pinned .story-stage { position: sticky; top: 0; height: 100svh; align-items: center; padding: 5vh 0; }
   .is-pinned .story-outline { position: static; padding: 0; }
   .is-pinned .moments { height: 90svh; position: relative; }
-  .is-pinned .moment { position: absolute; inset: 0; padding: 0; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .3s ease,visibility .3s; }
+  .is-pinned .moment-group { position: absolute; inset: 0; padding: 0; min-height: 0; align-items: center; gap: 24px; pointer-events: none; }
+  /* The picture fades only when its group becomes (in)active, so moments that
+     share a picture never dim it; each moment's copy fades in place, stacked
+     in one grid cell. */
+  .is-pinned .scene { visibility: hidden; opacity: 0; transition: opacity .3s ease,visibility .3s; }
+  .is-pinned .moment-group.active .scene { visibility: visible; opacity: var(--scene-opacity,1); }
+  .is-pinned .moment { grid-area: 1 / 1; visibility: hidden; opacity: 0; transition: opacity .3s ease,visibility .3s; }
   .is-pinned .moment.active { visibility: visible; opacity: 1; pointer-events: auto; }
   /* JS measures each step as one centered picture+copy group. Copy shares the
      picture's actual width, not the wider column's width. Equal reserved copy
      heights keep repeated illustrations stationary across that step. */
-  .is-pinned .scene,.is-pinned .moment-copy { width: var(--media-width,100%); flex-shrink: 0; }
-  .is-pinned .moment-copy { min-height: var(--copy-height,auto); }
+  .is-pinned .scene,.is-pinned .moment-copies { width: var(--media-width,100%); flex-shrink: 0; }
+  .is-pinned .moment-copies { gap: 0; min-height: var(--copy-height,auto); }
 }
 
 .proof { padding: 5vh 0 10vh; text-align: center; }
@@ -143,7 +151,7 @@ footer nav a:hover { text-decoration: underline; }
   .story-outline { position: static; padding: 45px 0 10px; }
   .story-outline ol { display: none; }
   .story-outline .eyebrow { margin: 0; }
-  .moment { min-height: 0; padding: 45px 0 65px; gap: 24px; max-width: 750px; margin-inline: auto; }
+  .moment-group { min-height: 0; padding: 45px 0 65px; gap: 24px; max-width: 750px; margin-inline: auto; }
   .mobile-heading { display: block; font-size: clamp(1.65rem,5vw,2.8rem); max-width: 650px; }
   .scene img { max-height: none; }
   .moment-copy { font-size: 1.1rem; padding: 0; }
@@ -173,7 +181,7 @@ footer nav a:hover { text-decoration: underline; }
   .hero .eyebrow { margin-bottom: 25px; }
   .hero-turn { margin-top: .35em; }
   .story { width: 90%; }
-  .moment { padding-bottom: 45px; }
+  .moment-group { padding-bottom: 45px; }
   .moment-copy { font-size: 1rem; }
   .moment-copy .source-context { font-size: .7rem; }
   .moment-copy blockquote { padding-left: 15px; }
@@ -200,8 +208,10 @@ footer nav a:hover { text-decoration: underline; }
   .story-stage,.is-pinned .story-stage { display: block; position: static; height: auto; }
   .story-outline ol { display: none; }
   .moments,.is-pinned .moments { height: auto; }
-  .is-pinned .moment,.moment { position: static; visibility: visible; opacity: 1; display: block; padding: 20px 0; break-inside: avoid; }
-  .is-pinned .scene,.is-pinned .moment-copy { position: static; height: auto; width: 100%; min-height: 0; }
+  .is-pinned .moment-group,.moment-group { position: static; display: block; padding: 20px 0; min-height: 0; break-inside: avoid; }
+  .is-pinned .moment { grid-area: auto; visibility: visible; opacity: 1; }
+  .is-pinned .scene { visibility: visible; opacity: var(--scene-opacity,1); }
+  .is-pinned .scene,.is-pinned .moment-copies { position: static; height: auto; width: 100%; min-height: 0; }
   .turning-point.is-dwell,.proof-intro.is-dwell { height: auto; }
   .is-dwell .turn-stage,.is-dwell .proof-stage { position: static; height: auto; min-height: 0; }
   .scene img { max-height: 300px; }

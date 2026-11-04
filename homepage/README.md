@@ -1,5 +1,14 @@
 # Homepage and story pages
 
+## Story pictures: one picture per run of moments
+
+A run of consecutive moments in one step that share a picture is one **moment group** (`.moment-group`): one heading, one picture, and a `.moment` article per copy. `story_page._groups()` builds this for generated pages; `templates/agentic-web.html` is written the same way. The group carries `id` (the first moment's id, which the outline links to) and `data-step`; later moments keep their own ids for deep links.
+
+- **Pinned (desktop):** the picture belongs to the group and fades only when the group changes, so moving between moments that share it never dims it (previously both copies of the picture were half-faded at once, a 25% dip on Agentic solution 3). Each moment's copy still cross-fades, stacked in one grid cell. Changing groups cross-fades exactly as before.
+- **Narrow, reduced motion, no script:** the picture appears once, followed by the moments' copy. On Workflows the dimmed evidence picture sits behind the first block only.
+- Do not repeat a picture on consecutive moments by hand; give them the same art and step and the builder groups them. Different pictures in one step stay separate groups and keep the common size and reserved copy height.
+- Checks: `python3 -I homepage/tests/story-groups.py`; `tests/story-pages.cjs` samples every frame of each moment change (steady picture within a group, cross-fade between groups) and asserts one picture per group in every view.
+
 ## Shared sky updates
 
 `home-sky.js` renders the shared canvas background. Dawn now fades stars by altitude, retaining the high sky and hiding stars over the ground. A silent shooting star with a faint gradient trail appears at randomized 5–15 second intervals, lasts roughly one second, and respects dawn visibility, reduced motion and hidden tabs. Depth-based vertical scroll parallax is retained at double its original strength; mouse/pointer parallax is removed. Stars also drift left at roughly 3–6 px/sec depending on depth, wrapping across the viewport; reduced-motion mode remains still. No audio or extra input assets. Script URLs carry a content hash so normal reloads pick up changes. Checks: `node homepage/tests/sky.cjs` and `node homepage/tests/shooting-star.cjs`; browser rendering also inspected.

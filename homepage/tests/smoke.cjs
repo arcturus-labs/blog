@@ -63,11 +63,11 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
             }, { id, i });
             await sleep(350);
             const frame = await page.locator('#' + id + ' .moment.active').evaluate(async m => {
-              const img = m.querySelector('img'); await img.decode();
-              const copy = m.querySelector('.moment-copy').getBoundingClientRect();
+              const group = m.closest('.moment-group'); const img = group.querySelector('img'); await img.decode();
+              const copy = group.querySelector('.moment-copies').getBoundingClientRect(); // the copies' shared reserved box
               const image = img.getBoundingClientRect();
               const outline = m.closest('[data-story]').querySelector('.story-outline').getBoundingClientRect();
-              return { id: m.id, step: m.dataset.step, copyBottom: copy.bottom, copyLeft: copy.left, copyWidth: copy.width, groupCenter: (image.top+copy.bottom)/2, image: [image.x,image.y,image.width,image.height], outlineBottom: outline.bottom, height: innerHeight };
+              return { id: group.id, step: group.dataset.step, copyBottom: copy.bottom, copyLeft: copy.left, copyWidth: copy.width, groupCenter: (image.top+copy.bottom)/2, image: [image.x,image.y,image.width,image.height], outlineBottom: outline.bottom, height: innerHeight };
             });
             assert(frame.copyBottom <= frame.height - 5, `${name} ${frame.id} text clipped: ${frame.copyBottom}`);
             assert(frame.outlineBottom <= frame.height, `${name} outline clipped`);
@@ -85,6 +85,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
         assert.equal(bounds.length, 8);
       } else {
         assert.equal(await page.locator('.moment[aria-hidden="true"]').count(), 0);
+        assert.equal(await page.locator('#s3 img').count(), 1, 'solution 3 shows its picture once');
         // Scroll each illustration into view so lazy loading is actually tested.
         for (const image of await page.locator('.scene img').all()) {
           await image.scrollIntoViewIfNeeded(); await image.evaluate(i => i.decode());
@@ -144,7 +145,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
         await page.locator('#proof').scrollIntoViewIfNeeded(); await sleep(350);
         await page.screenshot({ path: '/tmp/arcturus3-proof.png' });
         await page.locator('.solution a[href="#s3"]').click(); await sleep(1200);
-        assert.equal(await page.locator('#solution .moment.active').getAttribute('id'), 's3');
+        assert.equal(await page.locator('#solution .moment-group.active').getAttribute('id'), 's3');
         // Cue fades, doesn't abruptly disappear, and comes back at the top.
         for (const [y, low, high] of [[0,.99,1],[60,.1,.99],[240,0,0],[0,.99,1]]) {
           await page.evaluate(y => scrollTo({ top: y, behavior: 'instant' }), y); await sleep(80);

@@ -77,15 +77,43 @@ def _img(prefix, alt, size, first=False):
             f'alt="{alt}" {loading}></figure>')
 
 
+def _groups(items):
+    """Consecutive moments of one step that share a picture form one group.
+
+    A group draws its picture once and cross-fades only the copy between its
+    moments, so a repeated scene neither flickers nor repeats on narrow screens.
+    """
+    groups = []
+    for m in items:
+        if groups and (groups[-1][0]['step'], groups[-1][0]['prefix']) == (m['step'], m['prefix']):
+            assert groups[-1][0].get('class_name') == m.get('class_name'), m['id']
+            groups[-1].append(m)
+        else:
+            groups.append([m])
+    return groups
+
+
 def _moments(items, first_page=False):
-    """items: list of dict(id, step, heading|None, prefix, alt, copy)."""
+    """items: list of dict(id, step, heading|None, prefix, alt, copy).
+
+    The group takes its first moment's id, which the outline links to; later
+    moments keep their own ids as deep-link targets.
+    """
     out = []
-    for n, m in enumerate(items):
-        heading = f'          <h2 class="mobile-heading">{m["heading"]}</h2>\n' if m.get('heading') else ''
+    for n, group in enumerate(_groups(items)):
+        lead = group[0]
+        heading = next((m['heading'] for m in group if m.get('heading')), None)
+        heading_html = f'          <h2 class="mobile-heading">{heading}</h2>\n' if heading else ''
+        classes = 'moment-group' + (' ' + lead['class_name'] if lead.get('class_name') else '')
+        copies = []
+        for i, m in enumerate(group):
+            ident = f' id="{m["id"]}"' if i else ''
+            copies.append(f'            <article class="moment"{ident}>\n'
+                          f'              <div class="moment-copy">{m["copy"]}</div>\n            </article>')
         out.append(
-            f'        <article class="moment{(" " + m["class_name"]) if m.get("class_name") else ""}" id="{m["id"]}" data-step="{m["step"]}">\n{heading}'
-            f'          {_img(m["prefix"], m["alt"], m["size"], first=first_page and n == 0)}\n'
-            f'          <div class="moment-copy">{m["copy"]}</div>\n        </article>')
+            f'        <div class="{classes}" id="{lead["id"]}" data-step="{lead["step"]}">\n{heading_html}'
+            f'          {_img(lead["prefix"], lead["alt"], lead["size"], first=first_page and n == 0)}\n'
+            f'          <div class="moment-copies">\n' + '\n'.join(copies) + '\n          </div>\n        </div>')
     return '\n'.join(out)
 
 

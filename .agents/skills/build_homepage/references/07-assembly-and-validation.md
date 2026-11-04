@@ -18,6 +18,7 @@ Use progressive enhancement: normal reading flow without JavaScript; natural lay
 - Center the **image plus its copy as one group**. Anchoring all images at the top of the viewport made the right side feel too high.
 - Match copy width/left edge to the **actual displayed illustration**, not a wider grid column. A full-width `img` with `object-fit:contain` can have narrower visible content, leaving its caption seemingly far to the left.
 - Measure natural image ratios, available column width and text height after fonts/images load. Reserve a common maximum copy height for moments sharing one step so the same picture cannot move when a paragraph changes.
+- Moments that share a picture are one `.moment-group` (builder: `story_page._groups`): the picture is drawn once, fades only when its group changes, and appears once on narrow screens. Never give consecutive moments their own copy of the same image; that makes the picture dim between moments (both copies half-faded) and repeat on phones.
 - Test real image and copy bounds, not just “no overflow”. Keep all moments readable without enlargement controls.
 
 ### Make active state and timing obvious

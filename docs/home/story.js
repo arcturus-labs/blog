@@ -6,7 +6,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const wide = matchMedia('(min-width: 901px) and (min-height: 660px)');
   const stories = [...document.querySelectorAll('[data-story]')].map(section => ({
-    section, moments: [...section.querySelectorAll('.moment')],
+    section, groups: [...section.querySelectorAll('.moment-group')], moments: [...section.querySelectorAll('.moment')],
     links: [...section.querySelectorAll('.story-outline li a')], index: -1
   }));
   let queued = false;
@@ -15,46 +15,45 @@
   const dwellSections = document.querySelectorAll('.turning-point,.proof-intro');
   function layoutMedia(story) {
     const columnWidth = story.section.querySelector('.moments').clientWidth;
-    const groups = new Map();
-    story.moments.forEach(moment => {
-      const step = moment.dataset.step;
-      if (!groups.has(step)) groups.set(step, []);
-      groups.get(step).push(moment);
-      moment.style.removeProperty('--copy-height');
+    const steps = new Map();
+    story.groups.forEach(group => {
+      if (!steps.has(group.dataset.step)) steps.set(group.dataset.step, []);
+      steps.get(group.dataset.step).push(group);
+      group.style.removeProperty('--copy-height');
     });
-    groups.forEach(group => {
-      const img = group[0].querySelector('img');
+    steps.forEach(groups => {
+      const img = groups[0].querySelector('img');
       const ratio = (img.naturalWidth || Number(img.getAttribute('width'))) /
         (img.naturalHeight || Number(img.getAttribute('height')));
+      const setWidth = width => groups.forEach(group => group.style.setProperty('--media-width', `${width}px`));
+      const copyHeight = () => Math.max(...groups.flatMap(group => [...group.querySelectorAll('.moment-copy')]).map(copy => copy.getBoundingClientRect().height));
       // Opt-in evidence overlays center readable HTML over dimmed artwork.
       // Other story scenes retain their existing picture-plus-copy layout.
-      if (group[0].classList.contains('quote-overlay')) {
-        const width = Math.min(columnWidth, innerHeight * .82 * ratio);
-        group.forEach(moment => moment.style.setProperty('--media-width', `${width}px`));
+      if (groups[0].classList.contains('quote-overlay')) {
+        setWidth(Math.min(columnWidth, innerHeight * .82 * ratio));
         return;
       }
       const maxImageHeight = Math.min(innerHeight * .52, 560);
       const available = innerHeight * .84;
       let width = Math.min(columnWidth, maxImageHeight * ratio);
-      let textHeight = 0;
       // Narrower media means narrower copy. Iterate to reserve enough room for
-      // both, then apply one common width/copy-height to every moment in a step.
+      // both, then apply one common width/copy-height to every group in a step.
       for (let i = 0; i < 4; i++) {
-        group.forEach(moment => moment.style.setProperty('--media-width', `${width}px`));
-        textHeight = Math.max(...group.map(moment => moment.querySelector('.moment-copy').getBoundingClientRect().height));
-        const allowedHeight = Math.max(180, available - 24 - textHeight);
+        setWidth(width);
+        const allowedHeight = Math.max(180, available - 24 - copyHeight());
         const nextWidth = Math.min(columnWidth, maxImageHeight * ratio, allowedHeight * ratio);
         if (Math.abs(nextWidth - width) < 1) break;
         width = nextWidth;
       }
-      group.forEach(moment => moment.style.setProperty('--media-width', `${width}px`));
-      textHeight = Math.max(...group.map(moment => moment.querySelector('.moment-copy').getBoundingClientRect().height));
-      group.forEach(moment => moment.style.setProperty('--copy-height', `${textHeight}px`));
+      setWidth(width);
+      const textHeight = copyHeight();
+      groups.forEach(group => group.style.setProperty('--copy-height', `${textHeight}px`));
     });
   }
   function activate(story, index) {
     if (index === story.index) return;
     story.index = index;
+    const current = story.moments[index].closest('.moment-group');
     story.moments.forEach((moment, i) => {
       const active = i === index;
       moment.classList.toggle('active', active);
@@ -62,9 +61,11 @@
       if (active) moment.removeAttribute('aria-hidden');
       else moment.setAttribute('aria-hidden', 'true');
       // The next illustration should already be decoded when it comes into view.
-      if (Math.abs(i - index) <= 1) moment.querySelectorAll('img').forEach(img => { img.loading = 'eager'; });
+      if (Math.abs(i - index) <= 1) moment.closest('.moment-group').querySelectorAll('img').forEach(img => { img.loading = 'eager'; });
     });
-    const step = story.moments[index].dataset.step;
+    // The picture belongs to its group, so it changes only when the group does.
+    story.groups.forEach(group => group.classList.toggle('active', group === current));
+    const step = current.dataset.step;
     story.links.forEach(link => {
       const active = link.dataset.step === step;
       link.classList.toggle('active', active);
@@ -96,7 +97,8 @@
         layoutMedia(story);
       } else {
         story.section.style.removeProperty('height');
-        story.moments.forEach(moment => { moment.inert = false; moment.removeAttribute('aria-hidden'); moment.classList.remove('active'); moment.style.removeProperty('--media-width'); moment.style.removeProperty('--copy-height'); });
+        story.moments.forEach(moment => { moment.inert = false; moment.removeAttribute('aria-hidden'); moment.classList.remove('active'); });
+        story.groups.forEach(group => { group.classList.remove('active'); group.style.removeProperty('--media-width'); group.style.removeProperty('--copy-height'); });
         story.links.forEach(link => { link.removeAttribute('aria-current'); link.classList.remove('active'); });
       }
     });
@@ -121,9 +123,11 @@
   }
   function requestUpdate() { if (!queued) { queued = true; requestAnimationFrame(update); } }
   function navigate(target, behavior = 'smooth') {
-    const story = stories.find(s => s.moments.includes(target));
+    // A group's id names its first moment; a later moment keeps its own id.
+    const moment = target.classList.contains('moment-group') ? target.querySelector('.moment') : target;
+    const story = stories.find(s => s.moments.includes(moment));
     if (story && story.section.classList.contains('is-pinned')) {
-      const index = story.moments.indexOf(target);
+      const index = story.moments.indexOf(moment);
       const travel = story.section.offsetHeight - innerHeight;
       scrollTo({ top: scrollY + story.section.getBoundingClientRect().top + (index + .35) / story.moments.length * travel, behavior });
       activate(story, index);

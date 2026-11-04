@@ -5,6 +5,18 @@ const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const pages = (process.env.PAGES || 'workflows.html').split(',');
+// Scroll a pinned story to a moment and record, every frame, the computed opacity of the given scenes.
+const opacityTrace = (page, storyId, index, selectors, ms = 700) => page.evaluate(({ storyId, index, selectors, ms }) => new Promise(resolve => {
+  const trace = Object.fromEntries(selectors.map(s => [s, []]));
+  const start = performance.now();
+  const story = document.getElementById(storyId);
+  scrollTo({ top: scrollY + story.getBoundingClientRect().top + (index + .45) * innerHeight, behavior: 'instant' });
+  (function frame() {
+    selectors.forEach(sel => trace[sel].push(Number(getComputedStyle(document.querySelector(sel)).opacity)));
+    if (performance.now() - start < ms) requestAnimationFrame(frame); else resolve(trace);
+  })();
+}), { storyId, index, selectors, ms });
+const pictureCount = { 'agentic-web.html': 6, 'workflows.html': 7, 'software-factories.html': 7 };
 const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
 (async () => {
   const browser = await chromium.launch({ headless: true });
@@ -40,19 +52,21 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
         if (file === 'workflows.html') {
           assert.equal(await page.locator('#problem .story-outline li').count(), 3, tag + ' problem outline');
           assert.equal(await page.locator('#solution .story-outline li').count(), 4, tag + ' virtuous-cycle outline');
-          assert.equal(await page.locator('.quote-overlay').count(), 3, tag + ' toil evidence overlays');
+          assert.equal(await page.locator('.quote-overlay').count(), 1, tag + ' one toil evidence group');
+          assert.equal(await page.locator('.quote-overlay .moment').count(), 3, tag + ' three toil evidence moments');
+          assert.equal(await page.locator('#p1 img').count(), 1, tag + ' toil evidence shares one picture');
           assert.equal(await page.locator('#s4').count(), 1, tag + ' fourth solution');
           assert.match(await page.locator('h1').innerText(), /Scale their expertise,/);
           for (const text of ['41%', '4.9 hours', '60–70%']) {
             assert(body.includes(text), tag + ' missing evidence ' + text);
           }
           assert.match(await page.locator('#p2 blockquote').textContent(), /I wasn't a financial advisor/);
-          assert.equal(await page.locator('.scene img[src*="wf-constellation"]').count(), 9, tag + ' constellation scenes');
+          assert.equal(await page.locator('.scene img[src*="wf-constellation"]').count(), 7, tag + ' constellation scenes');
           assert.equal((await page.locator('#turn-title').textContent()).replace(/\s+/g, ' ').trim(), 'Augment your experts on day one.Keep humans in charge.Automate tasks dependably.', tag + ' solution lead-in');
           assert.match(await page.locator('#p2 .mobile-heading').innerText(), /How can you trust/);
           assert.equal(await page.locator('#p2 .moment-copy > p').count(), 0, tag + ' quote stands alone');
           assert.equal(await page.locator('#s2-study,#s2-first-drafts').count(), 0, tag + ' removed statistic moments');
-          assert.equal(await page.locator('#solution .moment[data-step="1"]').count(), 1, tag + ' solution 2 is a single moment');
+          assert.equal(await page.locator('#solution .moment-group[data-step="1"] .moment').count(), 1, tag + ' solution 2 is a single moment');
           assert.equal(await page.locator('#s2-expert-judgment').count(), 0, tag + ' removed Joe Choy slide');
           assert(!body.includes('Joe Choy') && !body.includes('strong starting point'), tag + ' no lawyer quote');
           assert(!body.includes('5,172') && !body.includes('25–35%'), tag + ' removed numeric moments');
@@ -91,6 +105,15 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
           assert.equal((await page.locator('#turn-title').textContent()).trim(), 'Start with hands-on collaborationBuild toward hands-off automation');
           assert.equal(await page.locator('#s2-verify').count(), 1, tag + ' independent verification');
         }
+        // A run of moments that shares a picture draws it once, in every layout.
+        assert.equal(await page.locator('.scene img').count(), pictureCount[file], tag + ' one picture per group');
+        assert.equal(await page.locator('.moment-group').evaluateAll(groups => groups.filter(g => g.querySelectorAll('img').length !== 1).length), 0, tag + ' each group has exactly one picture');
+        assert.equal(await page.evaluate(() => { const s = [...document.querySelectorAll('.scene img')].map(i => i.getAttribute('src')); return s.filter((x, i) => i && x === s[i - 1]).length; }), 0, tag + ' no repeated picture in a row');
+        if (file === 'agentic-web.html') {
+          assert.equal(await page.locator('#s3 .moment').count(), 3, tag + ' solution 3 keeps its three moments');
+          assert.equal(await page.locator('#s3 img').count(), 1, tag + ' solution 3 shows its picture once');
+          assert.equal(await page.locator('#s3-shared, #s3-aware').count(), 2, tag + ' later moments stay deep-linkable');
+        }
         const moments = await page.locator('.moment').count();
         const pinned = await page.locator('.is-pinned').count();
         if (pinned) {
@@ -104,11 +127,12 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
               }, { id, i });
               await sleep(350);
               const f = await page.locator(`#${id} .moment.active`).evaluate(async m => {
-                const img = m.querySelector('img'); await img.decode();
-                const copy = m.querySelector('.moment-copy').getBoundingClientRect();
+                const group = m.closest('.moment-group'); const img = group.querySelector('img'); await img.decode();
+                // Copies share one reserved box (the tallest copy); measure it, except overlays, whose copy is centered in it.
+                const copy = (group.classList.contains('quote-overlay') ? m.querySelector('.moment-copy') : group.querySelector('.moment-copies')).getBoundingClientRect();
                 const image = img.getBoundingClientRect();
                 const outline = m.closest('[data-story]').querySelector('.story-outline').getBoundingClientRect();
-                return { id: m.id, step: m.dataset.step, overlay: m.classList.contains('quote-overlay'), copyTop: copy.top, copyCenter: (copy.top + copy.bottom) / 2, copyBottom: copy.bottom, copyLeft: copy.left, copyWidth: copy.width, center: (image.top + copy.bottom) / 2,
+                return { id: group.id, key: m.id || group.id, step: group.dataset.step, overlay: group.classList.contains('quote-overlay'), copyTop: copy.top, copyCenter: (copy.top + copy.bottom) / 2, copyBottom: copy.bottom, copyLeft: copy.left, copyWidth: copy.width, center: (image.top + copy.bottom) / 2,
                          image: [image.x, image.y, image.width, image.height], outlineBottom: outline.bottom, outlineTop: outline.top, h: innerHeight };
               });
               assert(f.copyBottom <= f.h - 5, `${tag} ${f.id} copy clipped`);
@@ -121,9 +145,11 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
                 assert(opacity > 0 && opacity < .4, `${tag} ${f.id} artwork not dimmed behind text`);
               }
               assert.equal(await page.locator(`#${id} [aria-current="step"]`).count(), 1);
+              assert.equal(await page.locator(`#${id} .moment-group.active`).count(), 1, `${tag} exactly one group on screen`);
+              assert.equal(await page.locator(`#${id} .moment-group.active`).getAttribute('id'), f.id, `${tag} active group owns the active moment`);
               if (seen.has(f.step)) assert.deepEqual(f.image, seen.get(f.step), `${tag} ${f.id} image moved`);
               seen.set(f.step, f.image);
-              if (name === 'laptop') await page.screenshot({ path: `/tmp/${file.replace('.html','')}-${f.id}.png` });
+              if (name === 'laptop') await page.screenshot({ path: `/tmp/${file.replace('.html','')}-${f.key}.png` });
             }
           }
         } else {
@@ -158,8 +184,29 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
           await page.evaluate(() => scrollBy({ top: 250, behavior: 'instant' })); await sleep(100);
           assert.equal(a.y, (await page.locator('.turn-stage').boundingBox()).y, tag + ' transition dwell');
           await page.screenshot({ path: `/tmp/${file.replace('.html','')}-transition.png` });
+          for (const storyId of ['problem', 'solution']) {
+            const groupIds = await page.evaluate(id => [...document.querySelectorAll(`#${id} .moment`)].map(m => m.closest('.moment-group').id), storyId);
+            for (let i = 0; i < groupIds.length - 1; i++) {
+              await opacityTrace(page, storyId, i, [`#${groupIds[i]} .scene`], 60); await sleep(700);
+              const [from, to] = [groupIds[i], groupIds[i + 1]];
+              if (from === to) {
+                // Same picture: it must stay perfectly steady (no dip) while only the copy changes.
+                const steady = (await opacityTrace(page, storyId, i + 1, [`#${from} .scene`]))[`#${from} .scene`];
+                assert(Math.max(...steady) - Math.min(...steady) < .005, `${tag} ${storyId} #${from} picture flickers between moments: ${Math.min(...steady)}-${Math.max(...steady)}`);
+              } else {
+                // Different pictures: the cross-fade is kept (neither swaps instantly).
+                const trace = await opacityTrace(page, storyId, i + 1, [`#${from} .scene`, `#${to} .scene`]);
+                const outgoing = trace[`#${from} .scene`], incoming = trace[`#${to} .scene`];
+                const top = Math.max(...outgoing);
+                assert(outgoing.some(v => v > .1 * top && v < .9 * top), `${tag} ${storyId} #${from} picture should fade out, saw ${outgoing.map(v => v.toFixed(2)).join(' ')}`);
+                assert(incoming.some(v => v > .1 && v < .9 * Math.max(...incoming)), `${tag} ${storyId} #${to} picture should fade in`);
+              }
+              await sleep(500);
+            }
+          }
+          await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' })); await sleep(300);
           await page.locator('.solution a[data-step="2"]').click(); await sleep(1200);
-          assert.equal(await page.locator('#solution .moment.active').getAttribute('data-step'), '2');
+          assert.equal(await page.locator('#solution .moment-group.active').getAttribute('data-step'), '2');
           await page.locator('#proof').scrollIntoViewIfNeeded(); await sleep(300);
           await page.screenshot({ path: `/tmp/${file.replace('.html','')}-proof.png` });
           assert.equal(await page.locator('.testimonials figure').count(), 4);
