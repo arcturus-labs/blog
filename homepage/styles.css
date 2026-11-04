@@ -37,7 +37,7 @@ h1,h2,h3 { font-family: var(--heading); letter-spacing: -.045em; line-height: 1.
 .hero-turn { display: block; color: var(--gold); margin-top: .16em; text-align: right; }
 .hero-sub { text-align: center; text-wrap: balance; color: var(--muted); font-size: clamp(1rem,1.5vw,1.3rem); margin-top: 30px; }
 .scroll-cue-fade { position: absolute; inset: 0; pointer-events: none; }
-.scroll-cue { pointer-events: auto; position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); text-decoration: none; text-align: center; white-space: nowrap; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.scroll-cue { pointer-events: none; cursor: default; user-select: none; position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); text-decoration: none; text-align: center; white-space: nowrap; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .scroll-cue span { display: block; font-size: 1.5rem; line-height: 1.3; margin-top: 8px; }
 .has-js .scroll-cue { opacity: 0; animation: cue-in 1s 2.8s forwards; }
 @keyframes cue-in { to { opacity: 1; } }

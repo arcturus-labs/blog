@@ -150,7 +150,7 @@ def build(cfg):
 <main>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy"><p class="eyebrow">{cfg["eyebrow"]}</p><h1 id="hero-title">{cfg["h1"]}<span class="hero-turn">{cfg["turn"]}</span></h1><p class="hero-sub">{cfg["sub"]}</p></div>
-    <div class="scroll-cue-fade"><a class="scroll-cue" href="#problem">Scroll to explore<span aria-hidden="true">↓</span></a></div>
+    <div class="scroll-cue-fade"><div class="scroll-cue" aria-hidden="true">Scroll to explore<span aria-hidden="true">↓</span></div></div>
   </section>
 '''
     story = '''
