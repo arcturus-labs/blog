@@ -54,7 +54,8 @@ class HomeTests(unittest.TestCase):
             for ref in re.findall(r'(?:href|src)="([^"]+)"', text):
                 if ref.startswith(("http", "#", "mailto:")):
                     continue
-                p = ROOT / "site" / ref.lstrip("/")
+                # Cache-busting query strings (e.g. home-sky.js?v=hash) are not part of the filename.
+                p = ROOT / "site" / ref.split("?", 1)[0].lstrip("/")
                 self.assertTrue(p.exists(), (page, ref))
             for asset in re.findall(r'home/assets/([\w.\-]+)', text):
                 self.assertTrue((ROOT / "site/home/assets" / asset).is_file(), asset)

@@ -42,7 +42,11 @@ for (let i = 0; i < first.length; i++) {
   assert.equal(first[i].y, later[i].y, 'time drift is horizontal');
 }
 const scrolled = render(100, true, 1000);
-assert.deepEqual(first, scrolled, 'scroll does not move stars');
+for (let i = 0; i < first.length; i++) {
+  const displacement = (first[i].y - scrolled[i].y + 900) % 900;
+  assert(displacement >= 7.19 && displacement <= 36.01, 'depth-based scroll parallax');
+  assert.equal(first[i].x, scrolled[i].x, 'scroll parallax is vertical');
+}
 assert(!source.includes('pointermove'), 'no pointer parallax listener');
 assert.deepEqual(render(0, false, 1000), render(0, false, 2000), 'reduced motion disables drift');
-console.log('Sky altitude-fade, drift and no-parallax checks passed');
+console.log('Sky altitude-fade, drift and scroll-parallax checks passed');

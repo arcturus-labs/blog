@@ -2,7 +2,7 @@
 
 ## Shared sky updates
 
-`home-sky.js` renders the shared canvas background. Dawn now fades stars by altitude, retaining the high sky and hiding stars over the ground. A silent shooting star with a faint gradient trail appears at randomized 5–15 second intervals, lasts roughly one second, and respects dawn visibility, reduced motion and hidden tabs. Scroll and pointer parallax are completely removed. Stars still drift left at roughly 3–6 px/sec depending on depth, wrapping across the viewport; reduced-motion mode remains still. No audio or extra input assets. Script URLs carry a content hash so normal reloads pick up changes. Checks: `node homepage/tests/sky.cjs` and `node homepage/tests/shooting-star.cjs`; browser rendering also inspected.
+`home-sky.js` renders the shared canvas background. Dawn now fades stars by altitude, retaining the high sky and hiding stars over the ground. A silent shooting star with a faint gradient trail appears at randomized 5–15 second intervals, lasts roughly one second, and respects dawn visibility, reduced motion and hidden tabs. Depth-based vertical scroll parallax is retained at double its original strength; mouse/pointer parallax is removed. Stars also drift left at roughly 3–6 px/sec depending on depth, wrapping across the viewport; reduced-motion mode remains still. No audio or extra input assets. Script URLs carry a content hash so normal reloads pick up changes. Checks: `node homepage/tests/sky.cjs` and `node homepage/tests/shooting-star.cjs`; browser rendering also inspected.
 
 ## Software Factories replacement – 2026-11-03
 

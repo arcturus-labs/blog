@@ -1,4 +1,4 @@
-/* Continuous star field with slow westward drift; no scroll/pointer parallax.
+/* Continuous star field with slow westward drift and depth-based scroll parallax (no mouse parallax).
    No phase darkening. Dawn/star fade is reserved for the bottom of the page.
    Bounded DPR, 30fps ceiling, reduced-motion and hidden-tab handling; no pause UI. */
 (() => {
@@ -68,7 +68,8 @@
       const drift = motion ? time / 1000 * (3 + 3 * star.depth) : 0;
       let x = (star.x * width - drift) % width;
       if (x < 0) x += width;
-      const y = star.y * height;
+      let y = (star.y * height - (motion ? scrollY * star.depth * .36 : 0)) % height;
+      if (y < 0) y += height;
       // Dawn washes out the low sky first, leaving the high stars visible.
       const altitudeFade = 1 - dawnWash * smooth(.15, .8, y / height);
       if (sun > 0 && y >= ground) return; // Never paint stars over the ground.
