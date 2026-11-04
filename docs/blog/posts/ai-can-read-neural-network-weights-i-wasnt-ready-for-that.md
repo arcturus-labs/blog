@@ -3,6 +3,7 @@ date: 2026-11-03
 authors:
   - john-berryman
 categories:
+  - Model Capabilities
   - Reasoning
 description: Frontier models can apparently interpret neural networks from their weights written out as text. That's a capability I wasn't expecting – and it challenges my intuition about how far learned reasoning can generalize.
 title: AI Can Read Neural Network Weights. I Wasn’t Ready for That.
