@@ -1,5 +1,9 @@
 # Homepage and story pages
 
+## Cache-safe production assets
+
+`scripts/publish_home.py` now content-versions every local CSS and JS reference when preparing `docs/`, not just the sky script. This prevents CDN/browser caches from mixing the grouped story HTML with the old per-moment stylesheet (which makes all scene images overlap). The filename stays unchanged; its `?v=` hash changes only when the bytes change. Check with `python3 scripts/test_publish_assets.py`. Standalone `homepage/` URLs stay unchanged.
+
 ## Story pictures: one picture per run of moments
 
 A run of consecutive moments in one step that share a picture is one **moment group** (`.moment-group`): one heading, one picture, and a `.moment` article per copy. `story_page._groups()` builds this for generated pages; `templates/agentic-web.html` is written the same way. The group carries `id` (the first moment's id, which the outline links to) and `data-step`; later moments keep their own ids for deep links.

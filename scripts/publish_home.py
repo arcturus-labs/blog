@@ -8,6 +8,7 @@ Re-run after editing the draft; output is deterministic.
     python3 -I scripts/publish_home.py
 """
 import html
+from hashlib import sha256
 import re
 import shutil
 import sys
@@ -47,6 +48,15 @@ def head_tags(page: str, title: str, desc: str) -> str:
 """
 
 
+def version_local_assets(text: str, src: Path) -> str:
+    """Bind CSS/JS URLs to their content, avoiding mixed deploys in CDN/browser caches."""
+    def replace(match):
+        attribute, filename = match.groups()
+        digest = sha256((src / filename).read_bytes()).hexdigest()[:12]
+        return f'{attribute}home/{filename}?v={digest}"'
+    return re.sub(r'((?:href|src)=")([\w\-]+\.(?:css|js))(?:\?[^"\s]*)?"', replace, text)
+
+
 def main(src: Path) -> None:
     (DOCS / "home").mkdir(exist_ok=True)
     (DOCS / "home" / "assets").mkdir(exist_ok=True)
@@ -60,7 +70,7 @@ def main(src: Path) -> None:
         title = html.unescape(re.search(r"<title>(.*?)</title>", text, re.S).group(1)).strip()
         desc = html.unescape(re.search(r'<meta name="description" content="(.*?)"', text, re.S).group(1))
 
-        text = re.sub(r'((?:href|src)=")([\w\-]+\.(?:css|js))(\?[^"\s]*)?"', r'\1home/\2\3"', text)
+        text = version_local_assets(text, src)
         text = re.sub(r'(?<![\w/\-])assets/([\w.\-]+)', r'home/assets/\1', text)
         # Keep internal navigation on this host, including during local preview.
         text = text.replace(f'href="{SITE}/blog/', 'href="/blog/')
