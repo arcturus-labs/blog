@@ -13,7 +13,7 @@ from proof_component import compact_proof
 import re
 
 # Approved pre-migration page: this asserts every byte, including all story copy.
-APPROVED_AGENTIC_SHA256 = 'd1204ffa9a282a2f48182d21358e1dba1bc73139009a93e266afaae730698a5d'
+APPROVED_AGENTIC_SHA256 = '9f96ae0f8882a13a45f30f54b3cf10a7af05d21b581923cc9f95df000c5bc05f'
 
 
 class AgenticWebBuilderTests(unittest.TestCase):

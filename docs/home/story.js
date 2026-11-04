@@ -131,17 +131,23 @@
   }
   // Allow real source anchors, meaningful hashes and keyboard activation.
   document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', event => {
-    const target = document.getElementById(link.hash.slice(1));
+    // "#top" is the true top of the page (the headline sits mid-screen, so #hero-title is not).
+    const toTop = link.hash === '#top' && !document.getElementById('top');
+    const target = toTop ? document.getElementById('hero-title') : document.getElementById(link.hash.slice(1));
     if (!target || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    navigate(target, reduced.matches ? 'instant' : 'smooth');
+    if (toTop) scrollTo({ top: 0, behavior: reduced.matches ? 'instant' : 'smooth' });
+    else navigate(target, reduced.matches ? 'instant' : 'smooth');
     history.pushState(null, '', link.hash);
-    if (link.closest('.scroll-cue,.skip') || link.hash === '#hero-title') {
+    if (link.closest('.scroll-cue,.skip') || link.hash === '#hero-title' || toTop) {
       target.tabIndex = -1;
       target.focus({ preventScroll: true });
     }
   }));
-  addEventListener('popstate', () => { const target = document.getElementById(location.hash.slice(1)); if (target) navigate(target, 'instant'); });
+  addEventListener('popstate', () => {
+    if (location.hash === '#top' && !document.getElementById('top')) { scrollTo({ top: 0, behavior: 'instant' }); return; }
+    const target = document.getElementById(location.hash.slice(1)); if (target) navigate(target, 'instant');
+  });
   addEventListener('scroll', requestUpdate, { passive: true });
   let resizeTimer;
   addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(configure, 120); });

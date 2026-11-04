@@ -145,7 +145,7 @@ def build(cfg):
 <a class="skip" href="#problem">Skip to the story</a>
 <header class="opening-nav">
   <a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="807" height="970"><span>Arcturus Labs</span></a>
-  <nav aria-label="Main navigation"><a href="https://arcturus-labs.com/blog/">Blog</a><a class="nav-call" href="#contact">Book a call <span aria-hidden="true">↗</span></a></nav>
+  <nav aria-label="Main navigation"><a href="https://arcturus-labs.com/blog/">Blog</a><a class="nav-call" href="https://calendly.com/jfberryman/15min" target="_blank" rel="noopener">Book a call <span aria-hidden="true">↗</span></a></nav>
 </header>
 <main>
   <section class="hero" aria-labelledby="hero-title">

@@ -165,11 +165,25 @@ const root = path.resolve(__dirname, '..');
       await page.screenshot({ path: `/tmp/home-${name}-footer.png` });
       // Proof dwell + anchors + footer
       if (name === 'laptop') {
-        await page.locator('a.nav-call').scrollIntoViewIfNeeded().catch(() => {});
+        // Top "Book a call" goes straight to Calendly (new tab), not down the page.
+        const call = page.locator('a.nav-call');
+        assert.equal(await call.getAttribute('href'), 'https://calendly.com/jfberryman/15min', 'Book a call goes to Calendly');
+        assert.equal(await call.getAttribute('target'), '_blank');
+        assert.match(await call.getAttribute('rel'), /noopener/);
         await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' })); await sleep(100);
-        await page.locator('a.nav-call').click(); await sleep(1500);
-        assert((await page.locator('#contact').boundingBox()).y < 200, 'Book a call jumps to contact');
-        await page.screenshot({ path: '/tmp/home-contact.png' });
+        const popupPromise = page.waitForEvent('popup', { timeout: 5000 });
+        await page.route('https://calendly.com/**', route => route.abort());
+        await call.click();
+        const popup = await popupPromise;
+        assert.match(popup.url(), /^https:\/\/calendly\.com\/jfberryman\/15min/);
+        await popup.close();
+        assert.equal(await page.evaluate(() => scrollY), 0, 'Book a call does not scroll the page');
+        // Footer "Back to top" reaches the real top of the page.
+        await page.locator('footer').scrollIntoViewIfNeeded(); await sleep(150);
+        assert(await page.evaluate(() => scrollY) > 500);
+        await page.locator('footer a[href="#top"]').click(); await sleep(2500);
+        assert.equal(await page.evaluate(() => scrollY), 0, 'Back to top scrolls to the very top');
+        await page.screenshot({ path: '/tmp/home-back-to-top.png' });
         const brand = await page.locator('footer .footer-brand').getAttribute('href');
         assert.equal(brand, 'index.html');
         const year = await page.locator('#copyright-year').textContent();

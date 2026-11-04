@@ -63,10 +63,14 @@
   const request = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
 
   document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', event => {
-    const target = document.getElementById(link.hash.slice(1));
+    // "#top" is the true top of the page (the headline sits mid-screen, so #hero-title is not).
+    const toTop = link.hash === '#top' && !document.getElementById('top');
+    const target = toTop ? document.getElementById('hero-title') : document.getElementById(link.hash.slice(1));
     if (!target || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    target.scrollIntoView({ behavior: reduced.matches ? 'instant' : 'smooth', block: 'start' });
+    const behavior = reduced.matches ? 'instant' : 'smooth';
+    if (toTop) scrollTo({ top: 0, behavior });
+    else target.scrollIntoView({ behavior, block: 'start' });
     history.pushState(null, '', link.hash);
     target.tabIndex = -1;
     target.focus({ preventScroll: true });

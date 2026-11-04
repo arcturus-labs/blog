@@ -141,6 +141,17 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8001/';
         await page.screenshot({ path: `/tmp/${file.replace('.html','')}-${name}-hero.png` });
         if (name === 'phone') { await page.locator('.solution .moment').last().scrollIntoViewIfNeeded(); await sleep(300); await page.screenshot({ path: `/tmp/${file.replace('.html','')}-phone-story.png` }); }
         if (name === 'laptop') {
+          // Top "Book a call" goes straight to Calendly; footer "Back to top" reaches scrollY 0.
+          const call = page.locator('a.nav-call');
+          assert.equal(await call.getAttribute('href'), 'https://calendly.com/jfberryman/15min', tag + ' Book a call goes to Calendly');
+          assert.equal(await call.getAttribute('target'), '_blank', tag + ' Calendly opens in a new tab');
+          await page.locator('footer').scrollIntoViewIfNeeded(); await sleep(200);
+          assert(await page.evaluate(() => scrollY) > 500, tag + ' reached footer');
+          await page.locator('footer a[href="#top"]').click(); await sleep(2500);
+          assert.equal(await page.evaluate(() => scrollY), 0, tag + ' Back to top scrolls to the very top');
+          await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+        }
+        if (name === 'laptop') {
           await page.evaluate(() => { const t = document.querySelector('.turning-point'); scrollTo({ top: scrollY + t.getBoundingClientRect().top + 80, behavior: 'instant' }); });
           await sleep(100);
           const a = await page.locator('.turn-stage').boundingBox();
