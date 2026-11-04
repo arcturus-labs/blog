@@ -1,6 +1,6 @@
 # 07 – Assemble, validate, and hand off
 
-This phase has now been exercised through `draft_site_3/` and `homepage/`. The latter is the current working example; its `README.md`, `copy.md`, `story.js`, `styles.css`, `subscribe.js` and `tests/smoke.cjs` provide implementation evidence, not an immutable design specification.
+This phase was exercised through `draft_site_3/` and the current `homepage/`. The latter is the current working example; its `README.md`, `copy.md`, `story.js`, `styles.css`, `subscribe.js` and `tests/smoke.cjs` provide implementation evidence, not an immutable design specification.
 
 ## Assemble the requested version
 

@@ -42,7 +42,7 @@ Read the reference for the current phase; revisit earlier phases when evidence o
 - `homepage/research/` — notes, backlog (`to-dos.md`, `john_notes.md` is owner-curated: never rewrite unasked), `content_research/` evidence briefs, `website_copy/` briefs, competitor/interaction research.
 - `scripts/publish_home.py` — copies `homepage/` pages, CSS/JS and used images into `docs/` (`docs/home/`), injecting Google Analytics, canonical, Open Graph and Twitter tags. Never hand-edit `docs/index.html`, the three story pages or `docs/home/`.
 - `hooks/recent_posts.py` — MkDocs hook that fills the homepage "recent posts" with the five newest posts at build time (markers `<!-- recent-posts:start/end -->`).
-- Raw generated-image originals (~200 MB) are NOT in this repo. They live in `content-production/2026.10.29--Arcturus-Labs-Website/website_copy/supporting_images/`. Normal rebuilds use committed exports in `homepage/assets/`. To re-export from originals: `HOMEPAGE_SCENES=<that path> HOMEPAGE_REBUILD_ASSETS=1 python3 -I homepage/tools/build_<page>.py`.
+- The raw generated-image originals (~200 MB) were deleted along with the old `content-production/2026.10.29--Arcturus-Labs-Website/` project (and expunged from that repo's history on 2026-11-04). `homepage/assets/` holds the only copies of the shipped artwork: 76 committed WebP/JPG exports. Do not delete them. Ordinary rebuilds reuse them via `cached_scene()` and need no originals. `--assets`/`HOMEPAGE_REBUILD_ASSETS=1` only works if originals are supplied again via `HOMEPAGE_SCENES`; if new artwork is needed, generate it fresh and export it into `homepage/assets/`.
 
 ## Workflow commands (run from blog repo root)
 
@@ -76,4 +76,4 @@ When John asks for research, copy ideas, or new pages: follow phases 1–5 above
 
 ## Resuming
 
-Read `homepage/README.md`, `homepage/research/to-dos.md`, then the relevant `*-copy.md`. `homepage/research/website_copy/<page>.md` may be an older brief. Recent explicit feedback overrides older notes. Drafts 1–3 of the original project remain only in `content-production/2026.10.29--Arcturus-Labs-Website/` for history. Chromium checks do not cover Safari/iOS or assistive tech; open launch items (Calendly URL, testimonial permissions, real Kit mailbox test) are in the backlog.
+Read `homepage/README.md`, `homepage/research/to-dos.md`, then the relevant `*-copy.md`. `homepage/research/website_copy/<page>.md` may be an older brief. Recent explicit feedback overrides older notes. Drafts 1–3 of the original project are gone (the old content-production folder was deleted and its history rewritten); this repo is now the only copy. Chromium checks do not cover Safari/iOS or assistive tech; open launch items (Calendly URL, testimonial permissions, real Kit mailbox test) are in the backlog.
