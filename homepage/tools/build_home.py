@@ -146,6 +146,7 @@ html = f'''<!doctype html>
     </div>
   </section>
 
+{proof}
   <section class="glance" aria-labelledby="glance-title">
     <div class="glance-stage content-wrap">
     <h2 class="glance-title" id="glance-title">Just looking around?<span class="hero-turn">See what Arcturus Labs is building</span></h2>
@@ -156,7 +157,6 @@ html = f'''<!doctype html>
     </div>
   </section>
 
-{proof}
   <section class="videos" aria-labelledby="videos-title">
     <div class="videos-heading"><h2 id="videos-title">Talks, workshops, and conversations with John Berryman.</h2></div>
     <div class="talks-strip" tabindex="0" role="region" aria-label="Talks and videos. Scrolls sideways.">
