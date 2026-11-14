@@ -1,0 +1,10 @@
+/* Approved homepage proof layout port, isolated from the story scenes. */
+.proof-stage { padding: 28px 0 12px; }
+.proof-intro h2 { margin: 8px 0; }
+.proof-grid { margin-top: 24px; grid-template-columns: 1fr 3.6fr 1fr; gap: 3%; }
+.testimonials figure+figure { padding-top: 10px; margin-top: 10px; }
+.testimonials figcaption { display: block; margin-top: 5px; }
+.authorship { margin: 18px auto 0; font-size: .75rem; line-height: 1.5; }
+@media (max-width: 900px), (max-height: 659px) {
+  .proof-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+}
